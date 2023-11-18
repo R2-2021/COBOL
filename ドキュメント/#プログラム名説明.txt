@@ -1,0 +1,437 @@
+
+CBL_OC_DUMP,
+      *    *** 16進数ダンプ出力　サブルーチン
+COBDUMP,
+      *    *** 16進数ダンプ出力
+      *    *** HEXでダンプ出力、サブルーチン
+LISTING,
+      *    *** COBXREF 用 サブルーチン
+COBRND  ,
+      *    *** ランダム数　計算サブルーチン
+DATETIME,
+      *    *** 処理時間等出力、サブルーチン
+DATEWEEK,
+      *    *** 日付から曜日計算、サブルーチン
+FILEDUMP,
+      *    *** ALPHA,MIX ダンプ出力、サブルーチン
+
+FILEITEM.CALL.POT1 <= CALL 一覧
+FILEITEM.COPY.POT1 <= COPY 一覧
+
+DECODE01,
+      *    *** html %XX 文字解析 TEST
+      *    *** SEARCH ALL 使用
+DECODE02,
+      *    *** DECODE01 改良 サブルーチン
+      *    *** １文字ずつでなく、Buffer全部を変換
+      *    *** インターネット HTML %XX UTF-8 文字変換
+      *    *** SEARCH ALL 使用
+DECODE03,
+      *    *** 16進数変換 サブルーチン
+      *    *** １文字ずつでなく、Buffer全部を変換
+DECODE04,
+      *    *** バイナリーファイル レコード取り出し サブルーチン
+DECODE05,
+      *    *** SJIS <=> UTF8 変換 サブルーチン
+      *    *** TEST48,TEST54 で使用
+DECODE06,
+      *    *** HACKADOLL 画像ファイル名抽出 サブルーチン,TEST49,50,51で使用
+DECODE07,
+      *    *** A-Z,0-9,!-|等記号 見出し変換 サブルーチン
+
+
+
+hello,
+      *    *** Hello World!
+COBXREF,
+      *    *** COBOL SOURCE LIST,XREF LIST 出力
+HILOWG  ,
+      *    *** 1-1024数当てゲーム
+FILECOMP,
+      *    *** FILE コンペアー
+FILEITEM,
+      *    *** 項目一覧の出力、サマリーも出力
+      *    *** ＰＲＭ１で出力項目等指定
+      *    *** ＰＲＭ２で縦、横出力、明細有り、無し等指定
+      *    *** PRINT AREA 2次元でセット　（４０行／１ページ）
+      *    *** 改行数、Ａ４縦、Ａ４横　プログラムで設定
+      *    *** KEY ブレイク追加
+FILEDMPP,
+      *    *** FILEDUMP パラメータ ACCEPT で　ダンプ出力
+      *    *** パラメータ PRM1 で入力して　ダンプ出力
+COBSORT,
+      *    *** ＳＯＲＴＷＯＲＫでＳＯＲＴ、レコード長　ＭＡＸ１０，０００バイト
+      *    *** 件数　ＭＡＸ　１，０００件まで
+COBSORTTBL,
+      *    *** テーブル内ＳＯＲＴ、レコード長　ＭＡＸ１，０２４バイト
+      *    *** 件数　ＭＡＸ　１，０００件まで
+FIZZBUZZ,
+      *    *** 3,5で割れるFizzBuzz、3で割れるFizz,5で割れるBuzz
+
+
+
+COBSAM01,COMP-3,COMP,BINARY, 内部コード、レングスチェック
+      *    *** DECODE01,DECODE02 html %XX 文字解析 TEST
+      *    *** "%E7%9F%B3%E5%8E%9F%E5%A4%8F%E7%B9%94".
+      *    *** LEVEL 88 TEST
+
+COBSAM02.USAGE TEST2 ＣＯＰＹ句サンプル、その他文調査,
+      *    *** IF NUMERIC CHECK
+      *    *** X"XX" CHECK
+      *    *** TRIM,RANDOM,NUMVAL CHECK
+      *    *** COPY 句 CHECK
+COBSAM03,USAGE FILE 出力
+      *    ***  -fnotrunc TEST BINARY 早くなる
+COBSAM04,
+      *    *** ORGANIZATION RECORD BINARY SEQUENTIAL 調査
+COBSAM05,
+      *    *** サブルーチン　DATETIME CHECK
+COBSAM06,
+      *    *** INSPECT CHECK, FILEITEM CHECK DATA CREATE
+      *    *** NUMVAL TEST
+      *    *** FILEITEM TYPE=,HEN= TEST DATA CREATE
+COBSAM07,
+      *    *** ORGANIZATION RECORD BINARY SEQUENTIAL TEST
+      *    *** INPUT,OUTPUT 同じレコード長にすれば、FILEITEM BYNARY INPUT
+      *    *** で処理可能になる
+      *    *** 
+COBSAM08,
+      *    *** BINARY SEQUENTIAL レコード長 複数 ＴＥＳＴ
+      *    *** 結局無理、可変長　入出力<= COBSAM07 OK になった
+COBSAM09,
+      *    *** OSS COBOL 数字最大桁　チェック  PIC S9(036)
+      *    *** 関数データ　チェック
+
+
+
+TEST01,ＣＯＢＯＬソースコンパイルテスト用
+TEST02,
+      *    *** マージサンプル ＰＩＮ１、ＰＩＮ２を１ファイルにする
+      *    *** 同一キーは項目更新する
+      *    *** PIN1,PIN2 同一キー有りは、PIN2の内容で更新し、PIN1出力
+TEST03,SORT サンプル
+TEST04,+,-,*,/ テスト
+TEST05,CALL サブルーチンテスト、ＣＯＢＤＵＭＰテスト
+TEST06,画面入力、出力テスト、漢字入力出来ない?
+TEST07,FUNCTION RANDOM,PI テスト,キャラクター、X"00"からX"FF" までチェック
+TEST08,
+      *    *** HEX コードファイル出力テスト、文字化け、コードズレあるか
+      *    *** 出力1件なのに、エディターで開くと、3行になってる
+      *    *** 制御コードあるためか？文字化けもある
+
+TEST09,DMM HTML出力
+TEST10,HTML 汎用＜＞、テキスト出力
+TEST11,KawaiianTV HTML出力
+TEST12,
+      *    *** アイドル横丁 データの出力　AAA/BBB/CCC分割
+      *    *** 出力したデータをUTF-8＝＞SJIS変換してＥｘｃｅｌで読み取る
+TEST13,
+      *    *** expo_jam 用
+      *    *** http:// 行の出力
+      *    *** <img src=と<div class=""externalLink直後の
+      *    *** <a href=https
+      *    *** アイドルデータの出力
+TEST14,
+      *    *** YOUTUBE http:// 行の出力
+      *    *** <h3 直後の
+      *    *** <a href=https
+      *    *** タイトル 出力
+TEST15.
+      *    *** SJIS(POT1),UTF8(POT2) 漢字文字コードの出力
+TEST16,
+      *    *** 漢字コード表の出力
+      *    *** PRINT AREA 2次元でセット　（４０行／１ページ）
+TEST17,
+      *    *** ＊＊＊　ＳＪＩＳ　漢字コード表　＊＊＊の出力
+      *    *** PRINT AREA 2次元でセット　（４０行／１ページ）
+TEST18,
+      *    *** 処理速度の計測
+      *    *** PRINT AREA 2次元でセット　（４０行／１ページ）
+TEST19,
+      *    *** GnuCOBOL FAQ,GNU Cobol Colours
+TEST20,
+      *    *** GnuCOBOL FAQ,GNU Cobol Colours2　画面　Ｘランダム表示
+TEST21,
+      *    *** 画面テスト
+TEST22,
+      *    *** INDEX FILE SEQ 出力
+TEST23,
+      *    *** INDEX FILE => SEQ FILE 出力
+TEST24,
+      *    *** INDEX FILE RANDOM 入力,
+      *    *** SEQ FILE 出力
+TEST25,
+      *    *** アイドルデータ　画面出力
+TEST26,
+      *    *** アニメイトアニメ一覧編集
+TEST27,
+      *    *** アニメイトアニメ一覧　声優データで抽出
+TEST28,
+      *    *** http://www.kansou.me/archive/2011_autumn.html
+      *    *** アニメ新番組一覧編集 2011.10-2016.10 分
+      *    *** https://www.animatetimes.com/tag/details.php?id=6212 等
+      *    *** 2019.01-
+TEST29,
+      *    *** アニメ一覧表の出力
+      *    *** PRINT AREA 2次元でセット
+      *    *** 罫線、改行自動セット、Ａ４縦、Ａ４横　プログラムで設定
+TEST30,
+      *    *** アニメ一覧表の出力
+      *    *** PRINT AREA 2次元でセット
+      *    *** 罫線枠セット、Ａ４縦、Ａ４横　プログラムで設定
+TEST31,
+      *    *** アニメ一覧表の出力
+      *    *** PRINT AREA 2次元でセット
+      *    *** 下線セット、Ａ４縦、Ａ４横　プログラムで設定
+TEST32,
+      *    *** SORT
+      *    *** SORT 処理時間計測　１００万件、約３４秒
+TEST33,
+      *    *** テーブル ロジックでソート
+TEST34,
+      *    *** テーブル ロジックでソート
+      *    *** パターン２
+TEST35,
+      *    *** アニメ一覧表の出力
+      *    *** PRINT AREA 2次元でセット
+      *    *** 改行自動セット、Ａ４縦、Ａ４横　プログラムで設定
+      *    *** KEY ブレイク追加、年月小計、年小計、総合計
+TEST36,
+      *    *** SORT
+      *    *** SORT ランダムデータ作成
+      *    *** ある範囲のランダムデータ作成
+      *    *** ２０００－２０９９年、０１－１２月
+      *    *** FUNCTION を使わずに、ランダム作成
+      *    *** CALL "COBRND" サンプル
+TEST37,
+      *    *** 集計表（ゾーン数字、パック数字有）の出力
+      *    *** PRINT AREA 2次元でセット
+      *    *** 改行自動セット、Ａ４縦、Ａ４横　プログラムで設定
+      *    *** KEY ブレイク追加、年月小計、年小計、総合計
+      *    *** ゾーン数、パック数集計
+      *    *** INDEX FILE READ 追加
+TEST38,
+      *    *** SORT BINARY SEQUENTIAL FILE用
+TEST39
+      *    *** YOUTUBE 検索後、下キーで全タイトル表示後
+      *    *** Ｃｔｒｌ＋Ａ ペーストしたファイルをＣＳＶデータ出力
+TEST40
+      *    *** TEST21 改良　画面テスト
+      *    *** 魔方陣
+      *    *** 花火
+      *    *** 誕生日当てゲーム
+      *    *** カレンダー
+      *    *** ハイローゲーム
+TEST41
+      *    *** 漢字コード、画面出力　完了してない
+TEST42
+      *    *** ＣＳＶファイル固定長に変換、項目長さは最大長で自動出力
+TEST43
+      *    *** ＣＳＶファイル固定長に変換、項目長さはＰＩＮ２で指定する
+TEST44
+      *    *** FILEDTCR で出力された、ランダム数値、出現回数調査、均等に
+      *    *** 出力しているか
+TEST45
+      *    *** http:// 行の出力 TEST10でHTML解析できない時、使用
+      *    *** 通常<li>の様に、<>１行単位に入力されてるが、
+      *    *** <li
+      *    *** > １行に無い時、複数行になる時、１行に編集
+      *    *** その他の組込み関数、<が>とペアでないため、他の文字に変更
+      *    *** 
+TEST46
+      *    *** UTF-8 漢字データ出力
+TEST47
+      *    *** アニメイト＿声優一覧用
+      *    *** 女優詳細サイト,画像まとめサイト　抽出,TEST49 PIN2の入力データ
+TEST48
+      *    *** UTF8 <=> SJIS 変換
+TEST49
+      *    *** YouTibe 声優 html 作成
+TEST50
+      *    *** YouTibe アニメ html (年代順) 作成
+TEST51
+      *    *** YouTibe アニメ html (タイトル順)
+TEST52
+      *    *** YouTibe  html イージーリスニング 作成
+TEST53
+      *    *** YouTibe html 汎用インプットデータ作成、タイトル%セット
+TEST54
+      *    *** YouTibe html wiki汎用 作成 INPUT=TEST53.POT1
+TEST55
+      *    *** 苗字、フリガナセット
+      *    *** 芸能人 ひらがな順 
+      *    *** TEST55.POT1 TEST53へ
+TEST56
+      *    *** 2000年代生まれの女優 名前順、誕生日順
+      *    *** TEST56.POT1 TEST53へ
+TEST57
+      *    *** アイドル大図鑑（グループ順）、（名前順）
+      *    *** TEST57.POT1 TEST53へ
+TEST58
+      *    *** 日本の女優一覧
+      *    *** TEST53 入力データ作成
+TEST59
+      *    *** COBRND 再チェック
+TEST60
+      *    *** XVI PIN4 国選択指示のみ、出力対象
+TEST61
+      *    *** ASCII 、カナ、かなデータ作成 同一件数データマージしてＣＳＶ作成
+TEST62
+      *    *** カンマ、ソートキー(数字、カナ、かな、漢字読み)付加
+      *    *** YouTibe アニメ html (タイトル順)
+TEST63
+      *    *** アニメhtml 名前順 データ作成
+      *    *** キーブレイク処理、#NNN 付加
+      *    *** YouTibe アニメ html (タイトル順)
+TEST64
+      *    *** バイオリズム 計算
+      *    *** FILEITE.T013.PRM1
+      *    *** C.FILITEM.T013
+TEST65
+      *    *** 仮想ＸＸコンバージョン
+TEST66
+      *    *** Youtube html ゆいかおり 解析
+      *    *** YOUTUBE HTML 再構成のため、利用不可
+TEST67
+      *    *** ディレクトリ 解析、アンマッチ、マッチング分割
+TEST68
+      *    *** Youtube html ゆいかおり 作成
+      *    *** TEST69.POT3 INPUT
+TEST69
+      *    *** Youtube html ゆいかおり 再解析
+      *    *** WATCH JAVA SCRIPT 
+TEST70
+      *    *** bookmarks.html XVIデータ抽出
+      *    *** TEST53 INPUT DATA 作成
+TEST71
+      *    *** キーダブリカット　データ作成
+      *    *** KEY1,2,3 ACCEPT で入力、KEY長32バイトまで
+      *    *** KEY 発生件数追加
+TEST72
+      *    *** bookmarks.html DMMデータ抽出
+TEST73
+      *    *** アニメhtml 年代順データ作成
+TEST74
+      *    *** Qosmio DIR から html データ作成
+TEST75
+      *    *** キーワードから キーワード含むデータ抽出
+      *    *** PIN2 ID=100 バイト以内
+TEST76
+      *    *** 三菱ＵＦＪ投資信託データＣＳＶに変換
+TEST77
+      *    *** SMBC日興投資信託データＣＳＶに変換
+TEST78
+      *    *** ＸＶＩ２　ｔａｇデータ作成
+TEST79
+      *    *** お菓子系データ作成
+TEST80
+      *    *** お菓子系２データ作成
+      *    *** CALL    "CBL_READ_FILE"
+TEST81
+      *    *** DECODE07 LIST 出力
+      *    *** Monkey
+      *    ***  play
+TEST82
+      *    *** 可変長 ファイル　テスト出力
+      *    *** BINARY SEQUENTIAL で POT1-REC 可変長で出力される
+      *    *** FILEDUMP では中身８０バイト分入っているが、
+      *    *** POT1-REC の中身は、可変長になっている
+TEST83
+      *    *** EXPO_JAM_2018 一覧
+      *    *** TEST53 入力データ作成
+TEST84
+      *    *** XVI tag data 作成
+      *    *** TEST78 入力データ作成
+TEST85
+      *    *** C:,M: BACKUP FILE DIR SORT
+      *    *** CHCP 65001 (UTF8) でDIR 取得 ファイル名に中国文字ある為、
+      *    *** SJISだと文字化けしてしまう
+      *    *** C.DIR02.BAT で ＤＩＲ取得
+TEST86
+      *    *** BAT の実行 CALL "SYSTEM"
+      *    *** TEST85.POT2 (XCOPY.BAT) 入力
+TEST87
+      *    *** 初回作成用 TEST85M.POT3 入力
+      *    *** DIR 整理用 M:
+      *    *** INDEX FILE SEQ 出力
+TEST88
+      *    *** ディレクトリ 解析、アンマッチ、マッチング
+      *    *** TEST88 => TEST88
+      *    *** C:\Users\... DIR データ UTF8 (TEST85.POT1)
+      *    *** M:Kachin-PC\...  DIR 解析データ UTF8
+      *    ***  (TEST86.POT1=>TEST23.POT1)
+TEST89
+      *    *** DMM 検索結果 画像拡大表示 横６個
+      *    *** 横６個の指定はTEST53.CBLで行う
+TEST90
+      *    *** 誕生日、１万日後、２万日後、３万日後
+TEST91
+      *    ***  UTF8 漢字コード 記号 調査
+TEST92
+      *    *** アニメ一覧の出力
+      *    *** PRINT AREA 2次元でセット　（４０行／１ページ）
+      *    *** 改行数、Ａ４縦、Ａ４横　プログラムで設定
+      *    *** KEY ブレイク追加
+      *    *** TEST35 => TEST92 (UTF8 入力に変更)
+TEST93
+      *    *** dir ディレクトリ 容量同一データのみ ファイル出力
+TEST94
+      *    *** random test
+TEST95
+      *    *** FILE NAME BYTE CHECK
+TEST96
+      *    *** Youtube channel TEST49.PIN3 
+      *    *** キーワードから キーワード含むマッチング分、
+      *    *** アンマッチ分データ抽出
+      *    *** PIN1 ID=500バイト
+TEST97
+      *    *** Youtube channel TEST49.PIN3 
+      *    *** GOOGLE CHROME 用：声優用データ作成
+      *    *** TEST97.POT1 => TEST49.PIN3
+      *    *** TEST97.POT2 => TEST53.PIN1
+TEST98
+      *    *** Youtube channel 追加データチェック
+      *    *** TEST97U.POT2 INPUT
+TEST99
+      *    *** Ｗ５０ yuuri ディレクトリチェック
+      *    *** Directory of,File(s) 抽出
+TEST100,
+      *    *** Ｗ５０ yuuri ディレクトリチェック
+      *    *** Directory of,File(s)　コンペアー
+TEST101,
+      *    *** 楽天検索データ自動作成
+      *    *** 声優データから９９件ランダム作成
+TEST102,
+      *    *** COBRND TEST2
+TEST103,
+      *    *** YouTube 動画サムネイル、自動付加
+      *    *** (Walk East.csv) TEST103.PIN1 => TEST103.POT1
+TEST104,
+      *    *** YouTube 動画サムネイル、自動付加
+      *    *** TEST103 => TEST104 TBL から PIO1-F に変更
+      *    *** (Walk East.csv) TEST103.PIN1 => TEST103.POT1
+TEST105,
+      *    *** 画像ランダム配置、ｈｔｍｌ作成
+TEST106,
+      *    *** １６進ダンプ
+TEST107,
+      *    *** EXCEL マクロ編集
+TEST108,
+      *    *** XVI TEST70.PIN5 翻訳（英語＝＞日本語）データ作成
+TEST109,
+      *    *** カンマ、ソートキー(数字、カナ、かな、漢字読み)付加
+      *    *** TEST70.PIN5 データ作成
+TEST110,
+      *    *** TEST70用 PIN5 検索データ作成
+TEST111,
+      *    *** YouTube html %XX => 日本語に変更
+TEST112,
+      *    *** TEST98 用のTEST97U.POT2 https://www.youtube.com/@XXXXXX
+      *    *** 置換
+TEST113,
+      *    *** Youtube channel PNG 未使用番号、再採番
+TEST114,
+      *    *** Floyd’s triangle
+TEST115,
+      *    *** mini vs dell ディレクトリチェック
+      *    *** OneDrive ディレクトリ
