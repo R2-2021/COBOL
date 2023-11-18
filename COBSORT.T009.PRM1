@@ -1,0 +1,31 @@
+CSV=Y
+
+SORT=DAA
+
+KEY=1,POS=1,LEN=4,TYPE=CH
+KEY=2,POS=2,LEN=2,TYPE=CH
+KEY=3,POS=7,LEN=10,TYPE=CH
+
+F-IN=TEST62.POT1
+F-OT=TEST62.SORT.POT1
+
+ INCLUDE=1,POS=11,LEN=4,TYPE=CH,VALUE=COPY
+ OMIT=1,POS=2,LEN=4,TYPE=CH,VALUE=COPY
+
+
+ 以下コメント
+ インプットCSV の時、CSV=Y、その他はCSV=N、指定
+ CSV=Yの時、ＫＥＹ１-３で開始ポジションPOS=1-20で指定、
+ また、ＫＥＹで指定出来るポジション個数は、最初の項目から２０個まで、
+
+ SORT MODE 指定
+     １，１　Ａ：昇順　又はＤ：降順　省略不可
+     ２，１　Ａ：昇順　又はＤ：降順　省略可
+     ３，１　Ａ：昇順　又はＤ：降順　省略可
+ KEY=1 POS=1-65536、LEN=1-10、TYPE=CH,ZD
+ KEY=2,3 同上、省略可
+ F-IN=でインプットファイル名指定、スペースの時、入力有
+ F-OT=でアウトプットファイル名指定、スペースの時、入力有
+
+ 注意事項
+   カンマ、ピリオド有り数値項目は考慮しない　引用符で囲まれた項目も考慮しない

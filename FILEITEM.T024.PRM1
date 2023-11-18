@@ -1,0 +1,77 @@
+ CSV=Y <== 現在未使用
+TITLE=＊＊＊　TEST46.POT1　ＵＴＦ８漢字　＊＊＊
+
+ *** SJIS
+DT=01,POS=01,LEN=6,TYPE=CH,SUM=N,TITLE=コード,HEN=ZK
+DT=02,POS=07,LEN=3,TYPE=CH,SUM=N,TITLE=　,HEN=ZK
+ DT=03,POS=28,LEN=10,TYPE=CH,SUM=N,TITLE=１万日後,HEN=ZK
+ DT=04,POS=38,LEN=2,TYPE=CH,SUM=N,TITLE=　,HEN=ZK
+
+F-IN=KANJI\TEST46_UTF8.POT1
+ F-IN=KANJI\TEST46_UTF8_記号半角.POT1
+ F-IN=COBSORT.POT1
+ F-IN=TEST36.POT2,MODE=BINARY
+ F-IN=FILEDTCR.POT1,MODE=BINARY
+F-OT=FILEITEM.T024.POT1,MODE=OUTPUT
+
+LISTID=FILEITEM
+
+ KEY=1,POS=8,LEN=4
+ KEY=2,POS=5,LEN=2
+ KEY=3,POS=5,LEN=3
+
+ KEYMID=1,TITLE=小計＞
+ KEYMID=2,TITLE=月　小計＞
+ KEYMID=3,TITLE=部門小計＞
+ KEYMID=4,TITLE=総合計　＞
+
+
+*** データ項目　プリント FILEITEM.PRM1.説明 に項目説明あり
+*** (1,N) KEY WORD以外はコメント
+*** KEY WORD=DT,F-IN,F-OT,LISTID,KEY
+
+*** TITLE=帳票タイトル指定、７６文字まで
+
+*** DT=  でプリントデータ項目指定する　２０項目まで指定可
+***    DT=NNのNNはチェックしていない、エラー時パラメータ出力するので、
+***    エラー行のコメントになる
+***    POS= 項目開始位置
+***    LEN= 長さ　ゾーンタイプ１１まで、パック６まで、ＣＨは４０まで
+***    TYPE=CH等、出力文字タイプ指定
+***        CH:英数字、漢字
+***        HE:ヘキサで出力、文字コードチェックやパック項目内部コードチェック
+***        ZD:ゾーンタイプ数字　小数点無
+***        Z1:ゾーンタイプ数字　小数点１桁
+***        Z2:ゾーンタイプ数字　小数点２桁
+***        Z3:ゾーンタイプ数字　小数点３桁
+***        PD:パックタイプ数字　小数点無
+***        P1:パックタイプ数字　小数点１桁
+***        P2:パックタイプ数字　小数点２桁
+***        P3:パックタイプ数字　小数点３桁
+***    SUM=Y OR N で数字項目、Y:集計するか、N:しないか、指定 数字項目の時、有効
+***    TITLE=項目の見出し指定　１０文字まで　漢字は５文字まで
+***    HEN=ZZ等、数字項目、編集タイプ指定、ZD,Z1,Z2,Z3,PD,P1,P2,P3の時、有効
+***        99:99999999.999- で編集
+***        ZZ:-ZZZZZZZ9.999
+***        EE:-\\\\\\\\9.999
+***        9K:99,999,999.999-
+***        ZK:-ZZ,ZZZ,ZZ9.999
+***        EK:-\\\,\\\,\\9.999
+
+*** F-IN= でインプットファイル名指定　３２文字まで
+***       MODE=LINE、L、BINARY、B 指定無はLINE モードで入力
+***       BINARY はレコードの終わりにX"0D0A" 有る事
+
+*** F-OT= でアウトプットファイル名指定　３２文字まで
+***       MODE=OUTPUT,O,EXTEND,E を指定　指定無はOUTPUTで書き込み
+***       EXTEND は追加で書き込み
+
+*** LISTID= で帳票左上のＩＤ指定
+
+*** KEY= で集計キーを指定
+***       KEY=1-3で指定可
+***       POS= KEY開始位置　１－１００００の範囲で指定
+***       LEN= 長さ　１－１０の範囲で指定
+***       KEY1=1,POS=10,LEN=5 例
+*** KEYMID= で集計項目見出し,KEY　１-３で指定
+***       TITLE=集計項目の見出し指定　１０文字まで　漢字は５文字まで

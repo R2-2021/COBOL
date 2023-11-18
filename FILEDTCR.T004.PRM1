@@ -1,0 +1,90 @@
+CRE=365
+
+ F-IN=FILEDTCR.PIN1
+F-OT=FILEDTCR.POT1
+
+CSV=N
+
+SORT=AAA
+
+KEY=1,POS=1,LEN=5,TYPE=ZD
+ KEY=2,POS=91,LEN=10,TYPE=ZD
+ KEY=3,POS=1,LEN=9,TYPE=ZD
+
+DT=01,POS=001,LEN=5,TYPE=CODE,IDX=1,FROM=0,TO=1,BETWEEN=100,ZERO=Y
+DT=02,POS=011,LEN=8,TYPE=DTCD,IDX=2,FROM=19571222,TO=1,BETWEEN=100
+ DT=03,POS=021,LEN=4,TYPE=CODE,IDX=3,FROM=0,TO=365,BETWEEN=1,ZERO=Y
+ DT=04,POS=016,LEN=4,TYPE=CODE,IDX=4,FROM=3000,TO=3,BETWEEN=5,ZERO=N
+ DT=05,POS=021,LEN=8,TYPE=ALPHA,IDX=1
+ DT=06,POS=031,LEN=8,TYPE=KANA,IDX=1
+ DT=07,POS=041,LEN=10,TYPE=SNAME,IDX=1
+ DT=08,POS=051,LEN=15,TYPE=SUTF8,IDX=1
+
+*** FILEDTCR テストデータ作成
+
+*** 各ｷｰﾜｰﾄﾞは１バイト目から記述した時有効
+
+*** １バイト目スペースはコメントになる
+*** (1,N) KEY WORD以外はコメント
+
+*** CRE= で作成件数指定する　最大　１０，０００，０００まで
+
+*** SORT= SORTのMODE指定 AAA の時、KEY=1,KEY=2,KEY=3 の順のキーと対応、全て昇順
+***       A は昇順、D は降順
+
+*** KEY= で SORT KEYの位置1-65536,長さ指定、LEN=１０まで、数字マイナス時は、内部的に
+***      10,000,000加えた値、KEYにセットし、SORTしている
+***      KEY一つも指定しない時、SORTしないで出力する
+*** SORT 不要の時、KEY= 指定しない、内部ではKEY スペースでソートする
+
+*** DT=  でデータ項目指定する 
+***      DT=NN NN=1-99,NNは同一番号はエラー、流用時のエラー防ぐため
+***      POS= 作成開始位置 1-65536, LEN=長さ 1-256 TYEP=NUM,CODE時は 1-10
+***      TYPE=で作成項目タイプ指定
+
+***      TYPE=NUM で数字作成
+ DT=01,POS=1,LEN=9,TYPE=NUM,IDX=1,FROM=1,TO=100000,SIGN=1,ZERO=N
+***            FROM= 0-100000000 の範囲で指定
+***            TO=   0-100000000 の範囲で指定、
+***            FROM,TOで作成範囲指定,FROM>TOの時、FROM=1000,TO=2000を初期値とする
+
+***            SIGN=でマイナス作成するか,
+      *    *** SIGN=- マイナス有り,約１０回に1回、ランダムに発生
+      *    *** SIGN=Y マイナス有り,約１０回に1回、ランダムに発生、同上
+      *    *** SIGN=1 1件おき
+      *    *** SIGN=2 10件おき
+      *    *** SIGN=3 100件おき
+      *    *** SIGN=N はプラスのみ
+
+***            ZERO= でゼロ含むか指定
+      *    *** ZERO=N ZERO 含まない
+      *    *** ZERO=Y ZERO 含む
+               BETWEEN= は未使用
+
+***      TYPE=CODE  連続数1,2,3,... 11,11,12,12,13,13,...
+ DT=02,POS=011,LEN=9,TYPE=CODE,IDX=2,FROM=2000,TO=3,BETWEEN=2
+ 2000,2000,2000,2002,2002,2002,2004,2004,2004,2006,...
+              FROM= で開始数字,TO= で同一数を連続して作成,
+              BETWEEN=1-100000000 で加算数指定
+              SIGN=,ZERO= は未使用
+
+***      TYPE=KANA  カタカナ の時、FROM=,TO=,BETWEEN=,SIGN=,ZERO= は未使用
+ DT=07,POS=61,LEN=10,TYPE=KANA,IDX=1 
+
+***      TYPE=ALPHA 英字の時、FROM=,TO=,BETWEEN=,SIGN=,ZERO= は未使用
+ DT=08,POS=71,LEN=10,TYPE=ALPHA,IDX=2
+
+***      TYPE=SNAME 声優名(SJIS)の時、FROM=,TO=,BETWEEN=,SIGN=,ZERO= は未使用
+ DT=09,POS=81,LEN=10,TYPE=SNAME,IDX=3
+
+***      TYPE=SUTF8 声優名(UTF8)の時、FROM=,TO=,BETWEEN=,SIGN=,ZERO= は未使用
+ DT=09,POS=81,LEN=10,TYPE=SUTF8,IDX=3
+
+***      IDX=1-99 TYPE=NUM,CODE時はDT=NNのNNを使う
+         その他のTYPEの時、IDXに対応したランダム値を使う
+
+*** CSV=Y は項目作成直後に　","　挿入 Y以外はカンマ挿入しない
+
+*** F-IN= でインプットファイル名指定、現在未使用
+
+*** F-OT= でアウトプットファイル名指定
