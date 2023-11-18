@@ -1,0 +1,11 @@
+ POS=1,TYPE=CH,SHIFT=L
+ POS=2,TYPE=CH,SHIFT=R
+ POS=3,TYPE=ZD,SHIFT=R
+F-IN=TEST97U.POT2
+ F-IN=TEST53.POT1
+ F-IN=TEST42.PIN1
+F-OT=TEST97X.POT2
+ *** CSV 可変長を固定長のCSVに変換、項目ごと最大項目長をチェックし、
+     その長さで出力する ＝＞ ＦＩＬＥＩＴＥＭで入力可能になる
+     POS= 項目のポジション指定、１-100 まで指定可
+ *** TYPE CH,ZD どちらか指定 
