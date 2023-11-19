@@ -1,0 +1,467 @@
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     1  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+     1       *    *** 通常メインプログラムは-xでコンパイルする XXXX.exeが実行される
+     2       *    *** サブルーチンは-mでコンパイルする XXXX.dllが実行される
+     3       *    *** cobc test01 cbl 大文字でも、小文字でもコンパイル可能
+     4       *    *** -x は小文字でないとだめ
+     5       *    *** cobc -x test01.cbl
+     6       *    *** TEST01
+     7       *    ***
+     8       *    *** メインプログラムもサブルーチンも-mでコンパイルして、
+     9       *    *** XXXX.dll が作成され、cobcrun で実行出来る
+    10       *    *** cobc test01 cbl cobcrun 大文字でも、小文字でもコンパイル
+    11       *    *** 実行可能
+    12       *    *** -m は小文字でないとだめ
+    13       *    *** cobc -m test01.cbl
+    14       *    *** TEST01 はPROGRAM-IDで指定した文字と同じでないと実行しない
+    15       *    *** 大文字、小文字識別している
+    16       *    *** cobcrun TEST01
+    17
+    18       *    *** READ / WRITE TEST
+    19
+    20        IDENTIFICATION          DIVISION.
+    21        PROGRAM-ID.             TEST01.
+    22
+    23        ENVIRONMENT             DIVISION.
+    24        INPUT-OUTPUT            SECTION.
+    25        FILE-CONTROL.
+    26
+    27        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
+    28                                STATUS   WK-PIN1-STATUS
+    29       *    *** PACKED-DECIMAL の時、この指定が必要、
+    30       *    *** X"10",X"0D"があると行末までカット、文字が削除される
+    31       *    *** BINARY SEQUENTIAL WRITE, BINARY SEQUENTIAL READ でも問題なし
+    32
+    33       *    ORGANIZATION IS RECORD BINARY SEQUENTIAL.
+    34            ORGANIZATION LINE   SEQUENTIAL.
+    35
+    36        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
+    37                                STATUS   WK-POT1-STATUS
+    38       *     ORGANIZATION IS RECORD BINARY SEQUENTIAL.
+    39            ORGANIZATION LINE   SEQUENTIAL.
+    40
+    41        DATA                    DIVISION.
+    42        FILE                    SECTION.
+    43
+    44        FD  PIN1-F
+    45            LABEL RECORDS ARE STANDARD.
+    46        01  PIN1-REC.
+    47       *     03  FILLER          PIC  X(020).
+    48       *     03  PIN1-KANJI      PIC  X(020).
+    49       *     03  FILLER          PIC  X(040).
+    50       *     03  FILLER          PIC  X(3).
+    51            03  FILLER          PIC  X(080).
+    52
+    53        FD  POT1-F
+    54            LABEL RECORDS ARE STANDARD.
+    55        01  POT1-REC.
+    56       *     03  POT1-I1         OCCURS 3
+    57       *                         PIC  X(001).
+
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     2  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+    58            03                   PIC  X(080).
+    59
+    60        WORKING-STORAGE         SECTION.
+    61        01  WORK-AREA.
+    62            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST01  ".
+    63       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST01.PIN1".
+    64       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "COBSAM06.POT1".
+    65            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST32X.POT1".
+    66            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST01.POT1".
+    67
+    68            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
+    69            03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
+    70
+    71            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
+    72
+    73            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
+    74            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
+    75
+    76            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+    77            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+    78
+    79            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
+       01 WFD-FILEDUMP-AREA.
+           03 WFD-ID PIC X(001) VALUE SPACE.
+           03 WFD-SU PIC 9(001) VALUE 1.
+           03 WFD-TYPE PIC X(001) VALUE "M".
+           03 WFD-SEQ PIC 9(009) VALUE ZERO.
+           03 WFD-ITEM PIC X(010) VALUE SPACE.
+           03 WFD-PGM PIC X(008) VALUE SPACE.
+           03 WFD-HED PIC X(001) VALUE "Y".
+           03 WFD-KANJI PIC X(004) VALUE "SJIS".
+           03 FILLER PIC X(087) VALUE SPACE.
+       01 WFD-LEN BINARY-LONG VALUE 100.
+    80
+    81            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
+       01 WDT-DATETIME-AREA.
+           03 WDT-DATE-TIME-ID PIC X(001) VALUE SPACE.
+           03 WDT-DATE-TIME-PGM PIC X(008) VALUE SPACE.
+           03 WDT-DATE-TIME.
+               05 WDT-DATE-YMD.
+                   07 WDT-DATE-YY PIC 9(002) VALUE ZERO.
+                   07 WDT-DATE-MM PIC 9(002) VALUE ZERO.
+                   07 WDT-DATE-DD PIC 9(002) VALUE ZERO.
+               05 WDT-DATE-HMS.
+                   07 WDT-DATE-HH PIC 9(002) VALUE ZERO.
+                   07 WDT-DATE-MI PIC 9(002) VALUE ZERO.
+                   07 WDT-DATE-SS PIC 9(002) VALUE ZERO.
+                   07 WDT-DATE-SM PIC 9(002) VALUE ZERO.
+           03 WDT-DATE-DAY.
+               05 WDT-DATE-YYYY PIC 9(004) VALUE ZERO.
+               05 WDT-DATE-DDD PIC 9(003) VALUE ZERO.
+           03 WDT-DATE-WEEK PIC 9(001) VALUE ZERO.
+           03 WDT-DATE-WEEK-NK PIC N(001) VALUE SPACE.
+           03 WDT-DATE-WEEK-NA PIC X(003) VALUE SPACE.
+           03 WDT-DATE-SSMM PIC 9(9)V99 VALUE ZERO.
+           03 WDT-DATE-LUP-COM PIC X(020) VALUE SPACE.
+           03 WDT-DATE-MM-NK1 PIC N(009) VALUE SPACE.
+
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     3  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+           03 WDT-DATE-MM-NK2 PIC N(003) VALUE SPACE.
+           03 WDT-DATE-MM-NA PIC X(018) VALUE SPACE.
+           03 WDT-DATE-TIME-N.
+               05 WDT-DATE-YMD-N.
+                   07 WDT-DATE-YY-N PIC N(002) VALUE SPACE.
+                   07 WDT-DATE-MM-N PIC N(002) VALUE SPACE.
+                   07 WDT-DATE-DD-N PIC N(002) VALUE SPACE.
+               05 WDT-DATE-HMS-N.
+                   07 WDT-DATE-HH-N PIC N(002) VALUE SPACE.
+                   07 WDT-DATE-MI-N PIC N(002) VALUE SPACE.
+                   07 WDT-DATE-SS-N PIC N(002) VALUE SPACE.
+                   07 WDT-DATE-SM-N PIC N(002) VALUE SPACE.
+           03 WDT-DATE-TIME-N-R REDEFINES WDT-DATE-TIME-N
+               05 WDT-DATE-YMD-HMS-N OCCURS 14
+        PIC N(001).
+           03 WDT-DATE-DAY-N.
+               05 WDT-DATE-YYYY-N PIC N(004) VALUE SPACE.
+               05 WDT-DATE-DDD-N PIC N(003) VALUE SPACE.
+           03 WDT-DATE-DAY-N-R REDEFINES WDT-DATE-DAY-N
+               05 WDT-DATE-DAY-YYDDD-N OCCURS 7
+        PIC N(001).
+           03 FILLER PIC X(100) VALUE SPACE.
+    82
+    83        01  Hex-Digits          VALUE '0123456789ABCDEF'.
+    84            05  Hex-Digit       OCCURS 16 TIMES PIC X(1).
+    85
+    86        01  PIC-XX.
+    87            05  FILLER          PIC X VALUE LOW-VALUES.
+    88            05  PIC-X           PIC X.
+    89        01  PIC-Halfword        REDEFINES PIC-XX PIC 9(4) COMP-X.
+    90
+    91        01  INDEX-AREA,
+    92            03  I               BINARY-LONG SYNC VALUE ZERO.
+    93
+    94        PROCEDURE               DIVISION.
+    95        M100-10.
+    96
+    97       *    *** OPEN
+    98            PERFORM S010-10     THRU    S010-EX
+    99
+   100       *    *** READ PIN1
+   101            PERFORM S020-10     THRU    S020-EX
+   102
+   103            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+   104
+   105       *    *** WRITE POT1
+   106                    PERFORM S110-10     THRU    S110-EX
+   107
+   108       *    *** READ PIN1
+   109                    PERFORM S020-10     THRU    S020-EX
+   110            END-PERFORM
+   111
+   112       *    *** 0-255 WRITE POT1
+   113       *     PERFORM S100-10     THRU    S100-EX
+   114
+   115       *    *** CLOSE
+   116            PERFORM S900-10     THRU    S900-EX
+
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     4  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+   117            .
+   118        M100-EX.
+   119            STOP    RUN.
+   120
+   121       *    *** OPEN
+   122        S010-10.
+   123
+   124            DISPLAY WK-PGM-NAME " START"
+   125
+   126            MOVE    WK-PGM-NAME TO      WDT-DATE-TIME-PGM
+   127            MOVE    "S"         TO      WDT-DATE-TIME-ID
+   128            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
+   129
+   130            OPEN    INPUT       PIN1-F
+   131            IF      WK-PIN1-STATUS NOT =  ZERO
+   132                    DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
+   133                            WK-PIN1-STATUS
+   134                    STOP    RUN
+   135            END-IF
+   136
+   137            OPEN    OUTPUT      POT1-F
+   138            IF      WK-POT1-STATUS NOT =  ZERO
+   139                    DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
+   140                            WK-POT1-STATUS
+   141                    STOP    RUN
+   142
+   143            END-IF
+   144
+   145            MOVE    "O"         TO      WFD-ID
+   146            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+   147                                        POT1-REC
+   148            .
+   149        S010-EX.
+   150            EXIT.
+   151
+   152       *    *** READ PIN1
+   153        S020-10.
+   154
+   155            READ    PIN1-F
+   156
+   157       *    *** ORGANIZATION IS にすると、
+   158       *    *** AT END でも以下実行しない
+   159       *            AT END
+   160       *            MOVE    HIGH-VALUE    TO    WK-PIN1-EOF
+   161       *    END-READ
+   162            IF      WK-PIN1-STATUS =    ZERO
+   163                    ADD     1           TO      WK-PIN1-CNT
+   164
+   165       *             MOVE    "P"         TO      WFD-ID
+   166       *             MOVE    WK-PIN1-CNT TO      WFD-SEQ
+   167       *             CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+   168       *                                         PIN1-REC
+   169            ELSE
+   170       *    *** STATUS = 10 (END OF FILE)
+   171       *    *** ORGANIZATION IS にすると STATUS=4 がAT ENDのとき、入る
+   172                IF  WK-PIN1-STATUS =    10
+   173                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     5  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+   174                ELSE
+   175
+   176                    DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
+   177                            WK-PIN1-STATUS
+   178                    STOP    RUN
+   179                END-IF
+   180            END-IF
+   181            .
+   182        S020-EX.
+   183            EXIT.
+   184
+   185       *    *** 0-255 WRITE POT1
+   186        S100-10.
+   187
+   188            PERFORM VARYING I FROM 1 BY 1
+   189                    UNTIL   I > 256
+   190                    compute PIC-Halfword = I - 1
+   191                    MOVE    SPACE       TO      POT1-REC
+   192       *             MOVE    PIC-X       TO      POT1-I1 (1)
+   193       *             MOVE    X"0D"       TO      POT1-I1 (2)
+   194       *             MOVE    X"0A"       TO      POT1-I1 (3)
+   195                    WRITE   POT1-REC
+   196                    ADD     1           TO      WK-POT1-CNT
+   197
+   198                    MOVE    "P"         TO      WFD-ID
+   199                    MOVE    I           TO      WFD-SEQ
+   200                    MOVE    2           TO      WFD-SU
+   201                    MOVE    "M"         TO      WFD-TYPE
+   202                    MOVE    "      "    TO      WFD-ITEM
+   203                    CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+   204                                                POT1-REC
+   205            END-PERFORM
+   206
+   207       *     MOVE    "あいうえお" TO       PIN1-KANJI
+   208       *     WRITE   POT1-REC    FROM      PIN1-REC
+   209       *     IF      WK-POT1-STATUS NOT =  ZERO
+   210       *             DISPLAY "TEST01 POT1-F WRITE ERROR STATUS="
+   211       *                     WK-POT1-STATUS
+   212       *             STOP    RUN
+   213       *     END-IF
+   214       *      WRITE   POT1-REC    FROM      PIN1-REC
+   215       *     ADD     1           TO        WK-POT1-CNT
+   216       *
+   217
+   218       *     PERFORM S100        THRU      S100-EX
+   219            .
+   220        S100-EX.
+   221            EXIT.
+   222
+   223       *    *** WRITE POT1
+   224        S110-10.
+   225
+   226            WRITE   POT1-REC
+   227
+   228            IF      WK-POT1-STATUS NOT =  ZERO
+   229                    DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR STATUS="
+   230                            WK-POT1-STATUS
+
+OpenCOBOL 1.1 06FEB2009 Source Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL                       PAGE     6  2023/11/19
+                                                                                                                             TEST01.CBL
+Line Statement
+====== ================================================================================================================================
+   231                    STOP    RUN
+   232            END-IF
+   233            ADD     1           TO      WK-POT1-CNT
+   234            .
+   235        S110-EX.
+   236            EXIT.
+   237
+   238       *    *** CLOSE
+   239        S900-10.
+   240
+   241            CLOSE   PIN1-F
+   242            IF      WK-PIN1-STATUS NOT =  ZERO
+   243                    DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
+   244                            WK-PIN1-STATUS
+   245                    STOP    RUN
+   246            END-IF
+   247
+   248            CLOSE   POT1-F
+   249            IF      WK-POT1-STATUS NOT =  ZERO
+   250                    DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
+   251                            WK-POT1-STATUS
+   252                    STOP    RUN
+   253            END-IF
+   254
+   255            MOVE    "C"         TO      WFD-ID
+   256            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+   257                                        POT1-REC
+   258
+   259            DISPLAY WK-PGM-NAME " END"
+   260            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
+   261            DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+   262                    " (" WK-PIN1-F-NAME ")"
+   263            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
+   264            DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+   265                    " (" WK-POT1-F-NAME ")"
+   266
+   267            MOVE    "E"         TO      WDT-DATE-TIME-ID
+   268            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
+   269            .
+   270        S900-EX.
+   271            EXIT.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OpenCOBOL 1.1 06FEB2009 Cross-Reference Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL              PAGE     7  2023/11/19
+                                                                                                                             TEST01.CBL
+PROGRAM-ID Identifier/Register/Function Defn Where Defined References (* = Updated)
+=============== ================================ ====== =============== ===============================================================
+TEST01          Hex-Digit                            84 WORKING-STORAGE
+TEST01          Hex-Digits                           83 WORKING-STORAGE
+TEST01          I                                       WORKING-STORAGE     92     188*    189     190     199
+TEST01          INDEX-AREA                           91 WORKING-STORAGE
+TEST01          M100-10                              95 PROCEDURE
+TEST01          M100-EX                             118 PROCEDURE
+TEST01          PIC-Halfword                         89 WORKING-STORAGE    190*
+TEST01          PIC-X                                88 WORKING-STORAGE
+TEST01          PIC-XX                               86 WORKING-STORAGE     89
+TEST01          PIN1-F                               44 FILE                27     130     155     241
+TEST01          PIN1-REC                             46 FILE
+TEST01          POT1-F                               53 FILE                36     137     248
+TEST01          POT1-REC                             55 FILE               147     191*    195     204     226     257
+TEST01          S010-10                             122 PROCEDURE           98
+TEST01          S010-EX                             149 PROCEDURE           98
+TEST01          S020-10                             153 PROCEDURE          101     109
+TEST01          S020-EX                             182 PROCEDURE          101     109
+TEST01          S100-10                             186 PROCEDURE
+TEST01          S100-EX                             220 PROCEDURE
+TEST01          S110-10                             224 PROCEDURE          106
+TEST01          S110-EX                             235 PROCEDURE          106
+TEST01          S900-10                             239 PROCEDURE          116
+TEST01          S900-EX                             270 PROCEDURE          116
+TEST01          WDT-DATE-DAY                         81 [CPDATETIME   ]
+TEST01          WDT-DATE-DAY-N                       81 [CPDATETIME   ]     81
+TEST01          WDT-DATE-DAY-N-R                     81 [CPDATETIME   ]
+TEST01          WDT-DATE-DAY-YYDDD-N                    [CPDATETIME   ]     81
+TEST01          WDT-DATE-DD                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-DD-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-DDD                         81 [CPDATETIME   ]
+TEST01          WDT-DATE-DDD-N                       81 [CPDATETIME   ]
+TEST01          WDT-DATE-HH                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-HH-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-HMS                         81 [CPDATETIME   ]
+TEST01          WDT-DATE-HMS-N                       81 [CPDATETIME   ]
+TEST01          WDT-DATE-LUP-COM                     81 [CPDATETIME   ]
+TEST01          WDT-DATE-MI                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-MI-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-MM                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-MM-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-MM-NA                       81 [CPDATETIME   ]
+TEST01          WDT-DATE-MM-NK1                      81 [CPDATETIME   ]
+TEST01          WDT-DATE-MM-NK2                      81 [CPDATETIME   ]
+TEST01          WDT-DATE-SM                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-SM-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-SS                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-SS-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-SSMM                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-TIME                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-TIME-ID                     81 [CPDATETIME   ]    127*    267*
+TEST01          WDT-DATE-TIME-N                      81 [CPDATETIME   ]     81
+TEST01          WDT-DATE-TIME-N-R                    81 [CPDATETIME   ]
+TEST01          WDT-DATE-TIME-PGM                    81 [CPDATETIME   ]    126*
+TEST01          WDT-DATE-WEEK                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-WEEK-NA                     81 [CPDATETIME   ]
+TEST01          WDT-DATE-WEEK-NK                     81 [CPDATETIME   ]
+TEST01          WDT-DATE-YMD                         81 [CPDATETIME   ]
+
+OpenCOBOL 1.1 06FEB2009 Cross-Reference Listing - OCic Copyright (C) 2009-2010, Gary L. Cutler, GPL              PAGE     8  2023/11/19
+                                                                                                                             TEST01.CBL
+PROGRAM-ID Identifier/Register/Function Defn Where Defined References (* = Updated)
+=============== ================================ ====== =============== ===============================================================
+TEST01          WDT-DATE-YMD-HMS-N                      [CPDATETIME   ]     81
+TEST01          WDT-DATE-YMD-N                       81 [CPDATETIME   ]
+TEST01          WDT-DATE-YY                          81 [CPDATETIME   ]
+TEST01          WDT-DATE-YY-N                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-YYYY                        81 [CPDATETIME   ]
+TEST01          WDT-DATE-YYYY-N                      81 [CPDATETIME   ]
+TEST01          WDT-DATETIME-AREA                    81 [CPDATETIME   ]    128     268
+TEST01          WFD-FILEDUMP-AREA                    79 [CPFILEDUMP   ]    146     203     256
+TEST01          WFD-HED                              79 [CPFILEDUMP   ]
+TEST01          WFD-ID                               79 [CPFILEDUMP   ]    145*    198*    255*
+TEST01          WFD-ITEM                             79 [CPFILEDUMP   ]    202*
+TEST01          WFD-KANJI                            79 [CPFILEDUMP   ]
+TEST01          WFD-LEN                              79 [CPFILEDUMP   ]
+TEST01          WFD-PGM                              79 [CPFILEDUMP   ]
+TEST01          WFD-SEQ                              79 [CPFILEDUMP   ]    199*
+TEST01          WFD-SU                               79 [CPFILEDUMP   ]    200*
+TEST01          WFD-TYPE                             79 [CPFILEDUMP   ]    201*
+TEST01          WK-PGM-NAME                          62 WORKING-STORAGE    124     126     132     139     176     229     243     250
+                                                                           259     261     264
+TEST01          WK-PIN1-CNT                          73 WORKING-STORAGE    163*    260
+TEST01          WK-PIN1-CNT-E                        76 WORKING-STORAGE    260*    261
+TEST01          WK-PIN1-EOF                          71 WORKING-STORAGE    103     173*
+TEST01          WK-PIN1-F-NAME                       65 WORKING-STORAGE     27     262
+TEST01          WK-PIN1-STATUS                       68 WORKING-STORAGE     28     131     133     162     172     177     242     244
+TEST01          WK-POT1-CNT                          74 WORKING-STORAGE    196*    233*    263
+TEST01          WK-POT1-CNT-E                        77 WORKING-STORAGE    263*    264
+TEST01          WK-POT1-F-NAME                       66 WORKING-STORAGE     36     265
+TEST01          WK-POT1-STATUS                       69 WORKING-STORAGE     37     138     140     228     230     249     251
+TEST01          WORK-AREA                            61 WORKING-STORAGE

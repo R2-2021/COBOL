@@ -1,0 +1,16 @@
+HK,000001,000528,05,200,256
+
+       01  PRM1-REC.
+           03  PRM1-ID         PIC  X(002).
+           03  FILLER          PIC  X(001).
+           03  PRM1-FROM       PIC  9(006).
+           03  FILLER          PIC  X(001).
+           03  PRM1-TO         PIC  9(006).
+           03  FILLER          PIC  X(001).
+           03  PRM1-OCCURS     PIC  9(002).
+           03  FILLER          PIC  X(001).
+           03  PRM1-WIDTH      PIC  9(003).
+           03  FILLER          PIC  X(001).
+           03  PRM1-HEIGHT     PIC  9(003).
+           03  FILLER          PIC  X(100).
+

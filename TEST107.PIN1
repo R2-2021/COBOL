@@ -1,0 +1,6 @@
+    ActiveSheet.Pictures.Insert("E:\—D—¢\youjosenki1\01_0001.jpg").Select
+    ChDir "E:\—D—¢\youjosenki1_pdf"
+    ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+        "E:\—D—¢\youjosenki1_pdf\01_0001.pdf", Quality:=xlQualityStandard, _
+        IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:= _
+        True

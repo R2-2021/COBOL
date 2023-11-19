@@ -1,0 +1,434 @@
+
+
+
+
+
+
+
+
+
+LLL                 IIIIIIIIII        SSSSSSSS     TTTTTTTTTTTTTTTT    IIIIIIIIII    DDDDDDDDDDDD
+LLL                 IIIIIIIIII       SSSSSSSSSS    TTTTTTTTTTTTTTTT    IIIIIIIIII    DDDDDDDDDDDDD
+LLL                    III          SSS      SSS         TTT              III        DDDD       DDD
+LLL                    III         SSS        SSS        TTT              III        DDD         DDD
+LLL                    III        SSS          SSS       TTT              III        DDD          DDD
+LLL                    III        SSS                    TTT              III        DDD          DDD
+LLL                    III        SSSSSSSSSSSSS          TTT              III        DDD          DDD
+LLL                    III         SSSSSSSSSSSSSS        TTT              III        DDD          DDD
+LLL                    III                     SSS       TTT              III        DDD          DDD
+LLL                    III                     SSS       TTT              III        DDD          DDD
+LLL                    III        SSS          SSS       TTT              III        DDD          DDD
+LLL                    III        SSS          SSS       TTT              III        DDD         DDD
+LLL                    III         SSS        SSS        TTT              III        DDD        DDD
+LLL                    III          SSS      SSS         TTT              III        DDDD      DDD
+LLLLLLLLLLLLLLLL   IIIIIIIIIIII      SSSSSSSSSS          TTT          IIIIIIIIIIII   DDDDDDDDDDDD
+LLLLLLLLLLLLLLLL   IIIIIIIIIIII       SSSSSSSS           TTT          IIIIIIIIIIII   DDDDDDDDDDD
+
+
+
+
+TTTTTTTTTTTTTTTT EEEEEEEEEEEEEEEE     SSSSSSSS     TTTTTTTTTTTTTTTT    66666666666   5555555555555555
+TTTTTTTTTTTTTTTT EEEEEEEEEEEEEEEE    SSSSSSSSSS    TTTTTTTTTTTTTTTT   6666666666666  5555555555555555
+      TTT        EEEE               SSS      SSS         TTT         666         666 555
+      TTT        EEE               SSS        SSS        TTT        666          666 555
+      TTT        EEE              SSS          SSS       TTT        666              555
+      TTT        EEE              SSS                    TTT        666              555
+      TTT        EEEE             SSSSSSSSSSSSS          TTT        6666666666666     555555555555
+      TTT        EEEEEEEEEEEEEEEE  SSSSSSSSSSSSSS        TTT        66666666666666     555555555555
+      TTT        EEEEEEEEEEEEEEEE              SSS       TTT        666         666              555
+      TTT        EEEE                          SSS       TTT        666          666              555
+      TTT        EEE              SSS          SSS       TTT        666          666              555
+      TTT        EEE              SSS          SSS       TTT        666          666              555
+      TTT        EEE               SSS        SSS        TTT        666          666 555          555
+      TTT        EEEE               SSS      SSS         TTT         666        666   555        555
+      TTT        EEEEEEEEEEEEEEEE    SSSSSSSSSS          TTT          666666666666     555555555555
+      TTT        EEEEEEEEEEEEEEEE     SSSSSSSS           TTT           6666666666       5555555555
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       1
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+      *    *** コンバージョン
+      *    *** PIN1-CODE でソート順のこと                                                01  WORK-AREA.
+       IDENTIFICATION          DIVISION.                                                     03  WK-PGM-NAME     PIC  X(008) VALUE "TEST65  ".
+       PROGRAM-ID.             TEST65.
+                                                                                             03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST65.PIN1".
+       ENVIRONMENT             DIVISION.                                                     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST65.POT1".
+       INPUT-OUTPUT            SECTION.                                                      03  WK-LST1-F-NAME  PIC  X(032) VALUE "TEST65.LST1".
+       FILE-CONTROL.
+                                                                                             03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
+      *    ***                                                                               03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
+       SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME                                       03  WK-LST1-STATUS  PIC  9(002) VALUE ZERO.
+                               STATUS   WK-PIN1-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.                                                   03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
+
+      *    ***                                                                               03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
+       SELECT POT1-F           ASSIGN   WK-POT1-F-NAME                                       03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
+                               STATUS   WK-POT1-STATUS                                       03  WK-LST1-CNT     BINARY-LONG SYNC VALUE ZERO.
+           ORGANIZATION LINE   SEQUENTIAL.
+                                                                                             03  WK-C-ER-CNT     BINARY-LONG SYNC VALUE ZERO.
+      *    ***                                                                               03  WK-C-OK-CNT     BINARY-LONG SYNC VALUE ZERO.
+       SELECT LST1-F           ASSIGN   WK-LST1-F-NAME                                       03  WK-T-ER-CNT     BINARY-LONG SYNC VALUE ZERO.
+                               STATUS   WK-LST1-STATUS                                       03  WK-T-OK-CNT     BINARY-LONG SYNC VALUE ZERO.
+           ORGANIZATION LINE   SEQUENTIAL.
+                                                                                             03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
+       DATA                    DIVISION.
+       FILE                    SECTION.                                                      03  WK-LINE         BINARY-LONG SYNC VALUE 99.
+                                                                                             03  WK-PAGE         BINARY-LONG SYNC VALUE ZERO.
+       FD  PIN1-F.
+       01  PIN1-REC.                                                                     01  PRINT-AREA.
+           03  PIN1-ID         PIC  X(002).                                                  03  PR-TIT1.
+           03  PIN1-CODE       PIC  X(006).                                                    05                PIC  X(030) VALUE "TEST65".
+           03  PIN1-CARDID     PIC  X(002).                                                    05  PR-TIT1-TIT   PIC  X(042) VALUE
+           03  PIN1-YMD        PIC  X(008).                                                        "＊＊＊　ＸＸコンバージョン　エラー　＊＊＊".
+           03  PIN1-USERCD     PIC  X(004).                                                    05                PIC  X(002) VALUE SPACE.
+           03  PIN1-SHOHIN     PIC  X(004).                                                    05                PIC  X(006) VALUE "日付：".
+           03  PIN1-SIGN       PIC  X(001).                                                    05  PR-TIT1-YY    PIC  9(002) VALUE ZERO.
+           03  PIN1-SURYO      PIC  9(007)V99.                                                 05                PIC  X(001) VALUE "/".
+           03  PIN1-TANKA      PIC  9(007)V99.                                                 05  PR-TIT1-MM    PIC  9(002) VALUE ZERO.
+           03  PIN1-KINGAKU    PIC  9(009).                                                    05                PIC  X(001) VALUE "/".
+           03  PIN1-NISUGATA   PIC  X(002).                                                    05  PR-TIT1-DD    PIC  9(002) VALUE ZERO.
+                                                                                               05                PIC  X(002) VALUE SPACE.
+       FD  POT1-F.                                                                             05                PIC  X(006) VALUE "時刻：".
+       01  POT1-REC.                                                                           05  PR-TIT1-HH    PIC  9(002) VALUE ZERO.
+           03  POT1-ID         PIC  X(002).                                                    05                PIC  X(001) VALUE ":".
+           03  POT1-CODE       PIC  X(006).                                                    05  PR-TIT1-MI    PIC  9(002) VALUE ZERO.
+           03  POT1-CARDID     PIC  X(002).                                                    05                PIC  X(001) VALUE ":".
+           03  POT1-YMD        PIC  X(008).                                                    05  PR-TIT1-SS    PIC  9(002) VALUE ZERO.
+           03  POT1-USERCD     PIC  X(004).                                                    05                PIC  X(002) VALUE SPACE.
+           03  POT1-SHOHIN     PIC  X(001).                                                    05                PIC  X(004) VALUE "頁：".
+           03  POT1-SURYO      PIC  9(001)V99.                                                 05  PR-TIT1-PAGE  PIC  ZZ,ZZ9 VALUE ZERO.
+           03  POT1-TANKA      PIC  9(009)V99.
+           03  POT1-KINGAKU    PIC  9(009).                                                  03  PR-MID1
+           03  POT1-NISUGATA   PIC  X(002).                                                    05                PIC  X(002) VALUE "ID".
+                                                                                               05                PIC  X(002) VALUE SPACE.
+       FD  LST1-F.                                                                             05                PIC  X(006) VALUE "CODE".
+       01  LST1-REC            PIC  X(180).                                                    05                PIC  X(002) VALUE SPACE.
+                                                                                               05                PIC  X(006) VALUE "CARDCD".
+       WORKING-STORAGE         SECTION.                                                        05                PIC  X(002) VALUE SPACE.
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       2
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+             05                PIC  X(008) VALUE "YMD".
+             05                PIC  X(002) VALUE SPACE.                                  01  KEY-AREA.
+             05                PIC  X(004) VALUE "USER".                                     03  KEY-OLD.
+             05                PIC  X(002) VALUE SPACE.                                        05  KEY-O-CODE    PIC  X(006) VALUE LOW-VALUE.
+             05                PIC  X(004) VALUE "商品".                                     03  KEY-NEW.
+             05                PIC  X(002) VALUE SPACE.                                        05  KEY-N-CODE    PIC  X(006) VALUE LOW-VALUE.
+             05                PIC  X(020) VALUE "エラーメッセージ".
+                                                                                             COPY    CPFILEDUMP REPLACING ==:##:== BY ==WFD==.
+           03  PR-MID2.
+             05  PR-MID2-COM1  PIC  X(010) VALUE SPACE.                                      COPY    CPDATETIME REPLACING ==:##:== BY ==WDT==.
+             05                PIC  X(002) VALUE SPACE.
+             05  PR-MID2-CODE  PIC  X(006) VALUE SPACE.                                  01  INDEX-AREA.
+                                                                                             03  I               BINARY-LONG SYNC VALUE ZERO.
+           03  PR-HAI1.                                                                      03  I2              BINARY-LONG SYNC VALUE ZERO.
+             05                PIC  X(180) VALUE ALL "-".                                    03  J               BINARY-LONG SYNC VALUE ZERO.
+                                                                                             03  K               BINARY-LONG SYNC VALUE ZERO.
+           03  PR-MEI1.
+             05  PR-MEI1-ID     PIC  X(002) VALUE SPACE.                                 01  TBL-AREA.
+             05                 PIC  X(002) VALUE SPACE.                                     03  TBL01-AREA-G.
+             05  PR-MEI1-CODE   PIC  X(006) VALUE SPACE.                                       05  TBL01-AREA    OCCURS 07.
+             05                 PIC  X(002) VALUE SPACE.                                         07  TBL01-ERR   PIC  X(001) VALUE SPACE.
+             05  PR-MEI1-CARDID PIC  X(006) VALUE SPACE.                                     03  TBL02-AREA-G.
+             05                 PIC  X(002) VALUE SPACE.                                       05  TBL02-AREA.
+             05  PR-MEI1-YMD    PIC  X(008) VALUE SPACE.                                         07              PIC  X(020) VALUE "AAAAAAAAAAAAAAAAAAAA".
+             05                 PIC  X(002) VALUE SPACE.                                         07              PIC  X(020) VALUE "BBBBBBBBBBBBBBBBBBBB".
+             05  PR-MEI1-USERCD PIC  X(004) VALUE SPACE.                                         07              PIC  X(020) VALUE "CCCCCCCCCCCCCCCCCCCC".
+             05                 PIC  X(002) VALUE SPACE.                                         07              PIC  X(020) VALUE "DDDDDDDDDDDDDDDDDDDD".
+             05  PR-MEI1-SHOHIN PIC  X(004) VALUE SPACE.                                         07              PIC  X(020) VALUE "EEEEEEEEEEEEEEEEEEEE".
+             05                 PIC  X(002) VALUE SPACE.                                         07              PIC  X(020) VALUE "FFFFFFFFFFFFFFFFFFFF".
+             05  PR-MEI1-COMENT PIC  X(020) VALUE SPACE.                                       05  TBL02-AREA-R  REDEFINES TBL02-AREA
+                                                                                                                 OCCURS 06.
+           03  PR-MEI2.                                                                          07  TBL02-COMENT PIC  X(020).
+             05  PR-MEI2-ID     PIC  X(002) VALUE SPACE.
+             05                 PIC  X(002) VALUE SPACE.                                 01  SW-AREA.
+             05  PR-MEI2-CODE   PIC  X(006) VALUE SPACE.                                     03  SW-ERROR        PIC  X(001) VALUE "N".
+             05                 PIC  X(002) VALUE SPACE.                                     03  SW-FIRST        PIC  X(001) VALUE "Y".
+             05  PR-MEI2-CARDID PIC  X(002) VALUE SPACE.
+             05                 PIC  X(006) VALUE SPACE.                                 PROCEDURE   DIVISION.
+             05  PR-MEI2-YMD    PIC  X(008) VALUE SPACE.                                 M100-10.
+             05                 PIC  X(002) VALUE SPACE.
+             05  PR-MEI2-USERCD PIC  X(004) VALUE SPACE.                                *    *** OPEN
+             05                 PIC  X(002) VALUE SPACE.                                     PERFORM S010-10     THRU    S010-EX
+             05  PR-MEI2-SHOHIN PIC  X(004) VALUE SPACE.
+             05                 PIC  X(002) VALUE SPACE.                                *    *** READ PIN1
+             05  PR-MEI2-COMENT PIC  X(020) VALUE SPACE.                                     PERFORM S020-10     THRU    S020-EX
+
+           03  PR-MEI3.                                                                      PERFORM TEST AFTER
+             05  PR-MEI3-COM1   PIC  X(010) VALUE SPACE.                                             UNTIL WK-PIN1-EOF = HIGH-VALUE
+             05                 PIC  X(002) VALUE SPACE.                                *    *** ０件の時、総合計
+             05  PR-MEI3-CODE   PIC  X(006) VALUE SPACE.                                         IF      KEY-NEW     =       HIGH-VALUE
+             05                 PIC  X(002) VALUE SPACE.                                *    *** KEY ﾌﾞﾚｲｸ WRITE 総合計
+             05  PR-MEI3-COM2   PIC  X(010) VALUE SPACE.                                             PERFORM S140-10     THRU    S140-EX
+             05                 PIC  X(002) VALUE SPACE.
+             05  PR-MEI3-OK-CNT PIC  ZZZ,ZZZ,ZZ9 VALUE ZERO.                                     ELSE
+             05                 PIC  X(002) VALUE SPACE.
+             05  PR-MEI3-COM3   PIC  X(010) VALUE SPACE.                                *    *** FORMAT CHECK
+             05                 PIC  X(002) VALUE SPACE.                                             PERFORM S100-10     THRU    S100-EX
+             05  PR-MEI3-ER-CNT PIC  ZZZ,ZZZ,ZZ9 VALUE ZERO.
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       3
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+                   IF      SW-ERROR    =       "Y"                                                           WK-POT1-STATUS
+      *    *** ERROR LIST WRITE                                                                      STOP    RUN
+                           PERFORM S110-10     THRU    S110-EX                               END-IF
+                   ELSE
+      *    *** OK DATA WRITE                                                                 OPEN    OUTPUT      LST1-F
+                           PERFORM S120-10     THRU    S120-EX                               IF      WK-LST1-STATUS NOT =  ZERO
+                   END-IF                                                                            DISPLAY WK-PGM-NAME " LST1-F OPEN ERROR STATUS="
+                                                                                                             WK-LST1-STATUS
+      *    *** READ PIN1                                                                             STOP    RUN
+                   PERFORM S020-10     THRU    S020-EX                                       END-IF
+
+                   IF      KEY-OLD     NOT =   KEY-NEW                                       MOVE    "O"         TO      WFD-ID
+                       IF      WK-C-ER-CNT NOT =   ZERO                                      CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+      *    *** KEY ﾌﾞﾚｲｸ WRITE                                                                                           POT1-REC
+                               PERFORM S130-10     THRU    S130-EX
+                       END-IF                                                           *****     CALL "COBDUMP" USING  WK-DATA
+                                                                                             .
+                       IF      KEY-NEW     =       HIGH-VALUE                            S010-EX.
+      *    *** KEY ﾌﾞﾚｲｸ WRITE 総合計                                                        EXIT.
+                               PERFORM S140-10     THRU    S140-EX
+                       END-IF                                                           *    *** READ PIN1
+                   END-IF                                                                S020-10.
+
+           END-PERFORM                                                                       MOVE    KEY-NEW     TO      KEY-OLD
+                                                                                             READ    PIN1-F
+      *    *** CLOSE                                                                             AT  END
+           PERFORM S900-10     THRU    S900-EX                                                       MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+           .                                                                                                                     KEY-NEW
+       M100-EX.                                                                                  NOT AT END
+           STOP    RUN.                                                                              ADD     1           TO      WK-PIN1-CNT
+                                                                                                     MOVE    PIN1-CODE   TO      KEY-N-CODE
+      *    *** OPEN                                                                          END-READ
+       S010-10.                                                                              .
+                                                                                         S020-EX.
+           DISPLAY WK-PGM-NAME " START"                                                      EXIT.
+
+           MOVE    WK-PGM-NAME TO      WDT-DATE-TIME-PGM                                *    *** FORMAT CHECK
+           MOVE    "S"         TO      WDT-DATE-TIME-ID                                  S100-10.
+           CALL    "DATETIME"  USING   WDT-DATETIME-AREA
+                                                                                             MOVE    SPACE       TO      PR-MEI1
+           MOVE    WDT-DATE-YY  TO      PR-TIT1-YY                                                                       PR-MEI2
+           MOVE    WDT-DATE-MM  TO      PR-TIT1-MM                                                                       POT1-REC
+           MOVE    WDT-DATE-DD  TO      PR-TIT1-DD                                                                       TBL01-AREA-G
+                                                                                                                         SW-ERROR
+           MOVE    WDT-DATE-HH  TO      PR-TIT1-HH
+           MOVE    WDT-DATE-MI  TO      PR-TIT1-MI                                           MOVE    PIN1-ID     TO      PR-MEI1-ID
+           MOVE    WDT-DATE-SS  TO      PR-TIT1-SS                                           EVALUATE TRUE
+
+           OPEN    INPUT       PIN1-F                                                            WHEN PIN1-ID = "11"
+           IF      WK-PIN1-STATUS NOT =  ZERO                                                        MOVE    "A1"        TO      POT1-ID
+                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="                              WHEN PIN1-ID = "12"
+                           WK-PIN1-STATUS                                                            MOVE    "A2"        TO      POT1-ID
+                   STOP    RUN                                                                   WHEN PIN1-ID = "13"
+           END-IF                                                                                    MOVE    "A3"        TO      POT1-ID
+                                                                                                 WHEN PIN1-ID = "14"
+           OPEN    OUTPUT      POT1-F                                                                MOVE    "A4"        TO      POT1-ID
+           IF      WK-POT1-STATUS NOT =  ZERO
+                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="                              WHEN PIN1-ID = "21"
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       4
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+                   MOVE    "B1"        TO      POT1-ID                                                       IF      PR-MEI2-COMENT =    SPACE
+               WHEN PIN1-ID = "22"                                                                               MOVE    TBL02-COMENT(I) TO PR-MEI2-COMENT
+                   MOVE    "B2"        TO      POT1-ID                                                           ADD     I 1         GIVING  I2
+               WHEN PIN1-ID = "23"                                                                               EXIT    PERFORM
+                   MOVE    "B3"        TO      POT1-ID                                                       END-IF
+               WHEN PIN1-ID = "24"                                                                       END-IF
+                   MOVE    "B4"        TO      POT1-ID                                               END-IF
+                                                                                                     ADD     I 1         GIVING  I2
+               WHEN OTHER                                                                        END-PERFORM
+                   MOVE    "?"         TO      TBL01-ERR (1)                                 END-IF
+                   MOVE    ALL "?"     TO      PR-MEI2-ID                                    .
+           END-EVALUATE                                                                  S100-EX.
+                                                                                             EXIT.
+           MOVE    PIN1-CODE   TO      POT1-CODE
+                                       PR-MEI1-CODE                                     *    *** エラー明細出力
+           IF      PIN1-CODE   NOT NUMERIC                                               S110-10.
+                   MOVE    "?"         TO      TBL01-ERR (2)
+                   MOVE    ALL "?"     TO      PR-MEI2-CODE                             *    *** WRITE AFTER,BEFORE
+           END-IF                                                                       *    *** HOST と違う、PCではWRITE後、行末にCRLFが挿入されるため、
+                                                                                        *    *** AFTER 1にすると、見た目，２行改行になる
+           MOVE    PIN1-CARDID TO      POT1-CARDID                                      *    *** AFTER 0にすると、見た目，１行改行になる
+                                       PR-MEI1-CARDID                                   *    *** AFTER PAGE も１ページ目は不要と思われる
+           IF      PIN1-CARDID NOT NUMERIC                                              *    *** COBXREF の サブルーチンLISTING.CBL では、WRITE BEFORE
+                   MOVE    "?"         TO      TBL01-ERR (3)                            *    *** を使用している
+                   MOVE    ALL "?"     TO      PR-MEI2-CARDID
+           END-IF                                                                            MOVE    PIN1-CODE   TO      PR-MID2-CODE
+                                                                                        *    *** エラーリスト、ヘッダー出力
+           MOVE    PIN1-YMD  TO      POT1-YMD                                                PERFORM S111-10     THRU    S111-EX
+                                     PR-MEI1-YMD
+           IF      PIN1-YMD  NOT NUMERIC                                                     WRITE   LST1-REC    FROM    PR-MEI1 AFTER 1
+                   MOVE    "?"         TO      TBL01-ERR (4)                                 ADD     2           TO      WK-LINE
+                   MOVE    ALL "?"     TO      PR-MEI2-YMD                                                               WK-LST1-CNT
+           END-IF
+                                                                                        *    *** エラーリスト、ヘッダー出力
+           MOVE    PIN1-USERCD TO      POT1-USERCD                                           PERFORM S111-10     THRU    S111-EX
+                                       PR-MEI1-USERCD
+           IF      PIN1-USERCD NOT NUMERIC                                                   WRITE   LST1-REC    FROM    PR-MEI2 AFTER 0
+                   MOVE    "?"         TO      TBL01-ERR (5)                                 ADD     1           TO      WK-LINE
+                   MOVE    ALL "?"     TO      PR-MEI2-USERCD                                                            WK-LST1-CNT
+           END-IF
+                                                                                        *    *** エラーコメント出力
+           MOVE    PIN1-SHOHIN TO      POT1-SHOHIN                                      *    *** エラーコメント３つ以上の時、ここでセット
+                                       PR-MEI1-SHOHIN                                   *    *** I2 に３つ目以降の？がセットされている
+           IF      PIN1-SHOHIN NOT NUMERIC                                                   PERFORM VARYING I FROM I2 BY 1
+                   MOVE    "?"         TO      TBL01-ERR (6)                                         UNTIL I > 6
+                   MOVE    ALL "?"     TO      PR-MEI2-SHOHIN                                        IF      TBL01-ERR(I) NOT =  SPACE
+           END-IF                                                                                        MOVE    SPACE       TO      PR-MEI1
+                                                                                                         MOVE    TBL02-COMENT (I) TO PR-MEI1-COMENT
+           IF      TBL01-AREA-G NOT =  SPACE
+               MOVE    "Y"         TO      SW-ERROR                                     *    *** エラーリスト、ヘッダー出力
+      *    *** PR-MEI1-COMENT,PR-MEI2-COMENT SPACE の時、                                                PERFORM S111-10     THRU    S111-EX
+      *    *** エラーコメント先にセット                                                                  WRITE   LST1-REC    FROM    PR-MEI1 AFTER 0
+               PERFORM VARYING I FROM 1 BY 1                                                             ADD     1           TO      WK-LINE
+                       UNTIL I > 6                                                                                                   WK-LST1-CNT
+                   IF      TBL01-ERR(I) NOT =  SPACE                                                 END-IF
+                       IF      PR-MEI1-COMENT =    SPACE                                     END-PERFORM
+                           MOVE    TBL02-COMENT (I) TO PR-MEI1-COMENT
+                       ELSE                                                                  ADD     1           TO      WK-C-ER-CNT
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       5
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+                                       WK-T-ER-CNT                                                                       WK-C-OK-CNT
+          .                                                                                  MOVE    99          TO      WK-LINE
+       S110-EX.                                                                              .
+           EXIT.                                                                         S130-EX.
+                                                                                             EXIT.
+      *    *** エラーリスト、ヘッダー出力
+       S111-10.                                                                         *    *** 総合計 PIN1 ０件でも出力する
+                                                                                         S140-10.
+           IF      WK-LINE     >       60
+                   ADD     1           TO      WK-PAGE                                       MOVE    SPACE       TO      PR-MID2-CODE
+                   MOVE    WK-PAGE     TO      PR-TIT1-PAGE                             *    *** エラーリスト、ヘッダー出力
+                   IF      SW-FIRST    =       "Y"                                           PERFORM S111-10     THRU    S111-EX
+                       WRITE   LST1-REC    FROM    PR-TIT1 AFTER 0
+                       MOVE    "N"         TO      SW-FIRST                                  MOVE    SPACE       TO      PR-MEI3
+                   ELSE                                                                      MOVE    "ｿｳｺﾞｳｹｲ:"  TO      PR-MEI3-COM1
+                       WRITE   LST1-REC    FROM    PR-TIT1 AFTER PAGE                        MOVE    SPACE       TO      PR-MEI3-CODE
+                   END-IF                                                                    MOVE    "OK:"       TO      PR-MEI3-COM2
+                   MOVE    "ｺｰﾄﾞ:"     TO      PR-MID2-COM1                                  MOVE    WK-T-OK-CNT TO      PR-MEI3-OK-CNT
+                   WRITE   LST1-REC    FROM    PR-MID2 AFTER 1                               MOVE    "ERROR:"    TO      PR-MEI3-COM3
+                   WRITE   LST1-REC    FROM    PR-MID1 AFTER 0                               MOVE    WK-T-ER-CNT TO      PR-MEI3-ER-CNT
+                   WRITE   LST1-REC    FROM    PR-HAI1 AFTER 0                               WRITE   LST1-REC    FROM    PR-MEI3 AFTER 1
+                   MOVE    5           TO      WK-LINE                                       ADD     2           TO      WK-LINE
+                   ADD     5           TO      WK-LST1-CNT                                                               WK-LST1-CNT
+           END-IF                                                                            .
+           .                                                                             S140-EX.
+       S111-EX.                                                                              EXIT.
+           EXIT.
+                                                                                        *    *** CLOSE
+      *    *** ＯＫデータ出力                                                            S900-10.
+       S120-10.
+                                                                                             CLOSE   PIN1-F
+           WRITE   POT1-REC                                                                  IF      WK-PIN1-STATUS NOT =  ZERO
+           ADD     1           TO      WK-POT1-CNT                                                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
+                                       WK-C-OK-CNT                                                           WK-PIN1-STATUS
+                                       WK-T-OK-CNT                                                   STOP    RUN
+           .                                                                                 END-IF
+       S120-EX.
+           EXIT.                                                                             CLOSE   POT1-F
+                                                                                             IF      WK-POT1-STATUS NOT =  ZERO
+      *    *** コード合計 エラー件数、１件以上の時、出力する                                         DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
+       S130-10.                                                                                              WK-POT1-STATUS
+                                                                                                     STOP    RUN
+           MOVE    KEY-O-CODE  TO      PR-MID2-CODE                                          END-IF
+      *    *** エラーリスト、ヘッダー出力
+           PERFORM S111-10     THRU    S111-EX                                               CLOSE   LST1-F
+                                                                                             IF      WK-LST1-STATUS NOT =  ZERO
+           MOVE    SPACE       TO      PR-MEI3                                                       DISPLAY WK-PGM-NAME " LST1-F CLOSE ERROR STATUS="
+           MOVE    "ｺｰﾄﾞ:"     TO      PR-MEI3-COM1                                                          WK-LST1-STATUS
+           MOVE    KEY-O-CODE  TO      PR-MEI3-CODE                                                  STOP    RUN
+           MOVE    "OK:"       TO      PR-MEI3-COM2                                          END-IF
+           MOVE    WK-C-OK-CNT TO      PR-MEI3-OK-CNT
+           MOVE    "ERROR:"    TO      PR-MEI3-COM3                                          MOVE    "C"         TO      WFD-ID
+           MOVE    WK-C-ER-CNT TO      PR-MEI3-ER-CNT                                        CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+           WRITE   LST1-REC    FROM    PR-MEI3 AFTER 1                                                                   POT1-REC
+           ADD     2           TO      WK-LINE
+                                       WK-LST1-CNT                                           DISPLAY WK-PGM-NAME " END"
+                                                                                             DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT
+           MOVE    ZERO        TO      WK-C-ER-CNT                                                   " (" WK-PIN1-F-NAME ")"
+TEST65                   ＊＊＊　ＳＯＵＲＣＥ　ＬＩＳＴ　＊＊＊                        20/10/03  23:53:49       6
+
+SOURCE                                                                            SOURCE
+--------------------------------------------------------------------------------- ---------------------------------------------------------------------------------
+           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT
+                   " (" WK-POT1-F-NAME ")"
+           DISPLAY WK-PGM-NAME " LST1 ｹﾝｽｳ = " WK-LST1-CNT
+                   " (" WK-LST1-F-NAME ")"
+           DISPLAY WK-PGM-NAME " LST1 ﾍﾟｰｼﾞ= " WK-PAGE
+           DISPLAY WK-PGM-NAME " OK   ｹﾝｽｳ = " WK-T-OK-CNT
+           DISPLAY WK-PGM-NAME " ERRORｹﾝｽｳ = " WK-T-ER-CNT
+
+           MOVE    "E"         TO      WDT-DATE-TIME-ID
+           CALL    "DATETIME"  USING   WDT-DATETIME-AREA
+           .
+       S900-EX.
+           EXIT.
+**総　合計 件数        593
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
