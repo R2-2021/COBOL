@@ -1,41 +1,41 @@
-      *    *** SJIS <=> UTF8 ïœä∑ ÉTÉuÉãÅ[É`Éì
+      *    *** SJIS <=> UTF8 Â§âÊèõ „Çµ„Éñ„É´„Éº„ÉÅ„É≥
       *    *** 
-      *    *** https://www.seiai.ed.jp/sys/text/java/utf8table.html Ç©ÇÁà¯óp
-      *    *** 00-7x	ÇPÉoÉCÉgï∂éö	US-ASCIIÇ…Ç®Ç»Ç∂
-      *    *** 8x,9x,Ax,Bx	ëΩÉoÉCÉgï∂éöÇÃÇQÉoÉCÉgñ⁄à»ç~	
-      *    *** Cx,Dx	2ÉoÉCÉgï∂éöÇÃäJénÉoÉCÉg	
-      *    *** Ex	3ÉoÉCÉgï∂éöÇÃäJénÉoÉCÉg	äøéöÇÕÇ®Ç®ÇﬁÇÀÇ±ÇÍÇ≈äJén
-      *    *** Fx	4ÉoÉCÉgà»è„ÇÃï∂éöÇÃäJénÉoÉCÉg	
-      *    *** F0-F7ÇÕ4ÉoÉCÉgÅAF8-FBÇÕ5ÉoÉCÉgÅAFC-FDÇÕÇUÉoÉCÉg
+      *    *** https://www.seiai.ed.jp/sys/text/java/utf8table.html „Åã„ÇâÂºïÁî®
+      *    *** 00-7x	Ôºë„Éê„Ç§„ÉàÊñáÂ≠ó	US-ASCII„Å´„Åä„Å™„Åò
+      *    *** 8x,9x,Ax,Bx	Â§ö„Éê„Ç§„ÉàÊñáÂ≠ó„ÅÆÔºí„Éê„Ç§„ÉàÁõÆ‰ª•Èôç	
+      *    *** Cx,Dx	2„Éê„Ç§„ÉàÊñáÂ≠ó„ÅÆÈñãÂßã„Éê„Ç§„Éà	
+      *    *** Ex	3„Éê„Ç§„ÉàÊñáÂ≠ó„ÅÆÈñãÂßã„Éê„Ç§„Éà	Êº¢Â≠ó„ÅØ„Åä„Åä„ÇÄ„Å≠„Åì„Çå„ÅßÈñãÂßã
+      *    *** Fx	4„Éê„Ç§„Éà‰ª•‰∏ä„ÅÆÊñáÂ≠ó„ÅÆÈñãÂßã„Éê„Ç§„Éà	
+      *    *** F0-F7„ÅØ4„Éê„Ç§„Éà„ÄÅF8-FB„ÅØ5„Éê„Ç§„Éà„ÄÅFC-FD„ÅØÔºñ„Éê„Ç§„Éà
       *    *** 
-      *    *** SJIS=>UTF8 ÇÃéûÅAâ∫ãLîÕàÕÇ…Ç†ÇÈéûÅAïœä∑ÅA
-      *    *** ëŒâûÇ∑ÇÈÉRÅ[Éhñ≥ÇÕ"ÅH"ÇÉZÉbÉg
-      *    *** MODE=AA éwíËéûÅA1ÉoÉCÉgÇ√Ç¬ÉZÉbÉg
-      *    *** MODE=AK éwíËéûÅAX"2020"ÇÃéûÇÕÅAX"E38080"ÉZÉbÉg
-      *    *** ÇªÇÃëºÇÃÉRÅ[ÉhÇÕ1ÉoÉCÉgÇ√Ç¬ÉZÉbÉg
+      *    *** SJIS=>UTF8 „ÅÆÊôÇ„ÄÅ‰∏ãË®òÁØÑÂõ≤„Å´„ÅÇ„ÇãÊôÇ„ÄÅÂ§âÊèõ„ÄÅ
+      *    *** ÂØæÂøú„Åô„Çã„Ç≥„Éº„ÉâÁÑ°„ÅØ"Ôºü"„Çí„Çª„ÉÉ„Éà
+      *    *** MODE=AA ÊåáÂÆöÊôÇ„ÄÅ1„Éê„Ç§„Éà„Å•„Å§„Çª„ÉÉ„Éà
+      *    *** MODE=AK ÊåáÂÆöÊôÇ„ÄÅX"2020"„ÅÆÊôÇ„ÅØ„ÄÅX"E38080"„Çª„ÉÉ„Éà
+      *    *** „Åù„ÅÆ‰ªñ„ÅÆ„Ç≥„Éº„Éâ„ÅØ1„Éê„Ç§„Éà„Å•„Å§„Çª„ÉÉ„Éà
 
-      *    *** LDE05-BUF2 (L2:CNS-3) ìô L2ÇÃà íuÅAçÄñ⁄îÕàÕì‡Ç≈Ç»Ç¢Ç∆
-      *    *** ëºÇÃçÄñ⁄ÇÃì‡óeîjâÛÇ∑ÇÈ LDE05-BUF1 ÇÃì‡óeìô
+      *    *** LDE05-BUF2 (L2:CNS-3) Á≠â L2„ÅÆ‰ΩçÁΩÆ„ÄÅÈ†ÖÁõÆÁØÑÂõ≤ÂÜÖ„Åß„Å™„ÅÑ„Å®
+      *    *** ‰ªñ„ÅÆÈ†ÖÁõÆ„ÅÆÂÜÖÂÆπÁ†¥Â£ä„Åô„Çã LDE05-BUF1 „ÅÆÂÜÖÂÆπÁ≠â
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             DECODE05.
 
        ENVIRONMENT             DIVISION.
        CONFIGURATION           SECTION.
-      *    *** Ç±ÇÃéwíËÇ™ñ≥Ç¢Ç∆ÉRÉìÉpÉCÉãÉGÉâÅ[Ç…Ç»ÇÈ
-      *    *** MOVE LENGTH(LDE05-BUF2) TO WK-BUF-LEN2 ÇÃèä
+      *    *** „Åì„ÅÆÊåáÂÆö„ÅåÁÑ°„ÅÑ„Å®„Ç≥„É≥„Éë„Ç§„É´„Ç®„É©„Éº„Å´„Å™„Çã
+      *    *** MOVE LENGTH(LDE05-BUF2) TO WK-BUF-LEN2 „ÅÆÊâÄ
        REPOSITORY.
            FUNCTION ALL INTRINSIC.
 
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** SJIS,UTF8 ÉfÅ[É^
+      *    *** SJIS,UTF8 „Éá„Éº„Çø
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** UTF8 1 BYTE => 3 BYTE ÉfÅ[É^
+      *    *** UTF8 1 BYTE => 3 BYTE „Éá„Éº„Çø
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -61,7 +61,8 @@
            03  WK-PGM-NAME     PIC  X(008) VALUE "DECODE05".
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE
-               "KANJI\KANJI1.txt".
+      *        "KANJI\KANJI1.txt".
+              "KANJI1.txt".
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST61.POT1".
 
            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
@@ -86,13 +87,13 @@
            03  WK-20           PIC  X(001) VALUE X"20".
       *    *** SPACE
            03  WK-2020         PIC  X(002) VALUE X"2020".
-      *    *** ÅH SJIS
+      *    *** Ôºü SJIS
            03  WK-8148         PIC  X(002) VALUE X"8148".
       *    *** SPACE UTF8
            03  WK-E38080       PIC  X(003) VALUE X"E38080".
-      *    *** EFBEA0 = äøéöÉXÉyÅ[ÉXÅiãÛîíï\é¶Åj
+      *    *** EFBEA0 = Êº¢Â≠ó„Çπ„Éö„Éº„ÇπÔºàÁ©∫ÁôΩË°®Á§∫Ôºâ
            03  WK-EFBEA0       PIC  X(003) VALUE X"EFBEA0".
-      *    *** ÅH UTF8
+      *    *** Ôºü UTF8
            03  WK-EFBC9F       PIC  X(003) VALUE X"EFBC9F".
            03  WK-UTF8-BYTE    BINARY-LONG SYNC VALUE ZERO.
            03  WK-DATA.
@@ -108,10 +109,10 @@
            03  WK-BUF1-L       BINARY-LONG SYNC VALUE ZERO.
            03  WK-BUF2-L       BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** ïœä∑ëOÇÃÉfÅ[É^ÇÃí∑Ç≥
+      *    *** Â§âÊèõÂâç„ÅÆ„Éá„Éº„Çø„ÅÆÈï∑„Åï
       *     03  LDE05-BUF1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** ïœä∑å„ÇÃÉfÅ[É^ÇÃí∑Ç≥
+      *    *** Â§âÊèõÂæå„ÅÆ„Éá„Éº„Çø„ÅÆÈï∑„Åï
       *     03  WK-BUF2-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-HEX-DIGITS   VALUE '0123456789ABCDEF'.
@@ -127,7 +128,7 @@
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
        01  TBL-AREA01-G.
-      *    *** SJIS Ç≈è∏èá
+      *    *** SJIS „ÅßÊòáÈ†Ü
            03  TBL01-AREA      OCCURS 10000
                                ASCENDING KEY IS TBL01-SJIS
                                INDEXED BY TBL01-IDX.
@@ -138,7 +139,7 @@
              05  TBL01-UTF8    PIC  X(003) VALUE SPACE.
 
        01  TBL-AREA02-G.
-      *    *** UTF8 Ç≈è∏èá
+      *    *** UTF8 „ÅßÊòáÈ†Ü
            03  TBL02-AREA      OCCURS 10000
                                ASCENDING KEY IS TBL02-UTF8
                                INDEXED BY TBL02-IDX.
@@ -149,7 +150,7 @@
              05  TBL02-UTF8    PIC  X(003) VALUE HIGH-VALUE.
 
        01  TBL-AREA03-G.
-      *    *** UTF8 í«â¡ï™ 1ÉoÉCÉgånUTF8=>SJIS
+      *    *** UTF8 ËøΩÂä†ÂàÜ 1„Éê„Ç§„ÉàÁ≥ªUTF8=>SJIS
            03  TBL03-AREA.
              05  TBL03-AREA2.
                07              PIC  X(003) VALUE X"208140".
@@ -260,7 +261,7 @@
                07  TBL03-SJIS  PIC  X(002).
 
        01  TBL-AREA04-G.
-      *    *** UTF8=>SJIS ïœä∑ïsâ¬ÉfÅ[É^
+      *    *** UTF8=>SJIS Â§âÊèõ‰∏çÂèØ„Éá„Éº„Çø
            03  TBL04-AREA      OCCURS 1000.
              05  TBL04-UTF8    PIC  X(003) VALUE SPACE.
 
@@ -343,7 +344,7 @@
                                     LDE05-HENKAN
                             DISPLAY WK-PGM-NAME
                                     " LDE05-HENKAN SU(SJIS=>"
-                                    "UTF8) US(UTF8=>SJIS) éwíË"
+                                    "UTF8) US(UTF8=>SJIS) ÊåáÂÆö"
                             STOP    RUN
                    END-EVALUATE
 
@@ -352,7 +353,7 @@
                               OR LDE05-BUF2 (L4:1) NOT = SPACE
                            CONTINUE
                    END-PERFORM
-      *    *** ïœä∑å„í∑Ç≥ÉZÉbÉg
+      *    *** Â§âÊèõÂæåÈï∑„Åï„Çª„ÉÉ„Éà
                    MOVE    L4          TO      LDE05-BUF2-LEN
 
                WHEN "CLOSE "
@@ -362,7 +363,7 @@
                    DISPLAY WK-PGM-NAME " LDE05-ID PARA ERROR="
                            LDE05-ID
                    DISPLAY WK-PGM-NAME 
-                           " LDE05-ID OPEN,CHANGE,CLOSE éwíË"
+                           " LDE05-ID OPEN,CHANGE,CLOSE ÊåáÂÆö"
                    STOP    RUN
            END-EVALUATE
 
@@ -380,8 +381,8 @@
            PERFORM S030-10     THRU    S030-EX
 
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
-      *    *** PIN1 DATA Ωƒ±∞
-      *    *** ãÊ
+      *    *** PIN1 DATA ÔΩΩÔæÑÔΩ±ÔΩ∞
+      *    *** Âå∫
                    IF      PIN1-REC (1:3) =    X"E58CBA"
                         OR PIN1-REC (22:1) =   X"09"
                         OR WK-PIN1-CNT <       15
@@ -389,14 +390,14 @@
                            CONTINUE
                    ELSE
 
-      *    *** PIN1 DATA Ωƒ±∞
+      *    *** PIN1 DATA ÔΩΩÔæÑÔΩ±ÔΩ∞
                            PERFORM S032-10     THRU    S032-EX
                    END-IF
       *    *** READ PIN1
                    PERFORM S030-10     THRU    S030-EX
            END-PERFORM
 
-      *    *** UTF8 í«â¡ÉXÉgÉAÅ[
+      *    *** UTF8 ËøΩÂä†„Çπ„Éà„Ç¢„Éº
            PERFORM S050-10     THRU    S050-EX
 
       *    *** READ PIN2
@@ -404,7 +405,7 @@
 
            PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
 
-      *    *** PIN2 DATA Ωƒ±∞
+      *    *** PIN2 DATA ÔΩΩÔæÑÔΩ±ÔΩ∞
                    PERFORM S042-10     THRU    S042-EX
 
       *    *** READ PIN2
@@ -472,7 +473,7 @@
        S030-EX.
            EXIT.
 
-      *    *** PIN1 DATA Ωƒ±∞
+      *    *** PIN1 DATA ÔΩΩÔæÑÔΩ±ÔΩ∞
        S032-10.
 
            IF      TBL01-IDX   >       10000
@@ -487,9 +488,9 @@
                    STOP    RUN
            END-IF
 
-      *    *** MAINÇ≈OPEN,CLOSE ÇµÇƒÇ¢ÇÍÇŒ,FILEDUMP égópâ¬î\
-      *    *** Ç‚Ç¡ÇœÇËÅAégÇ¶Ç»Ç¢ÅHFILEDUMP èIóπåèêîï\é¶Ç≥ÇÍÇÈÇ™ÅA
-      *    *** ÉtÉ@ÉCÉãì‡óeèoóÕÇ≥ÇÍÇƒÇ¢Ç»Ç¢
+      *    *** MAIN„ÅßOPEN,CLOSE „Åó„Å¶„ÅÑ„Çå„Å∞,FILEDUMP ‰ΩøÁî®ÂèØËÉΩ
+      *    *** „ÇÑ„Å£„Å±„Çä„ÄÅ‰Ωø„Åà„Å™„ÅÑÔºüFILEDUMP ÁµÇ‰∫Ü‰ª∂Êï∞Ë°®Á§∫„Åï„Çå„Çã„Åå„ÄÅ
+      *    *** „Éï„Ç°„Ç§„É´ÂÜÖÂÆπÂá∫Âäõ„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ
       *     IF (WK-PIN1-CNT >= 50   AND <= 50 ) 
       *     IF (WK-PIN1-CNT >= 8000 AND <= 8500 )
       *     IF (WK-PIN1-CNT >= 8000)
@@ -509,7 +510,7 @@
            MOVE    "0"         TO      WK-DATA-R3
       *     MOVE    9           TO      WK-BUF1-L
       *     MOVE    2           TO      WK-BUF2-L
-      *    *** %LR%LR... 16êiïœä∑ÉTÉuÉãÅ[É`Éìó¨ópÇ∑ÇÈ
+      *    *** %LR%LR... 16ÈÄ≤Â§âÊèõ„Çµ„Éñ„É´„Éº„ÉÅ„É≥ÊµÅÁî®„Åô„Çã
            CALL    "DECODE02"  USING   WK-DATA
                                        WK-BUF1-L
                                        TBL01-SJIS (TBL01-IDX)
@@ -548,7 +549,7 @@
                END-IF
            END-IF
 
-      *    *** %LR%LR... 16êiïœä∑ÉTÉuÉãÅ[É`Éìó¨ópÇ∑ÇÈ
+      *    *** %LR%LR... 16ÈÄ≤Â§âÊèõ„Çµ„Éñ„É´„Éº„ÉÅ„É≥ÊµÅÁî®„Åô„Çã
       *     MOVE    9           TO      WK-BUF1-L
       *     MOVE    3           TO      WK-BUF2-L
            CALL    "DECODE02"  USING   WK-DATA
@@ -558,7 +559,7 @@
            MOVE    TBL01-UTF8 (TBL01-IDX) TO
                                        TBL02-UTF8 (TBL02-IDX)
 
-      *    *** éüâÒ ÇPâ¡éZÇµÇƒÇ®Ç≠
+      *    *** Ê¨°Âõû ÔºëÂä†ÁÆó„Åó„Å¶„Åä„Åè
            SET     TBL01-IDX   UP BY   1
            SET     TBL02-IDX   UP BY   1
            .
@@ -585,7 +586,7 @@
        S040-EX.
            EXIT.
 
-      *    *** PIN2 DATA Ωƒ±∞
+      *    *** PIN2 DATA ÔΩΩÔæÑÔΩ±ÔΩ∞
        S042-10.
 
            IF      TBL05-IDX   >       158
@@ -598,13 +599,13 @@
            MOVE    PIN2-REC (03:3) TO  TBL05-UTF8-1 (TBL05-IDX)
            MOVE    PIN2-REC (07:3) TO  TBL05-UTF8-2 (TBL05-IDX)
 
-      *    *** éüâÒ ÇPâ¡éZÇµÇƒÇ®Ç≠
+      *    *** Ê¨°Âõû ÔºëÂä†ÁÆó„Åó„Å¶„Åä„Åè
            SET     TBL05-IDX   UP BY   1
            .
        S042-EX.
            EXIT.
 
-      *    *** UTF8 1ÉoÉCÉgåní«â¡
+      *    *** UTF8 1„Éê„Ç§„ÉàÁ≥ªËøΩÂä†
        S050-10.
 
            SET     TBL03-IDX   TO      1
@@ -618,7 +619,7 @@
                    MOVE    TBL03-SJIS (TBL03-IDX) TO
                            TBL02-SJIS (TBL02-IDX)
 
-      *    *** éüâÒ ÇPâ¡éZÇµÇƒÇ®Ç≠
+      *    *** Ê¨°Âõû ÔºëÂä†ÁÆó„Åó„Å¶„Åä„Åè
                    SET     TBL03-IDX   UP BY   1
                    SET     TBL02-IDX   UP BY   1
            END-PERFORM
@@ -630,7 +631,7 @@
        S100-10.
 
            MOVE    1           TO      L2
-      *    *** SJIS 2ÉoÉCÉgånÇÃÇ›ëŒâûÅA2ÉoÉCÉgÇ®Ç´Ç…É`ÉFÉbÉNÇ∑ÇÈ
+      *    *** SJIS 2„Éê„Ç§„ÉàÁ≥ª„ÅÆ„ÅøÂØæÂøú„ÄÅ2„Éê„Ç§„Éà„Åä„Åç„Å´„ÉÅ„Çß„ÉÉ„ÇØ„Åô„Çã
            PERFORM VARYING L1 FROM 1 BY 1
                    UNTIL L1 > LDE05-BUF1-LEN - 1
                    EVALUATE TRUE
@@ -654,7 +655,7 @@
                                        ADD     L2 2        GIVING L3
                                    IF      L3     <=  LDE05-BUF2-LEN
       *                              MOVE    X"E38080"      TO
-      *    *** X"E38080" ÇæÇ∆MOVEì‡óeÇ™ï ÇÃèÌêîÇ…Ç»Ç¡ÇƒÇµÇ‹Ç§
+      *    *** X"E38080" „Å†„Å®MOVEÂÜÖÂÆπ„ÅåÂà•„ÅÆÂ∏∏Êï∞„Å´„Å™„Å£„Å¶„Åó„Åæ„ÅÜ
       *                                     MOVE    WK-E38080     TO
                                        MOVE    WK-EFBEA0     TO
                                                LDE05-BUF2 (L2:CNS-3)
@@ -682,14 +683,14 @@
 
            SEARCH  ALL TBL01-AREA
                AT END
-      *    *** ÅH ÉZÉbÉg
+      *    *** Ôºü „Çª„ÉÉ„Éà
                    ADD     L2 2        GIVING  L3
                    IF      L3          <=      LDE05-BUF2-LEN
                        MOVE    WK-EFBC9F TO    LDE05-BUF2 (L2:CNS-3)
                    END-IF
                    ADD     3           TO      L2
 
-      *    *** ïîï™éQè∆Ç≈ANDéwíËÇ≈éwíËÇ∑ÇÈÇ∆ÅAì‡óeà·Ç¡ÇƒÇ‡ÇgÇhÇsÇµÇƒÇµÇ‹Ç§
+      *    *** ÈÉ®ÂàÜÂèÇÁÖß„ÅßANDÊåáÂÆö„ÅßÊåáÂÆö„Åô„Çã„Å®„ÄÅÂÜÖÂÆπÈÅï„Å£„Å¶„ÇÇÔº®Ôº©Ôº¥„Åó„Å¶„Åó„Åæ„ÅÜ
                WHEN TBL01-SJIS (TBL01-IDX) =   LDE05-BUF1 (L1:CNS-2)
                    EVALUATE TBL01-UTF8-BYTE (TBL01-IDX)
                        WHEN 3
@@ -721,7 +722,7 @@
        S110-EX.
            EXIT.
 
-      *    *** UTF8 => SJIS ÇSÅCÇTÅCÇUÉoÉCÉgånÇÕçló∂ÇµÇ»Ç¢
+      *    *** UTF8 => SJIS ÔºîÔºåÔºïÔºåÔºñ„Éê„Ç§„ÉàÁ≥ª„ÅØËÄÉÊÖÆ„Åó„Å™„ÅÑ
       *    *** UTF8 => SJIS
        S200-10.
 
@@ -730,29 +731,29 @@
                    UNTIL L1 > LDE05-BUF1-LEN
                    EVALUATE TRUE
 
-      *    *** UTF8 ÇRÉoÉCÉgån
+      *    *** UTF8 Ôºì„Éê„Ç§„ÉàÁ≥ª
                        WHEN LDE05-BUF1 (L1:1) >= X"E0" AND <= X"EF"
                            IF      L1          >      LDE05-BUF1-LEN - 2
                                CONTINUE
                            ELSE
                                MOVE    3           TO      WK-UTF8-BYTE
-      *    *** CHANGE UTF8 => SJIS ÇRÉoÉCÉgån ÇtÇsÇeÇW
+      *    *** CHANGE UTF8 => SJIS Ôºì„Éê„Ç§„ÉàÁ≥ª ÔºµÔº¥Ôº¶Ôºò
                                PERFORM S210-10     THRU    S210-EX
                            END-IF
                            ADD     2           TO      L1
 
-      *    *** UTF8 ÇQÉoÉCÉgån
+      *    *** UTF8 Ôºí„Éê„Ç§„ÉàÁ≥ª
                        WHEN LDE05-BUF1 (L1:1) >= X"C0" AND <= X"DF"
                            IF      L1          >      LDE05-BUF1-LEN - 1
                                CONTINUE
                            ELSE
                                MOVE    2           TO      WK-UTF8-BYTE
-      *    *** CHANGE UTF8 => SJIS ÇRÉoÉCÉgån ÇtÇsÇeÇW
+      *    *** CHANGE UTF8 => SJIS Ôºì„Éê„Ç§„ÉàÁ≥ª ÔºµÔº¥Ôº¶Ôºò
                                PERFORM S210-10     THRU    S210-EX
                            END-IF
                            ADD     1           TO      L1
 
-      *    *** UTF8 ÇPÉoÉCÉgån
+      *    *** UTF8 Ôºë„Éê„Ç§„ÉàÁ≥ª
       *                WHEN LDE05-BUF1 (L1:1) >= X"00"  AND <= X"7F"
                        WHEN OTHER
                            IF      LDE05-MODE  =       "AA"
@@ -764,7 +765,7 @@
                                ADD     1           TO      L2
                            ELSE
                                MOVE    1           TO      WK-UTF8-BYTE
-      *    *** CHANGE UTF8 => SJIS ÇRÉoÉCÉgån ÇtÇsÇeÇW
+      *    *** CHANGE UTF8 => SJIS Ôºì„Éê„Ç§„ÉàÁ≥ª ÔºµÔº¥Ôº¶Ôºò
                                PERFORM S210-10 THRU    S210-EX
                            END-IF
                    END-EVALUATE
@@ -773,7 +774,7 @@
        S200-EX.
            EXIT.
 
-      *    *** CHANGE UTF8 => SJIS ÇRÉoÉCÉgån ÇtÇsÇeÇW
+      *    *** CHANGE UTF8 => SJIS Ôºì„Éê„Ç§„ÉàÁ≥ª ÔºµÔº¥Ôº¶Ôºò
        S210-10.
 
            EVALUATE WK-UTF8-BYTE
@@ -789,12 +790,12 @@
 
            SEARCH  ALL TBL02-AREA
                AT END
-      *    *** ÅH ÉZÉbÉg
+      *    *** Ôºü „Çª„ÉÉ„Éà
                    ADD     L2 1        GIVING  L3
                    IF      L3          <=      LDE05-BUF2-LEN
                        MOVE    WK-8148 TO      LDE05-BUF2 (L2:CNS-2)
                    END-IF
-      *    *** debug ÇÃà◊ÅAdisplay écÇµÇƒÇ®Ç≠
+      *    *** debug „ÅÆÁÇ∫„ÄÅdisplay ÊÆã„Åó„Å¶„Åä„Åè
                    DISPLAY WK-PGM-NAME
                            " S210-10 " " BUF1-CNT=" LDE05-BUF1-CNT
                            " L1=" L1 " L2=" L2
@@ -827,7 +828,7 @@
                            END-IF
                    END-IF
 
-      *    *** ïîï™éQè∆Ç≈ANDéwíËÇ≈éwíËÇ∑ÇÈÇ∆ÅAì‡óeà·Ç¡ÇƒÇ‡ÇgÇhÇsÇµÇƒÇµÇ‹Ç§
+      *    *** ÈÉ®ÂàÜÂèÇÁÖß„ÅßANDÊåáÂÆö„ÅßÊåáÂÆö„Åô„Çã„Å®„ÄÅÂÜÖÂÆπÈÅï„Å£„Å¶„ÇÇÔº®Ôº©Ôº¥„Åó„Å¶„Åó„Åæ„ÅÜ
                WHEN TBL02-UTF8 (TBL02-IDX) = WK-UTF8
 
                    ADD     L2 1        GIVING  L3
@@ -849,7 +850,7 @@
                    UNTIL L1 > LDE05-BUF1-LEN
                    EVALUATE TRUE
 
-      *    *** UTF8 ÇRÉoÉCÉgån
+      *    *** UTF8 Ôºì„Éê„Ç§„ÉàÁ≥ª
                        WHEN LDE05-BUF1 (L1:1) >= X"E0" AND <= X"EF"
       *                                  IF      L1  > LDE05-BUF1-LEN - 2
       *                                      CONTINUE
@@ -858,12 +859,12 @@
       *                                      PERFORM S310-10 THRU S310-EX
       *                                  END-IF
 
-      *    *** UTF8 äøéöÉRÅ[ÉhÇÃéûÇªÇÃÇ‹Ç‹ÉZÉbÉg
+      *    *** UTF8 Êº¢Â≠ó„Ç≥„Éº„Éâ„ÅÆÊôÇ„Åù„ÅÆ„Åæ„Åæ„Çª„ÉÉ„Éà
                            ADD     L2 2        GIVING  L3
                            IF      L3          <=      LDE05-BUF2-LEN
                                IF      LDE05-BUF1 (L1:CNS-3) =
                                        WK-E38080
-      *    *** äøéöÉXÉyÅ[ÉXÅAñ≥ï\é¶Ç…ïœçX
+      *    *** Êº¢Â≠ó„Çπ„Éö„Éº„Çπ„ÄÅÁÑ°Ë°®Á§∫„Å´Â§âÊõ¥
                                    MOVE    WK-EFBEA0   TO
                                            LDE05-BUF2 (L2:CNS-3)
                                ELSE
@@ -875,7 +876,7 @@
 
                            ADD     2           TO      L1
 
-      *    *** UTF8 ÇQÉoÉCÉgån
+      *    *** UTF8 Ôºí„Éê„Ç§„ÉàÁ≥ª
       *                              WHEN LDE05-BUF1 (L1:1) >= X"C0"
       *                                                 AND <= X"DF"
       *                                  IF      L1  > LDE05-BUF1-LEN - 1
@@ -886,7 +887,7 @@
       *                                  END-IF
       *                                  ADD     1           TO      L1
 
-      *    *** UTF8 ÇPÉoÉCÉgån
+      *    *** UTF8 Ôºë„Éê„Ç§„ÉàÁ≥ª
       *                              WHEN LDE05-BUF1 (L1:1) >= X"00" 
       *                                                 AND <= X"7F"
                        WHEN OTHER
@@ -924,14 +925,14 @@
 
            SEARCH  ALL TBL05-AREA
                AT END
-      *    *** ÅH ÉZÉbÉg
+      *    *** Ôºü „Çª„ÉÉ„Éà
                    ADD     L2 2        GIVING  L3
                    IF      L3          <=      LDE05-BUF2-LEN
                        MOVE    WK-EFBC9F TO    LDE05-BUF2 (L2:CNS-3)
                    END-IF
                    ADD     3           TO      L2
 
-      *    *** ïîï™éQè∆Ç≈ANDéwíËÇ≈éwíËÇ∑ÇÈÇ∆ÅAì‡óeà·Ç¡ÇƒÇ‡ÇgÇhÇsÇµÇƒÇµÇ‹Ç§
+      *    *** ÈÉ®ÂàÜÂèÇÁÖß„ÅßANDÊåáÂÆö„ÅßÊåáÂÆö„Åô„Çã„Å®„ÄÅÂÜÖÂÆπÈÅï„Å£„Å¶„ÇÇÔº®Ôº©Ôº¥„Åó„Å¶„Åó„Åæ„ÅÜ
                WHEN TBL05-UTF8-A (TBL05-IDX) = WK-UTF8-A
 
                    ADD     L2 2        GIVING  L3
@@ -948,7 +949,7 @@
       *    *** CLOSE
        S900-10.
 
-      *    *** UTF8 => SJIS ïœä∑ÉAÉìÉ}ÉbÉ`ï™
+      *    *** UTF8 => SJIS Â§âÊèõ„Ç¢„É≥„Éû„ÉÉ„ÉÅÂàÜ
            PERFORM VARYING K FROM 1 BY 1
                    UNTIL K > K-MAX
                    MOVE    "X"         TO      WFD-ID
@@ -974,10 +975,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 åèêî = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ‰ª∂Êï∞ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 åèêî = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 ‰ª∂Êï∞ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            .
        S900-EX.
