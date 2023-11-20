@@ -1,4 +1,4 @@
-      *    *** YouTibe html ”Ä—pƒCƒ“ƒvƒbƒgƒf[ƒ^ ì¬
+      *    *** YouTube html ä»– æ±Žç”¨ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ä½œæˆ
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST53.
@@ -7,16 +7,16 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** WIKI‚©‚ç•ÒW‚µ‚Ä“ü—Í‚·‚é‚à‚Ì‚ÆA
-      *    *** TEST55 “™ƒvƒƒOƒ‰ƒ€‚Å•ÒW‚µ‚½“ü—Í‚ª‚ ‚é
+      *    *** WIKIã‹ã‚‰ç·¨é›†ã—ã¦å…¥åŠ›ã™ã‚‹ã‚‚ã®ã¨ã€
+      *    *** TEST55 ç­‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ç·¨é›†ã—ãŸå…¥åŠ›ãŒã‚ã‚‹
       *    ***
 
-      *    *** ‚—‚‰‚‹‚‰ƒf[ƒ^“™@‚t‚s‚e‚W
+      *    *** ï½—ï½‰ï½‹ï½‰ãƒ‡ãƒ¼ã‚¿ç­‰ã€€ï¼µï¼´ï¼¦ï¼˜
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** HTML TEST54.PIN1 “ü—Íƒf[ƒ^
+      *    *** HTML TEST54.PIN1 å…¥åŠ›ãƒ‡ãƒ¼ã‚¿
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -31,21 +31,21 @@
        01  PIN1-REC.
            03  FILLER          PIC  X(1000).
 
-      *    *** TEST55.POT1 ‚Ì“à—e
-      *%Œ|”\li–¼‘O‡@’j«j
+      *    *** TEST55.POT1 ã®å†…å®¹
+      *%èŠ¸èƒ½äººï¼ˆåå‰é †ã€€ç”·æ€§ï¼‰
       *$DO=Y
-      *ƒWƒƒƒpƒŠ‚ 
-      *ˆ£ìãÄ,1961”N5ŒŽ24“ú 59Î,‚ ‚¢‚©‚í,’j«
-      *‘Š—t—TŽ÷,1987”N10ŒŽ1“ú 33Î,‚ ‚¢‚Î,’j«
+      *ã‚¸ãƒ£ãƒ‘ãƒªã‚
+      *å“€å·ç¿”,1961å¹´5æœˆ24æ—¥ 59æ­³,ã‚ã„ã‹ã‚,ç”·æ€§
+      *ç›¸è‘‰è£•æ¨¹,1987å¹´10æœˆ1æ—¥ 33æ­³,ã‚ã„ã°,ç”·æ€§
 
-      *    *** TEST53.aikatsu.PIN1 ‚Ì“à—e
-      *%ƒAƒCƒJƒcI@ƒVƒŠ[ƒY@“oêl•¨EŽå‘è‰ÌE‘}“ü‰Ì,
+      *    *** TEST53.aikatsu.PIN1 ã®å†…å®¹
+      *%ã‚¢ã‚¤ã‚«ãƒ„ï¼ã€€ã‚·ãƒªãƒ¼ã‚ºã€€ç™»å ´äººç‰©ãƒ»ä¸»é¡Œæ­Œãƒ»æŒ¿å…¥æ­Œ,
 
-      *ƒWƒƒƒpƒŠƒAƒCƒJƒc!‚Ì“oêl•¨ˆê—— 
+      *ã‚¸ãƒ£ãƒ‘ãƒªã‚¢ã‚¤ã‚«ãƒ„!ã®ç™»å ´äººç‰©ä¸€è¦§ 
 
-      *¯‹{ ‚¢‚¿‚²,”¯‚·‚Ý‚ê,‰Ì,‚í‚©i–¶“‡Žá‰Ìj
-      *–¶–î ‚ ‚¨‚¢,“cŠ‚ ‚¸‚³,‰Ì,‚Ó‚¤‚èiã‰Ô•–— j
-      *Ž‡ —–,‘å‹´Ê,‰Ì,‚·‚È‚¨i‹g‰Í‡‰›j¨‚ä‚ÈiŽs‘q—LØj
+      *æ˜Ÿå®® ã„ã¡ã”,è«¸æ˜Ÿã™ã¿ã‚Œ,æ­Œ,ã‚ã‹ï¼ˆéœ§å³¶è‹¥æ­Œï¼‰
+      *éœ§çŸ¢ ã‚ãŠã„,ç”°æ‰€ã‚ãšã•,æ­Œ,ãµã†ã‚Šï¼ˆä¸ŠèŠ±æ¥“è£ï¼‰
+      *ç´«å¹ è˜­,å¤§æ©‹å½©é¦™,æ­Œ,ã™ãªãŠï¼ˆå‰æ²³é †å¤®ï¼‰â†’ã‚†ãªï¼ˆå¸‚å€‰æœ‰èœï¼‰
 
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
@@ -53,25 +53,25 @@
        01  POT1-REC.
            03  FILLER          PIC  X(1000).
 
-      *    *** HTML ƒf[ƒ^
-      *    *** 1Œ–Ú
+      *    *** HTML ãƒ‡ãƒ¼ã‚¿
+      *    *** 1ä»¶ç›®
       *    *** %NNKIITT,
-      *    *** (1:1)=%   ƒ^ƒCƒgƒ‹‚h‚c
-      *    *** (2:2)=NN  TEST54 ‚Å‰¡•ûŒü‚Ì•\Ž¦”(’Êí‚Í‚O‚W)
-      *    *** (4:2)=II  TEST54‚Ìo—Í€–ÚŽw’è
-      *    *** (6:2)=AA  ACCEPT “ü—Í’l (WK-FILE)
-      *    *** (8:1)=K   ‹æ•ª (W:—«AM:’j«“™ ’Êí‚ÍƒXƒy[ƒX)
-      *    *** (9:NN)=TT ƒ^ƒCƒgƒ‹–¼i‚PƒoƒCƒgƒXƒy[ƒXAƒJƒ“ƒ}ŠÜ‚Ü‚¸j
-      *    ***           NN‚Í”CˆÓ‚Ì’·‚³
-      *    *** (9+NN:1)=,ÅIƒJƒ‰ƒ€‚ÍƒJƒ“ƒ}
+      *    *** (1:1)=%   ã‚¿ã‚¤ãƒˆãƒ«ï¼©ï¼¤
+      *    *** (2:2)=NN  TEST54 ã§æ¨ªæ–¹å‘ã®è¡¨ç¤ºæ•°(é€šå¸¸ã¯ï¼ï¼˜)
+      *    *** (4:2)=II  TEST54ã®å‡ºåŠ›é …ç›®æŒ‡å®š
+      *    *** (6:2)=AA  ACCEPT å…¥åŠ›å€¤ (WK-FILE)
+      *    *** (8:1)=K   åŒºåˆ† (W:å¥³æ€§ã€M:ç”·æ€§ç­‰ é€šå¸¸ã¯ã‚¹ãƒšãƒ¼ã‚¹)
+      *    *** (9:NN)=TT ã‚¿ã‚¤ãƒˆãƒ«åï¼ˆï¼‘ãƒã‚¤ãƒˆã‚¹ãƒšãƒ¼ã‚¹ã€ã‚«ãƒ³ãƒžå«ã¾ãšï¼‰
+      *    ***           NNã¯ä»»æ„ã®é•·ã•
+      *    *** (9+NN:1)=,æœ€çµ‚ã‚«ãƒ©ãƒ ã¯ã‚«ãƒ³ãƒž
       *    *** 
-      *    *** 2Œ–ÚˆÈ~
+      *    *** 2ä»¶ç›®ä»¥é™
       *    *** 
-      *    *** $DO=Y ‚ ‚¢‚¤‚¦‚¨‡o—Í‚Åh‚Çh‚©‚çŽn‚Ü‚é‚ðŠÜ‚ÞŽžA
-      *    ***       TESTXX ‚ÅƒZƒbƒg
+      *    *** $DO=Y ã‚ã„ã†ãˆãŠé †å‡ºåŠ›ã§â€ã©â€ã‹ã‚‰å§‹ã¾ã‚‹ã‚’å«ã‚€æ™‚ã€
+      *    ***       TESTXX ã§ã‚»ãƒƒãƒˆ
       *    *** 
       *    *** AA,BB,CC,DD,EE,...
-      *    ***          ’Êí‚ÍAA,BB‚ÌTEST54‚Å€–Úo—Í
+      *    ***          é€šå¸¸ã¯AA,BBã®TEST54ã§é …ç›®å‡ºåŠ›
 
        WORKING-STORAGE         SECTION.
 
@@ -155,50 +155,50 @@
            MOVE    "N"         TO      SW-YES
            PERFORM UNTIL SW-YES =      "Y"
                    DISPLAY " "
-                   DISPLAY "PIN1 FILE NAME ”Žš=?"
+                   DISPLAY "PIN1 FILE NAME æ•°å­—=?"
 
                    DISPLAY " "
                    DISPLAY "01.TEST53_po_gr_ja.PIN1"
                    MOVE    
-                   "   ƒ|ƒsƒ…ƒ‰[‰¹Šy‚Ì‰¹Šy‰Æˆê—— (“ú–{EƒOƒ‹[ƒv)"
+                   "   ãƒãƒ”ãƒ¥ãƒ©ãƒ¼éŸ³æ¥½ã®éŸ³æ¥½å®¶ä¸€è¦§ (æ—¥æœ¬ãƒ»ã‚°ãƒ«ãƒ¼ãƒ—)"
                                TO      WK-FILE-NAME (01)
                    DISPLAY WK-FILE-NAME (01)
 
                    DISPLAY " "
                    DISPLAY "02.TEST53_po_ko_ja.PIN1"
-                   MOVE    "   ƒ|ƒsƒ…ƒ‰[‰¹Šy‚Ì‰¹Šy‰Æˆê—— (“ú–{EŒÂl)"
+                   MOVE    "   ãƒãƒ”ãƒ¥ãƒ©ãƒ¼éŸ³æ¥½ã®éŸ³æ¥½å®¶ä¸€è¦§ (æ—¥æœ¬ãƒ»å€‹äºº)"
                                TO      WK-FILE-NAME (02)
                    DISPLAY WK-FILE-NAME (02)
 
                    DISPLAY " "
                    DISPLAY "03.TEST53_po_gr_wr.PIN1"
                    MOVE   
-                    "   ƒ|ƒsƒ…ƒ‰[‰¹Šy‚Ì‰¹Šy‰Æˆê—— (“ú–{ˆÈŠOEƒOƒ‹[ƒv)"
+                    "   ãƒãƒ”ãƒ¥ãƒ©ãƒ¼éŸ³æ¥½ã®éŸ³æ¥½å®¶ä¸€è¦§ (æ—¥æœ¬ä»¥å¤–ãƒ»ã‚°ãƒ«ãƒ¼ãƒ—)"
                                TO      WK-FILE-NAME (03)
                    DISPLAY WK-FILE-NAME (03)
 
                    DISPLAY " "
                    DISPLAY "04.TEST53_po_ko_wr.PIN1"
                    MOVE   
-                     "   ƒ|ƒsƒ…ƒ‰[‰¹Šy‚Ì‰¹Šy‰Æˆê—— (“ú–{ˆÈŠOEŒÂl)"
+                     "   ãƒãƒ”ãƒ¥ãƒ©ãƒ¼éŸ³æ¥½ã®éŸ³æ¥½å®¶ä¸€è¦§ (æ—¥æœ¬ä»¥å¤–ãƒ»å€‹äºº)"
                                TO      WK-FILE-NAME (04)
                    DISPLAY WK-FILE-NAME (04)
 
                    DISPLAY " "
                    DISPLAY "05.TEST53_girl_kr.PIN1"
-                   MOVE    "   ŠØ‘‚ÌƒK[ƒ‹EƒOƒ‹[ƒv"
+                   MOVE    "   éŸ“å›½ã®ã‚¬ãƒ¼ãƒ«ãƒ»ã‚°ãƒ«ãƒ¼ãƒ—"
                                TO      WK-FILE-NAME (05)
                    DISPLAY WK-FILE-NAME (05)
 
                    DISPLAY " "
                    DISPLAY "06.TEST53_adolgirl_gr_ja.PIN1"
-                   MOVE    "   “ú–{‚Ì—«ƒAƒCƒhƒ‹ƒOƒ‹[ƒv"
+                   MOVE    "   æ—¥æœ¬ã®å¥³æ€§ã‚¢ã‚¤ãƒ‰ãƒ«ã‚°ãƒ«ãƒ¼ãƒ—"
                                TO      WK-FILE-NAME (06)
                    DISPLAY WK-FILE-NAME (06)
 
                    DISPLAY " "
                    DISPLAY "07.TEST53_girl_ko_ja.PIN1"
-                   MOVE    "   “ú–{‚Ì—«ƒAƒCƒhƒ‹"
+                   MOVE    "   æ—¥æœ¬ã®å¥³æ€§ã‚¢ã‚¤ãƒ‰ãƒ«"
                                TO      WK-FILE-NAME (07)
                    DISPLAY WK-FILE-NAME (07)
 
@@ -210,127 +210,127 @@
 
                    DISPLAY " "
                    DISPLAY "09.TEST53_junioridol_ja.PIN1"
-                   MOVE    "   ƒWƒ…ƒjƒAƒAƒCƒhƒ‹ˆê——"
+                   MOVE    "   ã‚¸ãƒ¥ãƒ‹ã‚¢ã‚¢ã‚¤ãƒ‰ãƒ«ä¸€è¦§"
                                TO      WK-FILE-NAME (09)
                    DISPLAY WK-FILE-NAME (09)
 
                    DISPLAY " "
                    DISPLAY "10.TEST53_aikatsu.PIN1"
-                   MOVE    "   ƒAƒCƒJƒcŽå‘è‰ÌE‘}“ü‰Ì"
+                   MOVE    "   ã‚¢ã‚¤ã‚«ãƒ„ä¸»é¡Œæ­Œãƒ»æŒ¿å…¥æ­Œ"
                                TO      WK-FILE-NAME (10)
                    DISPLAY WK-FILE-NAME (10)
 
                    DISPLAY " "
                    DISPLAY "11.TEST53_talent_birthday.PIN1"
-                   MOVE    "   Œ|”\lE’a¶“ú‡@i—«E’j«j"
+                   MOVE    "   èŠ¸èƒ½äººãƒ»èª•ç”Ÿæ—¥é †ã€€ï¼ˆå¥³æ€§ãƒ»ç”·æ€§ï¼‰"
                                TO      WK-FILE-NAME (11)
                    DISPLAY WK-FILE-NAME (11)
 
                    DISPLAY " "
                    DISPLAY "12.TEST53_talent_birthday.PIN1"
-                   MOVE    "   Œ|”\lE’a¶“ú‡@i—«j"
+                   MOVE    "   èŠ¸èƒ½äººãƒ»èª•ç”Ÿæ—¥é †ã€€ï¼ˆå¥³æ€§ï¼‰"
                                TO      WK-FILE-NAME (12)
                    DISPLAY WK-FILE-NAME (12)
 
                    DISPLAY " "
-                   DISPLAY "13 ‚ÍC.TEST55 ‚Åì¬"
+                   DISPLAY "13 ã¯C.TEST55 ã§ä½œæˆ"
                    DISPLAY "13.TEST55.POT1"
-                   MOVE    "   Œ|”\l –¼‘O‡i—«E’j«A—«A’j«j"
+                   MOVE    "   èŠ¸èƒ½äºº åå‰é †ï¼ˆå¥³æ€§ãƒ»ç”·æ€§ã€å¥³æ€§ã€ç”·æ€§ï¼‰"
                                TO      WK-FILE-NAME (13)
                    DISPLAY WK-FILE-NAME (13)
 
                    DISPLAY " "
-                   DISPLAY "14 ‚ÍC.TEST56 ‚Åì¬"
+                   DISPLAY "14 ã¯C.TEST56 ã§ä½œæˆ"
                    DISPLAY "14.TEST56.POT1"
                    MOVE    
-                   "   “ú–{‚Ì——Dˆê——2000”N‘ã¶‚Ü‚ê –¼‘O‡A’a¶“ú‡"
+                   "   æ—¥æœ¬ã®å¥³å„ªä¸€è¦§2000å¹´ä»£ç”Ÿã¾ã‚Œ åå‰é †ã€èª•ç”Ÿæ—¥é †"
                                TO      WK-FILE-NAME (14)
                    DISPLAY WK-FILE-NAME (14)
 
                    DISPLAY " "
-                   DISPLAY "15 ‚ÍC.TEST57 ‚Åì¬"
+                   DISPLAY "15 ã¯C.TEST57 ã§ä½œæˆ"
                    DISPLAY "15.TEST57.POT1"
-                   MOVE    "   ƒAƒCƒhƒ‹‘å}ŠÓ –¼‘O‡AƒOƒ‹[ƒv‡"
+                   MOVE    "   ã‚¢ã‚¤ãƒ‰ãƒ«å¤§å›³é‘‘ åå‰é †ã€ã‚°ãƒ«ãƒ¼ãƒ—é †"
                                TO      WK-FILE-NAME (15)
                    DISPLAY WK-FILE-NAME (15)
 
                    DISPLAY " "
                    DISPLAY "16.TEST53_jyoyu1990_birthday.PIN1"
-                   MOVE    "   “ú–{‚Ì——Dˆê——1990”N‘ã¶‚Ü‚ê"
+                   MOVE    "   æ—¥æœ¬ã®å¥³å„ªä¸€è¦§1990å¹´ä»£ç”Ÿã¾ã‚Œ"
                                TO      WK-FILE-NAME (16)
                    DISPLAY WK-FILE-NAME (16)
 
                    DISPLAY " "
-                   DISPLAY "17 ‚ÍC.TEST58 ‚Åì¬"
+                   DISPLAY "17 ã¯C.TEST58 ã§ä½œæˆ"
                    DISPLAY "17.TEST58.POT1"
-                   MOVE    "   “ú–{‚Ì——Dˆê——"
+                   MOVE    "   æ—¥æœ¬ã®å¥³å„ªä¸€è¦§"
                                TO      WK-FILE-NAME (17)
                    DISPLAY WK-FILE-NAME (17)
 
                    DISPLAY " "
-                   DISPLAY "18‚Í‹xŽ~’†"
-                   DISPLAY "18 ‚ÍC.TEST60 ‚Åì¬"
+                   DISPLAY "18ã¯ä¼‘æ­¢ä¸­"
+                   DISPLAY "18 ã¯C.TEST60 ã§ä½œæˆ"
                    DISPLAY "18.TEST60.POT1"
-                   MOVE    "   ¢ŠE‚Ì——Dˆê——"
+                   MOVE    "   ä¸–ç•Œã®å¥³å„ªä¸€è¦§"
                                TO      WK-FILE-NAME (18)
                    DISPLAY WK-FILE-NAME (18)
 
                    DISPLAY " "
                    DISPLAY "19.TEST53_gakkiall.PIN1"
-                   MOVE    "   ŠyŠí•ª—Þ•Êˆê——"
+                   MOVE    "   æ¥½å™¨åˆ†é¡žåˆ¥ä¸€è¦§"
                                TO      WK-FILE-NAME (19)
                    DISPLAY WK-FILE-NAME (19)
 
                    DISPLAY " "
                    DISPLAY "20.TEST53_CLASSIC.PIN1"
-                   MOVE    "   ƒNƒ‰ƒVƒbƒNì‹È‰Æˆê——"
+                   MOVE    "   ã‚¯ãƒ©ã‚·ãƒƒã‚¯ä½œæ›²å®¶ä¸€è¦§"
                                TO      WK-FILE-NAME (20)
                    DISPLAY WK-FILE-NAME (20)
 
                    DISPLAY " "
-                   DISPLAY "21 ‚ÍC.TEST70 ‚Åì¬"
+                   DISPLAY "21 ã¯C.TEST70 ã§ä½œæˆ"
                    DISPLAY "21.TEST70.POT1"
                    MOVE    "   XVI"
                                TO      WK-FILE-NAME (21)
                    DISPLAY WK-FILE-NAME (21)
 
                    DISPLAY " "
-                   DISPLAY "22 ‚ÍC.TEST72 ‚Åì¬"
+                   DISPLAY "22 ã¯C.TEST72 ã§ä½œæˆ"
                    DISPLAY "22.TEST72.POT1"
                    MOVE    "   DMM"
                                TO      WK-FILE-NAME (22)
                    DISPLAY WK-FILE-NAME (22)
 
                    DISPLAY " "
-                   DISPLAY "23 ‚ÍC.TEST79 ‚Åì¬"
+                   DISPLAY "23 ã¯C.TEST79 ã§ä½œæˆ"
                    DISPLAY "23.TEST79.POT1"
-                   MOVE    "   ‚¨‰ÙŽqŒnD‚ƒ‚‚"
+                   MOVE    "   ãŠè“å­ç³»ï¼Žï½ƒï½ï½"
                                TO      WK-FILE-NAME (23)
                    DISPLAY WK-FILE-NAME (23)
 
                    DISPLAY " "
-                   DISPLAY "24 ‚ÍC.TEST74 ‚Åì¬"
+                   DISPLAY "24 ã¯C.TEST74 ã§ä½œæˆ"
                    MOVE    "   Qosmio_G50"
                                TO      WK-FILE-NAME (24)
                    DISPLAY WK-FILE-NAME (24)
 
                    DISPLAY " "
-                   DISPLAY "25 ‚ÍC.TEST78 ‚Åì¬"
+                   DISPLAY "25 ã¯C.TEST78 ã§ä½œæˆ"
                    DISPLAY "25.TEST78.POT1"
                    MOVE    "   XVI2"
                                TO      WK-FILE-NAME (25)
                    DISPLAY WK-FILE-NAME (25)
 
                    DISPLAY " "
-                   DISPLAY "26 ‚ÍC.TEST80 ‚Åì¬"
+                   DISPLAY "26 ã¯C.TEST80 ã§ä½œæˆ"
                    DISPLAY "26.TEST80.POT1"
-                   MOVE    "   ‚¨‰ÙŽqŒn‚Q"
+                   MOVE    "   ãŠè“å­ç³»ï¼’"
                                TO      WK-FILE-NAME (26)
                    DISPLAY WK-FILE-NAME (26)
 
                    DISPLAY " "
                    DISPLAY "27 TEST53_actress_kr.PIN1"
-                   MOVE    "   ŠØ‘——D"
+                   MOVE    "   éŸ“å›½å¥³å„ª"
                                TO      WK-FILE-NAME (27)
                    DISPLAY WK-FILE-NAME (27)
 
@@ -342,7 +342,7 @@
 
                    DISPLAY " "
                    DISPLAY "29 TEST89.POT1"
-                   MOVE    "   DMM ŒŸõ ‚Ý‚Â‚«"
+                   MOVE    "   DMM æ¤œç´¢ æ¸šã¿ã¤ã"
                                TO      WK-FILE-NAME (29)
                    DISPLAY WK-FILE-NAME (29)
 
@@ -360,13 +360,13 @@
 
                    DISPLAY " "
                    DISPLAY "32 TEST103.POT1"
-                   MOVE    "   Youtube “®‰æƒTƒ€ƒlƒCƒ‹Šg‘å"
+                   MOVE    "   Youtube å‹•ç”»ã‚µãƒ ãƒã‚¤ãƒ«æ‹¡å¤§"
                                TO      WK-FILE-NAME (32)
                    DISPLAY WK-FILE-NAME (32)
 
                    DISPLAY " "
                    DISPLAY "33 TEST101.POT2"
-                   MOVE    "   Šy“VŒŸõ"
+                   MOVE    "   æ¥½å¤©æ¤œç´¢"
                                TO      WK-FILE-NAME (33)
                    DISPLAY WK-FILE-NAME (33)
 
@@ -393,7 +393,7 @@
 
                    DISPLAY " "
                    DISPLAY "32 TEST103.POT1"
-                   DISPLAY "   Youtube “®‰æƒTƒ€ƒlƒCƒ‹Šg‘å"
+                   DISPLAY "   Youtube å‹•ç”»ã‚µãƒ ãƒã‚¤ãƒ«æ‹¡å¤§"
                    DISPLAY "   WIDTH 02 OR 05 INPUT"
 
                    ACCEPT  WK-WIDTH
@@ -407,27 +407,27 @@
            END-IF
 
            MOVE    "N"         TO      SW-YES
-      *    *** 26=‚¨‰ÙŽqŒn‚Q ƒf[ƒ^•ªŠ„
+      *    *** 26=ãŠè“å­ç³»ï¼’ ãƒ‡ãƒ¼ã‚¿åˆ†å‰²
            IF      WK-FILE     =       "26"
                PERFORM UNTIL SW-YES =      "Y"
-                   DISPLAY "26.‚¨‰ÙŽqŒn‚Q"
-                   DISPLAY "1.‚ [‚¨"
-                   DISPLAY "2.‚©[‚±"
-                   DISPLAY "3.‚³[‚»"
-                   DISPLAY "4.‚½[‚Æ"
-                   DISPLAY "5.‚È[‚Ì"
-                   DISPLAY "6.‚Í[‚Ù"
-                   DISPLAY "7.‚Ü[‚à"
-                   DISPLAY "8.‚â[‚æ"
-                   DISPLAY "9.‚ç[‚ñ"
+                   DISPLAY "26.ãŠè“å­ç³»ï¼’"
+                   DISPLAY "1.ã‚ãƒ¼ãŠ"
+                   DISPLAY "2.ã‹ãƒ¼ã“"
+                   DISPLAY "3.ã•ãƒ¼ã"
+                   DISPLAY "4.ãŸãƒ¼ã¨"
+                   DISPLAY "5.ãªãƒ¼ã®"
+                   DISPLAY "6.ã¯ãƒ¼ã»"
+                   DISPLAY "7.ã¾ãƒ¼ã‚‚"
+                   DISPLAY "8.ã‚„ãƒ¼ã‚ˆ"
+                   DISPLAY "9.ã‚‰ãƒ¼ã‚“"
 
                    ACCEPT  WK-HIRAGANA
                    IF      WK-HIRAGANA     =   "1"  OR "2" OR "3" OR "4"
                            OR "5" OR "6" OR "7" OR "8" OR "9"
-                           DISPLAY " ‚Ð‚ç‚ª‚È OK ? Y/N"
+                           DISPLAY " ã²ã‚‰ãŒãª OK ? Y/N"
                            ACCEPT  SW-YES
                    ELSE
-                           DISPLAY " ‚Ð‚ç‚ª‚È 1-9 INPUT"
+                           DISPLAY " ã²ã‚‰ãŒãª 1-9 INPUT"
                    END-IF
                END-PERFORM
            END-IF
@@ -452,8 +452,8 @@
                WHEN "09"
                    MOVE    "TEST53_junioridol_ja.PIN1" TO WK-PIN1-F-NAME
                WHEN "10"
-      *    *** AIKATSU.txt@‚ðCOBSORT‚ÅSORTŒãAu=>iAv=>j‚É•ÏX‚µ‚Ä
-      *    *** TEST53_aikatsu.PIN1 ì¬
+      *    *** AIKATSU.txtã€€ã‚’COBSORTã§SORTå¾Œã€ã€Œ=>ï¼ˆã€ã€=>ï¼‰ã«å¤‰æ›´ã—ã¦
+      *    *** TEST53_aikatsu.PIN1 ä½œæˆ
                    MOVE    "TEST53_aikatsu.PIN1" TO WK-PIN1-F-NAME
                WHEN "11"
                    MOVE    "TEST53_talent_birthday.PIN1"
@@ -574,7 +574,7 @@
       *    *** WRITE POT1
        S100-10.
 
-      *    *** [NN] => SPACE,[•\Ž¦] => SPACE
+      *    *** [NN] => SPACE,[è¡¨ç¤º] => SPACE
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL I > WK-PIN1-LEN
                IF      PIN1-REC (I:1) = "["
@@ -598,13 +598,13 @@
 
            EVALUATE TRUE
 
-      *    *** ZERO byte ƒRƒƒ“ƒg‚Æ‚µAƒJƒbƒg
+      *    *** ZERO byte ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã€ã‚«ãƒƒãƒˆ
                 WHEN WK-PIN1-LEN =     ZERO
                    IF      WK-FILE   =       "11" OR "12"
                        ADD     1           TO      WK-SEX
                        IF      WK-SEX      =       1
                            AND WK-FILE     =       "11"
-      *    *** ’j«,
+      *    *** ç”·æ€§,
                                MOVE    X"E794B7E680A72C" TO  POT1-REC
 
                                WRITE   POT1-REC
@@ -622,17 +622,17 @@
                            CONTINUE
                    END-IF
 
-      *    *** (1,1)= * ƒRƒƒ“ƒg‚Æ‚µAƒJƒbƒg
+      *    *** (1,1)= * ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã€ã‚«ãƒƒãƒˆ
                 WHEN PIN1-REC (1:1) =  "*"
                    CONTINUE
 
-      *    *** (1,3)= i ƒRƒƒ“ƒg‚Æ‚µAƒJƒbƒg
+      *    *** (1,3)= ï¼ˆ ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã€ã‚«ãƒƒãƒˆ
                 WHEN PIN1-REC (1:3) =  X"EFBC88"
                    CONTINUE
 
-      *    *** “ú–{ƒAƒCƒhƒ‹ƒOƒ‹[ƒv ‚ð‘Î‰ž
+      *    *** æ—¥æœ¬ã‚¢ã‚¤ãƒ‰ãƒ«ã‚°ãƒ«ãƒ¼ãƒ— ã‚’å¯¾å¿œ
                 WHEN PIN1-REC (1:1) = "$" OR "#"
-      *    *** WK-FILE=24 Qosmio #M:... DIR ‚»‚Ì‚Ü‚Üo—Í
+      *    *** WK-FILE=24 Qosmio #M:... DIR ãã®ã¾ã¾å‡ºåŠ›
                    MOVE    PIN1-REC    TO      POT1-REC
 
                    WRITE   POT1-REC
@@ -644,18 +644,18 @@
                    END-IF
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ƒWƒƒƒpƒŠ@s ƒRƒƒ“ƒg‚Æ‚µAƒJƒbƒg
-      *    *** ƒWƒƒƒpƒŠ
+      *    *** ã‚¸ãƒ£ãƒ‘ãƒªã€€è¡Œ ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã€ã‚«ãƒƒãƒˆ
+      *    *** ã‚¸ãƒ£ãƒ‘ãƒª
                WHEN PIN1-REC (1:12) =  X"E382B8E383A3E38391E383AA"
-      *    *** s
+      *    *** è¡Œ
                AND  PIN1-REC (16:3) =  X"E8A18C"
                    CONTINUE
-      *    *** NˆÊ ƒJƒbƒg (‚Qs‚É‚È‚Á‚Ä‚é)
+      *    *** Nä½ ã‚«ãƒƒãƒˆ (ï¼’è¡Œã«ãªã£ã¦ã‚‹)
                WHEN PIN1-REC (2:3) =   X"E4BD8D"
                  OR PIN1-REC (3:3) =   X"E4BD8D"
                    CONTINUE
 
-      *    *** ƒWƒƒƒpƒŠ–³AYYYY”N
+      *    *** ã‚¸ãƒ£ãƒ‘ãƒªç„¡ã€YYYYå¹´
                WHEN ( WK-FILE    =       "11" OR "12" )
                 AND PIN1-REC (1:4) IS  NUMERIC
                    MOVE    SPACE       TO      POT1-REC
@@ -663,10 +663,10 @@
                    ADD     1           TO      WK-NO
                    MOVE    WK-NO       TO      POT1-REC (2:3)
                    MOVE    "."         TO      POT1-REC (5:1)
-      *    *** @ UTF8
+      *    *** ã€€ UTF8
                    MOVE    X"E38080"   TO      POT1-REC (6:3)
                    MOVE    PIN1-REC    TO      POT1-REC (9:)
-      *    *** Î@ÄŒvŽZ
+      *    *** æ­³ã€€å†è¨ˆç®—
                    MOVE    PIN1-REC (1:4) TO   WK-YYYY
                    COMPUTE WK-SAI = WK-YYYY - WDT-DATE-YYYY
                    MOVE    WK-SAI      TO   POT1-REC (4 + WK-PIN1-LEN:2)
@@ -681,7 +681,7 @@
                    ADD     1           TO      WK-POT1-CNT
                    MOVE    ZERO        TO      WK-SEX
 
-      *    *** —«,
+      *    *** å¥³æ€§,
                    IF      WK-FILE     =       "11"
                        MOVE    X"E5A5B3E680A72C" TO      POT1-REC
                        WRITE   POT1-REC
@@ -694,46 +694,46 @@
                        ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** ƒWƒƒƒpƒŠ–³A‚ [‚ð
+      *    *** ã‚¸ãƒ£ãƒ‘ãƒªç„¡ã€ã‚ãƒ¼ã‚’
                WHEN WK-PIN1-LEN    =   3
                 AND PIN1-REC (1:1) =   X"E3"
 
                    EVALUATE TRUE
-      *    *** 26=‚¨‰ÙŽqŒn‚Q
+      *    *** 26=ãŠè“å­ç³»ï¼’
                       WHEN WK-FILE = "26"
                           MOVE    "N"         TO      SW-HIRAGANA
                           IF    ( WK-HIRAGANA =       "1"
-      *    *** ‚ [‚¨
+      *    *** ã‚ãƒ¼ãŠ
                               AND PIN1-REC (1:3) >=   X"E38182"
                               AND PIN1-REC (1:3) <=   X"E3818A" ) OR
 
                                 ( WK-HIRAGANA =       "2"
-      *    *** ‚©[‚²
+      *    *** ã‹ãƒ¼ã”
                               AND PIN1-REC (1:3) >=   X"E3818B"
                               AND PIN1-REC (1:3) <=   X"E38194" ) OR
 
                                 ( WK-HIRAGANA =       "3"
-      *    *** ‚³[‚¼
+      *    *** ã•ãƒ¼ãž
                               AND PIN1-REC (1:3) >=   X"E38195"
                               AND PIN1-REC (1:3) <=   X"E3819E" ) OR
 
                                 ( WK-HIRAGANA =       "4"
-      *    *** ‚½[‚Ç
+      *    *** ãŸãƒ¼ã©
                               AND PIN1-REC (1:3) >=   X"E3819F"
                               AND PIN1-REC (1:3) <=   X"E381A9" ) OR
 
                                 ( WK-HIRAGANA =       "5"
-      *    *** ‚È[‚Ì
+      *    *** ãªãƒ¼ã®
                               AND PIN1-REC (1:3) >=   X"E381AA"
                               AND PIN1-REC (1:3) <=   X"E381AE" ) OR
 
                                 ( WK-HIRAGANA =       "6"
-      *    *** ‚Í[‚Û
+      *    *** ã¯ãƒ¼ã½
                               AND PIN1-REC (1:3) >=   X"E381AF"
                               AND PIN1-REC (1:3) <=   X"E381BD" ) OR
 
                                 ( WK-HIRAGANA =       "7"
-      *    *** ‚Ü[‚à
+      *    *** ã¾ãƒ¼ã‚‚
                               AND PIN1-REC (1:3) >=   X"E381BE"
                               AND PIN1-REC (1:3) <=   X"E381BF" ) OR
 
@@ -742,12 +742,12 @@
                               AND PIN1-REC (1:3) <=   X"E38282" ) OR
 
                                 ( WK-HIRAGANA =       "8"
-      *    *** ‚â[‚æ
+      *    *** ã‚„ãƒ¼ã‚ˆ
                               AND PIN1-REC (1:3) >=   X"E38283"
                               AND PIN1-REC (1:3) <=   X"E38288" ) OR
 
                                 ( WK-HIRAGANA =       "9"
-      *    *** ‚ç[‚ñ
+      *    *** ã‚‰ãƒ¼ã‚“
                               AND PIN1-REC (1:3) >=   X"E38289"
                               AND PIN1-REC (1:3) <=   X"E38293" )
                               MOVE    "Y"           TO      SW-HIRAGANA
@@ -757,7 +757,7 @@
                               ADD     1           TO      WK-NO
                               MOVE    WK-NO       TO      POT1-REC (2:3)
                               MOVE    "."         TO      POT1-REC (5:1)
-      *    *** @ UTF8
+      *    *** ã€€ UTF8
                               MOVE    X"E38080"   TO      POT1-REC (6:3)
                               MOVE    PIN1-REC (1:3) TO   POT1-REC (9:3)
                               WRITE   POT1-REC
@@ -769,21 +769,21 @@
                           ADD     1           TO      WK-NO
                           MOVE    WK-NO       TO      POT1-REC (2:3)
                           MOVE    "."         TO      POT1-REC (5:1)
-      *    *** @ UTF8
+      *    *** ã€€ UTF8
                           MOVE    X"E38080"   TO      POT1-REC (6:3)
                           MOVE    PIN1-REC (1:3) TO   POT1-REC (9:3)
                           WRITE   POT1-REC
                           ADD     1           TO      WK-POT1-CNT
                    END-EVALUATE
 
-      *    *** ƒWƒƒƒpƒŠ
+      *    *** ã‚¸ãƒ£ãƒ‘ãƒª
                WHEN PIN1-REC (1:12) = X"E382B8E383A3E38391E383AA"
                    MOVE    SPACE       TO      POT1-REC
                    MOVE    "#"         TO      POT1-REC (1:1)
                    ADD     1           TO      WK-NO
                    MOVE    WK-NO       TO      POT1-REC (2:3)
                    MOVE    "."         TO      POT1-REC (5:1)
-      *    *** @ UTF8
+      *    *** ã€€ UTF8
                    MOVE    X"E38080"   TO      POT1-REC (6:3)
                    IF      WK-PIN1-LEN <=       15
                            MOVE    PIN1-REC (13:3) TO  POT1-REC (9:3)
@@ -800,36 +800,36 @@
                    END-IF
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ”Ä—pƒ^ƒCƒgƒ‹
+      *    *** æ±Žç”¨ã‚¿ã‚¤ãƒˆãƒ«
                WHEN PIN1-REC (1:1) = "%"
                    MOVE    PIN1-REC (1:1) TO   POT1-REC (1:1)
                    MOVE    WK-FILE        TO      POT1-REC (6:2)
-      *    *** ƒe[ƒuƒ‹‰¡•ûŒü•\Ž¦”
+      *    *** ãƒ†ãƒ¼ãƒ–ãƒ«æ¨ªæ–¹å‘è¡¨ç¤ºæ•°
                    MOVE    "08"           TO      POT1-REC (2:2)
-      *    *** ‹æ•ª(7:1)Aƒ^ƒCƒgƒ‹–¼(8:NN)‚Í‘O‚ÌPGM‚©‚çˆø‚«Œp‚®
+      *    *** åŒºåˆ†(7:1)ã€ã‚¿ã‚¤ãƒˆãƒ«å(8:NN)ã¯å‰ã®PGMã‹ã‚‰å¼•ãç¶™ã
                    MOVE    PIN1-REC (2: ) TO      POT1-REC (8:)
                    MOVE    SPACE       TO      POT1-REC (4:2)
 
                    EVALUATE TRUE
-      *    *** ‰¡•ûŒüA•\Ž¦”ƒZƒbƒg
-      *    *** 23=‚¨‰ÙŽqŒnD‚ƒ‚‚
+      *    *** æ¨ªæ–¹å‘ã€è¡¨ç¤ºæ•°ã‚»ãƒƒãƒˆ
+      *    *** 23=ãŠè“å­ç³»ï¼Žï½ƒï½ï½
                       WHEN WK-FILE = "23"
                            MOVE    "03"        TO      POT1-REC (2:2)
       *    *** 28=expo_jam_2018
                       WHEN WK-FILE = "28"
-      *    *** 29=DMM ŒŸõ
+      *    *** 29=DMM æ¤œç´¢
                                   OR "29"
       *    *** 21=XVI,22=DMM,30=XVIS
                                   OR "21" OR "22"
                                   OR "30"
                            MOVE    "05"        TO      POT1-REC (2:2)
-      *    *** 32=Youtube “®‰æƒTƒ€ƒlƒCƒ‹Šg‘å
+      *    *** 32=Youtube å‹•ç”»ã‚µãƒ ãƒã‚¤ãƒ«æ‹¡å¤§
                       WHEN WK-FILE = "32"
                            MOVE    WK-WIDTH    TO      POT1-REC (2:2)
-      *    *** 26=‚¨‰ÙŽqŒn‚Q
+      *    *** 26=ãŠè“å­ç³»ï¼’
                       WHEN WK-FILE = "26"
                            MOVE    "05"        TO      POT1-REC (2:2)
-      *    *** ƒ^ƒCƒgƒ‹‚É‚ A‚©A‚³AcA‚ç•t‚¯‚é
+      *    *** ã‚¿ã‚¤ãƒˆãƒ«ã«ã‚ã€ã‹ã€ã•ã€â€¦ã€ã‚‰ä»˜ã‘ã‚‹
                            EVALUATE TRUE
                                WHEN WK-HIRAGANA = "1"
                                    MOVE    X"E38182" TO POT1-REC (24:3)
@@ -855,17 +855,17 @@
                            MOVE    "12"           TO      POT1-REC (2:2)
                       WHEN WK-FILE = "02" OR "05" OR "07"
                            MOVE    "10"           TO      POT1-REC (2:2)
-      *    *** 18 ‚ÍYOUTUBE ‚Ì‚ÝAo—Í
+      *    *** 18 ã¯YOUTUBE ã®ã¿ã€å‡ºåŠ›
                       WHEN WK-FILE = "18"
                            MOVE    "08"           TO      POT1-REC (2:2)
                            MOVE    "YT"           TO      POT1-REC (4:2)
-      *    *** 11 ‚Íi—«E’j«j@’Ç‰Á
+      *    *** 11 ã¯ï¼ˆå¥³æ€§ãƒ»ç”·æ€§ï¼‰ã€€è¿½åŠ 
                       WHEN WK-FILE = "11"
                            MOVE
                            X"EFBC88E5A5B3E680A7E383BBE794B7E680A7EFBC89"
                                                   TO    POT1-REC (30:21)
                            MOVE    WDT-DATE-YYYY  TO    POT1-REC (52:04)
-      *    *** 12 ‚Íi—«j@’Ç‰Á
+      *    *** 12 ã¯ï¼ˆå¥³æ€§ï¼‰ã€€è¿½åŠ 
                       WHEN WK-FILE = "12"
                            MOVE
                            X"EFBC88E5A5B3E680A7EFBC89"
@@ -873,8 +873,8 @@
                            MOVE    PIN1-REC (45:24)
                                                   TO    POT1-REC (42:)
                            MOVE    WDT-DATE-YYYY  TO    POT1-REC (43:04)
-      *    *** 14 “ú–{‚Ì——Dˆê——2000”N‘ã¶‚Ü‚ê –¼‘O‡A’a¶“ú‡
-      *    *** 16 “ú–{‚Ì——Dˆê——1990”N‘ã¶‚Ü‚ê
+      *    *** 14 æ—¥æœ¬ã®å¥³å„ªä¸€è¦§2000å¹´ä»£ç”Ÿã¾ã‚Œ åå‰é †ã€èª•ç”Ÿæ—¥é †
+      *    *** 16 æ—¥æœ¬ã®å¥³å„ªä¸€è¦§1990å¹´ä»£ç”Ÿã¾ã‚Œ
       *                WHEN WK-FILE = "14" OR "16"
       *                     MOVE    "07"           TO      POT1-REC (2:2)
       *    *** 21 XVI
@@ -893,8 +893,8 @@
                    END-IF
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** WK-FILE=21 XVI, 22 DMM, 24 Qosmio, 25 XVI2, 29 DMM ŒŸõ,
-      *    *** 30 XVIS, 32 Youtube “®‰æƒTƒ€ƒlƒCƒ‹Šg‘å
+      *    *** WK-FILE=21 XVI, 22 DMM, 24 Qosmio, 25 XVI2, 29 DMM æ¤œç´¢,
+      *    *** 30 XVIS, 32 Youtube å‹•ç”»ã‚µãƒ ãƒã‚¤ãƒ«æ‹¡å¤§
                WHEN WK-FILE = "21" OR "22" OR "24" OR "25" OR "29"
                            OR "30" OR "32"
                    WRITE   POT1-REC    FROM    PIN1-REC
@@ -904,7 +904,7 @@
                    IF      WK-FILE     =       "11" OR "12"
                        MOVE    ZERO        TO     WK-KAKKO
                        INSPECT PIN1-REC TALLYING WK-KAKKO 
-      *    *** i
+      *    *** ï¼ˆ
                                FOR ALL X"EFBC88"
                        IF      WK-KAKKO =      1
                            INSPECT PIN1-REC 
@@ -912,32 +912,32 @@
                                REPLACING ALL X"EFBC89" BY "   "
                        ELSE
                            INSPECT PIN1-REC 
-      *    *** ji
+      *    *** ï¼‰ï¼ˆ
                                REPLACING FIRST X"EFBC89EFBC88" BY
                                              "     ,"
                            INSPECT PIN1-REC 
-      *    *** i
+      *    *** ï¼ˆ
                                REPLACING ALL X"EFBC88" BY "   "
                            INSPECT PIN1-REC 
-      *    *** j
+      *    *** ï¼‰
                                REPLACING ALL X"EFBC89" BY "   "
                        END-IF
                    ELSE
                        INSPECT PIN1-REC 
-      *    *** i
+      *    *** ï¼ˆ
                            REPLACING ALL "(" BY ","
-      *    *** j
+      *    *** ï¼‰
                                      ALL ")" BY ","
-      *    *** X"09"=HT(…•½ƒ^ƒu)
+      *    *** X"09"=HT(æ°´å¹³ã‚¿ãƒ–)
                                      ALL X"2309" BY "$,"
                                      ALL X"09" BY ","
-      *    *** i
+      *    *** ï¼ˆ
                                      ALL X"EFBC88" BY "  ,"
-      *    *** j
+      *    *** ï¼‰
                                      ALL X"EFBC89" BY "  ,"
-      *    *** A
+      *    *** ã€
                                      ALL X"E38081" BY "  ,"
-      *    *** E
+      *    *** ãƒ»
       *                               ALL X"E383BB" BY "   "
                    END-IF
                    COMPUTE I = WK-PIN1-LEN + 1
@@ -955,7 +955,7 @@
                            END-IF
                            ADD     1           TO      WK-POT1-CNT
                          END-IF
-      *    *** 26=‚¨‰ÙŽqŒn‚Q
+      *    *** 26=ãŠè“å­ç³»ï¼’
                        WHEN WK-FILE = "26"
                            IF      SW-HIRAGANA =       "Y"
                                    WRITE   POT1-REC    FROM    PIN1-REC
@@ -994,10 +994,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 Œ” = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ä»¶æ•° = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 Œ” = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 ä»¶æ•° = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
