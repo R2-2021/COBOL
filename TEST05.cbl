@@ -196,7 +196,7 @@
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
-      *    *** C:\Users\koko\OneDrive\ドキュメント\COBOL>TEST05
+      *    *** C:\Users\xxxx\OneDrive\ドキュメント\COBOL>TEST05
       *    *** TEST05   START
       *    *** libcob: File does not exist (STATUS = 35) File : 'TEST05.PIN1'
       *    *** FILE STATUS 指定しないと、ファイルない時、このエラーが出る
