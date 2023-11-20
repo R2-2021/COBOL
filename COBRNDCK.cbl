@@ -1,4 +1,4 @@
-      *    *** COBRND ƒTƒuƒ‹[ƒ`ƒ“ƒ`ƒFƒbƒN
+      *    *** COBRND ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ãƒã‚§ãƒƒã‚¯
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             COBRNDCK.
 
@@ -9,7 +9,7 @@
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** seed usage float-long ‚É‚µ‚½‚çAƒ‰ƒ“ƒ_ƒ€’lo‚é—l‚É‚È‚Á‚½
+      *    *** seed usage float-long ã«ã—ãŸã‚‰ã€ãƒ©ãƒ³ãƒ€ãƒ å€¤å‡ºã‚‹æ§˜ã«ãªã£ãŸ
       * 01  random-SEED          PIC 99V999999999 VALUE 10.
       * 01  random-SEED          usage BINARY-LONG.
        01  random-SEED         PIC  9(015) VALUE ZERO.
@@ -46,7 +46,7 @@
            MOVE    1           TO      WFD-SU
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
 
-      *    *** FILEDUMP €–Úo—Í(ID="X") 
+      *    *** FILEDUMP é …ç›®å‡ºåŠ›(ID="X") 
       *     MOVE    "X"         TO      WFD-ID
       *     MOVE    1           TO      WFD-SU
       *     CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -70,8 +70,8 @@
 
 
       *     *** compute random-float =  FUNCTION random()
-      *     *** g—p‚Ì‚ÌAoŒ»‰ñ”Aƒoƒ‰ƒcƒL‚ªo‚é
-      *C:\Users\koko\Documents\COBOL>COBRNDCK
+      *     *** ä½¿ç”¨ã®æ™‚ã®ã€å‡ºç¾å›æ•°ã€ãƒãƒ©ãƒ„ã‚­ãŒå‡ºã‚‹
+      *C:\Users\xxxx\Documents\COBOL>COBRNDCK
       *COBXREF START
       *05 02 07 03 02 02 02 03 03 03 ...
       *001: 000000033
@@ -87,8 +87,8 @@
       *COBRNFCK END
 
       *    *** CALL    "COBRND"    USING   WCR-COBRND-AREA 
-      *    *** g—p‚Ì‚ÌAoŒ»‰ñ”
-      *C:\Users\koko\Documents\COBOL>COBRNDCK
+      *    *** ä½¿ç”¨ã®æ™‚ã®ã€å‡ºç¾å›æ•°
+      *C:\Users\xxxx\Documents\COBOL>COBRNDCK
       *COBXREF START
       *02 10 05 09 05 09 01 04 08 08 ...
       *001: 000099180
@@ -113,7 +113,7 @@
       *         compute random-float =  FUNCTION random(random-SEED)
                                MOVE    "RND"       TO      WCR-ID
                                CALL    "COBRND"    USING WCR-COBRND-AREA
-      *    *** seed i ‚É•ÏX‚µ‚Ä‚àAƒoƒ‰ƒcƒL@random()‚Ì‚Æ“¯‚¶
+      *    *** seed i ã«å¤‰æ›´ã—ã¦ã‚‚ã€ãƒãƒ©ãƒ„ã‚­ã€€random()ã®æ™‚ã¨åŒã˜
       *         compute random-float =  FUNCTION random(i)
                 compute random-float =  WCR-RND(1) 
                                      * 10.0
