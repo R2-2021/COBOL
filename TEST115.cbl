@@ -1,10 +1,10 @@
-      *    *** mini vs dell �f�B���N�g���`�F�b�N
-      *    *** OneDrive �f�B���N�g��
+      *    *** mini vs dell ディレクトリチェック
+      *    *** OneDrive ディレクトリ
       *    *** 
-      *    *** COPY�̎��s�́APIN1-F ��� CD XXX�t�H���_�[�����s���A
-      *    *** �Y���̃t�@�C����COPY���āA�o�͐��
-      *    ***  C:\Users\koko\OneDrive �Ȃ̂ŁA��������Y���̃t�H���_�[��
-      *    ***  �ړ�����
+      *    *** COPYの実行は、PIN1-F より CD XXXフォルダーを実行し、
+      *    *** 該当のファイルをCOPYして、出力先は
+      *    ***  C:\Users\koko\OneDrive なので、そこから該当のフォルダーに
+      *    ***  移動する
       *    *** 
 
        IDENTIFICATION          DIVISION.
@@ -14,27 +14,27 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** Directory of,File(s)  onedrive �f�[�^
+      *    *** Directory of,File(s)  onedrive データ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** Directory of,File(s)  onedrive2,3 �f�[�^
+      *    *** Directory of,File(s)  onedrive2,3 データ
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** �X�V�L�� �f�[�^
+      *    *** 更新有分 データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** �b�n�o�x �f�[�^
+      *    *** ＣＯＰＹ データ
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
                                STATUS   WK-POT2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** �X�V���� �f�[�^�iPIN1�ɖ��APIN3�ɗL�̃t�@�C���j
+      *    *** 更新無分 データ（PIN1に無、PIN3に有のファイル）
        SELECT POT3-F           ASSIGN   WK-POT3-F-NAME
                                STATUS   WK-POT3-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -143,7 +143,7 @@
                            PERFORM S022-10     THRU    S022-EX
                    ELSE
                        IF      PIN1-REC (WK-PIN1-LEN - 13:14) =
-                               "�̃f�B���N�g��"
+                               "のディレクトリ"
       *    *** 14 + 24
                                MOVE    PIN1-REC (25:WK-PIN1-LEN - 38)
                                                TO      WK-DIR
@@ -163,14 +163,14 @@
 
                    IF      PIN2-REC (5:1) =    "/"
                        AND PIN2-REC (22:5) NOT = "<DIR>"
-      *    *** �f�[�^�`�F�b�N
+      *    *** データチェック
                            PERFORM S100-10     THRU    S100-EX
                    ELSE
       *                 DISPLAY WK-PIN2-CNT 
       *                         PIN2-REC (WK-PIN2-LEN - 13:14)
                        IF      PIN2-REC (WK-PIN2-LEN - 13:14) =
-                               "�̃f�B���N�g��"
-      *    *** 14:�̃f�B���N�g��
+                               "のディレクトリ"
+      *    *** 14:のディレクトリ
       *    *** 25: C:\Users\koko\OneDrive\
       *    *** 14 + 25
                                MOVE    PIN2-REC (26:WK-PIN2-LEN - 39)
@@ -308,7 +308,7 @@
        S030-EX.
            EXIT.
 
-      *    *** �f�[�^�`�F�b�N
+      *    *** データチェック
        S100-10.
 
            MOVE    "N"         TO      SW-HIT
@@ -346,7 +346,7 @@
       *    *** WRITE POT1
                                PERFORM S110-10     THRU    S110-EX
       *    *** WRITE POT1
-      *    *** COPY �R�}���h
+      *    *** COPY コマンド
                                PERFORM S120-10     THRU    S120-EX
                                MOVE    "N"         TO      SW-HIT
                                MOVE    "N"         TO      SW-POT3-WRITE
@@ -385,12 +385,12 @@
            EXIT.
 
       *    *** WRITE POT1
-      *    *** COPY �R�}���h
+      *    *** COPY コマンド
        S120-10.
 
            MOVE    "COPY "     TO      POT2-REC
            MOVE    PIN2-REC (37:100) TO POT2-REC (6:100)
-           MOVE    " C:\Users\koko\OneDrive"
+           MOVE    " C:\Users\xxxx\OneDrive"
                                TO      POT2-REC (106:23)
            WRITE   POT2-REC
 
@@ -465,19 +465,19 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 �ݽ� = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 �ݽ� = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 �ݽ� = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 �ݽ� = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 ｹﾝｽｳ = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
-           DISPLAY WK-PGM-NAME " POT3 �ݽ� = " WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 ｹﾝｽｳ = " WK-POT3-CNT-E
                    " (" WK-POT3-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
