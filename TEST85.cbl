@@ -1,6 +1,6 @@
       *    *** C:,M: BACKUP FILE DIR SORT
-      *    *** CHCP 65001 (UTF8) ��DIR �擾
-      *    *** C.DIR02.BAT �� �c�h�q�擾
+      *    *** CHCP 65001 (UTF8) でDIR 取得
+      *    *** C.DIR02.BAT で ＤＩＲ取得
       *    *** 
       *    *** 
 
@@ -16,30 +16,30 @@
       *                    SORT STATUS   WK-SIO1-STATUS.
                                STATUS   WK-SIO1-STATUS.
 
-      *    *** DIR �Ŏ擾�����t�@�C��
+      *    *** DIR で取得したファイル
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** BACKUP�����t�@�C�� (M:koko-PC\...) ����TEST87�ō쐬
+      *    *** BACKUPしたファイル (M:xxxx-PC\...) 初回TEST87で作成
        SELECT PIO1-F           ASSIGN   WK-PIO1-F-NAME
                                STATUS   WK-PIO1-STATUS
            ORGANIZATION INDEXED
            ACCESS RANDOM
            RECORD KEY PIO1-KEY.
 
-      *    *** BACKUP ��(M:koko-PC\...)�̃t�@�C�����ɕϊ�
+      *    *** BACKUP 後(M:xxxx-PC\...)のファイル名に変換
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** COPY .bat �쐬
+      *    *** COPY .bat 作成
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
                                STATUS   WK-POT2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** M: �̎� �����ɂ��o��
-      *    *** BACKUP ��(M:koko-PC\...)�̃t�@�C�����ɕϊ�
+      *    *** M: の時 ここにも出力
+      *    *** BACKUP 後(M:xxxx-PC\...)のファイル名に変換
        SELECT POT3-F           ASSIGN   WK-POT3-F-NAME
                                STATUS   WK-POT3-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -57,7 +57,7 @@
            03  SIO1-HM.
              05  SIO1-HH       PIC  X(002).
              05  SIO1-MI       PIC  X(002).
-      *    *** ���ۂ̓t�@�C������250�����܂ŁA�p�X���܂߂�259�����܂�
+      *    *** 実際はファイル名は250文字まで、パスも含めて259文字まで
            03  SIO1-FILE       PIC  X(256).
            03  SIO1-LEN        PIC  9(003).
            03  SIO1-DIR        PIC  X(003).
@@ -109,17 +109,17 @@
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST85  ".
 
-      *    *** CHCP 65001 (UTF8) ��DIR �擾
+      *    *** CHCP 65001 (UTF8) でDIR 取得
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST85.PIN1".
-      *    *** (\COBOL�̏ꏊ��) DIR /S /O:N > DIR.TXT
-      *    *** DIR M:\koko-PC /S /O:N > DIR2.TXT
-      *    *** (\koko�̏ꏊ��) DIR  /S /O:N > DIR3.TXT
+      *    *** (\COBOLの場所で) DIR /S /O:N > DIR.TXT
+      *    *** DIR M:\xxxx-PC /S /O:N > DIR2.TXT
+      *    *** (\xxxxの場所で) DIR  /S /O:N > DIR3.TXT
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR.TXT".
 
-      *    *** (M:\koko-PC�̏ꏊ��) DIR  /S > DIR2.TXT
+      *    *** (M:\xxxx-PCの場所で) DIR  /S > DIR2.TXT
       *    *** C.DIR02.BAT
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR2.TXT".
-      *    *** >TEST85 DIR2.TXT  <= DIR2.TXT ���s��
+      *    *** >TEST85 DIR2.TXT  <= DIR2.TXT 実行時
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR.TXT".
            03  WK-PIO1-F-NAME.
              05                PIC  X(007) VALUE "TEST87.".
@@ -175,10 +175,10 @@
              05  WK-COM-CNT-E  PIC  ----,---,--9 VALUE ZERO.
            03  WK-DIR          PIC  X(256) VALUE SPACE.
            03  WK-FILE         PIC  X(001) VALUE SPACE.
-      *     03  WK-PC-ID        PIC  X(011) VALUE "M:\koko-PC\".
+      *     03  WK-PC-ID        PIC  X(011) VALUE "M:\xxxx-PC\".
            03  WK-PC-ID.
              05                PIC  X(003) VALUE "M:\".
-      *    *** koko or asus
+      *    *** xxxx or wwww
              05  WK-PC-NAME    PIC  X(004) VALUE SPACE.
              05                PIC  X(004) VALUE "-PC\".
 
@@ -233,19 +233,19 @@
 
            ACCEPT  WK-ARGUMENT-NUMBER FROM     ARGUMENT-NUMBER
 
-      *    *** PRM1-F �w�薳���iARGUMENT-NUMBER=0�j�A����l�g�p
-      *    *** ARGUMENT-NUMBER=1 �̎��APRM1-F �w�肷��
-      *    *** ARGUMENT-NUMBER=2 �̎��APRM1-F,PRM2-F �̏��Ɏw�肷��
+      *    *** PRM1-F 指定無し（ARGUMENT-NUMBER=0）、既定値使用
+      *    *** ARGUMENT-NUMBER=1 の時、PRM1-F 指定する
+      *    *** ARGUMENT-NUMBER=2 の時、PRM1-F,PRM2-F の順に指定する
            EVALUATE WK-ARGUMENT-NUMBER
                WHEN 0
                    MOVE    "DIR.txt"   TO      WK-PIN1-F-NAME
-                   MOVE    "koko"      TO      WK-PC-NAME
+                   MOVE    "xxxx"      TO      WK-PC-NAME
                    DISPLAY WK-PGM-NAME " ARGUMENT-NUMBER="
                            WK-ARGUMENT-NUMBER
                    DISPLAY WK-PGM-NAME " PIN1-F=" WK-PIN1-F-NAME
                WHEN 1
                    ACCEPT  WK-PIN1-F-NAME FROM ARGUMENT-VALUE
-                   MOVE    "koko"      TO      WK-PC-NAME
+                   MOVE    "xxxx"      TO      WK-PC-NAME
                    DISPLAY WK-PGM-NAME " ARGUMENT-NUMBER="
                            WK-ARGUMENT-NUMBER
                    DISPLAY WK-PGM-NAME " ARG-1=" WK-PIN1-F-NAME
@@ -259,15 +259,15 @@
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
                            WK-ARGUMENT-NUMBER
-                   DISPLAY WK-PGM-NAME " PIN1-F 1�܂Ŏw���"
-                   DISPLAY WK-PGM-NAME " �w�薳�́APIN1-F=DIR.txt"
+                   DISPLAY WK-PGM-NAME " PIN1-F 1個まで指定可"
+                   DISPLAY WK-PGM-NAME " 指定無は、PIN1-F=DIR.txt"
                    STOP    RUN
            END-EVALUATE
 
-           IF      WK-PC-NAME  =       "koko" OR "asus"
+           IF      WK-PC-NAME  =       "xxxx" OR "wwww"
                    CONTINUE
            ELSE
-                   DISPLAY WK-PGM-NAME " ARG-2=koko OR asus ���w�肷��"
+                   DISPLAY WK-PGM-NAME " ARG-2=xxxx OR wwww を指定する"
                            " WK-PC-NAME=" WK-PC-NAME
                    STOP    RUN
            END-IF
@@ -280,7 +280,7 @@
       *     MOVE    "N"         TO      SW-YES
       *     PERFORM UNTIL SW-YES =      "Y"
       *             DISPLAY " "
-      *             DISPLAY "PIN1 FILE NAME ����=?"
+      *             DISPLAY "PIN1 FILE NAME 数字=?"
 
       *             DISPLAY " "
       *             DISPLAY "1.DIR.txt   C:\Users"
@@ -303,7 +303,7 @@
       *             MOVE    "DIR2.txt" TO WK-PIN1-F-NAME
       *     END-EVALUATE
 
-      *    *** SORT-F ��OPEN ����Ȃ�
+      *    *** SORT-F はOPEN いらない
 
            OPEN    INPUT       PIN1-F
            IF      WK-PIN1-STATUS NOT =  ZERO
@@ -372,7 +372,7 @@
                                        " WK-PIN1-CNT =" WK-PIN1-CNT
       *                         STOP    RUN
                            END-IF
-      *    *** �ҏW &  RELEASE
+      *    *** 編集 &  RELEASE
                            PERFORM S110-SEC    THRU    S110-EX
                    ELSE
                        IF  WK-PIN1-STATUS =    10
@@ -389,7 +389,7 @@
        S100-EX.
            EXIT.
 
-      *    *** �ҏW & RELEASE
+      *    *** 編集 & RELEASE
        S110-SEC                SECTION.
        S110-10.
 
@@ -418,13 +418,13 @@
                WHEN PIN1-REC (19:06) = "Dir(s)"
                    CONTINUE
                WHEN PIN1-REC (01:14) = " Directory of "
-      *    *** I= 1�o�C�g�ڂ̓X�y�[�X
+      *    *** I= 1バイト目はスペース
                    COMPUTE I  = WK-PIN1-LEN - 14
                    COMPUTE I2 = WK-PIN1-LEN - 15
                    ADD     1           TO      WK-DIR-CNT
                    MOVE    PIN1-REC (15:I) TO  WK-DIR
                    MOVE    I           TO      I3
-      *    *** DIR �ϊ�
+      *    *** DIR 変換
                    PERFORM S120-SEC    THRU    S120-EX
                WHEN OTHER
       *    ***PIN1-REC (1:4):YYYY
@@ -461,15 +461,15 @@
                                    MOVE    "Y"         TO      SW-SYSTEM
                                END-IF
                            END-PERFORM
-      *    *** PIN1-REC (37:1)=. FILE���擪��SYSTEM FILE �͏��O����
+      *    *** PIN1-REC (37:1)=. FILE名先頭はSYSTEM FILE は除外する
                            IF      PIN1-REC (37:1) = "."
-      *    *** TEST87.POT1.dat,TEST87.POT1.idx �͏��O����
+      *    *** TEST87.POT1.dat,TEST87.POT1.idx は除外する
                                 OR PIN1-REC (37:15) = "TEST87.POT1.dat"
                                 OR PIN1-REC (37:15) = "TEST87.POT1.idx"
-                            OR PIN1-REC (37:20) = "TEST87.koko.POT1.dat"
-                            OR PIN1-REC (37:20) = "TEST87.koko.POT1.idx"
-                            OR PIN1-REC (37:20) = "TEST87.asus.POT1.dat"
-                            OR PIN1-REC (37:20) = "TEST87.asus.POT1.idx"
+                            OR PIN1-REC (37:20) = "TEST87.xxxx.POT1.dat"
+                            OR PIN1-REC (37:20) = "TEST87.xxxx.POT1.idx"
+                            OR PIN1-REC (37:20) = "TEST87.wwww.POT1.dat"
+                            OR PIN1-REC (37:20) = "TEST87.wwww.POT1.idx"
                                 OR PIN1-REC (37:07) = "DIR.txt"
                                 OR PIN1-REC (37:08) = "DIR1.txt"
                                 OR PIN1-REC (37:08) = "dir2.txt"
@@ -496,7 +496,7 @@
                                ADD    1           TO      WK-SIO1RL-CNT
 
                                IF      WK-DIR (1:3) = "C:\"
-      *    *** C:\ BACKUP CHECK TEST87.POT1 �ǉ� POT2 COPY.BAT �쐬
+      *    *** C:\ BACKUP CHECK TEST87.POT1 追加 POT2 COPY.BAT 作成
                                    PERFORM S130-SEC    THRU    S130-EX
                                END-IF
                            END-IF
@@ -514,13 +514,13 @@
        S110-EX.
            EXIT.
 
-      *    *** DIR �ҏW
+      *    *** DIR 編集
        S120-SEC                SECTION.
        S120-10.
 
            MOVE    "Y"         TO      SW-HIT
-      *    *** C:\Users\koko\OneDrive\�h�L�������g\COBOL =>
-      *    *** M:\koko-PC\C\koko\OneDrive\�h�L�������g\COBOL
+      *    *** C:\Users\xxxx\OneDrive\ドキュメント\COBOL =>
+      *    *** M:\xxxx-PC\C\xxxx\OneDrive\ドキュメント\COBOL
            EVALUATE TRUE
 
                WHEN PIN1-REC (15:11) = "M:\trashbox"
@@ -528,65 +528,65 @@
 
 
 
-      *    *** koko skip files
-               WHEN PIN1-REC (15:21) = "C:\Users\koko\videos2"
+      *    *** xxxx skip files
+               WHEN PIN1-REC (15:21) = "C:\Users\xxxx\videos2"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:23) = "C:\Users\koko\anaconda3"
+               WHEN PIN1-REC (15:23) = "C:\Users\xxxx\anaconda3"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:15) = "C:\Users\koko\."
+               WHEN PIN1-REC (15:15) = "C:\Users\xxxx\."
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:21) = "C:\Users\koko\AppData"
-                   MOVE    "N"         TO      SW-HIT
-
-
-
-      *    *** cassis skip files
-               WHEN PIN1-REC (15:17) = "C:\Users\cassis\."
-                   MOVE    "N"         TO      SW-HIT
-               WHEN PIN1-REC (15:23) = "C:\Users\cassis\AppData"
+               WHEN PIN1-REC (15:21) = "C:\Users\xxxx\AppData"
                    MOVE    "N"         TO      SW-HIT
 
 
 
-      *    *** yuuri skip files
-               WHEN PIN1-REC (15:16) = "C:\Users\yuuri\."
+      *    *** yyyyyy skip files
+               WHEN PIN1-REC (15:17) = "C:\Users\yyyyyy\."
+                   MOVE    "N"         TO      SW-HIT
+               WHEN PIN1-REC (15:23) = "C:\Users\yyyyyy\AppData"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:22) = "C:\Users\yuuri\AppData"
+
+
+      *    *** zzzzz skip files
+               WHEN PIN1-REC (15:16) = "C:\Users\zzzzz\."
+                   MOVE    "N"         TO      SW-HIT
+
+               WHEN PIN1-REC (15:22) = "C:\Users\zzzzz\AppData"
                    MOVE    "N"         TO      SW-HIT
 
       *         WHEN PIN1-REC (15:09) = "C:\Users\"
 
-               WHEN PIN1-REC (15:13) = "C:\Users\koko"
+               WHEN PIN1-REC (15:13) = "C:\Users\xxxx"
 
       *    *** I2 = WK-PIN1-LEN - 15
-      *    *** WK-PC-ID = M:\koko-PC\
+      *    *** WK-PC-ID = M:\xxxx-PC\
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2)   
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** �Ō�Ɂ��Z�b�g
+      *    *** 最後に￥セット
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
-               WHEN PIN1-REC (15:15) = "C:\Users\cassis"
+               WHEN PIN1-REC (15:15) = "C:\Users\yyyyyy"
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2) 
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** �Ō�Ɂ��Z�b�g
+      *    *** 最後に￥セット
                    MOVE    "\"         TO      SIO1-FILE  (12 + I2:1)
                    COMPUTE I = 12 + I2
 
-               WHEN PIN1-REC (15:14) = "C:\Users\yuuri"
+               WHEN PIN1-REC (15:14) = "C:\Users\zzzzz"
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2)
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** �Ō�Ɂ��Z�b�g
+      *    *** 最後に￥セット
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
@@ -595,21 +595,21 @@
                    MOVE    PIN1-REC (16:I2) 
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** �Ō�Ɂ��Z�b�g
+      *    *** 最後に￥セット
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
       *    *** I = WK-PIN1-LEN - 14
                WHEN PIN1-REC (15:03) = "M:\"
                     MOVE    PIN1-REC (15:I) TO SIO1-FILE
-      *    *** �Ō�Ɂ��Z�b�g
+      *    *** 最後に￥セット
                     MOVE    "\"        TO      SIO1-FILE (I + 1:1)
                     ADD     1          TO      I
-      *    *** I �̒����ύX��
+      *    *** I の長さ変更無
                WHEN OTHER
       *    *** Directory of C:\Users\All Users\Acronis\TrueImageHome\Logs
       *    ***  Directory of C:\Users\Default
-      *    *** \All Users ������
+      *    *** \All Users がある
                    MOVE    "N"         TO      SW-HIT
                    ADD     1           TO      WK-OTHER-CNT
            END-EVALUATE
@@ -617,7 +617,7 @@
        S120-EX.
            EXIT.
 
-      *    *** C:\ BACKUP CHECK TEST87.POT1 �ǉ� POT2 XCOPY.BAT �쐬
+      *    *** C:\ BACKUP CHECK TEST87.POT1 追加 POT2 XCOPY.BAT 作成
        S130-SEC                SECTION.
        S130-10.
 
@@ -632,7 +632,7 @@
       *    *** 23:KEY NOT FOUND
            IF      WK-PIO1-STATUS =    23
 
-      *    *** PATH SPACE �܂ނ̂ŁA���p��"�ň͂�
+      *    *** PATH SPACE 含むので、引用符"で囲む
       *             MOVE    'XCOPY /e /y "' TO  POT2-REC
                    MOVE    'XCOPY /e /y /i "' TO  POT2-REC
       *             MOVE    14          TO      P
@@ -641,7 +641,7 @@
                    ADD     I3          TO      P
                    MOVE    "\"         TO      POT2-REC (P:1)
                    ADD     1           TO      P
-      *    *** I4:FILE���@����
+      *    *** I4:FILE名　長さ
                    COMPUTE I4 = WK-PIN1-LEN - 36
                    MOVE    PIN1-REC (37:I4) TO POT2-REC (P:I4)
                    ADD     I4          TO      P
@@ -683,7 +683,7 @@
       *    *** 00:NOT KEY INVALID
                IF      WK-PIO1-STATUS  =       ZERO
                    ADD     1           TO      WK-PIO1-CNT
-      *    *** YYYYMMDDHHMM C: �ύX���������ACOPY���쐬����
+      *    *** YYYYMMDDHHMM C: 変更あった時、COPY文作成する
                    IF      SIO1-REC (1:12) > PIO1-REC (1:12)
 
       *                 MOVE    'XCOPY /e /y "' TO  POT2-REC
@@ -694,7 +694,7 @@
                        ADD     I3          TO      P
                        MOVE    "\"         TO      POT2-REC (P:1)
                        ADD     1           TO      P
-      *    *** I4:FILE���@����
+      *    *** I4:FILE名　長さ
                        COMPUTE I4 = WK-PIN1-LEN - 36
                        MOVE    PIN1-REC (37:I4) TO POT2-REC (P:I4)
                        ADD     I4          TO      P
@@ -731,15 +731,15 @@
                        ADD     1           TO      WK-PIO1RW-CNT
                    ELSE
                        IF      SIO1-REC (1:12) = PIO1-REC (1:12)
-      *    *** YYYYMMDDHHMM C: �ύX���́ACOPY���쐬���Ȃ�
-      *    *** SIO1-REC (1:12) : ����擾 dir
-      *    *** PIO1-REC (1:12) : �O��܂ł̃o�b�N�A�b�v����dir
+      *    *** YYYYMMDDHHMM C: 変更無は、COPY文作成しない
+      *    *** SIO1-REC (1:12) : 今回取得 dir
+      *    *** PIO1-REC (1:12) : 前回までのバックアップしたdir
                           CONTINUE
                        ELSE
       *    ***         IF      SIO1-REC (1:12) < PIO1-REC (1:12)
                            DISPLAY " "
                            DISPLAY WK-PGM-NAME
-                                   " BACKUP ���̕����X�V����傫��"
+                                   " BACKUP 分の方が更新履歴大きい"
                                    " SIO1-F SIO1-REC (1:12) <"
                                    " PIO1-REC (1:12) ERROR"
                            DISPLAY WK-PGM-NAME
@@ -870,40 +870,40 @@
            DISPLAY WK-PGM-NAME " END"
 
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ���� = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
 
            MOVE    WK-SIO1RL-CNT TO    WK-SIO1RL-CNT-E
-           DISPLAY WK-PGM-NAME " SIO1RL����= " WK-SIO1RL-CNT-E
+           DISPLAY WK-PGM-NAME " SIO1RL件数= " WK-SIO1RL-CNT-E
                    " (" WK-SIO1-F-NAME ")"
            MOVE    WK-SIO1RT-CNT TO    WK-SIO1RT-CNT-E
-           DISPLAY WK-PGM-NAME " SIO1RT����= " WK-SIO1RT-CNT-E
+           DISPLAY WK-PGM-NAME " SIO1RT件数= " WK-SIO1RT-CNT-E
                    " (" WK-SIO1-F-NAME ")"
 
            MOVE    WK-PIO1-CNT TO      WK-PIO1-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1RD����= " WK-PIO1-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1RD件数= " WK-PIO1-CNT-E
                    " (" WK-PIO1-F-NAME ")"
            MOVE    WK-PIO1WR-CNT TO    WK-PIO1WR-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1WR����= " WK-PIO1WR-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1WR件数= " WK-PIO1WR-CNT-E
                    " (" WK-PIO1-F-NAME ")"
            MOVE    WK-PIO1RW-CNT TO    WK-PIO1RW-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1RW����= " WK-PIO1RW-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1RW件数= " WK-PIO1RW-CNT-E
                    " (" WK-PIO1-F-NAME ")"
 
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ���� = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 ���� = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
-           DISPLAY WK-PGM-NAME " POT3 ���� = " WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 件数 = " WK-POT3-CNT-E
                    " (" WK-POT3-F-NAME ")"
 
            MOVE    WK-DIR-CNT  TO      WK-DIR-CNT-E
-           DISPLAY WK-PGM-NAME " DIR  ���� = " WK-DIR-CNT-E
+           DISPLAY WK-PGM-NAME " DIR  件数 = " WK-DIR-CNT-E
            MOVE    WK-OTHER-CNT TO     WK-OTHER-CNT-E
-           DISPLAY WK-PGM-NAME " OTHER���� = " WK-OTHER-CNT-E
+           DISPLAY WK-PGM-NAME " OTHER件数 = " WK-OTHER-CNT-E
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
