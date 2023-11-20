@@ -1,23 +1,23 @@
-      *    *** YouTibe html ┌≈┌┴┌▀┌┴■д≈p █Л░╛
+      *    *** YouTibe html О╫≈О╫┴О╫▀О╫┴Ф╠▌Г■╗ Д╫°Ф┬░
       *    ***
       *    *** TEST53 TEST55 TEST56 TEST57 TEST70 TEST74 TEST78 TEST83
-      *    ***   │╚     │╚     │╚     │╚     │╚     │╚     │╚     │╚
+      *    ***   Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠
       *    *** TEST54 TEST53 TEST53 TEST53 TEST53 TEST53 TEST53 TEST53
-      *    ***          │╚     │╚     │╚     │╚     │╚     │╚     │╚
+      *    ***          Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠     Б├⌠
       *    ***        TEST54 TEST54 TEST54 TEST54 TEST53 TEST54 TEST54
       *    ***
       *    *** TEST53 01-12
-      *    *** TEST55 13 ▄|■\░l ┌п┌Г┌╙┌х▐┤
-      *    *** TEST56 14 2000■N▒Ц░╤┌э┌Й┌л▐≈≈D √╪▒O▐┤│A▓a░╤⌠З▐┤
-      *    *** TEST57 15 ┐A┐C┐h┐▀▒Е░}┼с│i┐O┐▀│[┐v▐┤│j│A│i√╪▒O▐┤)
-      *    *** TEST60 18 XVI █▒∙й
+      *    *** TEST55 13 Х┼╦Х┐╫Д╨╨ Ц│╡Ц┌┴Ц│▄Ц│╙И═├
+      *    *** TEST56 14 2000Е╧╢Д╩ёГ■÷Ц│╬Ц┌▄Ц│╝Е╔ЁЕ└╙ Е░█Е┴█И═├Ц─│Х╙∙Г■÷Ф≈╔И═├
+      *    *** TEST57 15 Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒О╪┬Ц┌╟Ц┐╚Ц┐╪Ц┐≈И═├О╪┴Ц─│О╪┬Е░█Е┴█И═├)
+      *    *** TEST60 18 XVI Е⌡╫Е┬╔
       *    *** TEST74 24 Qosmio_DIR
-      *    *** TEST70 21 XVI │i▐≈≈D∙╙│j
+      *    *** TEST70 21 XVI О╪┬Е╔ЁЕ└╙Е┬├О╪┴
       *    *** TEST78 25 XVI2
       *    *** TEST83 28 expo_jam_2018
-      *    *** TEST89 29 DMM ▄÷█У▄▀┴й│@┴Ф▒°┼g▒Е∙\▌╕
-      *    *** TEST70 30 XVIS (┌╩┌л▒╪∙╙│j
-      *    *** TEST70 32 Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** TEST89 29 DMM Ф╓°Г╢╒Г╣░Ф·°Ц──Г■╩Е┐▐Ф▀║Е╓╖Х║╗Г╓╨
+      *    *** TEST70 30 XVIS (Ц│²Ц│╝Д╩√Е┬├О╪┴
+      *    *** TEST70 32 Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST54.
@@ -30,18 +30,18 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** ┌≈┌┴┌▀┌┴┐f│[┐^│@┌t┌s┌e┌W
+      *    *** О╫≈О╫┴О╫▀О╫┴Ц┐┤Ц┐╪Ц┌©Ц──О╪╣О╪╢О╪╕О╪≤
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** twiiter,instagram⌠≥ ┐f│[┐^
+      *    *** twiiter,instagramГ╜┴ Ц┐┤Ц┐╪Ц┌©
       *    *** 
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** HTML ┐f│[┐^
+      *    *** HTML Ц┐┤Ц┐╪Ц┌©
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -76,10 +76,10 @@
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST54.PIN2".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST54.POT1".
            03  WK-POT1-F-NAME.
-             05 PIC X(023) VALUE "C:\Users\koko\OneDrive\".
-             05 PIC X(012) VALUE "┐h┐L┐┘┐│┐⌠┐g".
+             05 PIC X(023) VALUE "C:\Users\xxxx\OneDrive\".
+             05 PIC X(012) VALUE "Ц┐┴Ц┌╜Ц┐╔Ц┐║Ц┐ЁЦ┐┬".
              05 PIC X(013) VALUE "\HTML\YouTube".
-             05 PIC X(004) VALUE "■д≈p".
+             05 PIC X(004) VALUE "Ф╠▌Г■╗".
              05 PIC X(006) VALUE "\index".
              05  WK-POT1-F-NAME21 PIC X(200) VALUE SPACE.
 
@@ -129,7 +129,7 @@
            03  WK-SU           PIC  ZZZ,ZZZ,ZZ9 VALUE ZERO.
            03  WK-SITE1-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-FILE         PIC  X(002) VALUE SPACE.
-      *    *** ⌠З√{┌л▐≈≈D┬Й≈≈2000■N▒Ц░╤┌э┌Й│i▓a░╤⌠З▐┤│j
+      *    *** Ф≈╔Ф°╛Ц│╝Е╔ЁЕ└╙Д╦─Х╕╖2000Е╧╢Д╩ёГ■÷Ц│╬Ц┌▄О╪┬Х╙∙Г■÷Ф≈╔И═├О╪┴
            03  WK-2000JYOYU. 
         05 PIC X(020) VALUE X"E697A5E69CACE381AEE5A5B3E584AAE4B880E8A6".
         05 PIC X(020) VALUE X"A732303030E5B9B4E4BBA3E7949FE381BEE3828C".
@@ -139,18 +139,18 @@
         05 PIC X(019) VALUE X"B3E3838DE383ABE381AEE3839AE383BCE382B8".
            03  WK-SITE-NAME    PIC  X(200) VALUE SPACE.
            03  WK-MODEL-CHANNELS.
-      *    *** ┌л┐┌┐f┐▀│E┐`┐┐┐⌠┐l┐▀┌л┐y│[┐W 
+      *    *** Ц│╝Ц┐╒Ц┐┤Ц┐╚Ц┐╩Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц│╝Ц┐ Ц┐╪Ц┌╦ 
              05  PIC  X(020) VALUE
                  X"E381AEE383A2E38387E383ABE383BBE38381E383".
              05  PIC  X(022) VALUE
                  X"A3E383B3E3838DE383ABE381AEE3839AE383BCE382B8".
-      *    *** aduxvi┐`┐┐┐⌠┐l┐▀│E┐C┐││[┐W
+      *    *** aduxviЦ┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц┐╩Ц┌╓Ц┐║Ц┐╪Ц┌╦
            03  WK-CHANNEL-IMAGE.
              05  PIC  X(018) VALUE
                  X"616475787669E38381E383A3E383B3E3838D".
              05  PIC  X(018) VALUE
                  X"E383ABE383BBE382A4E383A1E383BCE382B8".
-      *    *** aduxvi┐v┐█┐t┐B│[┐▀│E┐A┐j┐│
+      *    *** aduxviЦ┐≈Ц┐╜Ц┐∙Ц┌ёЦ┐╪Ц┐╚Ц┐╩Ц┌╒Ц┐▀Ц┐║
            03  WK-PROFILE-ANIME.
              05  PIC  X(018) VALUE
                  X"616475787669E38397E383ADE38395E382A3".
@@ -158,19 +158,19 @@
                  X"E383BCE383ABE383BBE382A2E3838BE383A1".
      
 
-      *    *** ▐┴┼З▓l MODE=AA   (ANK=>ANK)
+      *    *** Е┬²Ф°÷Е─╓ MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
-      *    *** ▐┴┼З▓l HENKAN=SU (UTF8=>SJIS)
+      *    *** Е┬²Ф°÷Е─╓ HENKAN=SU (UTF8=>SJIS)
            03  WK-HENKAN       PIC  X(002) VALUE "US".
 
-      *    *** ∙о┼╥▒O ┌╙⌠Э┌а┌д┌╒┌И┐f│[┐^
+      *    *** Е╓┴Ф▐⌡Е┴█ Ц│▄Е┘╔Ц│ёЦ│╕Ц│└Ц┌▀Ц┐┤Ц┐╪Ц┌©
       * 01  WDE03-BUF1          PIC  X(001) ANY LENGTH.
 
-      *    *** ∙о┼╥▒O┌л┐f│[┐^┌л▓╥┌Ё
+      *    *** Е╓┴Ф▐⌡Е┴█Ц│╝Ц┐┤Ц┐╪Ц┌©Ц│╝И∙╥Ц│∙
        01  WDE03-BUF1-LEN      BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** 16░i░■ ∙о┼╥▄Ц ┌╙⌠Э┌а┌д┌╒┌И┐f│[┐^
-      *    *** ∙x▌m▓й┌лNETCOBOL┌л▌▒≈©┌и┌Ф┌И┌ф│A█─√з█е▒Е▓╥┌м64770┐o┐C┐g┌е┌═┌И
+      *    *** 16И─╡Ф∙╟ Е╓┴Ф▐⌡Е╬▄ Ц│▄Е┘╔Ц│ёЦ│╕Ц│└Ц┌▀Ц┐┤Ц┐╪Ц┌©
+      *    *** Е╞▄Её╚И─ Ц│╝NETCOBOLЦ│╝ХЁ┤Ф√≥Ц│╚Ц┌┬Ц┌▀Ц│╗Ц─│И═┘Г⌡╝Ф°─Е╓╖И∙╥Ц│╞64770Ц┐░Ц┌╓Ц┐┬Ц│╖Ц│┌Ц┌▀
        01  WDE03-BUF2.
       *    *** LLL...
            03  WDE03-BUF2-L-TBL.
@@ -233,13 +233,13 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
-      *    *** ┐R│[┐h∙о┼╥ UTF8=>SJIS
+      *    *** Ц┌ЁЦ┐╪Ц┐┴Е╓┴Ф▐⌡ UTF8=>SJIS
            PERFORM S040-10     THRU    S040-EX
 
       *    *** OPEN 2
            PERFORM S012-10     THRU    S012-EX
 
-      *    *** WRITE POT1 (HTML ▒O┐f│[┐^▐o≈м)
+      *    *** WRITE POT1 (HTML Е┴█Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡)
            PERFORM S050-10     THRU    S050-EX
 
 
@@ -262,13 +262,13 @@
 
 
 
-      *    *** #NN link ▐o≈м
+      *    *** #NN link Е┤╨Е┼⌡
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
                    EVALUATE PIN1-REC (1:1)
                        WHEN "%"
                            CONTINUE
                        WHEN "#"
-      *    *** #NN ┐▄┐R│[┐h∙р▐W3
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├3
                            PERFORM S130-10     THRU    S130-EX
                        WHEN OTHER
                            CONTINUE
@@ -293,22 +293,22 @@
                            CONTINUE
                        WHEN PIN1-REC (1:1) = "#"
                            IF      PIN1-REC (1:4) =    "#001"
-      *    *** #NN ┐▄┐R│[┐h∙р▐W1
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├1
                                    PERFORM S110-10     THRU    S110-EX
                            ELSE
                                IF      PIN1-REC (9:10) =   "#aduxvi-br"
                                                         OR "#aduDMM-br"
                                    CONTINUE
                                ELSE
-      *    *** #NN ┐▄┐R│[┐h∙р▐W2
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├2
                                    PERFORM S120-10     THRU    S120-EX
                                END-IF
                            END-IF
-      *    *** (1:1) = SPACE ┌м┐J┐b┐g
+      *    *** (1:1) = SPACE Ц│╞Ц┌╚Ц┐┐Ц┐┬
                        WHEN PIN1-REC (1:1) = " " AND WK-FILE NOT = "32"
                            CONTINUE
                        WHEN OTHER
-      *    *** <td> ┐f│[┐^▐o≈м
+      *    *** <td> Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡
                            IF      WK-TITLE    NOT =  SPACE
                                    PERFORM S100-10     THRU    S100-EX
                            END-IF
@@ -317,7 +317,7 @@
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
 
-      *    *** WRITE POT1 (HTML ▄Ц┐f│[┐^▐o≈м)
+      *    *** WRITE POT1 (HTML Е╬▄Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡)
            PERFORM S070-10     THRU    S070-EX
 
       *    *** CLOSE
@@ -408,7 +408,7 @@
                            WK-ITEM3    COUNT WK-ITEM3-LEN
                            WK-ITEM4    COUNT WK-ITEM4-LEN
 
-      *    *** ▄Ц┌К┐X┐y│[┐X┐J┐b┐g
+      *    *** Е╬▄Ц┌█Ц┌╧Ц┐ Ц┐╪Ц┌╧Ц┌╚Ц┐┐Ц┐┬
                    IF      WK-TITLE (WK-TITLE-LEN:1) = SPACE
                            ADD     -1          TO      WK-TITLE-LEN
                        IF      WK-TITLE (WK-TITLE-LEN:1) = SPACE
@@ -427,19 +427,19 @@
                            MOVE    PIN1-REC (4:2) TO     SW-YOUTUBE
                            MOVE    PIN1-REC (6:2) TO     WK-FILE
       *    *** 21=XVI,22=DMM,30=XVIS
-      *    *** ▐Ц▀L┌лWK-FILE┌л▌·┌еtag-a┌Ф┌Х▒O┌м│A┴║┌W≈Я┌и┌╥┌И
+      *    *** Д╦┼Х╗≤Ц│╝WK-FILEЦ│╝Ф≥┌Ц│╖tag-aЦ┌┬Ц┌┼Е┴█Ц│╞Ц─│Ф╗╙О╪≤Е┬≈Ц│╚Ц│≥Ц┌▀
                            IF      WK-FILE     =       "21" OR "22"
                                                     OR "30"
                                    MOVE    "08"        TO      WK-WIDTH
                            END-IF
                            MOVE    WK-TITLE (9:) TO      WK-TITLE-HEAD
                            IF      WK-TITLE-HEAD (1:27) =
-      *    *** ┐A┐C┐h┐▀▒Е░}┼с│i┐O
+      *    *** Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒О╪┬Ц┌╟
                X"E382A2E382A4E38389E383ABE5A4A7E59BB3E99191EFBC88E382B0"
-      *    *** ⌠З√{┌л▐≈≈D┬Й≈≈2000■N▒Ц░╤┌э┌Й│i▓a░╤⌠З▐┤│j
+      *    *** Ф≈╔Ф°╛Ц│╝Е╔ЁЕ└╙Д╦─Х╕╖2000Е╧╢Д╩ёГ■÷Ц│╬Ц┌▄О╪┬Х╙∙Г■÷Ф≈╔И═├О╪┴
                                OR  WK-TITLE-HEAD (1:58) =  WK-2000JYOYU
                                OR  WK-TITLE-HEAD (1:07) =  "E-girls"
-      *    *** ┼y┼М∙╙≈ч∙й┬Й≈≈
+      *    *** Ф╔╫Е≥╗Е┬├И║·Е┬╔Д╦─Х╕╖
                                OR  PIN1-REC (6:2)       =  "19"
       *    *** XVI , DMM
                                OR  PIN1-REC (6:2)       =  "21" OR "22"
@@ -451,7 +451,7 @@
                                OR  PIN1-REC (6:2)       =  "30"
       *    *** 31=YoutubeChannel
                                OR  PIN1-REC (6:2)       =  "31"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                OR  PIN1-REC (6:2)       =  "32"
                                MOVE    "Y"         TO      SW-IDOLZUKAN
                            END-IF
@@ -460,7 +460,7 @@
 
                    IF      PIN1-REC (1:1) =      "#"
       *    *** 21=XVI,22=DMM,30=XVIS
-      *    *** ▐Ц▀L┌лWK-FILE┌л▌·┌еtag-a┬х█~┌м│A┴║┌T≈Я┌и┌╥┌И
+      *    *** Д╦┼Х╗≤Ц│╝WK-FILEЦ│╝Ф≥┌Ц│╖tag-aД╩╔И≥█Ц│╞Ц─│Ф╗╙О╪∙Е┬≈Ц│╚Ц│≥Ц┌▀
                        IF  ((( WK-FILE     =       "21" OR "30" )
                           AND  PIN1-REC (2:3) >=   "045" )
                           OR  ( WK-FILE     =       "22"
@@ -468,14 +468,14 @@
                          AND ( SW-FIRST    =       "N" )
                                MOVE    "05"        TO      WK-WIDTH
                        END-IF
-      *    *** ┐V┐⌠┐O┐▀
+      *    *** Ц┌╥Ц┐ЁЦ┌╟Ц┐╚
                        IF PIN1-REC (9:12) = X"E382B7E383B3E382B0E383AB" 
 
-      *    *** ┐I┐┼┐W┐i┐▀┐A┐▀┐o┐─
+      *    *** Ц┌╙Ц┐╙Ц┌╦Ц┐┼Ц┐╚Ц┌╒Ц┐╚Ц┐░Ц┐═
                        OR PIN1-REC (9:27) =
                X"E382AAE383AAE382B8E3838AE383ABE382A2E383ABE38390E383A0"
 
-      *    *** ┐x┐X┐g┐A┐▀┐o┐─
+      *    *** Ц┐≥Ц┌╧Ц┐┬Ц┌╒Ц┐╚Ц┐░Ц┐═
                        OR PIN1-REC (9:21) =
                X"E38399E382B9E38388E382A2E383ABE38390E383A0"
                            MOVE    "Y"           TO      SW-CHANGE
@@ -485,13 +485,13 @@
                    END-IF
 
                    IF      SW-CHANGE   =       "Y"
-      *    *** ▀х√╪┌П░Ф⌠╙┌и┌╥┌И
+      *    *** Ф⌡╡Е░█Ц┌▓Е┘┬И═╜Ц│╚Ц│≥Ц┌▀
                        MOVE    WK-ITEM3    TO      WK-TITLE
                        MOVE    WK-ITEM3-LEN TO     WK-TITLE-LEN
                    END-IF
 
                    IF      PIN1-REC (1:1) =      "#"
-      *    *** ┐^┐C┐A┐b┐v
+      *    *** Ц┌©Ц┌╓Ц┌╒Ц┐┐Ц┐≈
                            IF      PIN1-REC (9:15) =
                                    X"E382BFE382A4E382A2E38383E38397"
                            MOVE    "Y"           TO      SW-TIE-UP
@@ -501,18 +501,18 @@
                    END-IF
 
                    IF      SW-TIE-UP =       "Y"
-      *    *** ┐^┐C┐A┐b┐v│A┌Q█─√з√Ё┌╒▌·│A▀х√╪┌х┌╒┌л┌е│ASPACE┌и┌╥┌И
+      *    *** Ц┌©Ц┌╓Ц┌╒Ц┐┐Ц┐≈Ц─│О╪▓И═┘Г⌡╝Г└║Ц│└Ф≥┌Ц─│Ф⌡╡Е░█Ц│╙Ц│└Ц│╝Ц│╖Ц─│SPACEЦ│╚Ц│≥Ц┌▀
                            IF      WK-TITLE-A  =       SPACE
                                MOVE    SPACE       TO      WK-TITLE
                            END-IF
                    END-IF
 
-      *    *** ┐W┐┐┐p┐┼┌г│@≈L
+      *    *** Ц┌╦Ц┐ёЦ┐▒Ц┐╙Ц│╘Ц──Ф°┴
                    IF      PIN1-REC (1:5) =    "$DO=Y"
                            MOVE    "Y"         TO      SW-DO
                    END-IF
 
-      *    *** ┐W┐┐┐p┐┼┌П│@≈L
+      *    *** Ц┌╦Ц┐ёЦ┐▒Ц┐╙Ц┌▓Ц──Ф°┴
                    IF      PIN1-REC (1:5) =    "$WO=Y"
                            MOVE    "Y"         TO      SW-WO
                    END-IF
@@ -541,7 +541,7 @@
            IF      WK-PIN2-STATUS =    ZERO
                    ADD     1           TO      WK-PIN2-CNT
 
-      *    *** 256┐o┐C┐g┌э┌е┌╣┌╘⌠Э┌Г┌х┌╒
+      *    *** 256Ц┐░Ц┌╓Ц┐┬Ц│╬Ц│╖Ц│≈Ц│▀Е┘╔Ц┌┴Ц│╙Ц│└
                    UNSTRING PIN2-REC
                            DELIMITED BY ","
                            INTO
@@ -625,7 +625,7 @@
        S032-EX.
            EXIT.
 
-      *    *** ┐R│[┐h∙о┼╥ UTF8=>SJIS
+      *    *** Ц┌ЁЦ┐╪Ц┐┴Е╓┴Ф▐⌡ UTF8=>SJIS
        S040-10.
 
            MOVE    "CHANGE"    TO      WDE05-ID
@@ -649,7 +649,7 @@
        S040-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML ▒O┐f│[┐^▐o≈м)
+      *    *** WRITE POT1 (HTML Е┴█Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡)
        S050-10.
 
            MOVE    "<DOCTYPE html>"
@@ -741,7 +741,7 @@
        S060-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML ▄Ц┐f│[┐^▐o≈м)
+      *    *** WRITE POT1 (HTML Е╬▄Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡)
        S070-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a></body></html>'
@@ -752,11 +752,11 @@
        S070-EX.
            EXIT.
 
-      *    *** <td> ┐f│[┐^▐o≈м
+      *    *** <td> Ц┐┤Ц┐╪Ц┌©Е┤╨Е┼⌡
        S100-10.
 
-      *    *** WK-FILE=23 ┌╗┴ы▌q▄n│D┌┐┌▐┌█ GO TO ┌еSEARCH SKIP ┌л┬в
-      *    *** ┌P▄▐▒O┌л▐Н∙Я┌╙▌c┌а┌д┌╒┌И┬в┐N┐┼┐A│[
+      *    *** WK-FILE=23 Ц│┼Х▐⌠Е╜░ГЁ╩О╪▌О╫┐О╫▐О╫█ GO TO Ц│╖SEARCH SKIP Ц│╝Г┌╨
+      *    *** О╪▒Д╩╤Е┴█Ц│╝Ф┐┘Е═╠Ц│▄Ф╝▀Ц│ёЦ│╕Ц│└Ц┌▀Г┌╨Ц┌╞Ц┐╙Ц┌╒Ц┐╪
            MOVE    "N"         TO      SW-SEARCH
       *    *** 21=XVI,22=DMM,25=XVI2,30=XVIS
            IF      WK-FILE     =       "21" OR "22"
@@ -830,7 +830,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** 26=┌╗┴ы▌q▄n┌Q,23=┌╗┴ы▌q▄n│D┌┐┌▐┌█
+      *    *** 26=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓,23=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▌О╫┐О╫▐О╫█
                    EVALUATE TRUE
                        WHEN WK-FILE     =      "23"
                            MOVE    '<p class="welcome03">'
@@ -838,9 +838,9 @@
                        WHEN WK-FILE     =      "26"
       *    *** 28=expo_jam_2018
                                             OR "28"
-      *    *** 29=DMM ▄÷█У
+      *    *** 29=DMM Ф╓°Г╢╒
                                             OR "29"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                             OR "32"
                            MOVE    '<p class="welcome2">'
                                        TO      POT1-REC
@@ -855,40 +855,40 @@
       *    *** 21=XVI,22=DMM,25=XVI2,30=XVIS
            IF      WK-FILE     =       "21" OR "22"
                                     OR "25" OR "30"
-      *    *** 29=DMM ▄÷█У
+      *    *** 29=DMM Ф╓°Г╢╒
                                     OR "29"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                     OR "32"
              IF  WK-ITEM3      =       "OF "
                  CONTINUE
              ELSE
-      *    ***┌╠┌╠┌е▌w▓Х┌╣┌╫│A┐A┐h┐▄┐X┌м│A▓P▒л┌е┌╠┌л┐A┐h┐▄┐X┌л┌щ∙\▌╕
+      *    ***Ц│⌠Ц│⌠Ц│╖Ф▄┤Е╝ Ц│≈Ц│÷Ц─│Ц┌╒Ц┐┴Ц┐╛Ц┌╧Ц│╞Ц─│Е█≤Д╫⌠Ц│╖Ц│⌠Ц│╝Ц┌╒Ц┐┴Ц┐╛Ц┌╧Ц│╝Ц│©Х║╗Г╓╨
                IF    WK-TITLE-A (1:29) = "https://www.xvideos.com/video"
                   OR WK-TITLE-A (1:28) = "http://www.xvideos.com/video"
                   OR WK-TITLE-A (1:29) = "https://www.xvideos.red/video"
                   OR WK-TITLE-A (1:39) = 
-      *    *** ┐O┐█│[┐o┐▀┐|┐▀┐m■o≈D
+      *    *** Ц┌╟Ц┐╜Ц┐╪Ц┐░Ц┐╚Ц┐²Ц┐╚Ц┐▌Д©ЁЕ└╙
                      "https://www.xvideos.com/pornstars-index"
                   OR WK-TITLE-A (1:44) = 
-      *    *** ┐A┐_┐▀┐g▐≈≈D
+      *    *** Ц┌╒Ц┐─Ц┐╚Ц┐┬Е╔ЁЕ└╙
                      "https://www.xvideos.com/porn-actresses-index"
                   OR WK-TITLE-A (1:38) = 
-      *    *** ▒f░l
+      *    *** Г╢═Д╨╨
                      "https://www.xvideos.com/amateurs-index"
       *            OR WK-TITLE-A (1:41) = 
-      *    *** ▒f░l┌ф┐`┐┐┐⌠┐l┐▀┌л┐y│[┐W
+      *    *** Г╢═Д╨╨Ц│╗Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц│╝Ц┐ Ц┐╪Ц┌╦
       *               "https://www.xvideos.com/amateurs-channels"
                   OR WK-TITLE-A (1:43) = 
-      *    *** ┐`┐┐┐b┐g┐▄┐f┐B
+      *    *** Ц┐│Ц┐ёЦ┐┐Ц┐┬Ц┐╛Ц┐┤Ц┌ё
                      "https://www.xvideos.com/webcam-models-index"
                   OR WK-TITLE-A (1:43) = 
-      *    *** ┐A┐_┐▀┐g┐┌┐f┐▀
+      *    *** Ц┌╒Ц┐─Ц┐╚Ц┐┬Ц┐╒Ц┐┤Ц┐╚
                      "https://www.xvideos.com/erotic-models-index"
                   OR WK-TITLE-A (1:32) = 
-      *    *** ┐v┐█┐t┐@┐C┐▀
+      *    *** Ц┐≈Ц┐╜Ц┐∙Ц┌║Ц┌╓Ц┐╚
                      "https://www.xvideos.com/profiles"
                   OR WK-TITLE-A (1:33) = 
-      *    *** ┐`┐┐┐⌠┐l┐▀
+      *    *** Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚
                      "https://www.xvideos.com/channels/"
                   OR WK-TITLE-A (1:26) = 
       *    *** c/
@@ -900,31 +900,31 @@
                      "https://www.dmm.co.jp/" 
                       AND 
                      ( WK-TITLE-A (23:7) NOT = "search/"
-      *    *** ⌠╝┴Ф
+      *    *** Е▀∙Г■╩
                    AND WK-TITLE-A (23:22) NOT = 
                        "digital/-/list/search/" 
-      *    *** -┐r┐f┐I
+      *    *** -Ц┐⌠Ц┐┤Ц┌╙
                    AND WK-TITLE-A (23:29) NOT = 
                        "digital/videoa/-/list/search/" 
-      *    *** -▒f░l
+      *    *** -Г╢═Д╨╨
                    AND WK-TITLE-A (23:29) NOT = 
                        "digital/videoc/-/list/search/"
-      *    *** -┐A┐j┐│
+      *    *** -Ц┌╒Ц┐▀Ц┐║
                    AND WK-TITLE-A (23:28) NOT = 
                        "digital/anime/-/list/search/"
-      *    *** -░╛░l┴f┴Ф
+      *    *** -Ф┬░Д╨╨Ф≤═Г■╩
                    AND WK-TITLE-A (23:31) NOT = 
                        "digital/nikkatsu/-/list/search/"
-      *    *** -▄▌┼z⌠╝┴Ф
+      *    *** -Ф°┬И║█Е▀∙Г■╩
                    AND WK-TITLE-A (23:22) NOT = 
                        "monthly/-/list/search/"
-      *    *** -▓P▒л█Л∙i│A - √Ё≈©┐G┐█⌠╝┴Ф
+      *    *** -Е█≤Д╫⌠Д╫°Е⌠│Ц─│ - Г└║Ф√≥Ц┌╗Ц┐╜Е▀∙Г■╩
                    AND WK-TITLE-A (23:17) NOT = 
                        "litevideo/-/list/"
-      *    *** -┐G┐█⌠╝┴Ф│E┐A┐_┐▀┐g┐r┐f┐I
+      *    *** -Ц┌╗Ц┐╜Е▀∙Г■╩Ц┐╩Ц┌╒Ц┐─Ц┐╚Ц┐┬Ц┐⌠Ц┐┤Ц┌╙
                    AND WK-TITLE-A (23:24) NOT = 
                        "digital/videoa/-/list/=/"
-      *    *** ▐≈≈D│E┐T┐─┐l┐C┐▀
+      *    *** Е╔ЁЕ└╙Ц┐╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚
       *             AND WK-TITLE-A (23:9) NOT = 
       *                 "litevideo"
                        ))
@@ -980,8 +980,8 @@
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
 
-      *    *** loading="lazy" ┌м│A┌┴┌█┌┤⌠г┌щ█·┌щ┌П▓x┌Г┌╧┌И
-      *    *** ┐X┐N┐█│[┐▀┌е┴Ф▒°┌л┌ф┌╠┌К┌и≈┬┌д┌м┌╤┌ъ┌д⌠г┌щ█·┌щ┌╙█s┌М┌Й┌э┌╥│B
+      *    *** loading="lazy" Ц│╞Ц─│О╫┴О╫█О╫┤Х╙╜Ц│©Х╬╪Ц│©Ц┌▓И│┘Ц┌┴Ц│⌡Ц┌▀
+      *    *** Ц┌╧Ц┌╞Ц┐╜Ц┐╪Ц┐╚Ц│╖Г■╩Е┐▐Ц│╝Ц│╗Ц│⌠Ц┌█Ц│╚Ф²╔Ц│╕Ц│╞Ц│≤Ц┌│Ц│╕Х╙╜Ц│©Х╬╪Ц│©Ц│▄Х║▄Ц┌▐Ц┌▄Ц│╬Ц│≥Ц─┌
                        MOVE    '" loading="lazy" alt=""'
                                            TO      POT1-REC
                        WRITE   POT1-REC
@@ -1008,15 +1008,15 @@
              END-IF
            END-IF
 
-      *    *** WK-FILE=26 ┌╗┴ы▌q▄n IMG≈L┌Х,23=┌╗┴ы▌q▄n│D┌┐┌▐┌█
+      *    *** WK-FILE=26 Ц│┼Х▐⌠Е╜░ГЁ╩ IMGФ°┴Ц┌┼,23=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▌О╫┐О╫▐О╫█
            IF      WK-FILE     =       "23" OR "26"
       *    *** 28=expo_jam_2018
                                     OR "28"
-      *    *** 29=DMM ▄÷█У
+      *    *** 29=DMM Ф╓°Г╢╒
                                     OR "29"
       *    *** 31=YoutubeChannel
                                     OR "31"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                     OR "32"
                    IF      WK-TITLE-A  =       SPACE
                            CONTINUE
@@ -1027,7 +1027,7 @@
                    CONTINUE
            END-IF
 
-      *    *** 15=┐A┐C┐h┐▀▒Е░}┼с √╪▒O▐┤│A┐O┐▀│[┐v▐┤
+      *    *** 15=Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒ Е░█Е┴█И═├Ц─│Ц┌╟Ц┐╚Ц┐╪Ц┐≈И═├
            IF      WK-FILE     =       "15"
                    IF      WK-TITLE-A  =       SPACE
                        AND WK-ITEM3 (1:1) =    SPACE
@@ -1039,7 +1039,7 @@
                    CONTINUE
            END-IF
 
-      *    *** IMG ∙\▌╕┌╣┌х┌╒
+      *    *** IMG Х║╗Г╓╨Ц│≈Ц│╙Ц│└
       *    *** 21=XVI,22=DMM,25=XVI2,30=XVIS
            IF      WK-FILE     =       "21" OR "22"
                                     OR "25" OR "30"
@@ -1049,25 +1049,25 @@
                            PERFORM VARYING M FROM 1 BY 1
                                    UNTIL M > WK-TITLE-LEN
                                OR  WK-TITLE (M:15) =
-      *    *** ┌л▄÷█У▄▀┴й
+      *    *** Ц│╝Ф╓°Г╢╒Г╣░Ф·°
                                     X"E381AEE6A49CE7B4A2E7B590E69E9C"
                                OR  WK-TITLE (M:15) =
-      *    *** ┌П▄÷█У┌╥┌И
+      *    *** Ц┌▓Ф╓°Г╢╒Ц│≥Ц┌▀
                                     X"E38292E6A49CE7B4A2E38199E3828B"
                                OR  WK-TITLE (M:14) =
-      *    *** (▓P▒л█Л∙i)
+      *    *** (Е█≤Д╫⌠Д╫°Е⌠│)
                                     X"28E58D98E4BD93E4BD9CE5938129"
                                OR  WK-TITLE (M:24) =
-      *    *** ┌л┐┌┐f┐▀┌л┐y│[┐W
+      *    *** Ц│╝Ц┐╒Ц┐┤Ц┐╚Ц│╝Ц┐ Ц┐╪Ц┌╦
                    X"E381AEE383A2E38387E383ABE381AEE3839AE383BCE382B8"
                                OR  WK-TITLE (M:39) =
-      *    ***  - ▒f░l┌ф┐`┐┐┐⌠┐l┐▀┌л┐y│[┐W
+      *    ***  - Г╢═Д╨╨Ц│╗Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц│╝Ц┐ Ц┐╪Ц┌╦
                                                      WK-SHIROUTO
                                OR  WK-TITLE (M:42) =
-      *    *** ┌л┐┌┐f┐▀│E┐`┐┐┐⌠┐l┐▀┌л┐y│[┐W
+      *    *** Ц│╝Ц┐╒Ц┐┤Ц┐╚Ц┐╩Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц│╝Ц┐ Ц┐╪Ц┌╦
                                                      WK-MODEL-CHANNELS
                                OR  WK-TITLE (M:21) =
-      *    *** ┌л┐A┐_┐▀┐g▐≈≈D
+      *    *** Ц│╝Ц┌╒Ц┐─Ц┐╚Ц┐┬Е╔ЁЕ└╙
                            X"E381AEE382A2E38380E383ABE38388E5A5B3E584AA"
                                    CONTINUE
 
@@ -1121,7 +1121,7 @@
       *     CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
       *                                 SW-SEARCH
 
-      *    *** SAYAKA = Sayaka Tsutsumi ┌╙≈L┌И┬в│A∙й░l┌ф■╩▓Х┌╥┌И
+      *    *** SAYAKA = Sayaka Tsutsumi Ц│▄Ф°┴Ц┌▀Г┌╨Ц─│Е┬╔Д╨╨Ц│╗Е┬╓Е╝ Ц│≥Ц┌▀
            IF      SW-SEARCH   =       "Y"
                    IF      TBL01-TITLE2-LEN (TBL01-IDX) =  K2
                            CONTINUE
@@ -1132,23 +1132,23 @@
            .
        S100-20.
 
-      *    *** 26=┌╗┴ы▌q▄n┌Q,23=┌╗┴ы▌q▄n│D┌┐┌▐┌█
+      *    *** 26=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓,23=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▌О╫┐О╫▐О╫█
            IF      WK-FILE     =       "26" OR "23" 
       *    *** 28=expo_jam_2018
                                     OR "28"
-      *    *** 29=DMM ▄÷█У
+      *    *** 29=DMM Ф╓°Г╢╒
                                     OR "29"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                     OR "32"
-      *    *** 15=┐A┐C┐h┐▀▒Е░}┼с √╪▒O▐┤│A┐O┐▀│[┐v▐┤
-      *    *** 15 ┌м│A┐O┐▀│[┐v√╪▐┤│A
-      *    *** ┐O┐▀│[┐v√╪│A┌g┌s┌s┌o│A┌h┌l┌f│A┌э┌╫┌м
-      *    *** ┐O┐▀│[┐v√╪│A┌r┌o┌`┌b┌d│A┌r┌o┌`┌b┌d│A┌э┌╫┌м
-      *    *** ┐^┐▄┐⌠┐g√╪│A┌h┌l┌f│A┌э┌╫┌м
-      *    *** ┐^┐▄┐⌠┐g√╪│A┌r┌o┌`┌b┌d
-      *    *** √╪▒O▐┤┌м
-      *    *** ┐^┐▄┐⌠┐g√╪│A┌h┌l┌f│A┌э┌╫┌м
-      *    *** ┐^┐▄┐⌠┐g√╪│A┌r┌o┌`┌b┌d
+      *    *** 15=Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒ Е░█Е┴█И═├Ц─│Ц┌╟Ц┐╚Ц┐╪Ц┐≈И═├
+      *    *** 15 Ц│╞Ц─│Ц┌╟Ц┐╚Ц┐╪Ц┐≈Е░█И═├Ц─│
+      *    *** Ц┌╟Ц┐╚Ц┐╪Ц┐≈Е░█Ц─│О╪╗О╪╢О╪╢О╪╟Ц─│О╪╘О╪╜О╪╖Ц─│Ц│╬Ц│÷Ц│╞
+      *    *** Ц┌╟Ц┐╚Ц┐╪Ц┐≈Е░█Ц─│О╪ЁО╪╟О╪║О╪ёО╪╔Ц─│О╪ЁО╪╟О╪║О╪ёО╪╔Ц─│Ц│╬Ц│÷Ц│╞
+      *    *** Ц┌©Ц┐╛Ц┐ЁЦ┐┬Е░█Ц─│О╪╘О╪╜О╪╖Ц─│Ц│╬Ц│÷Ц│╞
+      *    *** Ц┌©Ц┐╛Ц┐ЁЦ┐┬Е░█Ц─│О╪ЁО╪╟О╪║О╪ёО╪╔
+      *    *** Е░█Е┴█И═├Ц│╞
+      *    *** Ц┌©Ц┐╛Ц┐ЁЦ┐┬Е░█Ц─│О╪╘О╪╜О╪╖Ц─│Ц│╬Ц│÷Ц│╞
+      *    *** Ц┌©Ц┐╛Ц┐ЁЦ┐┬Е░█Ц─│О╪ЁО╪╟О╪║О╪ёО╪╔
 
                                     OR "15"
                IF      WK-TITLE-A  NOT =   SPACE
@@ -1253,12 +1253,12 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** IF SW-SEARCH = "Y" ┌л▌·┌м│A
-      *    *** C:\Users\koko\OneDrive\┐h┐L┐┘┐│┐⌠┐g\HTML\YouTube■д≈p\IMAGE ┌и
-      *    *** ▐≈≈D√╪.JPG ┌╙▌w▓Х┌Ё┌Й┌д┌╒┌И┌╘│A
-      *    *** TEST54.PIN2 ┌и▐≈≈D√╪,▐≈≈D┴Ф▒°(dmm┌л┴Ф▒°┐A┐h┐▄┐X┌П┐R┐s│[),...
-      *    ***  ┌╙▌w▓Х┌Ё┌Й┌д┌╒┌И
-      *    *** ▐≈≈D┴Ф▒° ┌мimage┌и▌w▓Х┌╣┌х┌╜┌д┌Ю┴б┌ф┌╥┌И
+      *    *** IF SW-SEARCH = "Y" Ц│╝Ф≥┌Ц│╞Ц─│
+      *    *** C:\Users\koko\OneDrive\Ц┐┴Ц┌╜Ц┐╔Ц┐║Ц┐ЁЦ┐┬\HTML\YouTubeФ╠▌Г■╗\IMAGE Ц│╚
+      *    *** Е╔ЁЕ└╙Е░█.JPG Ц│▄Ф▄┤Е╝ Ц│∙Ц┌▄Ц│╕Ц│└Ц┌▀Ц│▀Ц─│
+      *    *** TEST54.PIN2 Ц│╚Е╔ЁЕ└╙Е░█,Е╔ЁЕ└╙Г■╩Е┐▐(dmmЦ│╝Г■╩Е┐▐Ц┌╒Ц┐┴Ц┐╛Ц┌╧Ц┌▓Ц┌ЁЦ┐■Ц┐╪),...
+      *    ***  Ц│▄Ф▄┤Е╝ Ц│∙Ц┌▄Ц│╕Ц│└Ц┌▀
+      *    *** Е╔ЁЕ└╙Г■╩Е┐▐ Ц│╞imageЦ│╚Ф▄┤Е╝ Ц│≈Ц│╙Ц│▐Ц│╕Ц┌┌Е▐╞Ц│╗Ц│≥Ц┌▀
       *    *** 
                    IF      SW-SEARCH   =       "Y"
                        MOVE    '<img src="'
@@ -1355,7 +1355,7 @@
                            MOVE    "PORNSTARS" TO      POT1-REC
       *    *** https://www.xvideos.com/model-channels/gina-gerson =>
       *    *** https://www.xvideos.com/pornstar-channels/gina-gerson
-      *    *** ┌и∙о┼╥┌╣┌д┌И
+      *    *** Ц│╚Е╓┴Ф▐⌡Ц│≈Ц│╕Ц┌▀
                        WHEN WK-TITLE-A (1:34) = 
                             "https://www.xvideos.com/model-channels/"
                            MOVE    "MODEL-CHANNELS" TO      POT1-REC
@@ -1377,7 +1377,7 @@
                    END-IF
            END-IF
 
-      *    *** ▐≈░╚│A▓j░╚
+      *    *** Е╔ЁФ─╖Ц─│Г■╥Ф─╖
            IF      WK-TITLE    =       X"E5A5B3E680A7"
                                     OR X"E794B7E680A7"
                    MOVE    WK-TITLE    TO      POT1-REC
@@ -1389,13 +1389,13 @@
 
        S100-20-1.
 
-      *    *** 29=DMM ▄÷█У
+      *    *** 29=DMM Ф╓°Г╢╒
            IF      WK-FILE     =       "29"
-      *    *** 32=Youtube ⌠╝┴Ф┐T┐─┐l┐C┐▀┼g▒Е
+      *    *** 32=Youtube Е▀∙Г■╩Ц┌╣Ц┐═Ц┐█Ц┌╓Ц┐╚Ф▀║Е╓╖
                                     OR "32"
                    GO  TO  S100-30
            END-IF
-      *    *** 18=XVI █▒∙й
+      *    *** 18=XVI Е⌡╫Е┬╔
            IF      WK-FILE     =       "18"
                    MOVE    "<a href='https://www.xvideos.com/?k="
                                TO      POT1-REC
@@ -1440,15 +1440,15 @@
                        ADD     1           TO      J2
                        MOVE    WDE03-BUF2-R (J) TO POT1-REC (J2:1)
 
-      *    *** 1йч╡д▀L█├│A┴p▌ │A░■▌ │A╤ю╤е ┌╩┌л┌э┌э┐Z┐b┐g
+      *    *** 1О╬┼О╬·О╫╡О╬└Х╗≤Е▐╥Ц─│Х▀╠Е╜≈Ц─│Ф∙╟Е╜≈Ц─│О╫╤О╬─О╫╤О╬┘ Ц│²Ц│╝Ц│╬Ц│╬Ц┌╩Ц┐┐Ц┐┬
                    WHEN  ( WK-TITLE (J:1) >= "!" 
                        AND WK-TITLE (J:1) <= "~" )
-                      OR ( WK-TITLE (J:1) >= "║"
-                       AND WK-TITLE (J:1) <= "ъ" )
+                      OR ( WK-TITLE (J:1) >= "О╫║"
+                       AND WK-TITLE (J:1) <= "О╬÷" )
                        ADD     1           TO      J2
                        MOVE    WK-TITLE (J:1) TO   POT1-REC (J2:1)
 
-      *    *** 3∙╤▌ ┬Й⌠x┌и∙о┼╥ UTF8 ┌R∙╤▌ ▒л▄n┌л┌щ▒н┴·
+      *    *** 3Ф√┤Е╜≈Д╦─Е╨╕Ц│╚Е╓┴Ф▐⌡ UTF8 О╪⌠Ф√┤Е╜≈Д╫⌠ГЁ╩Ц│╝Ц│©Е╞╬Е©°
                    WHEN OTHER
                        ADD     1           TO      J2
                        MOVE    "%"         TO      POT1-REC (J2:1)
@@ -1480,7 +1480,7 @@
                                " J2=" J2 " S100-20"
                        STOP    RUN
                ELSE
-      *    *** ┐L│[┐▐│[┐h ┌Q┌O∙╤▌ ┌э┌е┌ф┌╥┌И
+      *    *** Ц┌╜Ц┐╪Ц┐╞Ц┐╪Ц┐┴ О╪▓О╪░Ф√┤Е╜≈Ц│╬Ц│╖Ц│╗Ц│≥Ц┌▀
       *                     IF      J2          >=      60
       *                             MOVE    WK-TITLE-A-LEN TO   J
       *                     END-IF
@@ -1501,7 +1501,7 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** 15=┐A┐C┐h┐▀▒Е░}┼с √╪▒O▐┤│A┐O┐▀│[┐v▐┤
+      *    *** 15=Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒ Е░█Е┴█И═├Ц─│Ц┌╟Ц┐╚Ц┐╪Ц┐≈И═├
       *    *** FILE=15 WK-ITEM3=IMG
            IF      WK-FILE     =       "15"
                IF      WK-TITLE-A  =       SPACE
@@ -1530,14 +1530,14 @@
                        GO  TO  S100-21-10
                    END-IF
                ELSE
-      *    *** WK-TITLE-A NOT = SPACE AND WK-ITEM3 (1:1) NOT = SPACE ┌м
-      *    *** ┐O┐▀│[┐v√╪│A┌g┌s┌s┌o│A┌h┌l┌f│@▒O┌л┐X┐e┐b┐v┌е▀L▐q█о
-      *    *** WK-TITLE-A NOT = SPACE AND WK-ITEM3 (1:1) = SPACE ┌м┌х┌╒
+      *    *** WK-TITLE-A NOT = SPACE AND WK-ITEM3 (1:1) NOT = SPACE Ц│╞
+      *    *** Ц┌╟Ц┐╚Ц┐╪Ц┐≈Е░█Ц─│О╪╗О╪╢О╪╢О╪╟Ц─│О╪╘О╪╜О╪╖Ц──Е┴█Ц│╝Ц┌╧Ц┐├Ц┐┐Ц┐≈Ц│╖Х╗≤Х©╟Ф╦┬
+      *    *** WK-TITLE-A NOT = SPACE AND WK-ITEM3 (1:1) = SPACE Ц│╞Ц│╙Ц│└
                    GO  TO  S100-21-10
                END-IF
            END-IF
 
-      *    *** FILE=27 ┼ь█▒▐≈≈D,WK-TITLE-A=IMG
+      *    *** FILE=27 И÷⌠Е⌡╫Е╔ЁЕ└╙,WK-TITLE-A=IMG
            IF      WK-FILE     =       "27"
                IF      WK-TITLE-A  =       SPACE
                        CONTINUE
@@ -1658,10 +1658,10 @@
            IF      WK-FILE     =       "21" OR "22"
                                     OR "25" OR "30"
 
-      *    *** 26=┌╗┴ы▌q▄n┌Q
+      *    *** 26=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓
                                     OR "26"
 
-      *    *** 23=┌╗┴ы▌q▄n│D┌┐┌▐┌█
+      *    *** 23=Ц│┼Х▐⌠Е╜░ГЁ╩О╪▌О╫┐О╫▐О╫█
                                     OR "23"
 
       *    *** 28=expo_jam_2018
@@ -1672,7 +1672,7 @@
            IF      WK-TITLE-A  =       SPACE
                    GO  TO  S100-30
            ELSE
-      *    *** 15=┐A┐C┐h┐▀▒Е░}┼с √╪▒O▐┤│A┐O┐▀│[┐v▐┤
+      *    *** 15=Ц┌╒Ц┌╓Ц┐┴Ц┐╚Е╓╖Е⌡ЁИ▒▒ Е░█Е┴█И═├Ц─│Ц┌╟Ц┐╚Ц┐╪Ц┐≈И═├
                IF      WK-FILE  = "15"
                        GO  TO  S100-30
                ELSE
@@ -1680,12 +1680,12 @@
                END-IF
            END-IF
 
-      *    *** FILE=27 ┼ь█▒▐≈≈D,WK-TITLE-A=IMG
+      *    *** FILE=27 И÷⌠Е⌡╫Е╔ЁЕ└╙,WK-TITLE-A=IMG
            IF      WK-FILE     =       "27"
                    GO  TO  S100-30
            END-IF
 
-      *    *** 18=XVI █▒∙й
+      *    *** 18=XVI Е⌡╫Е┬╔
            IF      WK-FILE     =       "18"
                    CONTINUE
            ELSE
@@ -1702,23 +1702,23 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** ▄▌
+      *    *** Ф°┬
            IF    ( WK-TITLE-A (2:3) =  X"E69C88"
                 OR WK-TITLE-A (3:3) =  X"E69C88" )
               AND
-      *    *** ⌠З
+      *    *** Ф≈╔
                  ( WK-TITLE-A (6:3) =  X"E697A5"
                 OR WK-TITLE-A (7:3) =  X"E697A5"
                 OR WK-TITLE-A (8:3) =  X"E697A5" )
                    GO  TO  S100-30
            END-IF
 
-      *    *** YYYY■NMM▄▌DD⌠З
-      *    *** ▄▌
+      *    *** YYYYЕ╧╢MMФ°┬DDФ≈╔
+      *    *** Ф°┬
            IF    ( WK-TITLE-A (09:3) =  X"E69C88"
                 OR WK-TITLE-A (10:3) =  X"E69C88" )
               AND
-      *    *** ⌠З
+      *    *** Ф≈╔
                  ( WK-TITLE-A (13:3) =  X"E697A5"
                 OR WK-TITLE-A (14:3) =  X"E697A5"
                 OR WK-TITLE-A (15:3) =  X"E697A5" )
@@ -1743,13 +1743,13 @@
                    GO  TO  S100-30
            END-IF
 
-      *    *** OP┐e│[┐},ED┐e│[┐}
+      *    *** OPЦ┐├Ц┐╪Ц┐·,EDЦ┐├Ц┐╪Ц┐·
            IF    ( WK-TITLE-A (01:2) =   "OP" OR "ED" )
                AND WK-TITLE-A (03:9) =   X"E38386E383BCE3839E"
                    GO  TO  S100-30
            END-IF
 
-      *    *** 18=XVI █▒∙й
+      *    *** 18=XVI Е⌡╫Е┬╔
            IF      WK-FILE     =       "18"
                    MOVE    "<a href='https://www.xvideos.com/?k="
                                TO      POT1-REC
@@ -1763,8 +1763,8 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** WK-TITLE-A < 100 ┌л▌·│A┐J┐⌠┐}≈L┌х┌л┌е│A┌╩┌л▓╥┌Ё┌е▐┬≈²
-      *    *** ▓╢┌╕┌И▌·│A█е▐┴┌лSPACE┌╘│E▌Х▒O┌э┌е┌ф┌╥┌И
+      *    *** WK-TITLE-A < 100 Ц│╝Ф≥┌Ц─│Ц┌╚Ц┐ЁЦ┐·Ф°┴Ц│╙Ц│╝Ц│╖Ц─│Ц│²Ц│╝И∙╥Ц│∙Ц│╖Е┤╕Г░├
+      *    *** Х╤┘Ц│┬Ц┌▀Ф≥┌Ц─│Ф°─Е┬²Ц│╝SPACEЦ│▀Ц┐╩Ф┴▀Е┴█Ц│╬Ц│╖Ц│╗Ц│≥Ц┌▀
            IF      WK-TITLE-A-LEN <    100
                    MOVE    WK-TITLE-A-LEN TO   WDE03-BUF1-LEN
            ELSE
@@ -1772,7 +1772,7 @@
                    PERFORM VARYING J FROM 1 BY 1
                            UNTIL J > WK-TITLE-A-LEN
                         OR WK-TITLE-A (J:1) = SPACE
-      *    *** │E
+      *    *** Ц┐╩
                         OR WK-TITLE-A (J:3) = X"E383BB"
                            ADD     1           TO      WDE03-BUF1-LEN
                    END-PERFORM
@@ -1804,15 +1804,15 @@
                        ADD     1           TO      J2
                        MOVE    WDE03-BUF2-R (J) TO POT1-REC (J2:1)
 
-      *    *** 1йч╡д▀L█├│A┴p▌ │A░■▌ │A╤ю╤е ┌╩┌л┌э┌э┐Z┐b┐g
+      *    *** 1О╬┼О╬·О╫╡О╬└Х╗≤Е▐╥Ц─│Х▀╠Е╜≈Ц─│Ф∙╟Е╜≈Ц─│О╫╤О╬─О╫╤О╬┘ Ц│²Ц│╝Ц│╬Ц│╬Ц┌╩Ц┐┐Ц┐┬
                    WHEN  ( WK-TITLE-A (J:1) >= "!" 
                        AND WK-TITLE-A (J:1) <= "~" )
-                      OR ( WK-TITLE-A (J:1) >= "║"
-                       AND WK-TITLE-A (J:1) <= "ъ" )
+                      OR ( WK-TITLE-A (J:1) >= "О╫║"
+                       AND WK-TITLE-A (J:1) <= "О╬÷" )
                        ADD     1           TO      J2
                        MOVE    WK-TITLE-A (J:1) TO POT1-REC (J2:1)
 
-      *    *** 3∙╤▌ ┬Й⌠x┌и∙о┼╥ UTF8 ┌R∙╤▌ ▒л▄n┌л┌щ▒н┴·
+      *    *** 3Ф√┤Е╜≈Д╦─Е╨╕Ц│╚Е╓┴Ф▐⌡ UTF8 О╪⌠Ф√┤Е╜≈Д╫⌠ГЁ╩Ц│╝Ц│©Е╞╬Е©°
                    WHEN OTHER
 
                        ADD     1           TO      J2
@@ -1845,7 +1845,7 @@
                                " J2=" J2 " S100-22"
                        STOP    RUN
                ELSE
-      *    *** ┐L│[┐▐│[┐h ┌Q┌O∙╤▌ ┌э┌е┌ф┌╥┌И
+      *    *** Ц┌╜Ц┐╪Ц┐╞Ц┐╪Ц┐┴ О╪▓О╪░Ф√┤Е╜≈Ц│╬Ц│╖Ц│╗Ц│≥Ц┌▀
       *                     IF      J2          >=      60
       *                             MOVE    WK-TITLE-A-LEN TO   J
       *                     END-IF
@@ -1856,7 +1856,7 @@
            .
        S100-24.
 
-      *    *** 18=XVI █▒∙й
+      *    *** 18=XVI Е⌡╫Е┬╔
            IF     WK-FILE      =       "18"
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
@@ -2053,7 +2053,7 @@
        S100-EX.
            EXIT.
 
-      *    *** #NN ┐▄┐R│[┐h∙р▐W1
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├1
        S110-10.
 
            MOVE    '<h2><br><a name="   ">'
@@ -2082,7 +2082,7 @@
        S110-EX.
            EXIT.
 
-      *    *** #NN ┐▄┐R│[┐h∙р▐W2
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├2
        S120-10.
 
       *    *** 21=XVI,22=DMM,25=XVI2,30=XVIS
@@ -2105,8 +2105,8 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** <br> ┌P┌б┌╬┌ф│A▌╘⌠╝⌠I┌и≤A■т┌╙▓i≈▌┌и⌠Э┌И ⌠Э┌Г┌х┌╒▌·┌Ю┌═┌И
-      *    *** <br> ┌Q┌б┌╬┌ф│A▌╘⌠╝⌠I┌и≤A■т┌╙▓i≈▌┌и⌠Э┌Г┌х┌╒
+      *    *** <br> О╪▒Ц│╓Ц│═Ц│╗Ц─│Х┤╙Е▀∙Г └Ц│╚И─ёГ∙╙Ц│▄Ф╝╣Х░╫Ц│╚Е┘╔Ц┌▀ Е┘╔Ц┌┴Ц│╙Ц│└Ф≥┌Ц┌┌Ц│┌Ц┌▀
+      *    *** <br> О╪▓Ц│╓Ц│═Ц│╗Ц─│Х┤╙Е▀∙Г └Ц│╚И─ёГ∙╙Ц│▄Ф╝╣Х░╫Ц│╚Е┘╔Ц┌┴Ц│╙Ц│└
            MOVE    '<h2><br><a name="   ">'
                                TO      POT1-REC
            MOVE    PIN1-REC (2:3) TO   POT1-REC (18:3)
@@ -2134,7 +2134,7 @@
        S120-EX.
            EXIT.
 
-      *    *** #NN ┐▄┐R│[┐h∙р▐W3
+      *    *** #NN Ц┐╛Ц┌ЁЦ┐╪Ц┐┴Г╥╗И⌡├3
        S130-10.
 
            IF      PIN1-REC (1:4) =    "#001"
@@ -2180,28 +2180,28 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *             MOVE    '"C:\Users\koko\OneDrive\'
+      *             MOVE    '"C:\Users\xxxx\OneDrive\'
 
       *                                 TO      POT1-REC
       *             WRITE   POT1-REC
       *             ADD     1           TO      WK-POT1-CNT
 
       *             MOVE
-      *    *** ┐h┐L┐┘┐│┐⌠┐g
+      *    *** Ц┐┴Ц┌╜Ц┐╔Ц┐║Ц┐ЁЦ┐┬
       *          '%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88'
       *                                 TO      POT1-REC
       *             WRITE   POT1-REC
       *             ADD     1           TO      WK-POT1-CNT
 
                    MOVE
-      *    *** YouTube░╨≈D
+      *    *** YouTubeЕё╟Е└╙
       *             '\HTML\YouTube%E5%A3%B0%E5%84%AA\'
       *    *** YouTube
                    '"..\YouTube'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-      *    *** ░╨≈D
+      *    *** Её╟Е└╙
                    MOVE    X"E5A3B0E584AA"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -2218,7 +2218,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ░╨≈D
+      *    *** Её╟Е└╙
                    MOVE    X'E5A3B0E584AA'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -2230,28 +2230,28 @@
 
 
 
-      *    *** 26= ┌╗┴ы▌q▄n┌Q√з▌÷
+      *    *** 26= Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓Г⌡╝Ф╛║
                IF      WK-FILE     =       "26"
                    MOVE    '<a href=' 
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '"C:\Users\koko\OneDrive\'
+                   MOVE    '"C:\Users\xxxx\OneDrive\'
 
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
                    MOVE
-      *    *** ┐h┐L┐┘┐│┐⌠┐g
+      *    *** Ц┐┴Ц┌╜Ц┐╔Ц┐║Ц┐ЁЦ┐┬
                 '%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
                    MOVE
-      *    *** YouTube■д≈p
+      *    *** YouTubeФ╠▌Г■╗
                    '\HTML\YouTube%E6%B1%8E%E7%94%A8\'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -2262,7 +2262,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ┌╗┴ы▌q▄n┌Q√з▌÷
+      *    *** Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓Г⌡╝Ф╛║
                    MOVE    '%E3%81%8A%E8%8F%93%E5%AD%90%E7'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -2284,7 +2284,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ┌╗┴ы▌q▄n┌Q√з▌÷
+      *    *** Ц│┼Х▐⌠Е╜░ГЁ╩О╪▓Г⌡╝Ф╛║
                    MOVE    X'E3818AE88F93E5AD90E7B3BBEFBC92E79BAEE6ACA1'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -2318,15 +2318,15 @@
                        MOVE    '">'    TO      POT1-REC
                    END-IF
 
-      *    *** ┌═│A┌х│A┌`
-      *    *** ∙╤▌ ┌л▓╪▒O┌и│A">┌П⌠Э┌Й┌╫┌╒│A∙╤▌ ┌П▌w▓Х
+      *    *** Ц│┌Ц─│Ц│╙Ц─│О╪║
+      *    *** Ф√┤Е╜≈Ц│╝Г⌡╢Е┴█Ц│╚Ц─│">Ц┌▓Е┘╔Ц┌▄Ц│÷Ц│└Ц─│Ф√┤Е╜≈Ц┌▓Ф▄┤Е╝ 
                WHEN ((PIN1-REC (9:3) = X"E38182" OR X"E381AA"
                       OR X"EFBCA1" )
                  AND WK-PIN1-LEN =     11)
                  OR SW-WA       =      "Y"
                    MOVE    '">'    TO      POT1-REC
 
-      *    *** ┌═│A┌П
+      *    *** Ц│┌Ц─│Ц┌▓
                WHEN PIN1-REC (9:3) >=  X"E38182" AND <= X"E38292"
                  AND WK-PIN1-LEN = 11
                    MOVE '" style="position:relative; left:0000px;">'
@@ -2334,7 +2334,7 @@
                    ADD     16      TO      WK-LEFT-POS
                    MOVE    WK-LEFT-POS TO  POT1-REC (34:4)
 
-      *    *** ┌`│A┌y
+      *    *** О╪║Ц─│О╪╨
                WHEN PIN1-REC (9:3) >=  X"EFBCA1" AND <= X"EFBCBA"
                  AND WK-PIN1-LEN = 11
                    MOVE '" style="position:relative; left:0000px;">'
@@ -2349,7 +2349,7 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** #NNN ┌w┌w┌w┌w┌w => ┌w┌w┌w┌w┌w
+      *    *** #NNN О╪╦О╪╦О╪╦О╪╦О╪╦ => О╪╦О╪╦О╪╦О╪╦О╪╦
            IF      PIN1-REC (9:10) =   "#aduxvi-br" OR "#aduDMM-br"
                    MOVE    SPACE       TO      POT1-REC
            ELSE
@@ -2358,7 +2358,7 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** ⌠З√{│A┬Й░l┐v┐█┐W┐F┐N┐g▒н┴·
+      *    *** Ф≈╔Ф°╛Ц─│Д╦─Д╨╨Ц┐≈Ц┐╜Ц┌╦Ц┌╖Ц┌╞Ц┐┬Е╞╬Е©°
            EVALUATE TRUE
 
                WHEN SW-IDOLZUKAN = "Y"
@@ -2370,19 +2370,19 @@
       *    *** 21=XVI,22=DMM,30=XVIS
                        IF      WK-FILE     =       "21" OR "22"
                                                 OR "30"
-      *    *** #003.│@aduxvi-Search-Num-Alpha
+      *    *** #003.Ц──aduxvi-Search-Num-Alpha
                            IF    PIN1-REC (9:23) =
                                  "aduxvi-Search-Num-Alpha"
-      *    *** #016.│@tag-m
+      *    *** #016.Ц──tag-m
                               OR PIN1-REC (9:5) = "tag-m"
-      *    *** #029.│@tag-z
+      *    *** #029.Ц──tag-z
                               OR PIN1-REC (9:5) = "tag-z"
-      *    *** #032.│@aduxvi█▒∙й
+      *    *** #032.Ц──aduxviЕ⌡╫Е┬╔
                               OR PIN1-REC (9:12) = 
                                  X"616475787669E59BBDE588A5"
-      *    *** aduxvi┐`┐┐┐⌠┐l┐▀│E┐C┐││[┐W <= ┐`┐┐┐⌠┐l┐▀┌л█е▄Ц∙о┌М┌а┌╫┌Г∙о█X┌╥┌И
+      *    *** aduxviЦ┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц┐╩Ц┌╓Ц┐║Ц┐╪Ц┌╦ <= Ц┐│Ц┐ёЦ┐ЁЦ┐█Ц┐╚Ц│╝Ф°─Е╬▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц┌┴Е╓┴Ф⌡╢Ц│≥Ц┌▀
                               OR PIN1-REC (9:36) = WK-CHANNEL-IMAGE
-      *    *** aduxvi┐v┐█┐t┐B│[┐▀│E┐A┐j┐│ <= ┐v┐█┐t┐B│[┐▀┌л█е▄Ц∙о┌М┌а┌╫┌Г∙о█X┌╥┌И
+      *    *** aduxviЦ┐≈Ц┐╜Ц┐∙Ц┌ёЦ┐╪Ц┐╚Ц┐╩Ц┌╒Ц┐▀Ц┐║ <= Ц┐≈Ц┐╜Ц┐∙Ц┌ёЦ┐╪Ц┐╚Ц│╝Ф°─Е╬▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц┌┴Е╓┴Ф⌡╢Ц│≥Ц┌▀
                               OR PIN1-REC (9:36) = WK-PROFILE-ANIME
       *    *** aduDMM-Search-Actress-name
                               OR PIN1-REC (9:36) = 
@@ -2390,51 +2390,51 @@
       *    *** aduxvi-Search-Actress-name
                               OR PIN1-REC (9:26) = 
                                  "aduxvi-Search-Actress-name"
-      *    *** #NNN.│@┌╗
-      *    *** ┌╗
+      *    *** #NNN.Ц──Ц│┼
+      *    *** Ц│┼
                               OR (PIN1-REC (9:3) = X"E3818A"
-      *    *** ┌╡
+      *    *** Ц│■
                                                 OR X"E38194"
-      *    *** ┌╪
+      *    *** Ц│·
                                                 OR X"E3819E"
-      *    *** ┌г
+      *    *** Ц│╘
                                                 OR X"E381A9"
-      *    *** ┌л
+      *    *** Ц│╝
                                                 OR X"E381AE"
-      *    *** ┌ш
+      *    *** Ц│╫
                                                 OR X"E381BD"
-      *    *** ┌Ю
+      *    *** Ц┌┌
                                                 OR X"E38282"
-      *    *** ┌Ф
+      *    *** Ц┌┬
                                                 OR X"E38288"
-      *    *** ┌╓┌и│h
+      *    *** Ц│├Ц│╚Б─²
                                                 OR X"E38294"
-      *    *** ┌X
+      *    *** О╪≥
                                                 OR X"EFBC99"
-      *    *** ┌y
+      *    *** О╪╨
                                                 OR X"EFBCBA" )
-      *    *** aduxvi▐≈≈D√╪┌═│[┌╗
-      *    *** ┌═│[
+      *    *** aduxviЕ╔ЁЕ└╙Е░█Ц│┌Ц┐╪Ц│┼
+      *    *** Ц│┌Ц┐╪
                               OR (PIN1-REC (24:6) = X"E38182E383BC"
-      *    *** ┌╘
+      *    *** Ц│▀
                                                 OR X"E3818BE383BC"
-      *    *** ┌Ё
+      *    *** Ц│∙
                                                 OR X"E38195E383BC"
-      *    *** ┌╫
+      *    *** Ц│÷
                                                 OR X"E3819FE383BC"
-      *    *** ┌х
+      *    *** Ц│╙
                                                 OR X"E381AAE383BC"
-      *    *** ┌м
+      *    *** Ц│╞
                                                 OR X"E381AFE383BC"
-      *    *** ┌э
+      *    *** Ц│╬
                                                 OR X"E381BEE383BC"
-      *    *** ┌Б
+      *    *** Ц┌└
                                                 OR X"E38284E383BC"
-      *    *** ┌Г
+      *    *** Ц┌┴
                                                 OR X"E38289E383BC" )
-      *    *** ┐u┐▄┐C┐N≈p
+      *    *** Ц┐√Ц┐╛Ц┌╓Ц┌╞Г■╗
                               OR PIN1-REC (9:10) = "#aduxvi-br"
-      *    *** ┐u┐▄┐C┐N≈p
+      *    *** Ц┐√Ц┐╛Ц┌╓Ц┌╞Г■╗
                               OR PIN1-REC (9:10) = "#aduDMM-br"
                                  MOVE    '</a><br><br>' TO  POT1-REC
                            ELSE
@@ -2449,11 +2449,11 @@
                WHEN WK-PIN1-LEN > 11
                    MOVE    '</a><br><br>' TO   POT1-REC
 
-      *    *** ┌М│A┌П
+      *    *** Ц┌▐Ц─│Ц┌▓
                WHEN ( PIN1-REC (9:3) = X"E3828F" OR X"E38292")
                   AND WK-PIN1-LEN =     11
                    IF    SW-WO  =  "Y"
-      *    *** ┌П
+      *    *** Ц┌▓
                      IF PIN1-REC (9:3) = X"E38292"
                        MOVE    '</a><br><br>' TO   POT1-REC
                        MOVE    ZERO        TO      WK-LEFT-POS
@@ -2467,11 +2467,11 @@
                        MOVE    "Y"         TO      SW-WA
                    END-IF
 
-      *    *** ┌ф, ┌г
+      *    *** Ц│╗, Ц│╘
                WHEN ( PIN1-REC (9:3) = X"E381A8" OR X"E381A9" )
                   AND WK-PIN1-LEN =     11
                    IF    SW-DO  = "Y"
-      *    *** ┌г
+      *    *** Ц│╘
                      IF PIN1-REC (9:3) = X"E381A9"
                         MOVE    '</a><br>'  TO      POT1-REC
                         MOVE    ZERO        TO      WK-LEFT-POS
@@ -2483,15 +2483,15 @@
                        MOVE    ZERO        TO      WK-LEFT-POS
                    END-IF
 
-      *    *** ┌═│A┌П
+      *    *** Ц│┌Ц─│Ц┌▓
                WHEN PIN1-REC (9:3) >=  X"E38182" AND <= X"E38292"
                    MOVE '</a>'     TO      POT1-REC
 
-      *    *** ┌y
+      *    *** О╪╨
                WHEN PIN1-REC (9:3) =   X"EFBCBA"
                    MOVE '</a><br><br>' TO  POT1-REC
 
-      *    *** ┌`│A┌y
+      *    *** О╪║Ц─│О╪╨
                WHEN PIN1-REC (9:3) >=  X"EFBCA1" AND <= X"EFBCBA"
                    MOVE '</a>'     TO      POT1-REC
                WHEN OTHER
@@ -2538,13 +2538,13 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT2 TO     WK-PIN1-CNT2-E
-           DISPLAY WK-PGM-NAME " PIN1 ▄▐░■ = " WK-PIN1-CNT2-E
+           DISPLAY WK-PGM-NAME " PIN1 Д╩╤Ф∙╟ = " WK-PIN1-CNT2-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 ▄▐░■ = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 Д╩╤Ф∙╟ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ▄▐░■ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 Д╩╤Ф∙╟ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
