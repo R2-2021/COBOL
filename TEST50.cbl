@@ -1,4 +1,4 @@
-      *    *** YouTibe html �A�j����i (�N�㏇) �쐬
+      *    *** YouTube html アニメ作品 (年代順) 作成
 
       *    *** JOB=C.TEST61
 
@@ -10,13 +10,13 @@
       *    ***   |
       *    *** TEST63
       *    ***   |
-      *    *** TEST51 �A�j�� ���O�� �������� �쐬
+      *    *** TEST51 アニメ 名前順 ｈｔｍｌ 作成
       *    ***   |
       *    *** COBSORT COBSORT.T009.PRM1
       *    ***   |
       *    *** TEST73
       *    ***   |
-      *    *** TEST50 �A�j�� �N�㏇ �������� �쐬
+      *    *** TEST50 アニメ 年代順 ｈｔｍｌ 作成
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST50.
@@ -25,17 +25,17 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** �A�j����i�f�[�^�@�t�s�e�W
+      *    *** アニメ作品データ　ＵＴＦ８
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** twiiter,instagram �f�[�^�@���g�p
+      *    *** twiiter,instagram データ　未使用
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** HTML �f�[�^
+      *    *** HTML データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -74,10 +74,10 @@
       *    03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST50.POT1".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "indexanime.html".
            03  WK-POT1-F-NAME.
-             05 PIC X(023) VALUE "C:\Users\koko\OneDrive\".
-             05 PIC X(012) VALUE "�h�L�������g".
+             05 PIC X(023) VALUE "C:\Users\xxxx\OneDrive\".
+             05 PIC X(012) VALUE "ドキュメント".
              05 PIC X(013) VALUE "\HTML\YouTube".
-             05 PIC X(004) VALUE "���D".
+             05 PIC X(004) VALUE "声優".
              05 PIC X(016) VALUE "\indexanime.html".
 
            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
@@ -98,7 +98,7 @@
            03  WK-PIN2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
-      *    *** YouTube �A�j���N�㏇
+      *    *** YouTube アニメ年代順
            03  WK-TITLE-ANIME.
              05                PIC  X(008) VALUE "YouTube ".
              05                PIC  X(009) VALUE X"E382A2E3838BE383A1".
@@ -126,14 +126,14 @@
            03  WK-DD-AMARI     BINARY-LONG SYNC VALUE ZERO.
            03  WK-OLD-YYYY     PIC  X(004) VALUE LOW-VALUE.
 
-      *    *** �ϊ��O �������Ă���f�[�^
+      *    *** 変換前 が入っているデータ
       * 01  WDE03-BUF1          PIC  X(001) ANY LENGTH.
 
-      *    *** �ϊ��O�̃f�[�^�̒���
+      *    *** 変換前のデータの長さ
        01  WDE03-BUF1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** 16�i�� �ϊ��� �������Ă���f�[�^
-      *    *** �x�m�ʂ�NETCOBOL�̎����ɂ��ƁA���ڍő咷��64770�o�C�g�ł���
+      *    *** 16進数 変換後 が入っているデータ
+      *    *** 富士通のNETCOBOLの資料によると、項目最大長は64770バイトである
        01  WDE03-BUF2.
       *    *** LLL...
            03  WDE03-BUF2-L-TBL.
@@ -189,7 +189,7 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
-      *    *** WRITE POT1 (HTML �O�f�[�^�o��)
+      *    *** WRITE POT1 (HTML 前データ出力)
            PERFORM S050-10     THRU    S050-EX
 
 
@@ -211,11 +211,11 @@
 
 
 
-      *    *** #NN link �o��
+      *    *** #NN link 出力
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
                    EVALUATE WK-YYYY (1:1)
                        WHEN "#"
-      *    *** #NN ���R�[�h�ҏW3
+      *    *** #NN レコード編集3
                            PERFORM S130-10     THRU    S130-EX
                        WHEN OTHER
                            CONTINUE
@@ -236,23 +236,23 @@
                    EVALUATE WK-YYYY (1:1)
                        WHEN "#"
                            IF      WK-YYYY (1:4) =     "#001"
-      *    *** #NN ���R�[�h�ҏW1
+      *    *** #NN レコード編集1
                                    PERFORM S110-10     THRU    S110-EX
                            ELSE
-      *    *** #NN ���R�[�h�ҏW2
+      *    *** #NN レコード編集2
                                    PERFORM S120-10     THRU    S120-EX
                            END-IF
                        WHEN " "
                            CONTINUE
                        WHEN OTHER
-      *    *** <td> �f�[�^�o��
+      *    *** <td> データ出力
                            PERFORM S100-10     THRU    S100-EX
                    END-EVALUATE
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
 
-      *    *** WRITE POT1 (HTML ��f�[�^�o��)
+      *    *** WRITE POT1 (HTML 後データ出力)
            PERFORM S070-10     THRU    S070-EX
 
       *    *** CLOSE
@@ -363,7 +363,7 @@
            IF      WK-PIN2-STATUS =    ZERO
                    ADD     1           TO      WK-PIN2-CNT
 
-      *    *** 256�o�C�g�܂ł�������Ȃ�
+      *    *** 256バイトまでしか入らない
                    UNSTRING PIN2-REC
                            DELIMITED BY ","
                            INTO
@@ -407,7 +407,7 @@
        S032-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML �O�f�[�^�o��)
+      *    *** WRITE POT1 (HTML 前データ出力)
        S050-10.
 
            MOVE    "<DOCTYPE html>"
@@ -473,7 +473,7 @@
            ADD     1           TO      WK-POT1-CNT
 
            MOVE
-      *     '<img src="C:\Users\koko\OneDrive\Hackadoll\'
+      *     '<img src="C:\Users\xxxx\OneDrive\Hackadoll\'
            '<img src="Hackadoll\'
                                TO      POT1-REC
            WRITE   POT1-REC
@@ -497,7 +497,7 @@
            END-IF
            DIVIDE  WDT-DATE-DD BY 6 GIVING WK-DD-SHO
                        REMAINDER WK-DD-AMARI
-      *    *** WK-NUM �ɂO�|�U�̒l��������
+      *    *** WK-NUM に０－６の値を加える
            ADD     WK-DD-AMARI TO      WK-NUM
            IF      WK-NUM      >       1143
                    ADD     -1143       TO      WK-NUM
@@ -557,7 +557,7 @@
        S060-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML ��f�[�^�o��)
+      *    *** WRITE POT1 (HTML 後データ出力)
        S070-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a></body></html>'
@@ -568,7 +568,7 @@
        S070-EX.
            EXIT.
 
-      *    *** <td> �f�[�^�o��
+      *    *** <td> データ出力
        S100-10.
 
            ADD     1           TO      I
@@ -608,7 +608,7 @@
       *     MOVE    '<img src="image\'        TO      POT1-REC
            IF      WK-IMG (1:1) =      SPACE
                    MOVE 
-                   '<img src="C:\Users\koko\Pictures\anime\animate'
+                   '<img src="C:\Users\xxxx\Pictures\anime\animate'
                                TO      POT1-REC
                    MOVE    PIN1-REC (1:4) TO   POT1-REC (47:4)
                    MOVE    PIN1-REC (6:2) TO   POT1-REC (51:2)
@@ -803,7 +803,7 @@
        S100-EX.
            EXIT.
 
-      *    *** #NNN ���R�[�h�ҏW1
+      *    *** #NNN レコード編集1
        S110-10.
 
            MOVE    '<h2><br><a name="   ">'
@@ -826,7 +826,7 @@
        S110-EX.
            EXIT.
 
-      *    *** #NNN ���R�[�h�ҏW2
+      *    *** #NNN レコード編集2
        S120-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a>'
@@ -834,8 +834,8 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** <br> �P���ƁA�����I�ɘA�Ԃ��i���ɓ��� ����Ȃ���������
-      *    *** <br> �Q���ƁA�����I�ɘA�Ԃ��i���ɓ���Ȃ�
+      *    *** <br> １つだと、自動的に連番が段落に入る 入らない時もある
+      *    *** <br> ２つだと、自動的に連番が段落に入らない
            MOVE    '<h2><br><a name="   ">'
                                TO      POT1-REC
            MOVE    PIN1-REC (2:3) TO   POT1-REC (18:3)
@@ -857,7 +857,7 @@
        S120-EX.
            EXIT.
 
-      *    *** #NNN ���R�[�h�ҏW3
+      *    *** #NNN レコード編集3
        S130-10.
 
            IF      PIN1-REC (1:4) =    "#001"
@@ -936,7 +936,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ���D�j���[�X
+      *    *** 声優ニュース
                    MOVE    X"E5A3B0E584AAE3838BE383A5E383BCE382B9"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -960,7 +960,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ���D
+      *    *** 声優
                    MOVE    X'E5A3B0E584AA'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -984,7 +984,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �A�j���N�㏇
+      *    *** アニメ年代順
                    MOVE    X'E382A2E3838BE383A1E5B9B4E4BBA3E9A086'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1008,7 +1008,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �A�j���^�C�g����
+      *    *** アニメタイトル順
                    MOVE    
                    X'E382A2E3838BE383A1E382BFE382A4E38388E383ABE9A086'
                                        TO      POT1-REC
@@ -1028,7 +1028,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �~�A�j��
+      *    *** 冬アニメ
                    MOVE    X"E586ACE382A2E3838BE383A1"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1046,7 +1046,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �t�A�j��
+      *    *** 春アニメ
                    MOVE    X"E698A5E382A2E3838BE383A1"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1064,7 +1064,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �ăA�j��
+      *    *** 夏アニメ
                    MOVE    X"E5A48FE382A2E3838BE383A1"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1082,7 +1082,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �H�A�j��
+      *    *** 秋アニメ
                    MOVE    X"E7A78BE382A2E3838BE383A1"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1115,7 +1115,7 @@
                    MOVE    '" style="position:relative; left:64px;">'
                                    TO      POT1-REC
                WHEN PIN1-REC (19:2) = "10"
-      *    *** 2011 �N�͂P�O���̂݁A���̌��̃f�[�^�Ȃ�
+      *    *** 2011 年は１０月のみ、他の月のデータない
       *           IF      PIN1-REC (9:4) = "2011"
       *             MOVE    '"><br>'
       *                             TO      POT1-REC
@@ -1131,14 +1131,14 @@
 
       *    *** MM=?
            IF      PIN1-REC (19:2) NOT = "10"
-      *    *** �N�x�ύX�̎�
+      *    *** 年度変更の時
                AND PIN1-REC (9:4) NOT = WK-OLD-YYYY
                    MOVE    '<br>'      TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
            END-IF
 
-      *    *** #NNN �w�w�w�w�w => NNN �w�w�w�w�w
+      *    *** #NNN ＸＸＸＸＸ => NNN ＸＸＸＸＸ
            MOVE    PIN1-REC (9:) TO    POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -1195,13 +1195,13 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ���� = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 ���� = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 件数 = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ���� = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
