@@ -1,7 +1,7 @@
-      *    *** �f�B���N�g�� ��́A�A���}�b�`�A�}�b�`���O
+      *    *** ディレクトリ 解析、アンマッチ、マッチング
       *    *** TEST88 => TEST88
-      *    *** C:\Users\... DIR �f�[�^ UTF8 (TEST85.POT1)
-      *    *** M:Kachin-PC\...  DIR ��̓f�[�^ UTF8
+      *    *** C:\Users\... DIR データ UTF8 (TEST85.POT1)
+      *    *** M:Kachin-PC\...  DIR 解析データ UTF8
       *    ***  (TEST86.POT1=>TEST23.POT1)
 
        IDENTIFICATION          DIVISION.
@@ -11,13 +11,13 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** C:\Users\... DIR �f�[�^ UTF8 (TEST85.POT1)
+      *    *** C:\Users\... DIR データ UTF8 (TEST85.POT1)
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** �����ɂ���t�@�C����U�蕪����
-      *    *** M:Kachin-PC\...  DIR ��̓f�[�^ UTF8
+      *    *** ここにあるファイルを振り分ける
+      *    *** M:Kachin-PC\...  DIR 解析データ UTF8
       *    ***  (TEST86.POT1=>TEST23.POT1)
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
@@ -25,12 +25,12 @@
            ACCESS SEQUENTIAL
            RECORD KEY PIN2-KEY.
 
-      *    *** �}�b�`���O �f�[�^
+      *    *** マッチング データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** �A���}�b�` �f�[�^
+      *    *** アンマッチ データ
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
                                STATUS   WK-POT2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -127,7 +127,7 @@
 
                       WHEN PIN1-KEY = PIN2-KEY
       *    *** WRITE POT1
-      *    *** �}�b�`���O���A���g�p�Ȃ̂ŃR�����g�ɂ���
+      *    *** マッチング分、未使用なのでコメントにする
       *                    PERFORM S100-10     THRU    S100-EX
       *    *** READ PIN1
                            PERFORM S020-10     THRU    S020-EX
@@ -243,9 +243,9 @@
        S032-10.
 
            MOVE    "N"         TO      SW-NAME
-      *    *** �����Ńo�b�N�A�b�v�����t�@�C�����͏��O
-      *    *** �����͂t�s�e�W�Ȃ̂ŁA��ʏ�̌��ʒu�͂����A
-      *    *** �����������{SAKURA-EDIT ��̉�ʈʒu = PIN2-LEN
+      *    *** 自動でバックアップされるファイル名は除外
+      *    *** 漢字はＵＴＦ８なので、画面上の桁位置はずれる、
+      *    *** 漢字文字数＋SAKURA-EDIT 上の画面位置 = PIN2-LEN
            PERFORM UNTIL SW-NAME = "Y"
                       OR WK-PIN2-EOF = HIGH-VALUE
                IF        PIN2-KEY (PIN2-LEN - 08:09) = "Large.jpg"
@@ -267,9 +267,9 @@
                      OR  PIN2-KEY (PIN2-LEN - 07:08) = ".onetoc2"
                      OR  PIN2-KEY (PIN2-LEN - 07:08) = "sentinel"
                      OR  PIN2-KEY (PIN2-LEN - 18:19) =
-                         "\.webaxs\users\koko"
+                         "\.webaxs\users\xxxx"
                      OR  PIN2-KEY (PIN2-LEN - 22:23) =
-      *    *** C:\ ��...cache M:\ ��....Cache �ɂȂ��Ă�
+      *    *** C:\ は...cache M:\ は....Cache になってた
                          ".GenerateResource.Cache"
                      OR  PIN2-KEY (PIN2-LEN - 07:08) = ".ide-shm"
                      OR  PIN2-KEY (PIN2-LEN - 07:08) = ".ide-wal"
@@ -286,7 +286,7 @@
            EXIT.
 
       *    *** WRITE POT1
-      *    *** �}�b�`���O �i�o�b�N�A�b�ρj
+      *    *** マッチング （バックアッ済）
        S100-10.
 
            WRITE   POT1-REC    FROM    PIN2-REC
@@ -302,7 +302,7 @@
            EXIT.
 
       *    *** WRITE POT2
-      *    *** �A���}�b�` �i�폜�Ώہj
+      *    *** アンマッチ （削除対象）
        S110-10.
 
            WRITE   POT2-REC    FROM    PIN2-REC
@@ -354,19 +354,19 @@
 
            DISPLAY WK-PGM-NAME " END"
 
-           DISPLAY WK-PGM-NAME " PIN2 FILE�� PIN1�ɗL�鎞�A"
-                               "POT1�ցA�������APOT2�֏o��"
+           DISPLAY WK-PGM-NAME " PIN2 FILEが PIN1に有る時、"
+                               "POT1へ、無い時、POT2へ出力"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 �ݽ� = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 �ݽ� = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 M�ݽ�= " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 Mｹﾝｽｳ= " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 U�ݽ�= " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 Uｹﾝｽｳ= " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
