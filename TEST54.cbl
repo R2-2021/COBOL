@@ -1,4 +1,4 @@
-      *    *** YouTibe html ｗｉｋｉ汎用 作成
+      *    *** YouTube html ｗｉｋｉ汎用 作成
       *    ***
       *    *** TEST53 TEST55 TEST56 TEST57 TEST70 TEST74 TEST78 TEST83
       *    ***   ↓     ↓     ↓     ↓     ↓     ↓     ↓     ↓
@@ -1254,7 +1254,7 @@
                    ADD     1           TO      WK-POT1-CNT
 
       *    *** IF SW-SEARCH = "Y" の時は、
-      *    *** C:\Users\koko\OneDrive\ドキュメント\HTML\YouTube汎用\IMAGE に
+      *    *** C:\Users\xxxx\OneDrive\ドキュメント\HTML\YouTube汎用\IMAGE に
       *    *** 女優名.JPG が指定されているか、
       *    *** TEST54.PIN2 に女優名,女優画像(dmmの画像アドレスをコピー),...
       *    ***  が指定されている
