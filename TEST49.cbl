@@ -1,4 +1,4 @@
-      *    *** YouTibe html 声優 作成
+      *    *** YouTube html 声優 作成
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST49.
