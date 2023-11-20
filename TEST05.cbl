@@ -1,4 +1,4 @@
-      *    *** COBDUMP TEST,‘¼
+      *    *** COBDUMP TEST,ä»–
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST05.
@@ -8,7 +8,7 @@
        FILE-CONTROL.
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-      *    *** FILE STATUS –³‚Ì’²¸‚Ìˆ×AƒRƒƒ“ƒg‚É‚µ‚ÄƒeƒXƒg
+      *    *** FILE STATUS ç„¡ã®èª¿æŸ»ã®ç‚ºã€ã‚³ãƒ¡ãƒ³ãƒˆã«ã—ã¦ãƒ†ã‚¹ãƒˆ
       *                         STATUS   WK-PIN1-STATUS
       *     ORGANIZATION LINE   SEQUENTIAL.
            ORGANIZATION RECORD BINARY   SEQUENTIAL.
@@ -67,35 +67,35 @@
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
-           03  WK-DATA1        PIC  X(005) VALUE "±²³´ ".
+           03  WK-DATA1        PIC  X(005) VALUE "ï½±ï½²ï½³ï½´ ".
            03  WK-DATA2        PIC S9(005) VALUE +99999.
            03  WK-DATA3        PIC  X(005) VALUE X"123456789A".
            03  WK-DATA4.
              05  FILLER        PIC  X(003) VALUE ALL "ABC".
-             05  FILLER        PIC  X(006) VALUE ALL "‚ ‚¢‚¤".
+             05  FILLER        PIC  X(006) VALUE ALL "ã‚ã„ã†".
              05  FILLER        PIC  X(003) VALUE ALL "DEF".
            03  WK-DATA5.
-             05  FILLER        PIC  X(005) VALUE ALL "±²³".
-             05  FILLER        PIC  N(003) VALUE ALL "‚©‚«‚­".
-             05  FILLER        PIC  X(003) VALUE ALL "»¼½".
+             05  FILLER        PIC  X(005) VALUE ALL "ï½±ï½²ï½³".
+             05  FILLER        PIC  N(003) VALUE ALL "ã‹ãã".
+             05  FILLER        PIC  X(003) VALUE ALL "ï½»ï½¼ï½½".
            03  WK-DATA6.
-             05  FILLER        PIC  X(005) VALUE ALL "±²³".
-             05  FILLER        PIC  N(003) VALUE ALL N"‚©‚«‚­".
-             05  FILLER        PIC  X(003) VALUE ALL "»¼½".
+             05  FILLER        PIC  X(005) VALUE ALL "ï½±ï½²ï½³".
+             05  FILLER        PIC  N(003) VALUE ALL N"ã‹ãã".
+             05  FILLER        PIC  X(003) VALUE ALL "ï½»ï½¼ï½½".
            03  WK-DATA7.
-             05  FILLER        PIC  X(005) VALUE ALL "±²³".
-             05  FILLER        PIC  N(003) VALUE ALL NC"‚©‚«‚­".
-             05  FILLER        PIC  X(003) VALUE ALL "»¼½".
+             05  FILLER        PIC  X(005) VALUE ALL "ï½±ï½²ï½³".
+             05  FILLER        PIC  N(003) VALUE ALL NC"ã‹ãã".
+             05  FILLER        PIC  X(003) VALUE ALL "ï½»ï½¼ï½½".
            03  WK-DATA8.
-             05  FILLER        PIC  X(005) VALUE ALL "±²³".
-             05  FILLER        PIC  X(006) VALUE ALL NC"‚©‚«‚­".
-             05  FILLER        PIC  X(003) VALUE ALL "»¼½".
+             05  FILLER        PIC  X(005) VALUE ALL "ï½±ï½²ï½³".
+             05  FILLER        PIC  X(006) VALUE ALL NC"ã‹ãã".
+             05  FILLER        PIC  X(003) VALUE ALL "ï½»ï½¼ï½½".
            03  WK-DATA9.
-             05  FILLER        PIC  X(020) VALUE ALL "±²³".
-             05  FILLER        PIC  X(020) VALUE ALL NC"‚©‚«‚­".
+             05  FILLER        PIC  X(020) VALUE ALL "ï½±ï½²ï½³".
+             05  FILLER        PIC  X(020) VALUE ALL NC"ã‹ãã".
            03  WK-DATA10.
-             05  FILLER        PIC  X(016) VALUE ALL "±²³".
-      *    *** ƒAƒCƒEƒGƒI
+             05  FILLER        PIC  X(016) VALUE ALL "ï½±ï½²ï½³".
+      *    *** ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª
              05  FILLER        PIC  X(015) VALUE 
                  ALL X"E38182E38184E38186E38188E3818A".
 
@@ -111,10 +111,10 @@
              05  WK-LISTING-SRC   PIC X(001) VALUE " ".
              05  WK-LISTING-XREF  PIC X(001) VALUE "X".
              05  WK-LISTING-FILE  PIC X(256) VALUE
-      *        "C:\Users\koko\Documents\COBOL\TEST05.CBL".
+      *        "C:\Users\xxxx\Documents\COBOL\TEST05.CBL".
               "TEST05.CBL".
              05  WK-LISTING-REP-FILE PIC X(256) VALUE SPACE.
-      *        "C:\Users\koko\Documents\COBOL\COBXREF.lst".
+      *        "C:\Users\xxxx\Documents\COBOL\COBXREF.lst".
              05  WK-LISTING-POT1-ID.
                07  WK-LISTING-POT1-OPEN  PIC X(001) VALUE "O".
                07  WK-LISTING-POT1-CLOSE PIC X(001) VALUE "C".
@@ -143,14 +143,14 @@
       *    *** OPEN
            PERFORM S010-10     THRU    S010-EX
   
-           DISPLAY "TEST NO ‚QŒ…“ü—Í"
+           DISPLAY "TEST NO ï¼’æ¡å…¥åŠ›"
            DISPLAY "01 COBDUMP SJIS"
            DISPLAY "02 FILEDUMP"
            DISPLAY "03 FILEDUMP,COBDUMP"
            DISPLAY "04 CBL_OC_DUMP SJIS"
            DISPLAY "05 LISTING"
-           DISPLAY "06 256 •¶Žšƒ`ƒFƒbƒN"
-           DISPLAY "07 FILE READ FILEDUMP UTF-8 •¶Žšƒ`ƒFƒbƒN"
+           DISPLAY "06 256 æ–‡å­—ãƒã‚§ãƒƒã‚¯"
+           DISPLAY "07 FILE READ FILEDUMP UTF-8 æ–‡å­—ãƒã‚§ãƒƒã‚¯"
            DISPLAY "08 COBDUMP UTF8"
            ACCEPT  WK-TESTNO
 
@@ -171,7 +171,7 @@
       *    *** CALL "LISTING" TEST
                    PERFORM S150-10     THRU    S150-EX
                WHEN "06"
-      *    *** 256•¶Žšƒ`ƒFƒbƒN TEST
+      *    *** 256æ–‡å­—ãƒã‚§ãƒƒã‚¯ TEST
                    PERFORM S160-10     THRU    S160-EX
                WHEN "07"
       *    *** FILE READ FILEDUMP UTF-8 CHECK TEST
@@ -196,10 +196,10 @@
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
-      *    *** C:\Users\koko\OneDrive\ƒhƒLƒ…ƒƒ“ƒg\COBOL>TEST05
+      *    *** C:\Users\koko\OneDrive\ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ\COBOL>TEST05
       *    *** TEST05   START
       *    *** libcob: File does not exist (STATUS = 35) File : 'TEST05.PIN1'
-      *    *** FILE STATUS Žw’è‚µ‚È‚¢‚ÆAƒtƒ@ƒCƒ‹‚È‚¢ŽžA‚±‚ÌƒGƒ‰[‚ªo‚é
+      *    *** FILE STATUS æŒ‡å®šã—ãªã„ã¨ã€ãƒ•ã‚¡ã‚¤ãƒ«ãªã„æ™‚ã€ã“ã®ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
 
            OPEN    INPUT       PIN1-F
            IF      WK-PIN1-STATUS NOT =  ZERO
@@ -254,7 +254,7 @@
 
            CALL    "COBDUMP"   USING   WK-DATA1
 
-      *    *** LEN=0@‚â@LEN = €–Ú‚Ì’·‚³‚ÌŽžA€–Ú‚Ì’·‚³‚Åo—Í
+      *    *** LEN=0ã€€ã‚„ã€€LEN = é …ç›®ã®é•·ã•ã®æ™‚ã€é …ç›®ã®é•·ã•ã§å‡ºåŠ›
            MOVE    0           TO      WFD-LEN
            CALL    "COBDUMP"   USING   WK-DATA2
                                        WFD-LEN
@@ -263,7 +263,7 @@
            CALL    "COBDUMP"   USING   WK-DATA2
                                        WFD-LEN
 
-      *    *** LEN < €–Ú‚Ì’·‚³‚ÌŽžALEN‚Ì’·‚³‚Åo—Í@3ƒoƒCƒg‚Åo—Í‚³‚ê‚Ä‚é
+      *    *** LEN < é …ç›®ã®é•·ã•ã®æ™‚ã€LENã®é•·ã•ã§å‡ºåŠ›ã€€3ãƒã‚¤ãƒˆã§å‡ºåŠ›ã•ã‚Œã¦ã‚‹
            MOVE    3           TO      WFD-LEN
            CALL    "COBDUMP"   USING   WK-DATA2
                                        WFD-LEN
@@ -337,7 +337,7 @@
       *    *** FILEDUMP,COBDUMP TEST
        S130-10.
 
-      *    *** ID=P ‚Í–{—ˆƒŒƒR[ƒho—Í—p LEN=100‚ª‹K’è’l Žw’è–³‚µ‚Í€–Ú’·
+      *    *** ID=P ã¯æœ¬æ¥ãƒ¬ã‚³ãƒ¼ãƒ‰å‡ºåŠ›ç”¨ LEN=100ãŒè¦å®šå€¤ æŒ‡å®šç„¡ã—ã¯é …ç›®é•·
            MOVE    "P"         TO      WFD-ID
            MOVE    1           TO      WFD-SU
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -409,7 +409,7 @@
        S150-EX.
            EXIT.
 
-      *    *** 256•¶Žšƒ`ƒFƒbƒN TEST
+      *    *** 256æ–‡å­—ãƒã‚§ãƒƒã‚¯ TEST
        S160-10.
 
            PERFORM VARYING I FROM 0 BY 1
@@ -441,21 +441,21 @@
       *    *** FILE READ FILEDUMP UTF-8 CHECK TEST
        S170-10.
 
-      *    *** OPEN –³READ Žž‚ÌƒGƒ‰[
+      *    *** OPEN ç„¡READ æ™‚ã®ã‚¨ãƒ©ãƒ¼
       *    *** libcob: READ/START not allowed (STATUS = 47) File : 'TEST05.PIN1'
 
            READ    PIN1-F
                AT  END
-      *    *** SELECT ASSIGN ‚ÅFILE-STATUS Žw’è‚µ‚È‚¢Žž‚Í,
-      *    *** AT END ‹å•K—v
+      *    *** SELECT ASSIGN ã§FILE-STATUS æŒ‡å®šã—ãªã„æ™‚ã¯,
+      *    *** AT END å¥å¿…è¦
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT AT END
       *             CONTINUE
                    ADD     1           TO      WK-PIN1-CNT
            END-READ
 
-      *    *** SELECT ASSIGN ‚ÅFILE-STATUS Žw’èŽž‚Í,
-      *    *** READ AT END •s—vAWK-PIN1-STATUS ƒR[ƒh–ˆ‚Ìˆ—Žw’è‚·‚é
+      *    *** SELECT ASSIGN ã§FILE-STATUS æŒ‡å®šæ™‚ã¯,
+      *    *** READ AT END ä¸è¦ã€WK-PIN1-STATUS ã‚³ãƒ¼ãƒ‰æ¯Žã®å‡¦ç†æŒ‡å®šã™ã‚‹
            IF      WK-PIN1-STATUS =    ZERO OR 4
                    ADD     1           TO      WK-PIN1-CNT
       *             DISPLAY "PIN1-LEN=" WK-PIN1-LEN
@@ -509,13 +509,13 @@
       *    *** COBDUMP UTF8 TEST
        S180-10.
 
-      *    *** CHCP 65001 (UTF8) ‚Å COBDUMP.CBL SPACE ƒNƒŠƒA[‚µ‚È‚­‚Ä‚à
-      *    *** Š¿Žš•\Ž¦‚³‚ê‚È‚¢
+      *    *** CHCP 65001 (UTF8) ã§ COBDUMP.CBL SPACE ã‚¯ãƒªã‚¢ãƒ¼ã—ãªãã¦ã‚‚
+      *    *** æ¼¢å­—è¡¨ç¤ºã•ã‚Œãªã„
            CALL    "COBDUMP"   USING   WK-DATA10
 
-      *    *** CHCP 932 ‚Å UTF8 ŠÜ‚ÞŠ¿Žšo—Í‚·‚é‚ÆADISPLAY ‚ªo—Í‚³‚ê‚È‚¢
-      *    *** CHCP 65001‚Å UTF8 ŠÜ‚ÞŠ¿Žšo—Í‚·‚é‚ÆADISPLAY “à—e‚ª•¶Žš‰»‚¯
-      *    *** ‚·‚éA‰üs‚à‚¨‚©‚µ‚­‚È‚Á‚ÄAŽŸ‚Ìs‚ª‚Â‚È‚ª‚Á‚Ä‚µ‚Ü‚¤
+      *    *** CHCP 932 ã§ UTF8 å«ã‚€æ¼¢å­—å‡ºåŠ›ã™ã‚‹ã¨ã€DISPLAY ãŒå‡ºåŠ›ã•ã‚Œãªã„
+      *    *** CHCP 65001ã§ UTF8 å«ã‚€æ¼¢å­—å‡ºåŠ›ã™ã‚‹ã¨ã€DISPLAY å†…å®¹ãŒæ–‡å­—åŒ–ã‘
+      *    *** ã™ã‚‹ã€æ”¹è¡Œã‚‚ãŠã‹ã—ããªã£ã¦ã€æ¬¡ã®è¡ŒãŒã¤ãªãŒã£ã¦ã—ã¾ã†
            DISPLAY WK-DATA10
            .
        S180-EX.
@@ -544,10 +544,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ¹Ý½³ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ï½¹ï¾ï½½ï½³ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ¹Ý½³ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 ï½¹ï¾ï½½ï½³ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
