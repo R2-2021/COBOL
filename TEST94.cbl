@@ -11,12 +11,12 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** XX ÉfÅ[É^
+      *    *** XX „Éá„Éº„Çø
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** XX ÉfÅ[É^
+      *    *** XX „Éá„Éº„Çø
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -58,16 +58,16 @@
            03  WK-PIN1-OLD     PIC  X(1024) VALUE SPACE.
            03  WK-BYTE-CNT     BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** èâä˙íl MODE=AK   (ANK=>KANJI)
+      *    *** ÂàùÊúüÂÄ§ MODE=AK   (ANK=>KANJI)
            03  WK-MODE         PIC  X(002) VALUE "AK".
-      *    *** èâä˙íl HENKAN=UU (UTF8=>UTF8)
+      *    *** ÂàùÊúüÂÄ§ HENKAN=UU (UTF8=>UTF8)
            03  WK-HENKAN       PIC  X(006) VALUE "UU".
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
 
-      *    *** 4.2.81 FUNCTION RANDOM ÇÊÇË
+      *    *** 4.2.81 FUNCTION RANDOM „Çà„Çä
        01  random-float        usage float-long.
        01  tally               BINARY-LONG SYNC VALUE ZERO.
        01  random-integer      pic 99.
@@ -172,9 +172,9 @@
                display tally ": " hits(tally)
            end-perform
            .
-      *    *** random () ÇÕ î≠ê∂ó¶Ç™àÍólÇ≈Ç»Ç¢
+      *    *** random () „ÅØ Áô∫ÁîüÁéá„Åå‰∏ÄÊßò„Åß„Å™„ÅÑ
       *    *** 
-      * C:\Users\koko\OneDrive\ÉhÉLÉÖÉÅÉìÉg\COBOL>test94
+      * C:\Users\xxxx\OneDrive\„Éâ„Ç≠„É•„É°„É≥„Éà\COBOL>test94
       * TEST94   START
       * 05 02 07 03 02 02 02 03 03 03 ...
       * +0000000001: 000000002
@@ -187,13 +187,13 @@
       * +0000000008: 000003328
       * +0000000009: 000003307
       * +0000000010: 000003273
-      * FILEDUMP POT1 π›Ω≥ =              3 (FILEDUMP.POT1                   )
-      * FILEDUMP POT2 π›Ω≥ =              3 (FILEDUMP.POT2                   )
+      * FILEDUMP POT1 ÔΩπÔæùÔΩΩÔΩ≥ =              3 (FILEDUMP.POT1                   )
+      * FILEDUMP POT2 ÔΩπÔæùÔΩΩÔΩ≥ =              3 (FILEDUMP.POT2                   )
       * TEST94   END
-      * TEST94   PIN1 π›Ω≥ =              0 (TEST94.PIN1                     )
-      * TEST94   POT1 π›Ω≥ =              0 (TEST94.POT1                     )
-      * TEST94   START=21/10/11 20:15:25.40 END=21/10/11 20:15:26.06 åé(MON)
-      * TEST94   èàóùéûä‘          0.66ïbÇ≈ÇµÇΩ
+      * TEST94   PIN1 ÔΩπÔæùÔΩΩÔΩ≥ =              0 (TEST94.PIN1                     )
+      * TEST94   POT1 ÔΩπÔæùÔΩΩÔΩ≥ =              0 (TEST94.POT1                     )
+      * TEST94   START=21/10/11 20:15:25.40 END=21/10/11 20:15:26.06 Êúà(MON)
+      * TEST94   Âá¶ÁêÜÊôÇÈñì          0.66Áßí„Åß„Åó„Åü
 
        S100-EX.
            EXIT.
@@ -221,10 +221,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 π›Ω≥ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ÔΩπÔæùÔΩΩÔΩ≥ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 π›Ω≥ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 ÔΩπÔæùÔΩΩÔΩ≥ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
