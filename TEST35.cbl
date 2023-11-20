@@ -40,8 +40,9 @@
 
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST35.PIN1".
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE
-               "TEST28_201110_201810.csv".
+      *         "TEST28_201110_201810.csv".
       *         "TEST28_201110_201810.UTF8.csv".
+                "TEST50SJIS.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST35.POT1".
 
            03  WK-PIN1-STATUS       PIC  9(002) VALUE ZERO.
@@ -322,7 +323,7 @@
                    UNSTRING PIN1-REC
                             DELIMITED BY ","
                        INTO
-                            WK-SEQNO
+      *                      WK-SEQNO
                             WK-YYYY
                             WK-MM
                             WK-KISETU
