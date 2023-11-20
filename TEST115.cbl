@@ -3,7 +3,7 @@
       *    *** 
       *    *** COPYの実行は、PIN1-F より CD XXXフォルダーを実行し、
       *    *** 該当のファイルをCOPYして、出力先は
-      *    ***  C:\Users\koko\OneDrive なので、そこから該当のフォルダーに
+      *    ***  C:\Users\xxxx\OneDrive なので、そこから該当のフォルダーに
       *    ***  移動する
       *    *** 
 
@@ -171,7 +171,7 @@
                        IF      PIN2-REC (WK-PIN2-LEN - 13:14) =
                                "のディレクトリ"
       *    *** 14:のディレクトリ
-      *    *** 25: C:\Users\koko\OneDrive\
+      *    *** 25: C:\Users\xxxx\OneDrive\
       *    *** 14 + 25
                                MOVE    PIN2-REC (26:WK-PIN2-LEN - 39)
                                                    TO      WK-DIR2
