@@ -1,7 +1,7 @@
-      *    *** YouTube html �䂢������A�Ό��ĐD�@�vatch�@�kist �쐬
+      *    *** YouTube html ゆいかおり、石原夏織　Ｗatch　Ｌist 作成
       *    *** 
-      *    *** �`���v�^�[�̎��A�\��ƕ\�����Ԃ���Ă��邪�A
-      *    *** TEST69�Œ����̓���ׁATEST69�ŏo�͂����WATCH�̕b���ύX����
+      *    *** チャプターの時、表題と表示時間ずれているが、
+      *    *** TEST69で直すの難しい為、TEST69で出力されるWATCHの秒数変更する
       *    *** 
       *    *** JOB TEST69
       *    ***        |
@@ -14,18 +14,18 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** WATCH DATA�@�t�s�e�W
-      *    *** TEST10 => TEST66 => TEST69,TEST68 �ɂ���
+      *    *** WATCH DATA　ＵＴＦ８
+      *    *** TEST10 => TEST66 => TEST69,TEST68 にした
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** twiiter,instagram �f�[�^�@���g�p
+      *    *** twiiter,instagram データ　未使用
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** HTML �f�[�^
+      *    *** HTML データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -59,12 +59,12 @@
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST68.PIN2".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST68.POT1".
 
-      *    *** �����͂r�i�h�r�łȂ��ƕ�����������
+      *    *** 漢字はＳＪＩＳでないと文字化けする
            03  WK-POT1-F-NAME.
-             05  PIC X(023) VALUE "C:\Users\koko\OneDrive\".
-             05  PIC X(012) VALUE "�h�L�������g".
+             05  PIC X(023) VALUE "C:\Users\xxxx\OneDrive\".
+             05  PIC X(012) VALUE "ドキュメント".
              05  PIC X(013) VALUE "\HTML\YouTube".
-             05  PIC X(004) VALUE "���D".
+             05  PIC X(004) VALUE "声優".
              05  PIC X(006) VALUE "\index".
              05  WK-POT1-F-NAME21 PIC X(200) VALUE SPACE.
            03  WK-POT1-F-NAME2  PIC X(200) VALUE SPACE.
@@ -100,35 +100,35 @@
            03  WK-NUM          PIC  9(003) VALUE ZERO.
 
            03  WK-YOUTUBE-TITLE PIC  X(1024) VALUE SPACE.
-      *    *** USER���i�쐬�ҁj
+      *    *** USER名（作成者）
            03  WK-TEXT2        PIC  X(1024) VALUE SPACE.
-      *    *** �^�C�g����
+      *    *** タイトル名
            03  WK-TITLE        PIC  X(1024) VALUE SPACE.
-      *    *** CHANNEL,USER �A�h���X
+      *    *** CHANNEL,USER アドレス
            03  WK-HTTPS        PIC  X(1024) VALUE SPACE.
-      *    *** WATCH �A�h���X,���� �A�h���X
+      *    *** WATCH アドレス,検索 アドレス
            03  WK-WATCH        PIC  X(1024) VALUE SPACE.
-      *    *** �摜 �A�h���X
+      *    *** 画像 アドレス
            03  WK-IMG          PIC  X(1024) VALUE SPACE.
-      *    *** �ʏ�@�^�C�g���E�쐬�ғ��L��A�Đ����ԁ@�����b
-      *    *** �^PLAYLIST�̎��A�^�C�g���P�C�Q�A
+      *    *** 通常　タイトル・作成者等有り、再生時間　時分秒
+      *    *** ／PLAYLISTの時、タイトル１，２、
            03  WK-LABEL        PIC  X(1024) VALUE SPACE.
-      *    *** �Đ�����
+      *    *** 再生時間
            03  WK-LABEL2       PIC  X(1024) VALUE SPACE.
-      *    *** PLAYLIST �A�h���X
+      *    *** PLAYLIST アドレス
            03  WK-PLAYLIST     PIC  X(1024) VALUE SPACE.
-      *    *** VIDEO �{��
+      *    *** VIDEO 本数
            03  WK-VIDEOCOUNT   PIC  X(1024) VALUE SPACE.
-      *    *** �ʏ��1.�������O�A2.������
-      *    *** �^1.PLAYLIST�̎��A2.�^�C�g���P�C�Q�A
-      *    *** �������O
+      *    *** 通常は1.何か月前、2.視聴回数
+      *    *** ／1.PLAYLISTの時、2.タイトル１，２、
+      *    *** 何か月前
            03  WK-SIMPLETEXT   PIC  X(1024) VALUE SPACE.
-      *    *** ������
+      *    *** 視聴回数
            03  WK-SIMPLETEXT2  PIC  X(1024) VALUE SPACE.
-      *    *** �Đ����X�g�̑S�̂����铙
+      *    *** 再生リストの全体を見る等
            03  WK-TEXT3        PIC  X(1024) VALUE SPACE.
 
-      *    *** �b��
+      *    *** 秒数
            03  WK-BYOU         PIC  9(006) VALUE ZERO.
            03  WK-HH-X.
              05  WK-HH         PIC  9(002) VALUE ZERO.
@@ -153,12 +153,12 @@
            03  WK-MAN-CNT      BINARY-LONG SYNC VALUE ZERO.
            03  WK-OKU-CNT      BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** �����l MODE=AA   (ANK=>ANK)
+      *    *** 初期値 MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
-      *    *** �����l HENKAN=SU (SJIS=>UTF8)
+      *    *** 初期値 HENKAN=SU (SJIS=>UTF8)
            03  WK-HENKAN       PIC  X(002) VALUE "SU".
            03  WK-SAISEILIST.
-      *    *** �Đ����X�g�̑S�̂�����
+      *    *** 再生リストの全体を見る
              05  PIC  X(010) VALUE   X"E5868DE7949FE383AAE3".
              05  PIC  X(023) VALUE
              X"82B9E38388E381AEE585A8E4BD93E38292E8A68BE3828B".
@@ -200,10 +200,10 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
-      *    *** PIN1 WK-TEXT2 (10:1) ���X�y�[�X�Ȃ�A.bat �œ��͂���
-      *    *** �t�@�C������TITEL�Ɏg��
+      *    *** PIN1 WK-TEXT2 (10:1) がスペースなら、.bat で入力した
+      *    *** ファイル名をTITELに使う
            IF      WK-TEXT2 (10:1) =   SPACE
-      *    *** �R�[�h�ϊ��@SJIS=>UTF8
+      *    *** コード変換　SJIS=>UTF8
                    PERFORM S040-10     THRU    S040-EX
            END-IF
            MOVE    WK-TEXT2 (2:) TO    WK-YOUTUBE-TITLE
@@ -211,7 +211,7 @@
       *    *** OPEN 2
            PERFORM S012-10     THRU    S012-EX
 
-      *    *** WRITE POT1 (HTML �O�f�[�^�o��)
+      *    *** WRITE POT1 (HTML 前データ出力)
            PERFORM S050-10     THRU    S050-EX
 
 
@@ -232,12 +232,12 @@
 
 
 
-      *    *** #NN link �o��
+      *    *** #NN link 出力
            PERFORM UNTIL WK-PIN1-EOF =  HIGH-VALUE
                    EVALUATE PIN1-REC (1:1)
                        WHEN "#"
-      *    *** #NN ���R�[�h�ҏW3
-      *    *** TWICE TEXT : #TWICE3 �Ή�
+      *    *** #NN レコード編集3
+      *    *** TWICE TEXT : #TWICE3 対応
                            IF    PIN1-REC (2:2) IS NUMERIC
                                PERFORM S130-10     THRU    S130-EX
                            END-IF
@@ -261,23 +261,23 @@
                        WHEN "%"
                            CONTINUE
                        WHEN "#"
-      *    *** TWICE TEXT : #TWICE3 �Ή�
+      *    *** TWICE TEXT : #TWICE3 対応
                            IF    PIN1-REC (2:2) IS NUMERIC
                                IF      PIN1-REC (1:3) =     "#01"
-      *    *** #NN ���R�[�h�ҏW1
+      *    *** #NN レコード編集1
                                    PERFORM S110-10     THRU    S110-EX
                                ELSE
-      *    *** #NN ���R�[�h�ҏW2
+      *    *** #NN レコード編集2
                                    PERFORM S120-10     THRU    S120-EX
                                END-IF
                            ELSE
 
                                IF      WK-SIMPLETEXT2 (2:1) = ":"
                                     OR WK-SIMPLETEXT2 (3:1) = ":"
-      *    *** �`���v�^�[�b���ύX
+      *    *** チャプター秒数変更
                                    PERFORM S101-10     THRU    S101-EX
                                END-IF
-      *    *** <td> �f�[�^�o��
+      *    *** <td> データ出力
                                PERFORM S100-10     THRU    S100-EX
                            END-IF
                        WHEN " "
@@ -286,10 +286,10 @@
 
                            IF      WK-SIMPLETEXT2 (2:1) = ":"
                                 OR WK-SIMPLETEXT2 (3:1) = ":"
-      *    *** �`���v�^�[�b���ύX
+      *    *** チャプター秒数変更
                                PERFORM S101-10     THRU    S101-EX
                            END-IF
-      *    *** <td> �f�[�^�o��
+      *    *** <td> データ出力
                            PERFORM S100-10     THRU    S100-EX
                    END-EVALUATE
 
@@ -297,9 +297,9 @@
                    PERFORM S020-10     THRU    S020-EX
 
                    IF      WK-TITLE    =
-      *    *** �`�����l���Ɉړ� 2�������āA�����Ǝv����̂ŁA
-      *    *** �P���ǂݔ�΂�����
-      *    *** �`�����l���Ɉړ�
+      *    *** チャンネルに移動 2件続けて、無いと思われるので、
+      *    *** １件読み飛ばしする
+      *    *** チャンネルに移動
                    X"E38381E383A3E383B3E3838DE383ABE381ABE7A7BBE58B95"
       *    *** READ PIN1
                            PERFORM S020-10     THRU    S020-EX
@@ -307,12 +307,12 @@
                            CONTINUE
                    END-IF
 
-      *    *** �`���v�^�[�̎��A���̑��A�܂肽���ނ͂P�O�̃`���v�^�[�Ɠ���
-      *    *** �b���J�n�Ȃ̂ŁA
-      *    *** �P���ǂݔ�΂�����
-      *    *** ���̑�
+      *    *** チャプターの時、その他、折りたたむは１つ前のチャプターと同じ
+      *    *** 秒数開始なので、
+      *    *** １件読み飛ばしする
+      *    *** その他
                    IF      WK-TITLE  (1:9)   = X"E3819DE381AEE4BB96"
-      *    *** �܂肽����
+      *    *** 折りたたむ
                        AND WK-LABEL2 (1:15)  = 
                                    X"E68A98E3828AE3819FE3819FE38280"
       *    *** READ PIN1
@@ -322,7 +322,7 @@
                    END-IF
            END-PERFORM
 
-      *    *** WRITE POT1 (HTML ��f�[�^�o��)
+      *    *** WRITE POT1 (HTML 後データ出力)
            PERFORM S070-10     THRU    S070-EX
 
       *    *** CLOSE
@@ -354,7 +354,7 @@
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
                            WK-ARGUMENT-NUMBER
-                   DISPLAY WK-PGM-NAME " POT1-F 1�܂Ŏw���"
+                   DISPLAY WK-PGM-NAME " POT1-F 1個まで指定可"
                    STOP    RUN
            END-EVALUATE
 
@@ -372,7 +372,7 @@
                    STOP    RUN
            END-IF
 
-      *    *** �T�u���[�`����FILEDUMP �g�p����,FILEDUMP ��OPEN���CALL����
+      *    *** サブルーチンでFILEDUMP 使用時は,FILEDUMP のOPEN先にCALLする
            MOVE    "O"         TO      WFD-ID
            MOVE    WK-PGM-NAME TO      WFD-PGM
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -460,16 +460,16 @@
                    MOVE    ZERO        TO      WK-MAN-CNT
                    MOVE    ZERO        TO      WK-OKU-CNT
                    INSPECT WK-SIMPLETEXT (1:WK-SIMPLETEXT-LEN) TALLYING
-      *    *** ��
+      *    *** 万
                            WK-MAN-CNT FOR ALL X"E4B887"
-      *    *** ��
+      *    *** 億
                            WK-OKU-CNT FOR ALL X"E58484"
                    IF      WK-MAN-CNT  =       ZERO
                        AND WK-OKU-CNT  =       ZERO
                        MOVE    ZERO        TO      WK-SHICHO-CNT
                        INSPECT WK-SIMPLETEXT (1:WK-SIMPLETEXT-LEN)
                            TALLYING
-      *    *** �񎋒�
+      *    *** 回視聴
                            WK-SHICHO-CNT FOR ALL X"E59B9EE8A696E881B4"
                        IF      WK-SHICHO-CNT NOT = ZERO
       *    *** .=>,
@@ -482,16 +482,16 @@
                    MOVE    ZERO        TO      WK-OKU-CNT
                    INSPECT WK-SIMPLETEXT2 (1:WK-SIMPLETEXT2-LEN) 
                            TALLYING
-      *    *** ��
+      *    *** 万
                            WK-MAN-CNT FOR ALL X"E4B887"
-      *    *** ��
+      *    *** 億
                            WK-OKU-CNT FOR ALL X"E58484"
                    IF      WK-MAN-CNT  =       ZERO
                        AND WK-OKU-CNT  =       ZERO
                        MOVE    ZERO        TO      WK-SHICHO-CNT
                        INSPECT WK-SIMPLETEXT2(1:WK-SIMPLETEXT2-LEN)
                           TALLYING
-      *    *** �񎋒�
+      *    *** 回視聴
                            WK-SHICHO-CNT FOR ALL X"E59B9EE8A696E881B4"
                        IF      WK-SHICHO-CNT NOT = ZERO
       *    *** .=>,
@@ -500,7 +500,7 @@
                        END-IF
                    END-IF
 
-      *    *** �m�F�ς�
+      *    *** 確認済み
                    IF     WK-LABEL2 (1:12) = X"E7A2BAE8AA8DE6B888E381BF"
                            MOVE    SPACE       TO     WK-LABEL2
                            MOVE    ZERO        TO     WK-LABEL2-LEN
@@ -531,7 +531,7 @@
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
                NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
-      *    *** 256�o�C�g�܂ł�������Ȃ�
+      *    *** 256バイトまでしか入らない
                    UNSTRING PIN2-REC
                            DELIMITED BY ","
                            INTO
@@ -573,7 +573,7 @@
        S032-EX.
            EXIT.
 
-      *    *** �R�[�h�ϊ� SJIS=>UTF8
+      *    *** コード変換 SJIS=>UTF8
        S040-10.
 
            MOVE    "CHANGE"    TO      WDE05-ID
@@ -586,8 +586,8 @@
                                        WK-POT1-F-NAME2
                                        WK-POT1-F-NAME2U
 
-      *    *** ,�����̂�1024�����Ă��邽�߁A���Z�b�g
-      *    *** 9 ��YouTube �̒���
+      *    *** ,無いので1024入っているため、リセット
+      *    *** 9 はYouTube の長さ
            MOVE    9           TO      WK-TEXT2-LEN
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL I > 200
@@ -601,7 +601,7 @@
        S040-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML �O�f�[�^�o��)
+      *    *** WRITE POT1 (HTML 前データ出力)
        S050-10.
 
            IF      WK-IMG (1:8) =      "PLAYLIST"
@@ -729,7 +729,7 @@
        S060-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML ��f�[�^�o��)
+      *    *** WRITE POT1 (HTML 後データ出力)
        S070-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a></body></html>'
@@ -740,7 +740,7 @@
        S070-EX.
            EXIT.
 
-      *    *** <td> �f�[�^�o��
+      *    *** <td> データ出力
        S100-10.
 
            ADD     1           TO      I
@@ -811,19 +811,19 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** �{�̓���
+      *    *** 本の動画
            IF      WK-TEXT2 (WK-TEXT2-LEN - 12:12) =
                    X"E69CACE381AEE58B95E794BB"
                    MOVE    "Y"         TO      SW-HONNO-DOUGA
            END-IF
 
-      *    *** �r�f�I�{���������AVIDEOCOUNT ���N���A�[
+      *    *** ビデオ本数同じ時、VIDEOCOUNT をクリアー
            IF      WK-VIDEOCOUNT (1:WK-VIDEOCOUNT-LEN - 1)
                  = WK-TEXT2 (1:WK-VIDEOCOUNT-LEN - 1)
                    MOVE    SPACE       TO      WK-VIDEOCOUNT
            END-IF
 
-      *    *** VIDEO �{��
+      *    *** VIDEO 本数
            IF      WK-VIDEOCOUNT (1:1) = SPACE
                    CONTINUE
            ELSE
@@ -831,20 +831,20 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** TEST69 �� �{�̓���A�{�� �ǉ�����
+      *    *** TEST69 で 本の動画、本目 追加した
                    MOVE    WK-VIDEOCOUNT (1:WK-VIDEOCOUNT-LEN) TO
                            POT1-REC (1:)
       *             IF      SW-HONNO-DOUGA =    "Y"
-      *    *** �{�̓���
+      *    *** 本の動画
       *                     MOVE    X"E69CACE381AEE58B95E794BB" TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:12)
       *             ELSE
       *                 IF      SW-PLAYLIST =       "Y"
-      *    *** �{��
+      *    *** 本目
       *                     MOVE    X"E69CACE79BAE" TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:6)
       *                 ELSE
-      *    *** �{
+      *    *** 本
       *                     MOVE    X"E69CAC"   TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:3)
       *                 END-IF
@@ -854,9 +854,9 @@
            END-IF
 
            IF      WK-PLAYLIST (1:1) = SPACE
-      *    *** PLAYLIST �łȂ����A
+      *    *** PLAYLIST でない時、
 
-      *    *** �������O�^�^�C�g���P
+      *    *** 何か月前／タイトル１
                    IF      WK-SIMPLETEXT (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -871,8 +871,8 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** PLAYLIST �łȂ����A�Đ����Ԃ̂݁A�o��
-      *    *** �Đ����ԁ@1
+      *    *** PLAYLIST でない時、再生時間のみ、出力
+      *    *** 再生時間　1
                    IF      WK-LABEL (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -885,7 +885,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �����񐔁^�^�C�g���Q
+      *    *** 視聴回数／タイトル２
                    IF      WK-SIMPLETEXT2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -900,7 +900,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �Đ����ԁ@�Q
+      *    *** 再生時間　２
                    IF      WK-LABEL2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -913,9 +913,9 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
            ELSE
-      *    *** PLAYLIST �̎��A
+      *    *** PLAYLIST の時、
 
-      *    *** �^�C�g��?
+      *    *** タイトル?
                    IF      WK-TEXT3 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -930,7 +930,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �^�C�g���P
+      *    *** タイトル１
                    IF      WK-SIMPLETEXT (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -945,7 +945,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �Đ����ԂP
+      *    *** 再生時間１
                    IF      WK-LABEL (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -958,7 +958,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �^�C�g���Q
+      *    *** タイトル２
                    IF      WK-SIMPLETEXT2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -973,7 +973,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** �Đ����ԂQ
+      *    *** 再生時間２
                    IF      WK-LABEL2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -994,7 +994,7 @@
                                            TO      POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
-      *    *** ����
+      *    *** 検索
                        MOVE    X"E6A49CE7B4A2" TO  POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
@@ -1002,10 +1002,10 @@
                        CONTINUE
                    END-IF
            ELSE
-      *    *** https://www.youtube.com �݂̂̎��A
+      *    *** https://www.youtube.com のみの時、
                IF      WK-HTTPS (1:24) =   "https://www.youtube.com "
 
-      *    *** �Đ����X�g�̑S�̂�����
+      *    *** 再生リストの全体を見る
                   IF      WK-TITLE (1:33) =   WK-SAISEILIST
                        MOVE    '<br><br><a href="'
                                        TO      POT1-REC
@@ -1037,7 +1037,7 @@
                                            TO      POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
-      *    *** ����
+      *    *** 検索
                        MOVE    X"E6A49CE7B4A2" TO  POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
@@ -1076,14 +1076,14 @@
        S100-EX.
            EXIT.
 
-      *    *** �`���v�^�[�b���ύX
+      *    *** チャプター秒数変更
        S101-10.
 
-      *    *** WK-SIMPLETEXT2-LEN ��+2�@�̒����������Ă���
+      *    *** WK-SIMPLETEXT2-LEN は+2　の長さが入っている
 
            MOVE    ZERO        TO      WK-BYOU
            EVALUATE TRUE
-      *    *** M:SS SS�͂Q���Ǝv����
+      *    *** M:SS SSは２桁と思われる
                WHEN WK-SIMPLETEXT2-LEN = 6
                    MOVE    WK-SIMPLETEXT2 (3:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (2:1) = ":"
@@ -1091,14 +1091,14 @@
                            MOVE    WK-SIMPLETEXT2 (1:1) TO WK-MM-X (2:1)
                            COMPUTE WK-BYOU = WK-MM * 60 + WK-SS
                    END-IF
-      *    *** MM:SS MM,SS�͂Q���Ǝv����
+      *    *** MM:SS MM,SSは２桁と思われる
                WHEN WK-SIMPLETEXT2-LEN = 7
                    MOVE    WK-SIMPLETEXT2 (4:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (3:1) = ":"
                            MOVE    WK-SIMPLETEXT2 (1:2) TO WK-MM-X (1:2)
                            COMPUTE WK-BYOU = WK-MM * 60 + WK-SS
                    END-IF
-      *    *** H:MM:SS MM,SS�͂Q���Ǝv����
+      *    *** H:MM:SS MM,SSは２桁と思われる
                WHEN WK-SIMPLETEXT2-LEN = 9
                    MOVE    WK-SIMPLETEXT2 (6:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (2:1) = ":"
@@ -1108,7 +1108,7 @@
                            COMPUTE WK-BYOU = WK-HH * 3600
                                            + WK-MM * 60 + WK-SS
                    END-IF
-      *    *** HH:MM:SS HH,MM,SS�͂Q���Ǝv����
+      *    *** HH:MM:SS HH,MM,SSは２桁と思われる
                WHEN WK-SIMPLETEXT2-LEN = 10
                    MOVE    WK-SIMPLETEXT2 (7:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (3:1) = ":"
@@ -1119,7 +1119,7 @@
                    END-IF
            END-EVALUATE
 
-      *    *** WK-WATCH-LEN �����ɃX�y�[�X�����邽�߁A���������ʒu�Ŕ�r
+      *    *** WK-WATCH-LEN も後ろにスペースがあるため、調整した位置で比較
            IF      WK-WATCH (WK-WATCH-LEN - 1: 1) = "s"
                AND WK-WATCH (WK-WATCH-LEN - 2: 1) IS NUMERIC
                    EVALUATE TRUE
@@ -1172,7 +1172,7 @@
        S101-EX.
            EXIT.
 
-      *    *** #NN ���R�[�h�ҏW1
+      *    *** #NN レコード編集1
        S110-10.
 
            MOVE    '<h2><br><a name="  ">'
@@ -1195,7 +1195,7 @@
        S110-EX.
            EXIT.
 
-      *    *** #NN ���R�[�h�ҏW2
+      *    *** #NN レコード編集2
        S120-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a>'
@@ -1203,8 +1203,8 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** <br> �P���ƁA�����I�ɘA�Ԃ��i���ɓ��� ����Ȃ���������
-      *    *** <br> �Q���ƁA�����I�ɘA�Ԃ��i���ɓ���Ȃ�
+      *    *** <br> １つだと、自動的に連番が段落に入る 入らない時もある
+      *    *** <br> ２つだと、自動的に連番が段落に入らない
            MOVE    '<h2><br><a name="  ">'
                                TO      POT1-REC
            MOVE    PIN1-REC (2:2) TO   POT1-REC (18:2)
@@ -1226,7 +1226,7 @@
        S120-EX.
            EXIT.
 
-      *    *** #NN ���R�[�h�ҏW3
+      *    *** #NN レコード編集3
        S130-10.
 
            IF      PIN1-REC (1:3) =    "#01"
@@ -1265,7 +1265,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** ���D�j���[�X
+      *    *** 声優ニュース
                    MOVE    X"E5A3B0E584AAE3838BE383A5E383BCE382B9"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1286,7 +1286,7 @@
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-      *    *** ���D
+      *    *** 声優
                    MOVE    X'E5A3B0E584AA'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1306,7 +1306,7 @@
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-      *    *** �A�j���N�㏇
+      *    *** アニメ年代順
                    MOVE    X'E382A2E3838BE383A1E5B9B4E4BBA3E9A086'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1327,7 +1327,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** �A�j���^�C�g����
+      *    *** アニメタイトル順
                    MOVE    
                    X'E382A2E3838BE383A1E382BFE382A4E38388E383ABE9A086'
                                        TO      POT1-REC
@@ -1355,7 +1355,7 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** #NN �w�w�w�w�w => NN �w�w�w�w�w
+      *    *** #NN ＸＸＸＸＸ => NN ＸＸＸＸＸ
            MOVE    PIN1-REC (5:) TO    POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -1402,13 +1402,13 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 �ݽ� = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 �ݽ� = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 �ݽ� = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
