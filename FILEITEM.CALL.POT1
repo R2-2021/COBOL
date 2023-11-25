@@ -1,0 +1,1512 @@
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       1
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+      1       1       1 C$JUSTIFY  COBENTCK   000064        18      18       1 C$JUSTIFY  TEST29     000329        29       3       1 C$SLEEP    STREAMS    000089
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  COBENTCK   åèêî          1       ÇoÇfÇlåvÅÑ C$JUSTIFY  TEST29     åèêî          1            30       4       2 C$SLEEP    STREAMS    000170
+
+                                                                                                              ÇoÇfÇlåvÅÑ C$SLEEP    STREAMS    åèêî          2
+
+      2       2       1 C$JUSTIFY  COBFIND    000268        19      19       1 C$JUSTIFY  TEST30     000476
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  COBFIND    åèêî          1       ÇoÇfÇlåvÅÑ C$JUSTIFY  TEST30     åèêî          1            31       5       1 C$SLEEP    STREAMS2   000115
+
+                                                                                                                   32       6       2 C$SLEEP    STREAMS2   000207
+
+      3       3       1 C$JUSTIFY  COBSAM02   000493        20      20       1 C$JUSTIFY  TEST31     000338   ÇoÇfÇlåvÅÑ C$SLEEP    STREAMS2   åèêî          2
+
+      4       4       2 C$JUSTIFY  COBSAM02   000497   ÇoÇfÇlåvÅÑ C$JUSTIFY  TEST31     åèêî          1
+
+      5       5       3 C$JUSTIFY  COBSAM02   000501                                                          ÇrÇtÇaåvÅÑ C$SLEEP               åèêî          6
+
+      6       6       4 C$JUSTIFY  COBSAM02   000509        21      21       1 C$JUSTIFY  TEST40     003589
+
+      7       7       5 C$JUSTIFY  COBSAM02   000513        22      22       2 C$JUSTIFY  TEST40     003991        33       1       1 C$TOLOWER  JUSTIFY    000028
+
+      8       8       6 C$JUSTIFY  COBSAM02   000517        23      23       3 C$JUSTIFY  TEST40     003994   ÇoÇfÇlåvÅÑ C$TOLOWER  JUSTIFY    åèêî          1
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  COBSAM02   åèêî          6            24      24       4 C$JUSTIFY  TEST40     004246
+
+                                                       ÇoÇfÇlåvÅÑ C$JUSTIFY  TEST40     åèêî          4       ÇrÇtÇaåvÅÑ C$TOLOWER             åèêî          1
+
+      9       9       1 C$JUSTIFY  COBSORT    001641
+
+     10      10       2 C$JUSTIFY  COBSORT    001777        25      25       1 C$JUSTIFY  TEST42     000629        34       1       1 C$TOUPPER  COBFIND    000270
+
+     11      11       3 C$JUSTIFY  COBSORT    002018   ÇoÇfÇlåvÅÑ C$JUSTIFY  TEST42     åèêî          1       ÇoÇfÇlåvÅÑ C$TOUPPER  COBFIND    åèêî          1
+
+     12      12       4 C$JUSTIFY  COBSORT    002048
+
+     13      13       5 C$JUSTIFY  COBSORT    002079   ÇrÇtÇaåvÅÑ C$JUSTIFY             åèêî         25            35       2       1 C$TOUPPER  JUSTIFY    000020
+
+     14      14       6 C$JUSTIFY  COBSORT    002110                                                          ÇoÇfÇlåvÅÑ C$TOUPPER  JUSTIFY    åèêî          1
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  COBSORT    åèêî          6            26       1       1 C$PARAMSIZ CBL_OC_DUM 000129
+
+                                                       ÇoÇfÇlåvÅÑ C$PARAMSIZ CBL_OC_DUM åèêî          1       ÇrÇtÇaåvÅÑ C$TOUPPER             åèêî          2
+
+     15      15       1 C$JUSTIFY  JUSTIFY    000033
+
+     16      16       2 C$JUSTIFY  JUSTIFY    000042   ÇrÇtÇaåvÅÑ C$PARAMSIZ            åèêî          1            36       1       1 CBL_CHANGE OCIC       001238
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  JUSTIFY    åèêî          2                                                              ÇoÇfÇlåvÅÑ CBL_CHANGE OCIC       åèêî          1
+
+                                                            27       1       1 C$SLEEP    OCIC       001547
+
+     17      17       1 C$JUSTIFY  LISTING    000944        28       2       2 C$SLEEP    OCIC       001823   ÇrÇtÇaåvÅÑ CBL_CHANGE            åèêî          1
+
+ÇoÇfÇlåvÅÑ C$JUSTIFY  LISTING    åèêî          1       ÇoÇfÇlåvÅÑ C$SLEEP    OCIC       åèêî          2
+
+                                                                                                                   37       1       1 CBL_CLOSE_ STREAMS    000165
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       2
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+ÇoÇfÇlåvÅÑ CBL_CLOSE_ STREAMS    åèêî          1            50       1       1 CBL_OC_KEI TEST06     000841        73      11      11 CBL_OC_NAN HAPPYBIRTH 000027
+
+                                                            51       2       2 CBL_OC_KEI TEST06     000854        74      12      12 CBL_OC_NAN HAPPYBIRTH 000029
+
+     38       2       1 CBL_CLOSE_ STREAMS2   000202        52       3       3 CBL_OC_KEI TEST06     000866        75      13      13 CBL_OC_NAN HAPPYBIRTH 000031
+
+ÇoÇfÇlåvÅÑ CBL_CLOSE_ STREAMS2   åèêî          1            53       4       4 CBL_OC_KEI TEST06     000878        76      14      14 CBL_OC_NAN HAPPYBIRTH 000033
+
+                                                            54       5       5 CBL_OC_KEI TEST06     000890        77      15      15 CBL_OC_NAN HAPPYBIRTH 000035
+
+     39       3       1 CBL_CLOSE_ TEST80     000408        55       6       6 CBL_OC_KEI TEST06     000896        78      16      16 CBL_OC_NAN HAPPYBIRTH 000037
+
+ÇoÇfÇlåvÅÑ CBL_CLOSE_ TEST80     åèêî          1            56       7       7 CBL_OC_KEI TEST06     000950        79      17      17 CBL_OC_NAN HAPPYBIRTH 000039
+
+                                                       ÇoÇfÇlåvÅÑ CBL_OC_KEI TEST06     åèêî          7            80      18      18 CBL_OC_NAN HAPPYBIRTH 000041
+
+ÇrÇtÇaåvÅÑ CBL_CLOSE_            åèêî          3                                                                   81      19      19 CBL_OC_NAN HAPPYBIRTH 000043
+
+                                                            57       8       1 CBL_OC_KEI TEST21     002437        82      20      20 CBL_OC_NAN HAPPYBIRTH 000045
+
+     40       1       1 CBL_DELETE OCIC       001645        58       9       2 CBL_OC_KEI TEST21     002477        83      21      21 CBL_OC_NAN HAPPYBIRTH 000047
+
+ÇoÇfÇlåvÅÑ CBL_DELETE OCIC       åèêî          1            59      10       3 CBL_OC_KEI TEST21     002485        84      22      22 CBL_OC_NAN HAPPYBIRTH 000049
+
+                                                            60      11       4 CBL_OC_KEI TEST21     002493        85      23      23 CBL_OC_NAN HAPPYBIRTH 000051
+
+ÇrÇtÇaåvÅÑ CBL_DELETE            åèêî          1            61      12       5 CBL_OC_KEI TEST21     002501        86      24      24 CBL_OC_NAN HAPPYBIRTH 000053
+
+                                                            62      13       6 CBL_OC_KEI TEST21     002509        87      25      25 CBL_OC_NAN HAPPYBIRTH 000055
+
+     41       1       1 CBL_OC_DUM COBSAM05   000171   ÇoÇfÇlåvÅÑ CBL_OC_KEI TEST21     åèêî          6            88      26      26 CBL_OC_NAN HAPPYBIRTH 000057
+
+ÇoÇfÇlåvÅÑ CBL_OC_DUM COBSAM05   åèêî          1                                                                   89      27      27 CBL_OC_NAN HAPPYBIRTH 000059
+
+                                                       ÇrÇtÇaåvÅÑ CBL_OC_KEI            åèêî         13            90      28      28 CBL_OC_NAN HAPPYBIRTH 000061
+
+     42       2       1 CBL_OC_DUM TEST05     000381                                                               91      29      29 CBL_OC_NAN HAPPYBIRTH 000063
+
+     43       3       2 CBL_OC_DUM TEST05     000383        63       1       1 CBL_OC_NAN HAPPYBIRTH 000007        92      30      30 CBL_OC_NAN HAPPYBIRTH 000065
+
+     44       4       3 CBL_OC_DUM TEST05     000385        64       2       2 CBL_OC_NAN HAPPYBIRTH 000009        93      31      31 CBL_OC_NAN HAPPYBIRTH 000067
+
+     45       5       4 CBL_OC_DUM TEST05     000387        65       3       3 CBL_OC_NAN HAPPYBIRTH 000011        94      32      32 CBL_OC_NAN HAPPYBIRTH 000069
+
+     46       6       5 CBL_OC_DUM TEST05     000389        66       4       4 CBL_OC_NAN HAPPYBIRTH 000013        95      33      33 CBL_OC_NAN HAPPYBIRTH 000071
+
+     47       7       6 CBL_OC_DUM TEST05     000391        67       5       5 CBL_OC_NAN HAPPYBIRTH 000015        96      34      34 CBL_OC_NAN HAPPYBIRTH 000073
+
+     48       8       7 CBL_OC_DUM TEST05     000393        68       6       6 CBL_OC_NAN HAPPYBIRTH 000017        97      35      35 CBL_OC_NAN HAPPYBIRTH 000075
+
+     49       9       8 CBL_OC_DUM TEST05     000395        69       7       7 CBL_OC_NAN HAPPYBIRTH 000019        98      36      36 CBL_OC_NAN HAPPYBIRTH 000077
+
+ÇoÇfÇlåvÅÑ CBL_OC_DUM TEST05     åèêî          8            70       8       8 CBL_OC_NAN HAPPYBIRTH 000021        99      37      37 CBL_OC_NAN HAPPYBIRTH 000079
+
+                                                            71       9       9 CBL_OC_NAN HAPPYBIRTH 000023       100      38      38 CBL_OC_NAN HAPPYBIRTH 000081
+
+ÇrÇtÇaåvÅÑ CBL_OC_DUM            åèêî          9            72      10      10 CBL_OC_NAN HAPPYBIRTH 000025   ÇoÇfÇlåvÅÑ CBL_OC_NAN HAPPYBIRTH åèêî         38
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       3
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    101      39       1 CBL_OC_NAN HOPPER     000009       130      68      30 CBL_OC_NAN HOPPER     000067       153      91      11 CBL_OC_NAN TEST06     001457
+
+    102      40       2 CBL_OC_NAN HOPPER     000011       131      69      31 CBL_OC_NAN HOPPER     000069   ÇoÇfÇlåvÅÑ CBL_OC_NAN TEST06     åèêî         11
+
+    103      41       3 CBL_OC_NAN HOPPER     000013       132      70      32 CBL_OC_NAN HOPPER     000071
+
+    104      42       4 CBL_OC_NAN HOPPER     000015       133      71      33 CBL_OC_NAN HOPPER     000073       154      92       1 CBL_OC_NAN TEST20     000148
+
+    105      43       5 CBL_OC_NAN HOPPER     000017       134      72      34 CBL_OC_NAN HOPPER     000075       155      93       2 CBL_OC_NAN TEST20     000155
+
+    106      44       6 CBL_OC_NAN HOPPER     000019       135      73      35 CBL_OC_NAN HOPPER     000077       156      94       3 CBL_OC_NAN TEST20     000178
+
+    107      45       7 CBL_OC_NAN HOPPER     000021       136      74      36 CBL_OC_NAN HOPPER     000079   ÇoÇfÇlåvÅÑ CBL_OC_NAN TEST20     åèêî          3
+
+    108      46       8 CBL_OC_NAN HOPPER     000023       137      75      37 CBL_OC_NAN HOPPER     000081
+
+    109      47       9 CBL_OC_NAN HOPPER     000025       138      76      38 CBL_OC_NAN HOPPER     000083       157      95       1 CBL_OC_NAN TEST21     003639
+
+    110      48      10 CBL_OC_NAN HOPPER     000027       139      77      39 CBL_OC_NAN HOPPER     000085       158      96       2 CBL_OC_NAN TEST21     003824
+
+    111      49      11 CBL_OC_NAN HOPPER     000029       140      78      40 CBL_OC_NAN HOPPER     000087   ÇoÇfÇlåvÅÑ CBL_OC_NAN TEST21     åèêî          2
+
+    112      50      12 CBL_OC_NAN HOPPER     000031   ÇoÇfÇlåvÅÑ CBL_OC_NAN HOPPER     åèêî         40
+
+    113      51      13 CBL_OC_NAN HOPPER     000033                                                              159      97       1 CBL_OC_NAN TEST40     002477
+
+    114      52      14 CBL_OC_NAN HOPPER     000035       141      79       1 CBL_OC_NAN STREAMS    000162       160      98       2 CBL_OC_NAN TEST40     002496
+
+    115      53      15 CBL_OC_NAN HOPPER     000037   ÇoÇfÇlåvÅÑ CBL_OC_NAN STREAMS    åèêî          1           161      99       3 CBL_OC_NAN TEST40     002515
+
+    116      54      16 CBL_OC_NAN HOPPER     000039                                                              162     100       4 CBL_OC_NAN TEST40     002534
+
+    117      55      17 CBL_OC_NAN HOPPER     000041       142      80       1 CBL_OC_NAN STREAMS2   000199       163     101       5 CBL_OC_NAN TEST40     002554
+
+    118      56      18 CBL_OC_NAN HOPPER     000043   ÇoÇfÇlåvÅÑ CBL_OC_NAN STREAMS2   åèêî          1           164     102       6 CBL_OC_NAN TEST40     002574
+
+    119      57      19 CBL_OC_NAN HOPPER     000045                                                              165     103       7 CBL_OC_NAN TEST40     002594
+
+    120      58      20 CBL_OC_NAN HOPPER     000047       143      81       1 CBL_OC_NAN TEST06     001005       166     104       8 CBL_OC_NAN TEST40     002614
+
+    121      59      21 CBL_OC_NAN HOPPER     000049       144      82       2 CBL_OC_NAN TEST06     001066       167     105       9 CBL_OC_NAN TEST40     002634
+
+    122      60      22 CBL_OC_NAN HOPPER     000051       145      83       3 CBL_OC_NAN TEST06     001136       168     106      10 CBL_OC_NAN TEST40     002654
+
+    123      61      23 CBL_OC_NAN HOPPER     000053       146      84       4 CBL_OC_NAN TEST06     001197       169     107      11 CBL_OC_NAN TEST40     002674
+
+    124      62      24 CBL_OC_NAN HOPPER     000055       147      85       5 CBL_OC_NAN TEST06     001235       170     108      12 CBL_OC_NAN TEST40     002692
+
+    125      63      25 CBL_OC_NAN HOPPER     000057       148      86       6 CBL_OC_NAN TEST06     001272       171     109      13 CBL_OC_NAN TEST40     002702
+
+    126      64      26 CBL_OC_NAN HOPPER     000059       149      87       7 CBL_OC_NAN TEST06     001301       172     110      14 CBL_OC_NAN TEST40     002712
+
+    127      65      27 CBL_OC_NAN HOPPER     000061       150      88       8 CBL_OC_NAN TEST06     001330       173     111      15 CBL_OC_NAN TEST40     002722
+
+    128      66      28 CBL_OC_NAN HOPPER     000063       151      89       9 CBL_OC_NAN TEST06     001361       174     112      16 CBL_OC_NAN TEST40     002732
+
+    129      67      29 CBL_OC_NAN HOPPER     000065       152      90      10 CBL_OC_NAN TEST06     001432       175     113      17 CBL_OC_NAN TEST40     002742
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       4
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    176     114      18 CBL_OC_NAN TEST40     002752       205     143      47 CBL_OC_NAN TEST40     003421       218       6       2 CBL_READ_F TEST80     000211
+
+    177     115      19 CBL_OC_NAN TEST40     002773       206     144      48 CBL_OC_NAN TEST40     003441   ÇoÇfÇlåvÅÑ CBL_READ_F TEST80     åèêî          2
+
+    178     116      20 CBL_OC_NAN TEST40     002783       207     145      49 CBL_OC_NAN TEST40     003461
+
+    179     117      21 CBL_OC_NAN TEST40     002793       208     146      50 CBL_OC_NAN TEST40     003481   ÇrÇtÇaåvÅÑ CBL_READ_F            åèêî          6
+
+    180     118      22 CBL_OC_NAN TEST40     002803       209     147      51 CBL_OC_NAN TEST40     003551
+
+    181     119      23 CBL_OC_NAN TEST40     002813   ÇoÇfÇlåvÅÑ CBL_OC_NAN TEST40     åèêî         51           219       1       1 CHECKSOURC OCIC       001027
+
+    182     120      24 CBL_OC_NAN TEST40     002823                                                              220       2       2 CHECKSOURC OCIC       001046
+
+    183     121      25 CBL_OC_NAN TEST40     002833   ÇrÇtÇaåvÅÑ CBL_OC_NAN            åèêî        147       ÇoÇfÇlåvÅÑ CHECKSOURC OCIC       åèêî          2
+
+    184     122      26 CBL_OC_NAN TEST40     002843
+
+    185     123      27 CBL_OC_NAN TEST40     002914       210       1       1 CBL_OPEN_F STREAMS    000099   ÇrÇtÇaåvÅÑ CHECKSOURC            åèêî          2
+
+    186     124      28 CBL_OC_NAN TEST40     002965   ÇoÇfÇlåvÅÑ CBL_OPEN_F STREAMS    åèêî          1
+
+    187     125      29 CBL_OC_NAN TEST40     002985                                                              221       1       1 COBDUMP    COBSAM02   000864
+
+    188     126      30 CBL_OC_NAN TEST40     003004       211       2       1 CBL_OPEN_F STREAMS2   000125       222       2       2 COBDUMP    COBSAM02   000865
+
+    189     127      31 CBL_OC_NAN TEST40     003023   ÇoÇfÇlåvÅÑ CBL_OPEN_F STREAMS2   åèêî          1           223       3       3 COBDUMP    COBSAM02   000877
+
+    190     128      32 CBL_OC_NAN TEST40     003043                                                              224       4       4 COBDUMP    COBSAM02   000889
+
+    191     129      33 CBL_OC_NAN TEST40     003063       212       3       1 CBL_OPEN_F TEST80     000148   ÇoÇfÇlåvÅÑ COBDUMP    COBSAM02   åèêî          4
+
+    192     130      34 CBL_OC_NAN TEST40     003083   ÇoÇfÇlåvÅÑ CBL_OPEN_F TEST80     åèêî          1
+
+    193     131      35 CBL_OC_NAN TEST40     003103                                                              225       5       1 COBDUMP    COBSAM05   000202
+
+    194     132      36 CBL_OC_NAN TEST40     003123   ÇrÇtÇaåvÅÑ CBL_OPEN_F            åèêî          3           226       6       2 COBDUMP    COBSAM05   000206
+
+    195     133      37 CBL_OC_NAN TEST40     003143                                                              227       7       3 COBDUMP    COBSAM05   000210
+
+    196     134      38 CBL_OC_NAN TEST40     003163       213       1       1 CBL_READ_F STREAMS    000120       228       8       4 COBDUMP    COBSAM05   000214
+
+    197     135      39 CBL_OC_NAN TEST40     003233       214       2       2 CBL_READ_F STREAMS    000144   ÇoÇfÇlåvÅÑ COBDUMP    COBSAM05   åèêî          4
+
+    198     136      40 CBL_OC_NAN TEST40     003283   ÇoÇfÇlåvÅÑ CBL_READ_F STREAMS    åèêî          2
+
+    199     137      41 CBL_OC_NAN TEST40     003303                                                              229       9       1 COBDUMP    COBSORT    002133
+
+    200     138      42 CBL_OC_NAN TEST40     003322       215       3       1 CBL_READ_F STREAMS2   000146       230      10       2 COBDUMP    COBSORT    002144
+
+    201     139      43 CBL_OC_NAN TEST40     003341       216       4       2 CBL_READ_F STREAMS2   000174       231      11       3 COBDUMP    COBSORT    002153
+
+    202     140      44 CBL_OC_NAN TEST40     003361   ÇoÇfÇlåvÅÑ CBL_READ_F STREAMS2   åèêî          2       ÇoÇfÇlåvÅÑ COBDUMP    COBSORT    åèêî          3
+
+    203     141      45 CBL_OC_NAN TEST40     003381
+
+    204     142      46 CBL_OC_NAN TEST40     003401       217       5       1 CBL_READ_F TEST80     000193       232      12       1 COBDUMP    DECODE04   000176
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       5
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    233      13       2 COBDUMP    DECODE04   000183       256      36      19 COBDUMP    TEST05     000514   ÇoÇfÇlåvÅÑ COBRND     COBRNDCK   åèêî          3
+
+ÇoÇfÇlåvÅÑ COBDUMP    DECODE04   åèêî          2       ÇoÇfÇlåvÅÑ COBDUMP    TEST05     åèêî         19
+
+                                                                                                                  271       4       1 COBRND     FILEDTCR   001180
+
+    234      14       1 COBDUMP    DECODE05   000801       257      37       1 COBDUMP    TEST07     000141       272       5       2 COBRND     FILEDTCR   001924
+
+ÇoÇfÇlåvÅÑ COBDUMP    DECODE05   åèêî          1       ÇoÇfÇlåvÅÑ COBDUMP    TEST07     åèêî          1           273       6       3 COBRND     FILEDTCR   002148
+
+                                                                                                              ÇoÇfÇlåvÅÑ COBRND     FILEDTCR   åèêî          3
+
+    235      15       1 COBDUMP    FILEITEM   002395       258      38       1 COBDUMP    TEST101    000450
+
+    236      16       2 COBDUMP    FILEITEM   002510       259      39       2 COBDUMP    TEST101    000523       274       7       1 COBRND     TEST101    000212
+
+    237      17       3 COBDUMP    FILEITEM   002603   ÇoÇfÇlåvÅÑ COBDUMP    TEST101    åèêî          2           275       8       2 COBRND     TEST101    000255
+
+ÇoÇfÇlåvÅÑ COBDUMP    FILEITEM   åèêî          3                                                                  276       9       3 COBRND     TEST101    000334
+
+                                                           260      40       1 COBDUMP    TEST106    000123       277      10       4 COBRND     TEST101    000555
+
+    238      18       1 COBDUMP    TEST05     000255   ÇoÇfÇlåvÅÑ COBDUMP    TEST106    åèêî          1       ÇoÇfÇlåvÅÑ COBRND     TEST101    åèêî          4
+
+    239      19       2 COBDUMP    TEST05     000259
+
+    240      20       3 COBDUMP    TEST05     000263       261      41       1 COBDUMP    TEST38     001785       278      11       1 COBRND     TEST102    000164
+
+    241      21       4 COBDUMP    TEST05     000268       262      42       2 COBDUMP    TEST38     001796       279      12       2 COBRND     TEST102    000212
+
+    242      22       5 COBDUMP    TEST05     000272       263      43       3 COBDUMP    TEST38     001805       280      13       3 COBRND     TEST102    000254
+
+    243      23       6 COBDUMP    TEST05     000275       264      44       4 COBDUMP    TEST38     001852       281      14       4 COBRND     TEST102    000303
+
+    244      24       7 COBDUMP    TEST05     000277       265      45       5 COBDUMP    TEST38     001863       282      15       5 COBRND     TEST102    000346
+
+    245      25       8 COBDUMP    TEST05     000279       266      46       6 COBDUMP    TEST38     001872       283      16       6 COBRND     TEST102    000388
+
+    246      26       9 COBDUMP    TEST05     000281   ÇoÇfÇlåvÅÑ COBDUMP    TEST38     åèêî          6           284      17       7 COBRND     TEST102    000425
+
+    247      27      10 COBDUMP    TEST05     000283                                                          ÇoÇfÇlåvÅÑ COBRND     TEST102    åèêî          7
+
+    248      28      11 COBDUMP    TEST05     000285       267      47       1 COBDUMP    TEST58     000790
+
+    249      29      12 COBDUMP    TEST05     000362   ÇoÇfÇlåvÅÑ COBDUMP    TEST58     åèêî          1           285      18       1 COBRND     TEST105    000179
+
+    250      30      13 COBDUMP    TEST05     000364                                                              286      19       2 COBRND     TEST105    000183
+
+    251      31      14 COBDUMP    TEST05     000367   ÇrÇtÇaåvÅÑ COBDUMP               åèêî         47           287      20       3 COBRND     TEST105    000259
+
+    252      32      15 COBDUMP    TEST05     000369                                                          ÇoÇfÇlåvÅÑ COBRND     TEST105    åèêî          3
+
+    253      33      16 COBDUMP    TEST05     000371       268       1       1 COBRND     COBRNDCK   000059
+
+    254      34      17 COBDUMP    TEST05     000373       269       2       2 COBRND     COBRNDCK   000115       288      21       1 COBRND     TEST21     001487
+
+    255      35      18 COBDUMP    TEST05     000427       270       3       3 COBRND     COBRNDCK   000166       289      22       2 COBRND     TEST21     002191
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       6
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    290      23       3 COBRND     TEST21     003886   ÇoÇfÇlåvÅÑ COBRND     TEST59     åèêî          3           322      16       1 DATETIME   COBSAM05   000137
+
+ÇoÇfÇlåvÅÑ COBRND     TEST21     åèêî          3                                                                  323      17       2 DATETIME   COBSAM05   000221
+
+                                                       ÇrÇtÇaåvÅÑ COBRND                åèêî         39           324      18       3 DATETIME   COBSAM05   000254
+
+    291      24       1 COBRND     TEST36     000175                                                          ÇoÇfÇlåvÅÑ DATETIME   COBSAM05   åèêî          3
+
+    292      25       2 COBRND     TEST36     000231       307       1       1 DATETIME   COBFIND    000173
+
+    293      26       3 COBRND     TEST36     000386       308       2       2 DATETIME   COBFIND    000394       325      19       1 DATETIME   COBSAM06   000192
+
+ÇoÇfÇlåvÅÑ COBRND     TEST36     åèêî          3       ÇoÇfÇlåvÅÑ DATETIME   COBFIND    åèêî          2           326      20       2 DATETIME   COBSAM06   000939
+
+                                                                                                              ÇoÇfÇlåvÅÑ DATETIME   COBSAM06   åèêî          2
+
+    294      27       1 COBRND     TEST40     001466       309       3       1 DATETIME   COBSAM01   000276
+
+    295      28       2 COBRND     TEST40     002869       310       4       2 DATETIME   COBSAM01   001065       327      21       1 DATETIME   COBSAM07   000128
+
+    296      29       3 COBRND     TEST40     003188       311       5       3 DATETIME   COBSAM01   001081       328      22       2 DATETIME   COBSAM07   000238
+
+    297      30       4 COBRND     TEST40     003506       312       6       4 DATETIME   COBSAM01   001113   ÇoÇfÇlåvÅÑ DATETIME   COBSAM07   åèêî          2
+
+    298      31       5 COBRND     TEST40     004488       313       7       5 DATETIME   COBSAM01   001221
+
+ÇoÇfÇlåvÅÑ COBRND     TEST40     åèêî          5       ÇoÇfÇlåvÅÑ DATETIME   COBSAM01   åèêî          5           329      23       1 DATETIME   COBSAM08   000109
+
+                                                                                                                  330      24       2 DATETIME   COBSAM08   000217
+
+    299      32       1 COBRND     TEST49     000337       314       8       1 DATETIME   COBSAM02   000257   ÇoÇfÇlåvÅÑ DATETIME   COBSAM08   åèêî          2
+
+    300      33       2 COBRND     TEST49     000742       315       9       2 DATETIME   COBSAM02   000347
+
+    301      34       3 COBRND     TEST49     001488       316      10       3 DATETIME   COBSAM02   000361       331      25       1 DATETIME   COBSAM09   000217
+
+ÇoÇfÇlåvÅÑ COBRND     TEST49     åèêî          3           317      11       4 DATETIME   COBSAM02   001581       332      26       2 DATETIME   COBSAM09   000684
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   COBSAM02   åèêî          4       ÇoÇfÇlåvÅÑ DATETIME   COBSAM09   åèêî          2
+
+    302      35       1 COBRND     TEST50     000492
+
+ÇoÇfÇlåvÅÑ COBRND     TEST50     åèêî          1           318      12       1 DATETIME   COBSAM03   000273       333      27       1 DATETIME   COBSAM10   000102
+
+                                                           319      13       2 DATETIME   COBSAM03   000676       334      28       2 DATETIME   COBSAM10   000258
+
+    303      36       1 COBRND     TEST51     000501   ÇoÇfÇlåvÅÑ DATETIME   COBSAM03   åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   COBSAM10   åèêî          2
+
+ÇoÇfÇlåvÅÑ COBRND     TEST51     åèêî          1
+
+                                                           320      14       1 DATETIME   COBSAM04   000153       335      29       1 DATETIME   COBSORT    001156
+
+    304      37       1 COBRND     TEST59     000181       321      15       2 DATETIME   COBSAM04   000301       336      30       2 DATETIME   COBSORT    001811
+
+    305      38       2 COBRND     TEST59     000237   ÇoÇfÇlåvÅÑ DATETIME   COBSAM04   åèêî          2           337      31       3 DATETIME   COBSORT    001988
+
+    306      39       3 COBRND     TEST59     000531                                                              338      32       4 DATETIME   COBSORT    002200
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       7
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    339      33       5 DATETIME   COBSORT    002212       354      48       1 DATETIME   FILEDTCR   001146       375      69       5 DATETIME   TEST01     000100
+
+    340      34       6 DATETIME   COBSORT    002222       355      49       2 DATETIME   FILEDTCR   001997       376      70       6 DATETIME   TEST01     000220
+
+    341      35       7 DATETIME   COBSORT    002285       356      50       3 DATETIME   FILEDTCR   002054   ÇoÇfÇlåvÅÑ DATETIME   TEST01     åèêî          6
+
+ÇoÇfÇlåvÅÑ DATETIME   COBSORT    åèêî          7           357      51       4 DATETIME   FILEDTCR   002065
+
+                                                           358      52       5 DATETIME   FILEDTCR   002105       377      71       1 DATETIME   TEST02     000144
+
+    342      36       1 DATETIME   COBSORTTBL 000213       359      53       6 DATETIME   FILEDTCR   002113       378      72       2 DATETIME   TEST02     000335
+
+    343      37       2 DATETIME   COBSORTTBL 000477       360      54       7 DATETIME   FILEDTCR   002168   ÇoÇfÇlåvÅÑ DATETIME   TEST02     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   COBSORTTBL åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   FILEDTCR   åèêî          7
+
+                                                                                                                  379      73       1 DATETIME   TEST03     000103
+
+    344      38       1 DATETIME   COBXREF    000150       361      55       1 DATETIME   FILEITEM   000606       380      74       2 DATETIME   TEST03     000233
+
+    345      39       2 DATETIME   COBXREF    000302       362      56       2 DATETIME   FILEITEM   003572   ÇoÇfÇlåvÅÑ DATETIME   TEST03     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   COBXREF    åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   FILEITEM   åèêî          2
+
+                                                                                                                  381      75       1 DATETIME   TEST05     000197
+
+    346      40       1 DATETIME   CONDDISP   000047       363      57       1 DATETIME   FIZZBUZZ   000052       382      76       2 DATETIME   TEST05     000554
+
+    347      41       2 DATETIME   CONDDISP   000081       364      58       2 DATETIME   FIZZBUZZ   000068   ÇoÇfÇlåvÅÑ DATETIME   TEST05     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   CONDDISP   åèêî          2           365      59       3 DATETIME   FIZZBUZZ   000093
+
+                                                           366      60       4 DATETIME   FIZZBUZZ   000121       383      77       1 DATETIME   TEST06     000451
+
+    348      42       1 DATETIME   CONDSET    000044       367      61       5 DATETIME   FIZZBUZZ   000150       384      78       2 DATETIME   TEST06     001495
+
+    349      43       2 DATETIME   CONDSET    000073       368      62       6 DATETIME   FIZZBUZZ   000166   ÇoÇfÇlåvÅÑ DATETIME   TEST06     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   CONDSET    åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   FIZZBUZZ   åèêî          6
+
+                                                                                                                  385      79       1 DATETIME   TEST07     000095
+
+    350      44       1 DATETIME   FILECOMP   000253       369      63       1 DATETIME   HTML001    000159       386      80       2 DATETIME   TEST07     000206
+
+    351      45       2 DATETIME   FILECOMP   001109       370      64       2 DATETIME   HTML001    000389   ÇoÇfÇlåvÅÑ DATETIME   TEST07     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   FILECOMP   åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   HTML001    åèêî          2
+
+                                                                                                                  387      81       1 DATETIME   TEST08     000096
+
+    352      46       1 DATETIME   FILEDMPP   000211       371      65       1 DATETIME   TEST01     000128       388      82       2 DATETIME   TEST08     000201
+
+    353      47       2 DATETIME   FILEDMPP   000755       372      66       2 DATETIME   TEST01     000268   ÇoÇfÇlåvÅÑ DATETIME   TEST08     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   FILEDMPP   åèêî          2           373      67       3 DATETIME   TEST01     000100
+
+                                                           374      68       4 DATETIME   TEST01     000220       389      83       1 DATETIME   TEST10     000169
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       8
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    390      84       2 DATETIME   TEST10     000519   ÇoÇfÇlåvÅÑ DATETIME   TEST106    åèêî          2           419     113       1 DATETIME   TEST113    000235
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST10     åèêî          2                                                                  420     114       2 DATETIME   TEST113    000575
+
+                                                           405      99       1 DATETIME   TEST107    000101   ÇoÇfÇlåvÅÑ DATETIME   TEST113    åèêî          2
+
+    391      85       1 DATETIME   TEST100    000136       406     100       2 DATETIME   TEST107    000178
+
+    392      86       2 DATETIME   TEST100    000290   ÇoÇfÇlåvÅÑ DATETIME   TEST107    åèêî          2           421     115       1 DATETIME   TEST114    000060
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST100    åèêî          2                                                                  422     116       2 DATETIME   TEST114    000100
+
+                                                           407     101       1 DATETIME   TEST108    000214   ÇoÇfÇlåvÅÑ DATETIME   TEST114    åèêî          2
+
+    393      87       1 DATETIME   TEST101    000200       408     102       2 DATETIME   TEST108    000479
+
+    394      88       2 DATETIME   TEST101    000572   ÇoÇfÇlåvÅÑ DATETIME   TEST108    åèêî          2           423     117       1 DATETIME   TEST115    000207
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST101    åèêî          2                                                                  424     118       2 DATETIME   TEST115    000484
+
+                                                           409     103       1 DATETIME   TEST109    000352   ÇoÇfÇlåvÅÑ DATETIME   TEST115    åèêî          2
+
+    395      89       1 DATETIME   TEST102    000153       410     104       2 DATETIME   TEST109    001004
+
+    396      90       2 DATETIME   TEST102    000439   ÇoÇfÇlåvÅÑ DATETIME   TEST109    åèêî          2           425     119       1 DATETIME   TEST12     000097
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST102    åèêî          2                                                                  426     120       2 DATETIME   TEST12     000202
+
+                                                           411     105       1 DATETIME   TEST11     000105   ÇoÇfÇlåvÅÑ DATETIME   TEST12     åèêî          2
+
+    397      91       1 DATETIME   TEST103    000216       412     106       2 DATETIME   TEST11     000243
+
+    398      92       2 DATETIME   TEST103    000545   ÇoÇfÇlåvÅÑ DATETIME   TEST11     åèêî          2           427     121       1 DATETIME   TEST13     000112
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST103    åèêî          2                                                                  428     122       2 DATETIME   TEST13     000312
+
+                                                           413     107       1 DATETIME   TEST110    000146   ÇoÇfÇlåvÅÑ DATETIME   TEST13     åèêî          2
+
+    399      93       1 DATETIME   TEST104    000234       414     108       2 DATETIME   TEST110    000276
+
+    400      94       2 DATETIME   TEST104    000602   ÇoÇfÇlåvÅÑ DATETIME   TEST110    åèêî          2           429     123       1 DATETIME   TEST14     000114
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST104    åèêî          2                                                                  430     124       2 DATETIME   TEST14     000285
+
+                                                           415     109       1 DATETIME   TEST111    000114   ÇoÇfÇlåvÅÑ DATETIME   TEST14     åèêî          2
+
+    401      95       1 DATETIME   TEST105    000167       416     110       2 DATETIME   TEST111    000222
+
+    402      96       2 DATETIME   TEST105    000276   ÇoÇfÇlåvÅÑ DATETIME   TEST111    åèêî          2           431     125       1 DATETIME   TEST15     000157
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST105    åèêî          2                                                                  432     126       2 DATETIME   TEST15     000386
+
+                                                           417     111       1 DATETIME   TEST112    000175   ÇoÇfÇlåvÅÑ DATETIME   TEST15     åèêî          2
+
+    403      97       1 DATETIME   TEST106    000093       418     112       2 DATETIME   TEST112    000402
+
+    404      98       2 DATETIME   TEST106    000188   ÇoÇfÇlåvÅÑ DATETIME   TEST112    åèêî          2           433     127       1 DATETIME   TEST16     000150
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45       9
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    434     128       2 DATETIME   TEST16     000367       456     150       1 DATETIME   TEST22     000099       471     165       2 DATETIME   TEST29     000485
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST16     åèêî          2           457     151       2 DATETIME   TEST22     000206   ÇoÇfÇlåvÅÑ DATETIME   TEST29     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST22     åèêî          2
+
+    435     129       1 DATETIME   TEST17     000150                                                              472     166       1 DATETIME   TEST30     000357
+
+    436     130       2 DATETIME   TEST17     000327       458     152       1 DATETIME   TEST23     000114       473     167       2 DATETIME   TEST30     000696
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST17     åèêî          2           459     153       2 DATETIME   TEST23     000211   ÇoÇfÇlåvÅÑ DATETIME   TEST30     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST23     åèêî          2
+
+    437     131       1 DATETIME   TEST18     000249                                                              474     168       1 DATETIME   TEST31     000228
+
+    438     132       2 DATETIME   TEST18     000289       460     154       1 DATETIME   TEST24     000104       475     169       2 DATETIME   TEST31     000505
+
+    439     133       3 DATETIME   TEST18     000673       461     155       2 DATETIME   TEST24     000209   ÇoÇfÇlåvÅÑ DATETIME   TEST31     åèêî          2
+
+    440     134       4 DATETIME   TEST18     000840   ÇoÇfÇlåvÅÑ DATETIME   TEST24     åèêî          2
+
+    441     135       5 DATETIME   TEST18     000856                                                              476     170       1 DATETIME   TEST32     000124
+
+    442     136       6 DATETIME   TEST18     000874       462     156       1 DATETIME   TEST25     000535       477     171       2 DATETIME   TEST32     000177
+
+    443     137       7 DATETIME   TEST18     000892       463     157       2 DATETIME   TEST25     001083       478     172       3 DATETIME   TEST32     000246
+
+    444     138       8 DATETIME   TEST18     000910   ÇoÇfÇlåvÅÑ DATETIME   TEST25     åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   TEST32     åèêî          3
+
+    445     139       9 DATETIME   TEST18     000928
+
+    446     140      10 DATETIME   TEST18     000946       464     158       1 DATETIME   TEST26     000246       479     173       1 DATETIME   TEST33     000152
+
+    447     141      11 DATETIME   TEST18     000964       465     159       2 DATETIME   TEST26     001283       480     174       2 DATETIME   TEST33     000206
+
+    448     142      12 DATETIME   TEST18     000982   ÇoÇfÇlåvÅÑ DATETIME   TEST26     åèêî          2           481     175       3 DATETIME   TEST33     000276
+
+    449     143      13 DATETIME   TEST18     001000                                                              482     176       4 DATETIME   TEST33     000392
+
+    450     144      14 DATETIME   TEST18     001018       466     160       1 DATETIME   TEST27     000183   ÇoÇfÇlåvÅÑ DATETIME   TEST33     åèêî          4
+
+    451     145      15 DATETIME   TEST18     001036       467     161       2 DATETIME   TEST27     000441
+
+    452     146      16 DATETIME   TEST18     001054   ÇoÇfÇlåvÅÑ DATETIME   TEST27     åèêî          2           483     177       1 DATETIME   TEST34     000138
+
+    453     147      17 DATETIME   TEST18     001098                                                              484     178       2 DATETIME   TEST34     000191
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST18     åèêî         17           468     162       1 DATETIME   TEST28     000162       485     179       3 DATETIME   TEST34     000308
+
+                                                           469     163       2 DATETIME   TEST28     000542   ÇoÇfÇlåvÅÑ DATETIME   TEST34     åèêî          3
+
+    454     148       1 DATETIME   TEST21     001458   ÇoÇfÇlåvÅÑ DATETIME   TEST28     åèêî          2
+
+    455     149       2 DATETIME   TEST21     003896                                                              486     180       1 DATETIME   TEST35     000247
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST21     åèêî          2           470     164       1 DATETIME   TEST29     000205       487     181       2 DATETIME   TEST35     000619
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      10
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+ÇoÇfÇlåvÅÑ DATETIME   TEST35     åèêî          2       ÇoÇfÇlåvÅÑ DATETIME   TEST42     åèêî          2           517     211       1 DATETIME   TEST50     000271
+
+                                                                                                                  518     212       2 DATETIME   TEST50     001208
+
+    488     182       1 DATETIME   TEST36     000147       503     197       1 DATETIME   TEST43     000145   ÇoÇfÇlåvÅÑ DATETIME   TEST50     åèêî          2
+
+    489     183       2 DATETIME   TEST36     000293       504     198       2 DATETIME   TEST43     000372
+
+    490     184       3 DATETIME   TEST36     000400   ÇoÇfÇlåvÅÑ DATETIME   TEST43     åèêî          2           519     213       1 DATETIME   TEST51     000280
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST36     åèêî          3                                                                  520     214       2 DATETIME   TEST51     001236
+
+                                                           505     199       1 DATETIME   TEST44     000139   ÇoÇfÇlåvÅÑ DATETIME   TEST51     åèêî          2
+
+    491     185       1 DATETIME   TEST37     000349       506     200       2 DATETIME   TEST44     000444
+
+    492     186       2 DATETIME   TEST37     000998   ÇoÇfÇlåvÅÑ DATETIME   TEST44     åèêî          2           521     215       1 DATETIME   TEST52     000231
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST37     åèêî          2                                                                  522     216       2 DATETIME   TEST52     000843
+
+                                                           507     201       1 DATETIME   TEST45     000149   ÇoÇfÇlåvÅÑ DATETIME   TEST52     åèêî          2
+
+    493     187       1 DATETIME   TEST38     001137       508     202       2 DATETIME   TEST45     000397
+
+    494     188       2 DATETIME   TEST38     001975   ÇoÇfÇlåvÅÑ DATETIME   TEST45     åèêî          2           523     217       1 DATETIME   TEST53     000153
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST38     åèêî          2                                                                  524     218       2 DATETIME   TEST53     001004
+
+                                                           509     203       1 DATETIME   TEST46     000232   ÇoÇfÇlåvÅÑ DATETIME   TEST53     åèêî          2
+
+    495     189       1 DATETIME   TEST39     000193       510     204       2 DATETIME   TEST46     000564
+
+    496     190       2 DATETIME   TEST39     000676   ÇoÇfÇlåvÅÑ DATETIME   TEST46     åèêî          2           525     219       1 DATETIME   TEST54     000336
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST39     åèêî          2                                                                  526     220       2 DATETIME   TEST54     002551
+
+                                                           511     205       1 DATETIME   TEST47     000176   ÇoÇfÇlåvÅÑ DATETIME   TEST54     åèêî          2
+
+    497     191       1 DATETIME   TEST40     001438       512     206       2 DATETIME   TEST47     000457
+
+    498     192       2 DATETIME   TEST40     004485   ÇoÇfÇlåvÅÑ DATETIME   TEST47     åèêî          2           527     221       1 DATETIME   TEST55     000234
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST40     åèêî          2                                                                  528     222       2 DATETIME   TEST55     000963
+
+                                                           513     207       1 DATETIME   TEST48     000162   ÇoÇfÇlåvÅÑ DATETIME   TEST55     åèêî          2
+
+    499     193       1 DATETIME   TEST41     000604       514     208       2 DATETIME   TEST48     000521
+
+    500     194       2 DATETIME   TEST41     001190   ÇoÇfÇlåvÅÑ DATETIME   TEST48     åèêî          2           529     223       1 DATETIME   TEST56     000231
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST41     åèêî          2                                                                  530     224       2 DATETIME   TEST56     000790
+
+                                                           515     209       1 DATETIME   TEST49     000298   ÇoÇfÇlåvÅÑ DATETIME   TEST56     åèêî          2
+
+    501     195       1 DATETIME   TEST42     000207       516     210       2 DATETIME   TEST49     001505
+
+    502     196       2 DATETIME   TEST42     000716   ÇoÇfÇlåvÅÑ DATETIME   TEST49     åèêî          2           531     225       1 DATETIME   TEST57     000379
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      11
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    532     226       2 DATETIME   TEST57     001289   ÇoÇfÇlåvÅÑ DATETIME   TEST64     åèêî          2           561     255       1 DATETIME   TEST72     000330
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST57     åèêî          2                                                                  562     256       2 DATETIME   TEST72     000980
+
+                                                           547     241       1 DATETIME   TEST65     000288   ÇoÇfÇlåvÅÑ DATETIME   TEST72     åèêî          2
+
+    533     227       1 DATETIME   TEST58     000270       548     242       2 DATETIME   TEST65     000631
+
+    534     228       2 DATETIME   TEST58     000905   ÇoÇfÇlåvÅÑ DATETIME   TEST65     åèêî          2           563     257       1 DATETIME   TEST73     000157
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST58     åèêî          2                                                                  564     258       2 DATETIME   TEST73     000298
+
+                                                           549     243       1 DATETIME   TEST66     000144   ÇoÇfÇlåvÅÑ DATETIME   TEST73     åèêî          2
+
+    535     229       1 DATETIME   TEST59     000153       550     244       2 DATETIME   TEST66     000469
+
+    536     230       2 DATETIME   TEST59     000545   ÇoÇfÇlåvÅÑ DATETIME   TEST66     åèêî          2           565     259       1 DATETIME   TEST74     000135
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST59     åèêî          2                                                                  566     260       2 DATETIME   TEST74     000320
+
+                                                           551     245       1 DATETIME   TEST67     000158   ÇoÇfÇlåvÅÑ DATETIME   TEST74     åèêî          2
+
+    537     231       1 DATETIME   TEST60     000268       552     246       2 DATETIME   TEST67     000311
+
+    538     232       2 DATETIME   TEST60     000634   ÇoÇfÇlåvÅÑ DATETIME   TEST67     åèêî          2           567     261       1 DATETIME   TEST75     000161
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST60     åèêî          2                                                                  568     262       2 DATETIME   TEST75     000415
+
+                                                           553     247       1 DATETIME   TEST68     000341   ÇoÇfÇlåvÅÑ DATETIME   TEST75     åèêî          2
+
+    539     233       1 DATETIME   TEST61     000156       554     248       2 DATETIME   TEST68     001415
+
+    540     234       2 DATETIME   TEST61     000379   ÇoÇfÇlåvÅÑ DATETIME   TEST68     åèêî          2           569     263       1 DATETIME   TEST76     000101
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST61     åèêî          2                                                                  570     264       2 DATETIME   TEST76     000238
+
+                                                           555     249       1 DATETIME   TEST69     000420   ÇoÇfÇlåvÅÑ DATETIME   TEST76     åèêî          2
+
+    541     235       1 DATETIME   TEST62     000382       556     250       2 DATETIME   TEST69     002379
+
+    542     236       2 DATETIME   TEST62     001087   ÇoÇfÇlåvÅÑ DATETIME   TEST69     åèêî          2           571     265       1 DATETIME   TEST77     000103
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST62     åèêî          2                                                                  572     266       2 DATETIME   TEST77     000240
+
+                                                           557     251       1 DATETIME   TEST70     000445   ÇoÇfÇlåvÅÑ DATETIME   TEST77     åèêî          2
+
+    543     237       1 DATETIME   TEST63     000140       558     252       2 DATETIME   TEST70     001464
+
+    544     238       2 DATETIME   TEST63     000279   ÇoÇfÇlåvÅÑ DATETIME   TEST70     åèêî          2           573     267       1 DATETIME   TEST78     000821
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST63     åèêî          2                                                                  574     268       2 DATETIME   TEST78     003453
+
+                                                           559     253       1 DATETIME   TEST71     000140   ÇoÇfÇlåvÅÑ DATETIME   TEST78     åèêî          2
+
+    545     239       1 DATETIME   TEST64     000186       560     254       2 DATETIME   TEST71     000337
+
+    546     240       2 DATETIME   TEST64     000651   ÇoÇfÇlåvÅÑ DATETIME   TEST71     åèêî          2           575     269       1 DATETIME   TEST79     000182
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      12
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    576     270       2 DATETIME   TEST79     000415       591     285       1 DATETIME   TEST86     000107       606     300       2 DATETIME   TEST93     000238
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST79     åèêî          2           592     286       2 DATETIME   TEST86     000251   ÇoÇfÇlåvÅÑ DATETIME   TEST93     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST86     åèêî          2
+
+    577     271       1 DATETIME   TEST80     000140                                                              607     301       1 DATETIME   TEST94     000109
+
+    578     272       2 DATETIME   TEST80     000432       593     287       1 DATETIME   TEST87     000117       608     302       2 DATETIME   TEST94     000231
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST80     åèêî          2           594     288       2 DATETIME   TEST87     000253   ÇoÇfÇlåvÅÑ DATETIME   TEST94     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST87     åèêî          2
+
+    579     273       1 DATETIME   TEST81     000100                                                              609     303       1 DATETIME   TEST95     000103
+
+    580     274       2 DATETIME   TEST81     000226       595     289       1 DATETIME   TEST88     000163       610     304       2 DATETIME   TEST95     000188
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST81     åèêî          2           596     290       2 DATETIME   TEST88     000373   ÇoÇfÇlåvÅÑ DATETIME   TEST95     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST88     åèêî          2
+
+    581     275       1 DATETIME   TEST82     000108                                                              611     305       1 DATETIME   TEST96     000158
+
+    582     276       2 DATETIME   TEST82     000278       597     291       1 DATETIME   TEST89     000169       612     306       2 DATETIME   TEST96     000356
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST82     åèêî          2           598     292       2 DATETIME   TEST89     000405   ÇoÇfÇlåvÅÑ DATETIME   TEST96     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST89     åèêî          2
+
+    583     277       1 DATETIME   TEST83     000123                                                              613     307       1 DATETIME   TEST97     000176
+
+    584     278       2 DATETIME   TEST83     000272       599     293       1 DATETIME   TEST90     000135       614     308       2 DATETIME   TEST97     000450
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST83     åèêî          2           600     294       2 DATETIME   TEST90     000276   ÇoÇfÇlåvÅÑ DATETIME   TEST97     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST90     åèêî          2
+
+    585     279       1 DATETIME   TEST84     000185                                                              615     309       1 DATETIME   TEST98     000258
+
+    586     280       2 DATETIME   TEST84     000552       601     295       1 DATETIME   TEST91     000136       616     310       2 DATETIME   TEST98     000583
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST84     åèêî          2           602     296       2 DATETIME   TEST91     000271   ÇoÇfÇlåvÅÑ DATETIME   TEST98     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ DATETIME   TEST91     åèêî          2
+
+    587     281       1 DATETIME   TEST85     000232                                                              617     311       1 DATETIME   TEST99     000121
+
+    588     282       2 DATETIME   TEST85     000367       603     297       1 DATETIME   TEST92     000307       618     312       2 DATETIME   TEST99     000240
+
+    589     283       3 DATETIME   TEST85     000798       604     298       2 DATETIME   TEST92     000739   ÇoÇfÇlåvÅÑ DATETIME   TEST99     åèêî          2
+
+    590     284       4 DATETIME   TEST85     000909   ÇoÇfÇlåvÅÑ DATETIME   TEST92     åèêî          2
+
+ÇoÇfÇlåvÅÑ DATETIME   TEST85     åèêî          4                                                              ÇrÇtÇaåvÅÑ DATETIME              åèêî        312
+
+                                                           605     299       1 DATETIME   TEST93     000130
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      13
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    619       1       1 DATEWEEK   COBSAM02   001136       638      20       3 DATEWEEK   TEST90     000217       649       8       3 DECODE02   TEST69     000972
+
+    620       2       2 DATEWEEK   COBSAM02   001158       639      21       4 DATEWEEK   TEST90     000225   ÇoÇfÇlåvÅÑ DECODE02   TEST69     åèêî          3
+
+ÇoÇfÇlåvÅÑ DATEWEEK   COBSAM02   åèêî          2       ÇoÇfÇlåvÅÑ DATEWEEK   TEST90     åèêî          4
+
+                                                                                                              ÇrÇtÇaåvÅÑ DECODE02              åèêî          8
+
+    621       3       1 DATEWEEK   FILEDTCR   001524   ÇrÇtÇaåvÅÑ DATEWEEK              åèêî         21
+
+    622       4       2 DATEWEEK   FILEDTCR   001561                                                              650       1       1 DECODE03   COBSAM02   000671
+
+    623       5       3 DATEWEEK   FILEDTCR   001962       640       1       1 DECODE01   COBSAM01   001099   ÇoÇfÇlåvÅÑ DECODE03   COBSAM02   åèêî          1
+
+    624       6       4 DATEWEEK   FILEDTCR   001968   ÇoÇfÇlåvÅÑ DECODE01   COBSAM01   åèêî          1
+
+ÇoÇfÇlåvÅÑ DATEWEEK   FILEDTCR   åèêî          4                                                                  651       2       1 DECODE03   FILEDUMP   000376
+
+                                                           641       2       1 DECODE01   TEST10     000310       652       3       2 DECODE03   FILEDUMP   000671
+
+    625       7       1 DATEWEEK   TEST21     002898   ÇoÇfÇlåvÅÑ DECODE01   TEST10     åèêî          1           653       4       3 DECODE03   FILEDUMP   000675
+
+    626       8       2 DATEWEEK   TEST21     003172                                                          ÇoÇfÇlåvÅÑ DECODE03   FILEDUMP   åèêî          3
+
+ÇoÇfÇlåvÅÑ DATEWEEK   TEST21     åèêî          2       ÇrÇtÇaåvÅÑ DECODE01              åèêî          2
+
+                                                                                                                  654       5       1 DECODE03   TEST101    000277
+
+    627       9       1 DATEWEEK   TEST40     003758       642       1       1 DECODE02   COBSAM01   001070       655       6       2 DECODE03   TEST101    000362
+
+    628      10       2 DATEWEEK   TEST40     004039   ÇoÇfÇlåvÅÑ DECODE02   COBSAM01   åèêî          1       ÇoÇfÇlåvÅÑ DECODE03   TEST101    åèêî          2
+
+ÇoÇfÇlåvÅÑ DATEWEEK   TEST40     åèêî          2
+
+                                                           643       2       1 DECODE02   DECODE05   000513       656       7       1 DECODE03   TEST49     000859
+
+    629      11       1 DATEWEEK   TEST64     000123       644       3       2 DECODE02   DECODE05   000554   ÇoÇfÇlåvÅÑ DECODE03   TEST49     åèêî          1
+
+    630      12       2 DATEWEEK   TEST64     000257   ÇoÇfÇlåvÅÑ DECODE02   DECODE05   åèêî          2
+
+    631      13       3 DATEWEEK   TEST64     000326                                                              657       8       1 DECODE03   TEST50     000677
+
+    632      14       4 DATEWEEK   TEST64     000392       645       4       1 DECODE02   TEST111    000173   ÇoÇfÇlåvÅÑ DECODE03   TEST50     åèêî          1
+
+    633      15       5 DATEWEEK   TEST64     000458   ÇoÇfÇlåvÅÑ DECODE02   TEST111    åèêî          1
+
+    634      16       6 DATEWEEK   TEST64     000529                                                              658       9       1 DECODE03   TEST51     000696
+
+    635      17       7 DATEWEEK   TEST64     000582       646       5       1 DECODE02   TEST49     001433   ÇoÇfÇlåvÅÑ DECODE03   TEST51     åèêî          1
+
+ÇoÇfÇlåvÅÑ DATEWEEK   TEST64     åèêî          7       ÇoÇfÇlåvÅÑ DECODE02   TEST49     åèêî          1
+
+                                                                                                                  659      10       1 DECODE03   TEST52     000526
+
+    636      18       1 DATEWEEK   TEST90     000201       647       6       1 DECODE02   TEST69     000796   ÇoÇfÇlåvÅÑ DECODE03   TEST52     åèêî          1
+
+    637      19       2 DATEWEEK   TEST90     000209       648       7       2 DECODE02   TEST69     000822
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      14
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    660      11       1 DECODE03   TEST54     001418       675      11       3 DECODE05   TEST104    000573       692      28       2 DECODE05   TEST69     001050
+
+    661      12       2 DECODE03   TEST54     001781   ÇoÇfÇlåvÅÑ DECODE05   TEST104    åèêî          3           693      29       3 DECODE05   TEST69     001060
+
+ÇoÇfÇlåvÅÑ DECODE03   TEST54     åèêî          2                                                                  694      30       4 DECODE05   TEST69     001071
+
+                                                           676      12       1 DECODE05   TEST15     000185       695      31       5 DECODE05   TEST69     001079
+
+ÇrÇtÇaåvÅÑ DECODE03              åèêî         12           677      13       2 DECODE05   TEST15     000307       696      32       6 DECODE05   TEST69     001089
+
+                                                           678      14       3 DECODE05   TEST15     000321       697      33       7 DECODE05   TEST69     001097
+
+    662       1       1 DECODE04   COBSAM02   000795       679      15       4 DECODE05   TEST15     000370       698      34       8 DECODE05   TEST69     001105
+
+ÇoÇfÇlåvÅÑ DECODE04   COBSAM02   åèêî          1       ÇoÇfÇlåvÅÑ DECODE05   TEST15     åèêî          4           699      35       9 DECODE05   TEST69     001112
+
+                                                                                                                  700      36      10 DECODE05   TEST69     001327
+
+    663       2       1 DECODE04   FILEDMPP   000661       680      16       1 DECODE05   TEST48     000192       701      37      11 DECODE05   TEST69     002336
+
+    664       3       2 DECODE04   FILEDMPP   000676       681      17       2 DECODE05   TEST48     000447   ÇoÇfÇlåvÅÑ DECODE05   TEST69     åèêî         11
+
+ÇoÇfÇlåvÅÑ DECODE04   FILEDMPP   åèêî          2           682      18       3 DECODE05   TEST48     000499
+
+                                                       ÇoÇfÇlåvÅÑ DECODE05   TEST48     åèêî          3           702      38       1 DECODE05   TEST70     000523
+
+ÇrÇtÇaåvÅÑ DECODE04              åèêî          3                                                                  703      39       2 DECODE05   TEST70     001161
+
+                                                           683      19       1 DECODE05   TEST54     000357       704      40       3 DECODE05   TEST70     001181
+
+    665       1       1 DECODE05   COBSAM02   000399       684      20       2 DECODE05   TEST54     000637       705      41       4 DECODE05   TEST70     001427
+
+    666       2       2 DECODE05   COBSAM02   000860       685      21       3 DECODE05   TEST54     002531   ÇoÇfÇlåvÅÑ DECODE05   TEST70     åèêî          4
+
+    667       3       3 DECODE05   COBSAM02   000874   ÇoÇfÇlåvÅÑ DECODE05   TEST54     åèêî          3
+
+    668       4       4 DECODE05   COBSAM02   000886                                                              706      42       1 DECODE05   TEST86     000124
+
+    669       5       5 DECODE05   COBSAM02   001563       686      22       1 DECODE05   TEST57     000417       707      43       2 DECODE05   TEST86     000182
+
+ÇoÇfÇlåvÅÑ DECODE05   COBSAM02   åèêî          5           687      23       2 DECODE05   TEST57     001254       708      44       3 DECODE05   TEST86     000238
+
+                                                       ÇoÇfÇlåvÅÑ DECODE05   TEST57     åèêî          2       ÇoÇfÇlåvÅÑ DECODE05   TEST86     åèêî          3
+
+    670       6       1 DECODE05   TEST103    000219
+
+    671       7       2 DECODE05   TEST103    000239       688      24       1 DECODE05   TEST68     000382       709      45       1 DECODE05   TEST92     000336
+
+    672       8       3 DECODE05   TEST103    000522       689      25       2 DECODE05   TEST68     000585       710      46       2 DECODE05   TEST92     000420
+
+ÇoÇfÇlåvÅÑ DECODE05   TEST103    åèêî          3           690      26       3 DECODE05   TEST68     001395       711      47       3 DECODE05   TEST92     000719
+
+                                                       ÇoÇfÇlåvÅÑ DECODE05   TEST68     åèêî          3       ÇoÇfÇlåvÅÑ DECODE05   TEST92     åèêî          3
+
+    673       9       1 DECODE05   TEST104    000237
+
+    674      10       2 DECODE05   TEST104    000261       691      27       1 DECODE05   TEST69     000502       712      48       1 DECODE05   TEST93     000151
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      15
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    713      49       2 DECODE05   TEST93     000221       730       8       8 DECODE07   COBSAM02   001353       751      29       1 DECODE07   TEST81     000132
+
+ÇoÇfÇlåvÅÑ DECODE05   TEST93     åèêî          2           731       9       9 DECODE07   COBSAM02   001378       752      30       2 DECODE07   TEST81     000163
+
+                                                           732      10      10 DECODE07   COBSAM02   001403       753      31       3 DECODE07   TEST81     000215
+
+ÇrÇtÇaåvÅÑ DECODE05              åèêî         49           733      11      11 DECODE07   COBSAM02   001428   ÇoÇfÇlåvÅÑ DECODE07   TEST81     åèêî          3
+
+                                                           734      12      12 DECODE07   COBSAM02   001444
+
+    714       1       1 DECODE06   TEST49     000334       735      13      13 DECODE07   COBSAM02   001456       754      32       1 DECODE07   TEST82     000140
+
+    715       2       2 DECODE06   TEST49     000762       736      14      14 DECODE07   COBSAM02   001468       755      33       2 DECODE07   TEST82     000267
+
+    716       3       3 DECODE06   TEST49     001485       737      15      15 DECODE07   COBSAM02   001480   ÇoÇfÇlåvÅÑ DECODE07   TEST82     åèêî          2
+
+ÇoÇfÇlåvÅÑ DECODE06   TEST49     åèêî          3           738      16      16 DECODE07   COBSAM02   001492
+
+                                                           739      17      17 DECODE07   COBSAM02   001504   ÇrÇtÇaåvÅÑ DECODE07              åèêî         33
+
+    717       4       1 DECODE06   TEST50     000300       740      18      18 DECODE07   COBSAM02   001516
+
+    718       5       2 DECODE06   TEST50     000512       741      19      19 DECODE07   COBSAM02   001568       756       1       1 FILEDUMP   COBFIND    000184
+
+    719       6       3 DECODE06   TEST50     001194   ÇoÇfÇlåvÅÑ DECODE07   COBSAM02   åèêî         19           757       2       2 FILEDUMP   COBFIND    000382
+
+ÇoÇfÇlåvÅÑ DECODE06   TEST50     åèêî          3                                                              ÇoÇfÇlåvÅÑ FILEDUMP   COBFIND    åèêî          2
+
+                                                           742      20       1 DECODE07   FILEITEM   000798
+
+    720       7       1 DECODE06   TEST51     000309       743      21       2 DECODE07   FILEITEM   001189       758       3       1 FILEDUMP   COBRNDCK   000047
+
+    721       8       2 DECODE06   TEST51     000532       744      22       3 DECODE07   FILEITEM   001200       759       4       2 FILEDUMP   COBRNDCK   000171
+
+    722       9       3 DECODE06   TEST51     001222       745      23       4 DECODE07   FILEITEM   003546   ÇoÇfÇlåvÅÑ FILEDUMP   COBRNDCK   åèêî          2
+
+ÇoÇfÇlåvÅÑ DECODE06   TEST51     åèêî          3       ÇoÇfÇlåvÅÑ DECODE07   FILEITEM   åèêî          4
+
+                                                                                                                  760       5       1 FILEDUMP   COBSAM01   000294
+
+ÇrÇtÇaåvÅÑ DECODE06              åèêî          9           746      24       1 DECODE07   STREAMS2   000168       761       6       2 FILEDUMP   COBSAM01   000422
+
+                                                       ÇoÇfÇlåvÅÑ DECODE07   STREAMS2   åèêî          1           762       7       3 FILEDUMP   COBSAM01   000428
+
+    723       1       1 DECODE07   COBSAM02   000404                                                              763       8       4 FILEDUMP   COBSAM01   000434
+
+    724       2       2 DECODE07   COBSAM02   001204       747      25       1 DECODE07   TEST21     001490       764       9       5 FILEDUMP   COBSAM01   000440
+
+    725       3       3 DECODE07   COBSAM02   001229       748      26       2 DECODE07   TEST21     003570       765      10       6 FILEDUMP   COBSAM01   000446
+
+    726       4       4 DECODE07   COBSAM02   001253       749      27       3 DECODE07   TEST21     003755       766      11       7 FILEDUMP   COBSAM01   000451
+
+    727       5       5 DECODE07   COBSAM02   001278       750      28       4 DECODE07   TEST21     003889       767      12       8 FILEDUMP   COBSAM01   000456
+
+    728       6       6 DECODE07   COBSAM02   001303   ÇoÇfÇlåvÅÑ DECODE07   TEST21     åèêî          4           768      13       9 FILEDUMP   COBSAM01   000461
+
+    729       7       7 DECODE07   COBSAM02   001328                                                              769      14      10 FILEDUMP   COBSAM01   000466
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      16
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    770      15      11 FILEDUMP   COBSAM01   000471       799      44      40 FILEDUMP   COBSAM01   000719       828      73      69 FILEDUMP   COBSAM01   000873
+
+    771      16      12 FILEDUMP   COBSAM01   000476       800      45      41 FILEDUMP   COBSAM01   000724       829      74      70 FILEDUMP   COBSAM01   000878
+
+    772      17      13 FILEDUMP   COBSAM01   000481       801      46      42 FILEDUMP   COBSAM01   000730       830      75      71 FILEDUMP   COBSAM01   000884
+
+    773      18      14 FILEDUMP   COBSAM01   000486       802      47      43 FILEDUMP   COBSAM01   000736       831      76      72 FILEDUMP   COBSAM01   000889
+
+    774      19      15 FILEDUMP   COBSAM01   000492       803      48      44 FILEDUMP   COBSAM01   000741       832      77      73 FILEDUMP   COBSAM01   000894
+
+    775      20      16 FILEDUMP   COBSAM01   000498       804      49      45 FILEDUMP   COBSAM01   000746       833      78      74 FILEDUMP   COBSAM01   000909
+
+    776      21      17 FILEDUMP   COBSAM01   000503       805      50      46 FILEDUMP   COBSAM01   000751       834      79      75 FILEDUMP   COBSAM01   000915
+
+    777      22      18 FILEDUMP   COBSAM01   000508       806      51      47 FILEDUMP   COBSAM01   000756       835      80      76 FILEDUMP   COBSAM01   000921
+
+    778      23      19 FILEDUMP   COBSAM01   000514       807      52      48 FILEDUMP   COBSAM01   000761       836      81      77 FILEDUMP   COBSAM01   000927
+
+    779      24      20 FILEDUMP   COBSAM01   000519       808      53      49 FILEDUMP   COBSAM01   000766       837      82      78 FILEDUMP   COBSAM01   000933
+
+    780      25      21 FILEDUMP   COBSAM01   000524       809      54      50 FILEDUMP   COBSAM01   000771       838      83      79 FILEDUMP   COBSAM01   000939
+
+    781      26      22 FILEDUMP   COBSAM01   000530       810      55      51 FILEDUMP   COBSAM01   000776       839      84      80 FILEDUMP   COBSAM01   000954
+
+    782      27      23 FILEDUMP   COBSAM01   000535       811      56      52 FILEDUMP   COBSAM01   000782       840      85      81 FILEDUMP   COBSAM01   000960
+
+    783      28      24 FILEDUMP   COBSAM01   000540       812      57      53 FILEDUMP   COBSAM01   000788       841      86      82 FILEDUMP   COBSAM01   000966
+
+    784      29      25 FILEDUMP   COBSAM01   000546       813      58      54 FILEDUMP   COBSAM01   000793       842      87      83 FILEDUMP   COBSAM01   000972
+
+    785      30      26 FILEDUMP   COBSAM01   000551       814      59      55 FILEDUMP   COBSAM01   000798       843      88      84 FILEDUMP   COBSAM01   000978
+
+    786      31      27 FILEDUMP   COBSAM01   000556       815      60      56 FILEDUMP   COBSAM01   000804       844      89      85 FILEDUMP   COBSAM01   000984
+
+    787      32      28 FILEDUMP   COBSAM01   000562       816      61      57 FILEDUMP   COBSAM01   000809       845      90      86 FILEDUMP   COBSAM01   000994
+
+    788      33      29 FILEDUMP   COBSAM01   000567       817      62      58 FILEDUMP   COBSAM01   000814       846      91      87 FILEDUMP   COBSAM01   001002
+
+    789      34      30 FILEDUMP   COBSAM01   000572       818      63      59 FILEDUMP   COBSAM01   000820       847      92      88 FILEDUMP   COBSAM01   001010
+
+    790      35      31 FILEDUMP   COBSAM01   000578       819      64      60 FILEDUMP   COBSAM01   000825       848      93      89 FILEDUMP   COBSAM01   001020
+
+    791      36      32 FILEDUMP   COBSAM01   000583       820      65      61 FILEDUMP   COBSAM01   000830       849      94      90 FILEDUMP   COBSAM01   001026
+
+    792      37      33 FILEDUMP   COBSAM01   000588       821      66      62 FILEDUMP   COBSAM01   000836       850      95      91 FILEDUMP   COBSAM01   001032
+
+    793      38      34 FILEDUMP   COBSAM01   000594       822      67      63 FILEDUMP   COBSAM01   000841       851      96      92 FILEDUMP   COBSAM01   001038
+
+    794      39      35 FILEDUMP   COBSAM01   000599       823      68      64 FILEDUMP   COBSAM01   000846       852      97      93 FILEDUMP   COBSAM01   001046
+
+    795      40      36 FILEDUMP   COBSAM01   000604       824      69      65 FILEDUMP   COBSAM01   000852       853      98      94 FILEDUMP   COBSAM01   001061
+
+    796      41      37 FILEDUMP   COBSAM01   000611       825      70      66 FILEDUMP   COBSAM01   000857       854      99      95 FILEDUMP   COBSAM01   001118
+
+    797      42      38 FILEDUMP   COBSAM01   000616       826      71      67 FILEDUMP   COBSAM01   000862       855     100      96 FILEDUMP   COBSAM01   001211
+
+    798      43      39 FILEDUMP   COBSAM01   000713       827      72      68 FILEDUMP   COBSAM01   000868   ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM01   åèêî         96
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      17
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    856     101       1 FILEDUMP   COBSAM02   000395       881     126       3 FILEDUMP   COBSAM04   000207   ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM09   åèêî          2
+
+    857     102       2 FILEDUMP   COBSAM02   000458       882     127       4 FILEDUMP   COBSAM04   000237
+
+    858     103       3 FILEDUMP   COBSAM02   000741       883     128       5 FILEDUMP   COBSAM04   000268       900     145       1 FILEDUMP   COBSAM10   000120
+
+    859     104       4 FILEDUMP   COBSAM02   000765       884     129       6 FILEDUMP   COBSAM04   000293       901     146       2 FILEDUMP   COBSAM10   000248
+
+    860     105       5 FILEDUMP   COBSAM02   000780   ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM04   åèêî          6       ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM10   åèêî          2
+
+    861     106       6 FILEDUMP   COBSAM02   000817
+
+    862     107       7 FILEDUMP   COBSAM02   001559       885     130       1 FILEDUMP   COBSAM05   000154       902     147       1 FILEDUMP   COBSORT    001189
+
+ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM02   åèêî          7           886     131       2 FILEDUMP   COBSAM05   000244       903     148       2 FILEDUMP   COBSORT    002266
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM05   åèêî          2       ÇoÇfÇlåvÅÑ FILEDUMP   COBSORT    åèêî          2
+
+    863     108       1 FILEDUMP   COBSAM03   000302
+
+    864     109       2 FILEDUMP   COBSAM03   000399       887     132       1 FILEDUMP   COBSAM06   000216       904     149       1 FILEDUMP   COBSORTTBL 000249
+
+    865     110       3 FILEDUMP   COBSAM03   000404       888     133       2 FILEDUMP   COBSAM06   000245       905     150       2 FILEDUMP   COBSORTTBL 000462
+
+    866     111       4 FILEDUMP   COBSAM03   000409       889     134       3 FILEDUMP   COBSAM06   000251   ÇoÇfÇlåvÅÑ FILEDUMP   COBSORTTBL åèêî          2
+
+    867     112       5 FILEDUMP   COBSAM03   000414       890     135       4 FILEDUMP   COBSAM06   000930
+
+    868     113       6 FILEDUMP   COBSAM03   000419   ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM06   åèêî          4           906     151       1 FILEDUMP   COBXREF    000162
+
+    869     114       7 FILEDUMP   COBSAM03   000424                                                              907     152       2 FILEDUMP   COBXREF    000291
+
+    870     115       8 FILEDUMP   COBSAM03   000429       891     136       1 FILEDUMP   COBSAM07   000145   ÇoÇfÇlåvÅÑ FILEDUMP   COBXREF    åèêî          2
+
+    871     116       9 FILEDUMP   COBSAM03   000434       892     137       2 FILEDUMP   COBSAM07   000164
+
+    872     117      10 FILEDUMP   COBSAM03   000439       893     138       3 FILEDUMP   COBSAM07   000203       908     153       1 FILEDUMP   CONDDISP   000050
+
+    873     118      11 FILEDUMP   COBSAM03   000444       894     139       4 FILEDUMP   COBSAM07   000228       909     154       2 FILEDUMP   CONDDISP   000075
+
+    874     119      12 FILEDUMP   COBSAM03   000449   ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM07   åèêî          4       ÇoÇfÇlåvÅÑ FILEDUMP   CONDDISP   åèêî          2
+
+    875     120      13 FILEDUMP   COBSAM03   000454
+
+    876     121      14 FILEDUMP   COBSAM03   000459       895     140       1 FILEDUMP   COBSAM08   000127       910     155       1 FILEDUMP   CONDSET    000047
+
+    877     122      15 FILEDUMP   COBSAM03   000463       896     141       2 FILEDUMP   COBSAM08   000147       911     156       2 FILEDUMP   CONDSET    000067
+
+    878     123      16 FILEDUMP   COBSAM03   000664       897     142       3 FILEDUMP   COBSAM08   000207   ÇoÇfÇlåvÅÑ FILEDUMP   CONDSET    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM03   åèêî         16       ÇoÇfÇlåvÅÑ FILEDUMP   COBSAM08   åèêî          3
+
+                                                                                                                  912     157       1 FILEDUMP   DECODE05   000957
+
+    879     124       1 FILEDUMP   COBSAM04   000170       898     143       1 FILEDUMP   COBSAM09   000243   ÇoÇfÇlåvÅÑ FILEDUMP   DECODE05   åèêî          1
+
+    880     125       2 FILEDUMP   COBSAM04   000178       899     144       2 FILEDUMP   COBSAM09   000671
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      18
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    913     158       1 FILEDUMP   FILECOMP   000347       930     175       2 FILEDUMP   OCIC       001834       951     196       3 FILEDUMP   TEST05     000301
+
+    914     159       2 FILEDUMP   FILECOMP   001078       931     176       3 FILEDUMP   OCIC       001839       952     197       4 FILEDUMP   TEST05     000306
+
+ÇoÇfÇlåvÅÑ FILEDUMP   FILECOMP   åèêî          2           932     177       4 FILEDUMP   OCIC       001844       953     198       5 FILEDUMP   TEST05     000311
+
+                                                           933     178       5 FILEDUMP   OCIC       001852       954     199       6 FILEDUMP   TEST05     000316
+
+    915     160       1 FILEDUMP   FILEDMPP   000221   ÇoÇfÇlåvÅÑ FILEDUMP   OCIC       åèêî          5           955     200       7 FILEDUMP   TEST05     000321
+
+    916     161       2 FILEDUMP   FILEDMPP   000616                                                              956     201       8 FILEDUMP   TEST05     000326
+
+    917     162       3 FILEDUMP   FILEDMPP   000643       934     179       1 FILEDUMP   TEST01     000146       957     202       9 FILEDUMP   TEST05     000331
+
+    918     163       4 FILEDUMP   FILEDMPP   000669       935     180       2 FILEDUMP   TEST01     000203       958     203      10 FILEDUMP   TEST05     000343
+
+    919     164       5 FILEDUMP   FILEDMPP   000704       936     181       3 FILEDUMP   TEST01     000256       959     204      11 FILEDUMP   TEST05     000350
+
+    920     165       6 FILEDUMP   FILEDMPP   000738       937     182       4 FILEDUMP   TEST01     000118       960     205      12 FILEDUMP   TEST05     000357
+
+ÇoÇfÇlåvÅÑ FILEDUMP   FILEDMPP   åèêî          6           938     183       5 FILEDUMP   TEST01     000138       961     206      13 FILEDUMP   TEST05     000434
+
+                                                           939     184       6 FILEDUMP   TEST01     000174       962     207      14 FILEDUMP   TEST05     000470
+
+    921     166       1 FILEDUMP   FILEDTCR   001176       940     185       7 FILEDUMP   TEST01     000212       963     208      15 FILEDUMP   TEST05     000481
+
+    922     167       2 FILEDUMP   FILEDTCR   002144       941     186       8 FILEDUMP   TEST01     000118       964     209      16 FILEDUMP   TEST05     000489
+
+ÇoÇfÇlåvÅÑ FILEDUMP   FILEDTCR   åèêî          2           942     187       9 FILEDUMP   TEST01     000138       965     210      17 FILEDUMP   TEST05     000542
+
+                                                           943     188      10 FILEDUMP   TEST01     000174   ÇoÇfÇlåvÅÑ FILEDUMP   TEST05     åèêî         17
+
+    923     168       1 FILEDUMP   FILEITEM   000794       944     189      11 FILEDUMP   TEST01     000212
+
+    924     169       2 FILEDUMP   FILEITEM   003542   ÇoÇfÇlåvÅÑ FILEDUMP   TEST01     åèêî         11           966     211       1 FILEDUMP   TEST06     000469
+
+ÇoÇfÇlåvÅÑ FILEDUMP   FILEITEM   åèêî          2                                                                  967     212       2 FILEDUMP   TEST06     001035
+
+                                                           945     190       1 FILEDUMP   TEST02     000168       968     213       3 FILEDUMP   TEST06     001040
+
+    925     170       1 FILEDUMP   FIZZBUZZ   000056       946     191       2 FILEDUMP   TEST02     000320       969     214       4 FILEDUMP   TEST06     001096
+
+    926     171       2 FILEDUMP   FIZZBUZZ   000160   ÇoÇfÇlåvÅÑ FILEDUMP   TEST02     åèêî          2           970     215       5 FILEDUMP   TEST06     001101
+
+ÇoÇfÇlåvÅÑ FILEDUMP   FIZZBUZZ   åèêî          2                                                                  971     216       6 FILEDUMP   TEST06     001166
+
+                                                           947     192       1 FILEDUMP   TEST03     000121       972     217       7 FILEDUMP   TEST06     001171
+
+    927     172       1 FILEDUMP   HTML001    000183       948     193       2 FILEDUMP   TEST03     000215       973     218       8 FILEDUMP   TEST06     001485
+
+    928     173       2 FILEDUMP   HTML001    000377   ÇoÇfÇlåvÅÑ FILEDUMP   TEST03     åèêî          2       ÇoÇfÇlåvÅÑ FILEDUMP   TEST06     åèêî          8
+
+ÇoÇfÇlåvÅÑ FILEDUMP   HTML001    åèêî          2
+
+                                                           949     194       1 FILEDUMP   TEST05     000221       974     219       1 FILEDUMP   TEST07     000112
+
+    929     174       1 FILEDUMP   OCIC       000633       950     195       2 FILEDUMP   TEST05     000296       975     220       2 FILEDUMP   TEST07     000165
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      19
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    976     221       3 FILEDUMP   TEST07     000172       991     236       1 FILEDUMP   TEST104    000289     1,010     255       3 FILEDUMP   TEST109    000722
+
+    977     222       4 FILEDUMP   TEST07     000198       992     237       2 FILEDUMP   TEST104    000578     1,011     256       4 FILEDUMP   TEST109    000983
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST07     åèêî          4       ÇoÇfÇlåvÅÑ FILEDUMP   TEST104    åèêî          2       ÇoÇfÇlåvÅÑ FILEDUMP   TEST109    åèêî          4
+
+
+
+    978     223       1 FILEDUMP   TEST08     000115       993     238       1 FILEDUMP   TEST105    000175     1,012     257       1 FILEDUMP   TEST11     000121
+
+    979     224       2 FILEDUMP   TEST08     000148       994     239       2 FILEDUMP   TEST105    000255     1,013     258       2 FILEDUMP   TEST11     000231
+
+    980     225       3 FILEDUMP   TEST08     000191   ÇoÇfÇlåvÅÑ FILEDUMP   TEST105    åèêî          2       ÇoÇfÇlåvÅÑ FILEDUMP   TEST11     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST08     åèêî          3
+
+                                                           995     240       1 FILEDUMP   TEST106    000099     1,014     259       1 FILEDUMP   TEST110    000163
+
+    981     226       1 FILEDUMP   TEST10     000229       996     241       2 FILEDUMP   TEST106    000127     1,015     260       2 FILEDUMP   TEST110    000264
+
+    982     227       2 FILEDUMP   TEST10     000497       997     242       3 FILEDUMP   TEST106    000133   ÇoÇfÇlåvÅÑ FILEDUMP   TEST110    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST10     åèêî          2           998     243       4 FILEDUMP   TEST106    000139
+
+                                                           999     244       5 FILEDUMP   TEST106    000145     1,016     261       1 FILEDUMP   TEST111    000132
+
+    983     228       1 FILEDUMP   TEST100    000167     1,000     245       6 FILEDUMP   TEST106    000151     1,017     262       2 FILEDUMP   TEST111    000210
+
+    984     229       2 FILEDUMP   TEST100    000272     1,001     246       7 FILEDUMP   TEST106    000157   ÇoÇfÇlåvÅÑ FILEDUMP   TEST111    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST100    åèêî          2         1,002     247       8 FILEDUMP   TEST106    000163
+
+                                                         1,003     248       9 FILEDUMP   TEST106    000176     1,018     263       1 FILEDUMP   TEST112    000199
+
+    985     230       1 FILEDUMP   TEST101    000208   ÇoÇfÇlåvÅÑ FILEDUMP   TEST106    åèêî          9         1,019     264       2 FILEDUMP   TEST112    000387
+
+    986     231       2 FILEDUMP   TEST101    000551                                                          ÇoÇfÇlåvÅÑ FILEDUMP   TEST112    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST101    åèêî          2         1,004     249       1 FILEDUMP   TEST107    000107
+
+                                                         1,005     250       2 FILEDUMP   TEST107    000166     1,020     265       1 FILEDUMP   TEST113    000266
+
+    987     232       1 FILEDUMP   TEST102    000160   ÇoÇfÇlåvÅÑ FILEDUMP   TEST107    åèêî          2         1,021     266       2 FILEDUMP   TEST113    000557
+
+    988     233       2 FILEDUMP   TEST102    000421                                                          ÇoÇfÇlåvÅÑ FILEDUMP   TEST113    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST102    åèêî          2         1,006     251       1 FILEDUMP   TEST108    000245
+
+                                                         1,007     252       2 FILEDUMP   TEST108    000461     1,022     267       1 FILEDUMP   TEST114    000063
+
+    989     234       1 FILEDUMP   TEST103    000266   ÇoÇfÇlåvÅÑ FILEDUMP   TEST108    åèêî          2         1,023     268       2 FILEDUMP   TEST114    000094
+
+    990     235       2 FILEDUMP   TEST103    000527                                                          ÇoÇfÇlåvÅÑ FILEDUMP   TEST114    åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST103    åèêî          2         1,008     253       1 FILEDUMP   TEST109    000330
+
+                                                         1,009     254       2 FILEDUMP   TEST109    000390     1,024     269       1 FILEDUMP   TEST115    000245
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      20
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+  1,025     270       2 FILEDUMP   TEST115    000463     1,041     286       1 FILEDUMP   TEST18     000314     1,056     301       2 FILEDUMP   TEST27     000417
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST115    åèêî          2         1,042     287       2 FILEDUMP   TEST18     001086   ÇoÇfÇlåvÅÑ FILEDUMP   TEST27     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST18     åèêî          2
+
+  1,026     271       1 FILEDUMP   TEST12     000114                                                            1,057     302       1 FILEDUMP   TEST28     000221
+
+  1,027     272       2 FILEDUMP   TEST12     000190     1,043     288       1 FILEDUMP   TEST21     001483     1,058     303       2 FILEDUMP   TEST28     000527
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST12     åèêî          2         1,044     289       2 FILEDUMP   TEST21     003882   ÇoÇfÇlåvÅÑ FILEDUMP   TEST28     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST21     åèêî          2
+
+  1,028     273       1 FILEDUMP   TEST13     000129                                                            1,059     304       1 FILEDUMP   TEST29     000230
+
+  1,029     274       2 FILEDUMP   TEST13     000300     1,045     290       1 FILEDUMP   TEST22     000118     1,060     305       2 FILEDUMP   TEST29     000470
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST13     åèêî          2         1,046     291       2 FILEDUMP   TEST22     000194   ÇoÇfÇlåvÅÑ FILEDUMP   TEST29     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST22     åèêî          2
+
+  1,030     275       1 FILEDUMP   TEST14     000131                                                            1,061     306       1 FILEDUMP   TEST30     000382
+
+  1,031     276       2 FILEDUMP   TEST14     000273     1,047     292       1 FILEDUMP   TEST23     000133     1,062     307       2 FILEDUMP   TEST30     000681
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST14     åèêî          2         1,048     293       2 FILEDUMP   TEST23     000199   ÇoÇfÇlåvÅÑ FILEDUMP   TEST30     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST23     åèêî          2
+
+  1,032     277       1 FILEDUMP   TEST15     000181                                                            1,063     308       1 FILEDUMP   TEST31     000253
+
+  1,033     278       2 FILEDUMP   TEST15     000231     1,049     294       1 FILEDUMP   TEST24     000123     1,064     309       2 FILEDUMP   TEST31     000490
+
+  1,034     279       3 FILEDUMP   TEST15     000253     1,050     295       2 FILEDUMP   TEST24     000197   ÇoÇfÇlåvÅÑ FILEDUMP   TEST31     åèêî          2
+
+  1,035     280       4 FILEDUMP   TEST15     000292   ÇoÇfÇlåvÅÑ FILEDUMP   TEST24     åèêî          2
+
+  1,036     281       5 FILEDUMP   TEST15     000366                                                            1,065     310       1 FILEDUMP   TEST32     000143
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST15     åèêî          5         1,051     296       1 FILEDUMP   TEST25     000562     1,066     311       2 FILEDUMP   TEST32     000234
+
+                                                         1,052     297       2 FILEDUMP   TEST25     001075   ÇoÇfÇlåvÅÑ FILEDUMP   TEST32     åèêî          2
+
+  1,037     282       1 FILEDUMP   TEST16     000175   ÇoÇfÇlåvÅÑ FILEDUMP   TEST25     åèêî          2
+
+  1,038     283       2 FILEDUMP   TEST16     000355                                                            1,067     312       1 FILEDUMP   TEST33     000169
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST16     åèêî          2         1,053     298       1 FILEDUMP   TEST26     000314     1,068     313       2 FILEDUMP   TEST33     000380
+
+                                                         1,054     299       2 FILEDUMP   TEST26     001262   ÇoÇfÇlåvÅÑ FILEDUMP   TEST33     åèêî          2
+
+  1,039     284       1 FILEDUMP   TEST17     000175   ÇoÇfÇlåvÅÑ FILEDUMP   TEST26     åèêî          2
+
+  1,040     285       2 FILEDUMP   TEST17     000315                                                            1,069     314       1 FILEDUMP   TEST34     000155
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST17     åèêî          2         1,055     300       1 FILEDUMP   TEST27     000228     1,070     315       2 FILEDUMP   TEST34     000296
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      21
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST34     åèêî          2         1,086     331       2 FILEDUMP   TEST41     001182   ÇoÇfÇlåvÅÑ FILEDUMP   TEST48     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST41     åèêî          2
+
+  1,071     316       1 FILEDUMP   TEST35     000272                                                            1,101     346       1 FILEDUMP   TEST49     000330
+
+  1,072     317       2 FILEDUMP   TEST35     000604     1,087     332       1 FILEDUMP   TEST42     000238     1,102     347       2 FILEDUMP   TEST49     001481
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST35     åèêî          2         1,088     333       2 FILEDUMP   TEST42     000701   ÇoÇfÇlåvÅÑ FILEDUMP   TEST49     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST42     åèêî          2
+
+  1,073     318       1 FILEDUMP   TEST36     000171                                                            1,103     348       1 FILEDUMP   TEST50     000296
+
+  1,074     319       2 FILEDUMP   TEST36     000348     1,089     334       1 FILEDUMP   TEST43     000180     1,104     349       2 FILEDUMP   TEST50     001190
+
+  1,075     320       3 FILEDUMP   TEST36     000382     1,090     335       2 FILEDUMP   TEST43     000357   ÇoÇfÇlåvÅÑ FILEDUMP   TEST50     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST36     åèêî          3       ÇoÇfÇlåvÅÑ FILEDUMP   TEST43     åèêî          2
+
+                                                                                                                1,105     350       1 FILEDUMP   TEST51     000305
+
+  1,076     321       1 FILEDUMP   TEST37     000428     1,091     336       1 FILEDUMP   TEST44     000164     1,106     351       2 FILEDUMP   TEST51     001218
+
+  1,077     322       2 FILEDUMP   TEST37     000565     1,092     337       2 FILEDUMP   TEST44     000429   ÇoÇfÇlåvÅÑ FILEDUMP   TEST51     åèêî          2
+
+  1,078     323       3 FILEDUMP   TEST37     000977   ÇoÇfÇlåvÅÑ FILEDUMP   TEST44     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST37     åèêî          3                                                                1,107     352       1 FILEDUMP   TEST52     000255
+
+                                                         1,093     338       1 FILEDUMP   TEST45     000208     1,108     353       2 FILEDUMP   TEST52     000828
+
+  1,079     324       1 FILEDUMP   TEST38     001170     1,094     339       2 FILEDUMP   TEST45     000379   ÇoÇfÇlåvÅÑ FILEDUMP   TEST52     åèêî          2
+
+  1,080     325       2 FILEDUMP   TEST38     001960   ÇoÇfÇlåvÅÑ FILEDUMP   TEST45     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST38     åèêî          2                                                                1,109     354       1 FILEDUMP   TEST53     000546
+
+                                                         1,095     340       1 FILEDUMP   TEST46     000264     1,110     355       2 FILEDUMP   TEST53     000992
+
+  1,081     326       1 FILEDUMP   TEST39     000231     1,096     341       2 FILEDUMP   TEST46     000546   ÇoÇfÇlåvÅÑ FILEDUMP   TEST53     åèêî          2
+
+  1,082     327       2 FILEDUMP   TEST39     000652   ÇoÇfÇlåvÅÑ FILEDUMP   TEST46     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST39     åèêî          2                                                                1,111     356       1 FILEDUMP   TEST54     000353
+
+                                                         1,097     342       1 FILEDUMP   TEST47     000233     1,112     357       2 FILEDUMP   TEST54     002536
+
+  1,083     328       1 FILEDUMP   TEST40     001462     1,098     343       2 FILEDUMP   TEST47     000438   ÇoÇfÇlåvÅÑ FILEDUMP   TEST54     åèêî          2
+
+  1,084     329       2 FILEDUMP   TEST40     004477   ÇoÇfÇlåvÅÑ FILEDUMP   TEST47     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST40     åèêî          2                                                                1,113     358       1 FILEDUMP   TEST55     000258
+
+                                                         1,099     344       1 FILEDUMP   TEST48     000198     1,114     359       2 FILEDUMP   TEST55     000804
+
+  1,085     330       1 FILEDUMP   TEST41     000637     1,100     345       2 FILEDUMP   TEST48     000504     1,115     360       3 FILEDUMP   TEST55     000818
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      22
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+  1,116     361       4 FILEDUMP   TEST55     000834   ÇoÇfÇlåvÅÑ FILEDUMP   TEST61     åèêî          2         1,148     393       2 FILEDUMP   TEST68     001400
+
+  1,117     362       5 FILEDUMP   TEST55     000942                                                          ÇoÇfÇlåvÅÑ FILEDUMP   TEST68     åèêî          2
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST55     åèêî          5         1,133     378       1 FILEDUMP   TEST62     000360
+
+                                                         1,134     379       2 FILEDUMP   TEST62     000427     1,149     394       1 FILEDUMP   TEST69     000498
+
+  1,118     363       1 FILEDUMP   TEST56     000255     1,135     380       3 FILEDUMP   TEST62     000795     1,150     395       2 FILEDUMP   TEST69     002332
+
+  1,119     364       2 FILEDUMP   TEST56     000645     1,136     381       4 FILEDUMP   TEST62     001063   ÇoÇfÇlåvÅÑ FILEDUMP   TEST69     åèêî          2
+
+  1,120     365       3 FILEDUMP   TEST56     000769   ÇoÇfÇlåvÅÑ FILEDUMP   TEST62     åèêî          4
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST56     åèêî          3                                                                1,151     396       1 FILEDUMP   TEST70     000518
+
+                                                         1,137     382       1 FILEDUMP   TEST63     000157     1,152     397       2 FILEDUMP   TEST70     001423
+
+  1,121     366       1 FILEDUMP   TEST57     000422     1,138     383       2 FILEDUMP   TEST63     000267   ÇoÇfÇlåvÅÑ FILEDUMP   TEST70     åèêî          2
+
+  1,122     367       2 FILEDUMP   TEST57     000994   ÇoÇfÇlåvÅÑ FILEDUMP   TEST63     åèêî          2
+
+  1,123     368       3 FILEDUMP   TEST57     001250                                                            1,153     398       1 FILEDUMP   TEST71     000220
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST57     åèêî          3         1,139     384       1 FILEDUMP   TEST64     000210     1,154     399       2 FILEDUMP   TEST71     000322
+
+                                                         1,140     385       2 FILEDUMP   TEST64     000636   ÇoÇfÇlåvÅÑ FILEDUMP   TEST71     åèêî          2
+
+  1,124     369       1 FILEDUMP   TEST58     000294   ÇoÇfÇlåvÅÑ FILEDUMP   TEST64     åèêî          2
+
+  1,125     370       2 FILEDUMP   TEST58     000691                                                            1,155     400       1 FILEDUMP   TEST72     000382
+
+  1,126     371       3 FILEDUMP   TEST58     000877     1,141     386       1 FILEDUMP   TEST65     000320     1,156     401       2 FILEDUMP   TEST72     000953
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST58     åèêî          3         1,142     387       2 FILEDUMP   TEST65     000607   ÇoÇfÇlåvÅÑ FILEDUMP   TEST72     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST65     åèêî          2
+
+  1,127     372       1 FILEDUMP   TEST59     000177                                                            1,157     402       1 FILEDUMP   TEST73     000174
+
+  1,128     373       2 FILEDUMP   TEST59     000527     1,143     388       1 FILEDUMP   TEST66     000168     1,158     403       2 FILEDUMP   TEST73     000286
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST59     åèêî          2         1,144     389       2 FILEDUMP   TEST66     000454   ÇoÇfÇlåvÅÑ FILEDUMP   TEST73     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST66     åèêî          2
+
+  1,129     374       1 FILEDUMP   TEST60     000306                                                            1,159     404       1 FILEDUMP   TEST74     000152
+
+  1,130     375       2 FILEDUMP   TEST60     000613     1,145     390       1 FILEDUMP   TEST67     000189     1,160     405       2 FILEDUMP   TEST74     000308
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST60     åèêî          2         1,146     391       2 FILEDUMP   TEST67     000291   ÇoÇfÇlåvÅÑ FILEDUMP   TEST74     åèêî          2
+
+                                                       ÇoÇfÇlåvÅÑ FILEDUMP   TEST67     åèêî          2
+
+  1,131     376       1 FILEDUMP   TEST61     000194                                                            1,161     406       1 FILEDUMP   TEST75     000192
+
+  1,132     377       2 FILEDUMP   TEST61     000358     1,147     392       1 FILEDUMP   TEST68     000378     1,162     407       2 FILEDUMP   TEST75     000397
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      23
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST75     åèêî          2         1,178     423       4 FILEDUMP   TEST82     000233     1,193     438       2 FILEDUMP   TEST89     000393
+
+                                                         1,179     424       5 FILEDUMP   TEST82     000263   ÇoÇfÇlåvÅÑ FILEDUMP   TEST89     åèêî          2
+
+  1,163     408       1 FILEDUMP   TEST76     000118   ÇoÇfÇlåvÅÑ FILEDUMP   TEST82     åèêî          5
+
+  1,164     409       2 FILEDUMP   TEST76     000226                                                            1,194     439       1 FILEDUMP   TEST90     000152
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST76     åèêî          2         1,180     425       1 FILEDUMP   TEST83     000161     1,195     440       2 FILEDUMP   TEST90     000264
+
+                                                         1,181     426       2 FILEDUMP   TEST83     000260   ÇoÇfÇlåvÅÑ FILEDUMP   TEST90     åèêî          2
+
+  1,165     410       1 FILEDUMP   TEST77     000120   ÇoÇfÇlåvÅÑ FILEDUMP   TEST83     åèêî          2
+
+  1,166     411       2 FILEDUMP   TEST77     000228                                                            1,196     441       1 FILEDUMP   TEST91     000160
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST77     åèêî          2         1,182     427       1 FILEDUMP   TEST84     000221     1,197     442       2 FILEDUMP   TEST91     000256
+
+                                                         1,183     428       2 FILEDUMP   TEST84     000531   ÇoÇfÇlåvÅÑ FILEDUMP   TEST91     åèêî          2
+
+  1,167     412       1 FILEDUMP   TEST78     001031   ÇoÇfÇlåvÅÑ FILEDUMP   TEST84     åèêî          2
+
+  1,168     413       2 FILEDUMP   TEST78     003389                                                            1,198     443       1 FILEDUMP   TEST92     000332
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST78     åèêî          2         1,184     429       1 FILEDUMP   TEST85     000345     1,199     444       2 FILEDUMP   TEST92     000724
+
+                                                         1,185     430       2 FILEDUMP   TEST85     000867   ÇoÇfÇlåvÅÑ FILEDUMP   TEST92     åèêî          2
+
+  1,169     414       1 FILEDUMP   TEST79     000206   ÇoÇfÇlåvÅÑ FILEDUMP   TEST85     åèêî          2
+
+  1,170     415       2 FILEDUMP   TEST79     000400                                                            1,200     445       1 FILEDUMP   TEST93     000147
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST79     åèêî          2         1,186     431       1 FILEDUMP   TEST86     000129     1,201     446       2 FILEDUMP   TEST93     000226
+
+                                                         1,187     432       2 FILEDUMP   TEST86     000234   ÇoÇfÇlåvÅÑ FILEDUMP   TEST93     åèêî          2
+
+  1,171     416       1 FILEDUMP   TEST80     000178   ÇoÇfÇlåvÅÑ FILEDUMP   TEST86     åèêî          2
+
+  1,172     417       2 FILEDUMP   TEST80     000420                                                            1,202     447       1 FILEDUMP   TEST94     000126
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST80     åèêî          2         1,188     433       1 FILEDUMP   TEST87     000173     1,203     448       2 FILEDUMP   TEST94     000219
+
+                                                         1,189     434       2 FILEDUMP   TEST87     000241   ÇoÇfÇlåvÅÑ FILEDUMP   TEST94     åèêî          2
+
+  1,173     418       1 FILEDUMP   TEST81     000128   ÇoÇfÇlåvÅÑ FILEDUMP   TEST87     åèêî          2
+
+  1,174     419       2 FILEDUMP   TEST81     000211                                                            1,204     449       1 FILEDUMP   TEST95     000114
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST81     åèêî          2         1,190     435       1 FILEDUMP   TEST88     000194     1,205     450       2 FILEDUMP   TEST95     000159
+
+                                                         1,191     436       2 FILEDUMP   TEST88     000352     1,206     451       3 FILEDUMP   TEST95     000179
+
+  1,175     420       1 FILEDUMP   TEST82     000136   ÇoÇfÇlåvÅÑ FILEDUMP   TEST88     åèêî          2       ÇoÇfÇlåvÅÑ FILEDUMP   TEST95     åèêî          3
+
+  1,176     421       2 FILEDUMP   TEST82     000197
+
+  1,177     422       3 FILEDUMP   TEST82     000215     1,192     437       1 FILEDUMP   TEST89     000186     1,207     452       1 FILEDUMP   TEST96     000182
+
+                                    ÅñÅñÅñÅ@ÉTÉuÉãÅ[É`ÉìàÍóóÅ@ÅñÅñÅñ                              23/11/25  20:12:45      24
+C.FILEITEM.T005
+
+  SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 SUB        PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+  1,208     453       2 FILEDUMP   TEST96     000338     1,219       4       1 LISTING    TEST05     000403   ëççáåvÅ@ÅÑ                       åèêî      1,227
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST96     åèêî          2       ÇoÇfÇlåvÅÑ LISTING    TEST05     åèêî          1
+
+
+
+  1,209     454       1 FILEDUMP   TEST97     000207   ÇrÇtÇaåvÅÑ LISTING               åèêî          4
+
+  1,210     455       2 FILEDUMP   TEST97     000432
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST97     åèêî          2         1,220       1       1 SUBC       MAINCOB    000024
+
+                                                       ÇoÇfÇlåvÅÑ SUBC       MAINCOB    åèêî          1
+
+  1,211     456       1 FILEDUMP   TEST98     000289
+
+  1,212     457       2 FILEDUMP   TEST98     000562   ÇrÇtÇaåvÅÑ SUBC                  åèêî          1
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST98     åèêî          2
+
+                                                         1,221       1       1 SYSTEM     LISTING    001016
+
+  1,213     458       1 FILEDUMP   TEST99     000145   ÇoÇfÇlåvÅÑ SYSTEM     LISTING    åèêî          1
+
+  1,214     459       2 FILEDUMP   TEST99     000225
+
+ÇoÇfÇlåvÅÑ FILEDUMP   TEST99     åèêî          2         1,222       2       1 SYSTEM     OCIC       001511
+
+                                                         1,223       3       2 SYSTEM     OCIC       001676
+
+ÇrÇtÇaåvÅÑ FILEDUMP              åèêî        459         1,224       4       3 SYSTEM     OCIC       001802
+
+                                                       ÇoÇfÇlåvÅÑ SYSTEM     OCIC       åèêî          3
+
+  1,215       1       1 GETOSTYPE  OCIC       001067
+
+ÇoÇfÇlåvÅÑ GETOSTYPE  OCIC       åèêî          1         1,225       5       1 SYSTEM     TEST86     000135
+
+                                                         1,226       6       2 SYSTEM     TEST86     000190
+
+ÇrÇtÇaåvÅÑ GETOSTYPE             åèêî          1       ÇoÇfÇlåvÅÑ SYSTEM     TEST86     åèêî          2
+
+
+
+  1,216       1       1 LISTING    COBXREF    000252   ÇrÇtÇaåvÅÑ SYSTEM                åèêî          6
+
+  1,217       2       2 LISTING    COBXREF    000270
+
+ÇoÇfÇlåvÅÑ LISTING    COBXREF    åèêî          2         1,227       1       1 TEST04S1   TEST04     000032
+
+                                                       ÇoÇfÇlåvÅÑ TEST04S1   TEST04     åèêî          1
+
+  1,218       3       1 LISTING    OCIC       001654
+
+ÇoÇfÇlåvÅÑ LISTING    OCIC       åèêî          1       ÇrÇtÇaåvÅÑ TEST04S1              åèêî          1
+
+
+

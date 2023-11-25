@@ -1,0 +1,693 @@
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       1
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+      1       1       1 CPCOBRND   COBRND     000103        11      11       1 CPCOBRND   TEST50     000162        20       7       1 CPDATETIME COBSAM06   000095
+
+PROGRAM計> CPCOBRND   COBRND     件数          1       PROGRAM計> CPCOBRND   TEST50     件数          1       PROGRAM計> CPDATETIME COBSAM06   件数          1
+
+
+
+      2       2       1 CPCOBRND   COBRNDCK   000029        12      12       1 CPCOBRND   TEST51     000169        21       8       1 CPDATETIME COBSAM07   000069
+
+PROGRAM計> CPCOBRND   COBRNDCK   件数          1       PROGRAM計> CPCOBRND   TEST51     件数          1       PROGRAM計> CPDATETIME COBSAM07   件数          1
+
+
+
+      3       3       1 CPCOBRND   FILEDTCR   000183        13      13       1 CPCOBRND   TEST59     000092        22       9       1 CPDATETIME COBSAM08   000063
+
+PROGRAM計> CPCOBRND   FILEDTCR   件数          1       PROGRAM計> CPCOBRND   TEST59     件数          1       PROGRAM計> CPDATETIME COBSAM08   件数          1
+
+
+
+      4       4       1 CPCOBRND   TEST101    000107   COPY句計＞ CPCOBRND              件数         13            23      10       1 CPDATETIME COBSAM09   000176
+
+PROGRAM計> CPCOBRND   TEST101    件数          1                                                              PROGRAM計> CPDATETIME COBSAM09   件数          1
+
+                                                            14       1       1 CPDATETIME COBFIND    000088
+
+      5       5       1 CPCOBRND   TEST102    000107   PROGRAM計> CPDATETIME COBFIND    件数          1            24      11       1 CPDATETIME COBSAM10   000058
+
+PROGRAM計> CPCOBRND   TEST102    件数          1                                                              PROGRAM計> CPDATETIME COBSAM10   件数          1
+
+                                                            15       2       1 CPDATETIME COBSAM01   000223
+
+      6       6       1 CPCOBRND   TEST105    000081   PROGRAM計> CPDATETIME COBSAM01   件数          1            25      12       1 CPDATETIME COBSORT    000204
+
+PROGRAM計> CPCOBRND   TEST105    件数          1                                                              PROGRAM計> CPDATETIME COBSORT    件数          1
+
+                                                            16       3       1 CPDATETIME COBSAM02   000149
+
+      7       7       1 CPCOBRND   TEST21     000413   PROGRAM計> CPDATETIME COBSAM02   件数          1            26      13       1 CPDATETIME COBSORTTBL 000085
+
+PROGRAM計> CPCOBRND   TEST21     件数          1                                                              PROGRAM計> CPDATETIME COBSORTTBL 件数          1
+
+                                                            17       4       1 CPDATETIME COBSAM03   000180
+
+      8       8       1 CPCOBRND   TEST36     000109   PROGRAM計> CPDATETIME COBSAM03   件数          1            27      14       1 CPDATETIME COBXREF    000060
+
+PROGRAM計> CPCOBRND   TEST36     件数          1                                                              PROGRAM計> CPDATETIME COBXREF    件数          1
+
+                                                            18       5       1 CPDATETIME COBSAM04   000094
+
+      9       9       1 CPCOBRND   TEST40     000574   PROGRAM計> CPDATETIME COBSAM04   件数          1            28      15       1 CPDATETIME CONDDISP   000019
+
+PROGRAM計> CPCOBRND   TEST40     件数          1                                                              PROGRAM計> CPDATETIME CONDDISP   件数          1
+
+                                                            19       6       1 CPDATETIME COBSAM05   000071
+
+     10      10       1 CPCOBRND   TEST49     000163   PROGRAM計> CPDATETIME COBSAM05   件数          1            29      16       1 CPDATETIME CONDSET    000016
+
+PROGRAM計> CPCOBRND   TEST49     件数          1                                                              PROGRAM計> CPDATETIME CONDSET    件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       2
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+     30      17       1 CPDATETIME DATETIME   000128        41      28       1 CPDATETIME TEST03     000069        51      38       1 CPDATETIME TEST104    000129
+
+PROGRAM計> CPDATETIME DATETIME   件数          1       PROGRAM計> CPDATETIME TEST03     件数          1       PROGRAM計> CPDATETIME TEST104    件数          1
+
+
+
+     31      18       1 CPDATETIME FILECOMP   000170        42      29       1 CPDATETIME TEST05     000124        52      39       1 CPDATETIME TEST105    000079
+
+PROGRAM計> CPDATETIME FILECOMP   件数          1       PROGRAM計> CPDATETIME TEST05     件数          1       PROGRAM計> CPDATETIME TEST105    件数          1
+
+
+
+     32      19       1 CPDATETIME FILEDMPP   000113        43      30       1 CPDATETIME TEST06     000120        53      40       1 CPDATETIME TEST106    000052
+
+PROGRAM計> CPDATETIME FILEDMPP   件数          1       PROGRAM計> CPDATETIME TEST06     件数          1       PROGRAM計> CPDATETIME TEST106    件数          1
+
+
+
+     33      20       1 CPDATETIME FILEDTCR   000187        44      31       1 CPDATETIME TEST07     000061        54      41       1 CPDATETIME TEST107    000052
+
+PROGRAM計> CPDATETIME FILEDTCR   件数          1       PROGRAM計> CPDATETIME TEST07     件数          1       PROGRAM計> CPDATETIME TEST107    件数          1
+
+
+
+     34      21       1 CPDATETIME FILEITEM   000319        45      32       1 CPDATETIME TEST08     000060        55      42       1 CPDATETIME TEST108    000110
+
+PROGRAM計> CPDATETIME FILEITEM   件数          1       PROGRAM計> CPDATETIME TEST08     件数          1       PROGRAM計> CPDATETIME TEST108    件数          1
+
+
+
+     35      22       1 CPDATETIME FIZZBUZZ   000029        46      33       1 CPDATETIME TEST10     000128        56      43       1 CPDATETIME TEST109    000152
+
+PROGRAM計> CPDATETIME FIZZBUZZ   件数          1       PROGRAM計> CPDATETIME TEST10     件数          1       PROGRAM計> CPDATETIME TEST109    件数          1
+
+
+
+     36      23       1 CPDATETIME HTML001    000109        47      34       1 CPDATETIME TEST100    000089        57      44       1 CPDATETIME TEST11     000066
+
+PROGRAM計> CPDATETIME HTML001    件数          1       PROGRAM計> CPDATETIME TEST100    件数          1       PROGRAM計> CPDATETIME TEST11     件数          1
+
+
+
+     37      24       1 CPDATETIME TEST01     000081        48      35       1 CPDATETIME TEST101    000105        58      45       1 CPDATETIME TEST110    000102
+
+     38      25       2 CPDATETIME TEST01     000057   PROGRAM計> CPDATETIME TEST101    件数          1       PROGRAM計> CPDATETIME TEST110    件数          1
+
+     39      26       3 CPDATETIME TEST01     000057
+
+PROGRAM計> CPDATETIME TEST01     件数          3            49      36       1 CPDATETIME TEST102    000105        59      46       1 CPDATETIME TEST111    000074
+
+                                                       PROGRAM計> CPDATETIME TEST102    件数          1       PROGRAM計> CPDATETIME TEST111    件数          1
+
+     40      27       1 CPDATETIME TEST02     000083
+
+PROGRAM計> CPDATETIME TEST02     件数          1            50      37       1 CPDATETIME TEST103    000105        60      47       1 CPDATETIME TEST112    000101
+
+                                                       PROGRAM計> CPDATETIME TEST103    件数          1       PROGRAM計> CPDATETIME TEST112    件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       3
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+     61      48       1 CPDATETIME TEST113    000124        71      58       1 CPDATETIME TEST21     000409        81      68       1 CPDATETIME TEST31     000147
+
+PROGRAM計> CPDATETIME TEST113    件数          1       PROGRAM計> CPDATETIME TEST21     件数          1       PROGRAM計> CPDATETIME TEST31     件数          1
+
+
+
+     62      49       1 CPDATETIME TEST114    000023        72      59       1 CPDATETIME TEST22     000060        82      69       1 CPDATETIME TEST32     000090
+
+PROGRAM計> CPDATETIME TEST114    件数          1       PROGRAM計> CPDATETIME TEST22     件数          1       PROGRAM計> CPDATETIME TEST32     件数          1
+
+
+
+     63      50       1 CPDATETIME TEST115    000110        73      60       1 CPDATETIME TEST23     000078        83      70       1 CPDATETIME TEST33     000067
+
+PROGRAM計> CPDATETIME TEST115    件数          1       PROGRAM計> CPDATETIME TEST23     件数          1       PROGRAM計> CPDATETIME TEST33     件数          1
+
+
+
+     64      51       1 CPDATETIME TEST12     000059        74      61       1 CPDATETIME TEST24     000059        84      71       1 CPDATETIME TEST34     000069
+
+PROGRAM計> CPDATETIME TEST12     件数          1       PROGRAM計> CPDATETIME TEST24     件数          1       PROGRAM計> CPDATETIME TEST34     件数          1
+
+
+
+     65      52       1 CPDATETIME TEST13     000063        75      62       1 CPDATETIME TEST25     000190        85      72       1 CPDATETIME TEST35     000131
+
+PROGRAM計> CPDATETIME TEST13     件数          1       PROGRAM計> CPDATETIME TEST25     件数          1       PROGRAM計> CPDATETIME TEST35     件数          1
+
+
+
+     66      53       1 CPDATETIME TEST14     000064        76      63       1 CPDATETIME TEST26     000188        86      73       1 CPDATETIME TEST36     000107
+
+PROGRAM計> CPDATETIME TEST14     件数          1       PROGRAM計> CPDATETIME TEST26     件数          1       PROGRAM計> CPDATETIME TEST36     件数          1
+
+
+
+     67      54       1 CPDATETIME TEST15     000108        77      64       1 CPDATETIME TEST27     000123        87      74       1 CPDATETIME TEST37     000222
+
+PROGRAM計> CPDATETIME TEST15     件数          1       PROGRAM計> CPDATETIME TEST27     件数          1       PROGRAM計> CPDATETIME TEST37     件数          1
+
+
+
+     68      55       1 CPDATETIME TEST16     000083        78      65       1 CPDATETIME TEST28     000113        88      75       1 CPDATETIME TEST38     000215
+
+PROGRAM計> CPDATETIME TEST16     件数          1       PROGRAM計> CPDATETIME TEST28     件数          1       PROGRAM計> CPDATETIME TEST38     件数          1
+
+
+
+     69      56       1 CPDATETIME TEST17     000082        79      66       1 CPDATETIME TEST29     000126        89      76       1 CPDATETIME TEST39     000126
+
+PROGRAM計> CPDATETIME TEST17     件数          1       PROGRAM計> CPDATETIME TEST29     件数          1       PROGRAM計> CPDATETIME TEST39     件数          1
+
+
+
+     70      57       1 CPDATETIME TEST18     000170        80      67       1 CPDATETIME TEST30     000265        90      77       1 CPDATETIME TEST40     000570
+
+PROGRAM計> CPDATETIME TEST18     件数          1       PROGRAM計> CPDATETIME TEST30     件数          1       PROGRAM計> CPDATETIME TEST40     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       4
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+     91      78       1 CPDATETIME TEST41     000355       101      88       1 CPDATETIME TEST51     000167       111      98       1 CPDATETIME TEST61     000102
+
+PROGRAM計> CPDATETIME TEST41     件数          1       PROGRAM計> CPDATETIME TEST51     件数          1       PROGRAM計> CPDATETIME TEST61     件数          1
+
+
+
+     92      79       1 CPDATETIME TEST42     000112       102      89       1 CPDATETIME TEST52     000121       112      99       1 CPDATETIME TEST62     000180
+
+PROGRAM計> CPDATETIME TEST42     件数          1       PROGRAM計> CPDATETIME TEST52     件数          1       PROGRAM計> CPDATETIME TEST62     件数          1
+
+
+
+     93      80       1 CPDATETIME TEST43     000086       103      90       1 CPDATETIME TEST53     000113       113     100       1 CPDATETIME TEST63     000096
+
+PROGRAM計> CPDATETIME TEST43     件数          1       PROGRAM計> CPDATETIME TEST53     件数          1       PROGRAM計> CPDATETIME TEST63     件数          1
+
+
+
+     94      81       1 CPDATETIME TEST44     000092       104      91       1 CPDATETIME TEST54     000191       114     101       1 CPDATETIME TEST64     000098
+
+PROGRAM計> CPDATETIME TEST44     件数          1       PROGRAM計> CPDATETIME TEST54     件数          1       PROGRAM計> CPDATETIME TEST64     件数          1
+
+
+
+     95      82       1 CPDATETIME TEST45     000105       105      92       1 CPDATETIME TEST55     000125       115     102       1 CPDATETIME TEST65     000201
+
+PROGRAM計> CPDATETIME TEST45     件数          1       PROGRAM計> CPDATETIME TEST55     件数          1       PROGRAM計> CPDATETIME TEST65     件数          1
+
+
+
+     96      83       1 CPDATETIME TEST46     000191       106      93       1 CPDATETIME TEST56     000125       116     103       1 CPDATETIME TEST66     000096
+
+PROGRAM計> CPDATETIME TEST46     件数          1       PROGRAM計> CPDATETIME TEST56     件数          1       PROGRAM計> CPDATETIME TEST66     件数          1
+
+
+
+     97      84       1 CPDATETIME TEST47     000118       107      94       1 CPDATETIME TEST57     000178       117     104       1 CPDATETIME TEST67     000088
+
+PROGRAM計> CPDATETIME TEST47     件数          1       PROGRAM計> CPDATETIME TEST57     件数          1       PROGRAM計> CPDATETIME TEST67     件数          1
+
+
+
+     98      85       1 CPDATETIME TEST48     000100       108      95       1 CPDATETIME TEST58     000124       118     105       1 CPDATETIME TEST68     000168
+
+PROGRAM計> CPDATETIME TEST48     件数          1       PROGRAM計> CPDATETIME TEST58     件数          1       PROGRAM計> CPDATETIME TEST68     件数          1
+
+
+
+     99      86       1 CPDATETIME TEST49     000161       109      96       1 CPDATETIME TEST59     000090       119     106       1 CPDATETIME TEST69     000265
+
+PROGRAM計> CPDATETIME TEST49     件数          1       PROGRAM計> CPDATETIME TEST59     件数          1       PROGRAM計> CPDATETIME TEST69     件数          1
+
+
+
+    100      87       1 CPDATETIME TEST50     000160       110      97       1 CPDATETIME TEST60     000118       120     107       1 CPDATETIME TEST70     000226
+
+PROGRAM計> CPDATETIME TEST50     件数          1       PROGRAM計> CPDATETIME TEST60     件数          1       PROGRAM計> CPDATETIME TEST70     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       5
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    121     108       1 CPDATETIME TEST71     000093       131     118       1 CPDATETIME TEST81     000062       141     128       1 CPDATETIME TEST91     000096
+
+PROGRAM計> CPDATETIME TEST71     件数          1       PROGRAM計> CPDATETIME TEST81     件数          1       PROGRAM計> CPDATETIME TEST91     件数          1
+
+
+
+    122     109       1 CPDATETIME TEST72     000166       132     119       1 CPDATETIME TEST82     000070       142     129       1 CPDATETIME TEST92     000183
+
+PROGRAM計> CPDATETIME TEST72     件数          1       PROGRAM計> CPDATETIME TEST82     件数          1       PROGRAM計> CPDATETIME TEST92     件数          1
+
+
+
+    123     110       1 CPDATETIME TEST73     000113       133     120       1 CPDATETIME TEST83     000086       143     130       1 CPDATETIME TEST93     000064
+
+PROGRAM計> CPDATETIME TEST73     件数          1       PROGRAM計> CPDATETIME TEST83     件数          1       PROGRAM計> CPDATETIME TEST93     件数          1
+
+
+
+    124     111       1 CPDATETIME TEST74     000084       134     121       1 CPDATETIME TEST84     000108       144     131       1 CPDATETIME TEST94     000068
+
+PROGRAM計> CPDATETIME TEST74     件数          1       PROGRAM計> CPDATETIME TEST84     件数          1       PROGRAM計> CPDATETIME TEST94     件数          1
+
+
+
+    125     112       1 CPDATETIME TEST75     000098       135     122       1 CPDATETIME TEST85     000187       145     132       1 CPDATETIME TEST95     000058
+
+PROGRAM計> CPDATETIME TEST75     件数          1       PROGRAM計> CPDATETIME TEST85     件数          1       PROGRAM計> CPDATETIME TEST95     件数          1
+
+
+
+    126     113       1 CPDATETIME TEST76     000058       136     123       1 CPDATETIME TEST86     000069       146     133       1 CPDATETIME TEST96     000097
+
+PROGRAM計> CPDATETIME TEST76     件数          1       PROGRAM計> CPDATETIME TEST86     件数          1       PROGRAM計> CPDATETIME TEST96     件数          1
+
+
+
+    127     114       1 CPDATETIME TEST77     000058       137     124       1 CPDATETIME TEST87     000081       147     134       1 CPDATETIME TEST97     000109
+
+PROGRAM計> CPDATETIME TEST77     件数          1       PROGRAM計> CPDATETIME TEST87     件数          1       PROGRAM計> CPDATETIME TEST97     件数          1
+
+
+
+    128     115       1 CPDATETIME TEST78     000507       138     125       1 CPDATETIME TEST88     000095       148     135       1 CPDATETIME TEST98     000159
+
+PROGRAM計> CPDATETIME TEST78     件数          1       PROGRAM計> CPDATETIME TEST88     件数          1       PROGRAM計> CPDATETIME TEST98     件数          1
+
+
+
+    129     116       1 CPDATETIME TEST79     000098       139     126       1 CPDATETIME TEST89     000099       149     136       1 CPDATETIME TEST99     000080
+
+PROGRAM計> CPDATETIME TEST79     件数          1       PROGRAM計> CPDATETIME TEST89     件数          1       PROGRAM計> CPDATETIME TEST99     件数          1
+
+
+
+    130     117       1 CPDATETIME TEST80     000092       140     127       1 CPDATETIME TEST90     000093   COPY句計＞ CPDATETIME            件数        136
+
+PROGRAM計> CPDATETIME TEST80     件数          1       PROGRAM計> CPDATETIME TEST90     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       6
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    150       1       1 CPDATEWEEK COBSAM02   000151       159       2       1 CPDECODE05 DECODE05   000298       169      12       1 CPDECODE05 TEST86     000071
+
+PROGRAM計> CPDATEWEEK COBSAM02   件数          1       PROGRAM計> CPDECODE05 DECODE05   件数          1       PROGRAM計> CPDECODE05 TEST86     件数          1
+
+
+
+    151       2       1 CPDATEWEEK DATEWEEK   000044       160       3       1 CPDECODE05 TEST103    000107       170      13       1 CPDECODE05 TEST92     000185
+
+PROGRAM計> CPDATEWEEK DATEWEEK   件数          1       PROGRAM計> CPDECODE05 TEST103    件数          1       PROGRAM計> CPDECODE05 TEST92     件数          1
+
+
+
+    152       3       1 CPDATEWEEK FILEDTCR   000189       161       4       1 CPDECODE05 TEST104    000131       171      14       1 CPDECODE05 TEST93     000066
+
+PROGRAM計> CPDATEWEEK FILEDTCR   件数          1       PROGRAM計> CPDECODE05 TEST104    件数          1       PROGRAM計> CPDECODE05 TEST93     件数          1
+
+
+
+    153       4       1 CPDATEWEEK TEST21     000411       162       5       1 CPDECODE05 TEST15     000110   COPY句計＞ CPDECODE05            件数         14
+
+PROGRAM計> CPDATEWEEK TEST21     件数          1       PROGRAM計> CPDECODE05 TEST15     件数          1
+
+                                                                                                                  172       1       1 CPDECODE07 COBSAM02   000155
+
+    154       5       1 CPDATEWEEK TEST40     000572       163       6       1 CPDECODE05 TEST48     000102   PROGRAM計> CPDECODE07 COBSAM02   件数          1
+
+PROGRAM計> CPDATEWEEK TEST40     件数          1       PROGRAM計> CPDECODE05 TEST48     件数          1
+
+                                                                                                                  173       2       1 CPDECODE07 DECODE07   000096
+
+    155       6       1 CPDATEWEEK TEST64     000100       164       7       1 CPDECODE05 TEST54     000193   PROGRAM計> CPDECODE07 DECODE07   件数          1
+
+PROGRAM計> CPDATEWEEK TEST64     件数          1       PROGRAM計> CPDECODE05 TEST54     件数          1
+
+                                                                                                                  174       3       1 CPDECODE07 FILEITEM   000321
+
+    156       7       1 CPDATEWEEK TEST90     000095       165       8       1 CPDECODE05 TEST57     000180   PROGRAM計> CPDECODE07 FILEITEM   件数          1
+
+PROGRAM計> CPDATEWEEK TEST90     件数          1       PROGRAM計> CPDECODE05 TEST57     件数          1
+
+                                                                                                                  175       4       1 CPDECODE07 STREAMS2   000054
+
+    157       8       1 CPDATEWEEK TEST91     000098       166       9       1 CPDECODE05 TEST68     000170   PROGRAM計> CPDECODE07 STREAMS2   件数          1
+
+PROGRAM計> CPDATEWEEK TEST91     件数          1       PROGRAM計> CPDECODE05 TEST68     件数          1
+
+                                                                                                                  176       5       1 CPDECODE07 TEST21     000415
+
+COPY句計＞ CPDATEWEEK            件数          8           167      10       1 CPDECODE05 TEST69     000267   PROGRAM計> CPDECODE07 TEST21     件数          1
+
+                                                       PROGRAM計> CPDECODE05 TEST69     件数          1
+
+    158       1       1 CPDECODE05 COBSAM02   000153                                                              177       6       1 CPDECODE07 TEST81     000064
+
+PROGRAM計> CPDECODE05 COBSAM02   件数          1           168      11       1 CPDECODE05 TEST70     000228   PROGRAM計> CPDECODE07 TEST81     件数          1
+
+                                                       PROGRAM計> CPDECODE05 TEST70     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       7
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    178       7       1 CPDECODE07 TEST82     000072       187       9       1 CPFILEDUMP COBSAM07   000067       197      19       1 CPFILEDUMP DECODE05   000127
+
+PROGRAM計> CPDECODE07 TEST82     件数          1       PROGRAM計> CPFILEDUMP COBSAM07   件数          1       PROGRAM計> CPFILEDUMP DECODE05   件数          1
+
+
+
+COPY句計＞ CPDECODE07            件数          7           188      10       1 CPFILEDUMP COBSAM08   000061       198      20       1 CPFILEDUMP DECODE06   000048
+
+                                                       PROGRAM計> CPFILEDUMP COBSAM08   件数          1       PROGRAM計> CPFILEDUMP DECODE06   件数          1
+
+    179       1       1 CPFILEDUMP COBFIND    000086
+
+PROGRAM計> CPFILEDUMP COBFIND    件数          1           189      11       1 CPFILEDUMP COBSAM09   000174       199      21       1 CPFILEDUMP DECODE07   000054
+
+                                                       PROGRAM計> CPFILEDUMP COBSAM09   件数          1       PROGRAM計> CPFILEDUMP DECODE07   件数          1
+
+    180       2       1 CPFILEDUMP COBRNDCK   000027
+
+PROGRAM計> CPFILEDUMP COBRNDCK   件数          1           190      12       1 CPFILEDUMP COBSAM10   000056       200      22       1 CPFILEDUMP FILECOMP   000168
+
+                                                       PROGRAM計> CPFILEDUMP COBSAM10   件数          1       PROGRAM計> CPFILEDUMP FILECOMP   件数          1
+
+    181       3       1 CPFILEDUMP COBSAM01   000221
+
+PROGRAM計> CPFILEDUMP COBSAM01   件数          1           191      13       1 CPFILEDUMP COBSORT    000202       201      23       1 CPFILEDUMP FILEDMPP   000111
+
+                                                       PROGRAM計> CPFILEDUMP COBSORT    件数          1       PROGRAM計> CPFILEDUMP FILEDMPP   件数          1
+
+    182       4       1 CPFILEDUMP COBSAM02   000147
+
+PROGRAM計> CPFILEDUMP COBSAM02   件数          1           192      14       1 CPFILEDUMP COBSORTTBL 000083       202      24       1 CPFILEDUMP FILEDTCR   000185
+
+                                                       PROGRAM計> CPFILEDUMP COBSORTTBL 件数          1       PROGRAM計> CPFILEDUMP FILEDTCR   件数          1
+
+    183       5       1 CPFILEDUMP COBSAM03   000178
+
+PROGRAM計> CPFILEDUMP COBSAM03   件数          1           193      15       1 CPFILEDUMP COBXREF    000058       203      25       1 CPFILEDUMP FILEDUMP   000218
+
+                                                       PROGRAM計> CPFILEDUMP COBXREF    件数          1       PROGRAM計> CPFILEDUMP FILEDUMP   件数          1
+
+    184       6       1 CPFILEDUMP COBSAM04   000092
+
+PROGRAM計> CPFILEDUMP COBSAM04   件数          1           194      16       1 CPFILEDUMP CONDDISP   000017       204      26       1 CPFILEDUMP FILEITEM   000317
+
+                                                       PROGRAM計> CPFILEDUMP CONDDISP   件数          1       PROGRAM計> CPFILEDUMP FILEITEM   件数          1
+
+    185       7       1 CPFILEDUMP COBSAM05   000069
+
+PROGRAM計> CPFILEDUMP COBSAM05   件数          1           195      17       1 CPFILEDUMP CONDSET    000014       205      27       1 CPFILEDUMP FIZZBUZZ   000027
+
+                                                       PROGRAM計> CPFILEDUMP CONDSET    件数          1       PROGRAM計> CPFILEDUMP FIZZBUZZ   件数          1
+
+    186       8       1 CPFILEDUMP COBSAM06   000093
+
+PROGRAM計> CPFILEDUMP COBSAM06   件数          1           196      18       1 CPFILEDUMP DECODE02   000035       206      28       1 CPFILEDUMP HTML001    000107
+
+                                                       PROGRAM計> CPFILEDUMP DECODE02   件数          1       PROGRAM計> CPFILEDUMP HTML001    件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       8
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    207      29       1 CPFILEDUMP LISTING    000873       218      40       1 CPFILEDUMP TEST100    000087       228      50       1 CPFILEDUMP TEST11     000064
+
+PROGRAM計> CPFILEDUMP LISTING    件数          1       PROGRAM計> CPFILEDUMP TEST100    件数          1       PROGRAM計> CPFILEDUMP TEST11     件数          1
+
+
+
+    208      30       1 CPFILEDUMP TEST01     000079       219      41       1 CPFILEDUMP TEST101    000103       229      51       1 CPFILEDUMP TEST110    000100
+
+    209      31       2 CPFILEDUMP TEST01     000055   PROGRAM計> CPFILEDUMP TEST101    件数          1       PROGRAM計> CPFILEDUMP TEST110    件数          1
+
+    210      32       3 CPFILEDUMP TEST01     000055
+
+PROGRAM計> CPFILEDUMP TEST01     件数          3           220      42       1 CPFILEDUMP TEST102    000103       230      52       1 CPFILEDUMP TEST111    000072
+
+                                                       PROGRAM計> CPFILEDUMP TEST102    件数          1       PROGRAM計> CPFILEDUMP TEST111    件数          1
+
+    211      33       1 CPFILEDUMP TEST02     000081
+
+PROGRAM計> CPFILEDUMP TEST02     件数          1           221      43       1 CPFILEDUMP TEST103    000103       231      53       1 CPFILEDUMP TEST112    000099
+
+                                                       PROGRAM計> CPFILEDUMP TEST103    件数          1       PROGRAM計> CPFILEDUMP TEST112    件数          1
+
+    212      34       1 CPFILEDUMP TEST03     000067
+
+PROGRAM計> CPFILEDUMP TEST03     件数          1           222      44       1 CPFILEDUMP TEST104    000127       232      54       1 CPFILEDUMP TEST113    000122
+
+                                                       PROGRAM計> CPFILEDUMP TEST104    件数          1       PROGRAM計> CPFILEDUMP TEST113    件数          1
+
+    213      35       1 CPFILEDUMP TEST05     000122
+
+PROGRAM計> CPFILEDUMP TEST05     件数          1           223      45       1 CPFILEDUMP TEST105    000077       233      55       1 CPFILEDUMP TEST114    000021
+
+                                                       PROGRAM計> CPFILEDUMP TEST105    件数          1       PROGRAM計> CPFILEDUMP TEST114    件数          1
+
+    214      36       1 CPFILEDUMP TEST06     000118
+
+PROGRAM計> CPFILEDUMP TEST06     件数          1           224      46       1 CPFILEDUMP TEST106    000050       234      56       1 CPFILEDUMP TEST115    000108
+
+                                                       PROGRAM計> CPFILEDUMP TEST106    件数          1       PROGRAM計> CPFILEDUMP TEST115    件数          1
+
+    215      37       1 CPFILEDUMP TEST07     000059
+
+PROGRAM計> CPFILEDUMP TEST07     件数          1           225      47       1 CPFILEDUMP TEST107    000050       235      57       1 CPFILEDUMP TEST12     000057
+
+                                                       PROGRAM計> CPFILEDUMP TEST107    件数          1       PROGRAM計> CPFILEDUMP TEST12     件数          1
+
+    216      38       1 CPFILEDUMP TEST08     000058
+
+PROGRAM計> CPFILEDUMP TEST08     件数          1           226      48       1 CPFILEDUMP TEST108    000108       236      58       1 CPFILEDUMP TEST13     000061
+
+                                                       PROGRAM計> CPFILEDUMP TEST108    件数          1       PROGRAM計> CPFILEDUMP TEST13     件数          1
+
+    217      39       1 CPFILEDUMP TEST10     000126
+
+PROGRAM計> CPFILEDUMP TEST10     件数          1           227      49       1 CPFILEDUMP TEST109    000150       237      59       1 CPFILEDUMP TEST14     000062
+
+                                                       PROGRAM計> CPFILEDUMP TEST109    件数          1       PROGRAM計> CPFILEDUMP TEST14     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48       9
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    238      60       1 CPFILEDUMP TEST15     000106       248      70       1 CPFILEDUMP TEST27     000121       258      80       1 CPFILEDUMP TEST37     000220
+
+PROGRAM計> CPFILEDUMP TEST15     件数          1       PROGRAM計> CPFILEDUMP TEST27     件数          1       PROGRAM計> CPFILEDUMP TEST37     件数          1
+
+
+
+    239      61       1 CPFILEDUMP TEST16     000081       249      71       1 CPFILEDUMP TEST28     000111       259      81       1 CPFILEDUMP TEST38     000213
+
+PROGRAM計> CPFILEDUMP TEST16     件数          1       PROGRAM計> CPFILEDUMP TEST28     件数          1       PROGRAM計> CPFILEDUMP TEST38     件数          1
+
+
+
+    240      62       1 CPFILEDUMP TEST17     000080       250      72       1 CPFILEDUMP TEST29     000124       260      82       1 CPFILEDUMP TEST39     000124
+
+PROGRAM計> CPFILEDUMP TEST17     件数          1       PROGRAM計> CPFILEDUMP TEST29     件数          1       PROGRAM計> CPFILEDUMP TEST39     件数          1
+
+
+
+    241      63       1 CPFILEDUMP TEST18     000168       251      73       1 CPFILEDUMP TEST30     000263       261      83       1 CPFILEDUMP TEST40     000568
+
+PROGRAM計> CPFILEDUMP TEST18     件数          1       PROGRAM計> CPFILEDUMP TEST30     件数          1       PROGRAM計> CPFILEDUMP TEST40     件数          1
+
+
+
+    242      64       1 CPFILEDUMP TEST21     000407       252      74       1 CPFILEDUMP TEST31     000145       262      84       1 CPFILEDUMP TEST41     000353
+
+PROGRAM計> CPFILEDUMP TEST21     件数          1       PROGRAM計> CPFILEDUMP TEST31     件数          1       PROGRAM計> CPFILEDUMP TEST41     件数          1
+
+
+
+    243      65       1 CPFILEDUMP TEST22     000058       253      75       1 CPFILEDUMP TEST32     000088       263      85       1 CPFILEDUMP TEST42     000110
+
+PROGRAM計> CPFILEDUMP TEST22     件数          1       PROGRAM計> CPFILEDUMP TEST32     件数          1       PROGRAM計> CPFILEDUMP TEST42     件数          1
+
+
+
+    244      66       1 CPFILEDUMP TEST23     000076       254      76       1 CPFILEDUMP TEST33     000065       264      86       1 CPFILEDUMP TEST43     000084
+
+PROGRAM計> CPFILEDUMP TEST23     件数          1       PROGRAM計> CPFILEDUMP TEST33     件数          1       PROGRAM計> CPFILEDUMP TEST43     件数          1
+
+
+
+    245      67       1 CPFILEDUMP TEST24     000057       255      77       1 CPFILEDUMP TEST34     000067       265      87       1 CPFILEDUMP TEST44     000090
+
+PROGRAM計> CPFILEDUMP TEST24     件数          1       PROGRAM計> CPFILEDUMP TEST34     件数          1       PROGRAM計> CPFILEDUMP TEST44     件数          1
+
+
+
+    246      68       1 CPFILEDUMP TEST25     000188       256      78       1 CPFILEDUMP TEST35     000129       266      88       1 CPFILEDUMP TEST45     000103
+
+PROGRAM計> CPFILEDUMP TEST25     件数          1       PROGRAM計> CPFILEDUMP TEST35     件数          1       PROGRAM計> CPFILEDUMP TEST45     件数          1
+
+
+
+    247      69       1 CPFILEDUMP TEST26     000186       257      79       1 CPFILEDUMP TEST36     000105       267      89       1 CPFILEDUMP TEST46     000189
+
+PROGRAM計> CPFILEDUMP TEST26     件数          1       PROGRAM計> CPFILEDUMP TEST36     件数          1       PROGRAM計> CPFILEDUMP TEST46     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48      10
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    268      90       1 CPFILEDUMP TEST47     000116       278     100       1 CPFILEDUMP TEST57     000176       288     110       1 CPFILEDUMP TEST67     000086
+
+PROGRAM計> CPFILEDUMP TEST47     件数          1       PROGRAM計> CPFILEDUMP TEST57     件数          1       PROGRAM計> CPFILEDUMP TEST67     件数          1
+
+
+
+    269      91       1 CPFILEDUMP TEST48     000098       279     101       1 CPFILEDUMP TEST58     000122       289     111       1 CPFILEDUMP TEST68     000166
+
+PROGRAM計> CPFILEDUMP TEST48     件数          1       PROGRAM計> CPFILEDUMP TEST58     件数          1       PROGRAM計> CPFILEDUMP TEST68     件数          1
+
+
+
+    270      92       1 CPFILEDUMP TEST49     000159       280     102       1 CPFILEDUMP TEST59     000088       290     112       1 CPFILEDUMP TEST69     000263
+
+PROGRAM計> CPFILEDUMP TEST49     件数          1       PROGRAM計> CPFILEDUMP TEST59     件数          1       PROGRAM計> CPFILEDUMP TEST69     件数          1
+
+
+
+    271      93       1 CPFILEDUMP TEST50     000158       281     103       1 CPFILEDUMP TEST60     000116       291     113       1 CPFILEDUMP TEST70     000224
+
+PROGRAM計> CPFILEDUMP TEST50     件数          1       PROGRAM計> CPFILEDUMP TEST60     件数          1       PROGRAM計> CPFILEDUMP TEST70     件数          1
+
+
+
+    272      94       1 CPFILEDUMP TEST51     000165       282     104       1 CPFILEDUMP TEST61     000100       292     114       1 CPFILEDUMP TEST71     000091
+
+PROGRAM計> CPFILEDUMP TEST51     件数          1       PROGRAM計> CPFILEDUMP TEST61     件数          1       PROGRAM計> CPFILEDUMP TEST71     件数          1
+
+
+
+    273      95       1 CPFILEDUMP TEST52     000119       283     105       1 CPFILEDUMP TEST62     000178       293     115       1 CPFILEDUMP TEST72     000164
+
+PROGRAM計> CPFILEDUMP TEST52     件数          1       PROGRAM計> CPFILEDUMP TEST62     件数          1       PROGRAM計> CPFILEDUMP TEST72     件数          1
+
+
+
+    274      96       1 CPFILEDUMP TEST53     000111       284     106       1 CPFILEDUMP TEST63     000094       294     116       1 CPFILEDUMP TEST73     000111
+
+PROGRAM計> CPFILEDUMP TEST53     件数          1       PROGRAM計> CPFILEDUMP TEST63     件数          1       PROGRAM計> CPFILEDUMP TEST73     件数          1
+
+
+
+    275      97       1 CPFILEDUMP TEST54     000189       285     107       1 CPFILEDUMP TEST64     000096       295     117       1 CPFILEDUMP TEST74     000082
+
+PROGRAM計> CPFILEDUMP TEST54     件数          1       PROGRAM計> CPFILEDUMP TEST64     件数          1       PROGRAM計> CPFILEDUMP TEST74     件数          1
+
+
+
+    276      98       1 CPFILEDUMP TEST55     000123       286     108       1 CPFILEDUMP TEST65     000199       296     118       1 CPFILEDUMP TEST75     000096
+
+PROGRAM計> CPFILEDUMP TEST55     件数          1       PROGRAM計> CPFILEDUMP TEST65     件数          1       PROGRAM計> CPFILEDUMP TEST75     件数          1
+
+
+
+    277      99       1 CPFILEDUMP TEST56     000123       287     109       1 CPFILEDUMP TEST66     000094       297     119       1 CPFILEDUMP TEST76     000056
+
+PROGRAM計> CPFILEDUMP TEST56     件数          1       PROGRAM計> CPFILEDUMP TEST66     件数          1       PROGRAM計> CPFILEDUMP TEST76     件数          1
+
+                                    ＊＊＊　コピー句一覧　＊＊＊                                  23/11/25  20:19:48      11
+C.FILEITEM.T006
+
+  SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO    SEQ-T   SEQ-1   SEQ-2 COPY       PROGRAM-ID LINE-NO
+------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
+    298     120       1 CPFILEDUMP TEST77     000056       308     130       1 CPFILEDUMP TEST87     000079       318     140       1 CPFILEDUMP TEST97     000107
+
+PROGRAM計> CPFILEDUMP TEST77     件数          1       PROGRAM計> CPFILEDUMP TEST87     件数          1       PROGRAM計> CPFILEDUMP TEST97     件数          1
+
+
+
+    299     121       1 CPFILEDUMP TEST78     000505       309     131       1 CPFILEDUMP TEST88     000093       319     141       1 CPFILEDUMP TEST98     000157
+
+PROGRAM計> CPFILEDUMP TEST78     件数          1       PROGRAM計> CPFILEDUMP TEST88     件数          1       PROGRAM計> CPFILEDUMP TEST98     件数          1
+
+
+
+    300     122       1 CPFILEDUMP TEST79     000096       310     132       1 CPFILEDUMP TEST89     000097       320     142       1 CPFILEDUMP TEST99     000078
+
+PROGRAM計> CPFILEDUMP TEST79     件数          1       PROGRAM計> CPFILEDUMP TEST89     件数          1       PROGRAM計> CPFILEDUMP TEST99     件数          1
+
+
+
+    301     123       1 CPFILEDUMP TEST80     000090       311     133       1 CPFILEDUMP TEST90     000091   COPY句計＞ CPFILEDUMP            件数        142
+
+PROGRAM計> CPFILEDUMP TEST80     件数          1       PROGRAM計> CPFILEDUMP TEST90     件数          1
+
+                                                                                                                  321       1       1 FILESTAT-M OCIC       000603
+
+    302     124       1 CPFILEDUMP TEST81     000060       312     134       1 CPFILEDUMP TEST91     000094   PROGRAM計> FILESTAT-M OCIC       件数          1
+
+PROGRAM計> CPFILEDUMP TEST81     件数          1       PROGRAM計> CPFILEDUMP TEST91     件数          1
+
+                                                                                                              COPY句計＞ FILESTAT-M            件数          1
+
+    303     125       1 CPFILEDUMP TEST82     000068       313     135       1 CPFILEDUMP TEST92     000181
+
+PROGRAM計> CPFILEDUMP TEST82     件数          1       PROGRAM計> CPFILEDUMP TEST92     件数          1           322       1       1 SCREENIO   OCIC       000092
+
+                                                                                                              PROGRAM計> SCREENIO   OCIC       件数          1
+
+    304     126       1 CPFILEDUMP TEST83     000084       314     136       1 CPFILEDUMP TEST93     000062
+
+PROGRAM計> CPFILEDUMP TEST83     件数          1       PROGRAM計> CPFILEDUMP TEST93     件数          1       COPY句計＞ SCREENIO              件数          1
+
+
+
+    305     127       1 CPFILEDUMP TEST84     000106       315     137       1 CPFILEDUMP TEST94     000066   ｿｳｺﾞｳｹｲ_＞                       件数        322
+
+PROGRAM計> CPFILEDUMP TEST84     件数          1       PROGRAM計> CPFILEDUMP TEST94     件数          1
+
+
+
+    306     128       1 CPFILEDUMP TEST85     000185       316     138       1 CPFILEDUMP TEST95     000056
+
+PROGRAM計> CPFILEDUMP TEST85     件数          1       PROGRAM計> CPFILEDUMP TEST95     件数          1
+
+
+
+    307     129       1 CPFILEDUMP TEST86     000067       317     139       1 CPFILEDUMP TEST96     000095
+
+PROGRAM計> CPFILEDUMP TEST86     件数          1       PROGRAM計> CPFILEDUMP TEST96     件数          1
+
