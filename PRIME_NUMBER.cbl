@@ -29,7 +29,7 @@
        M100-10.
 
            PERFORM VARYING I FROM 2 BY 1
-                   UNTIL   I > 1000
+                   UNTIL   I > 100
                    MOVE    "N"         TO      SW-HIT
                    PERFORM VARYING I2 FROM 1 BY 1
                            UNTIL   I2 > I2-MAX
