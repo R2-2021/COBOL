@@ -1,6 +1,6 @@
       *    *** アニメ一覧の出力
       *    *** PRINT AREA 2次元でセット
-      *    *** 罫線枠セット、Ａ４縦、Ａ４横　プログラムで設定
+      *    *** 罫線枠セット、Ａ４縦、Ａ４横  プログラムで設定
 
 
        IDENTIFICATION          DIVISION.
@@ -10,7 +10,7 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** アニメ　タイトルデータ
+      *    *** アニメ  タイトルデータ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -27,19 +27,20 @@
            LABEL RECORDS ARE STANDARD
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
-             05  FILLER        PIC  X(1024).
+             05                PIC  X(1024).
 
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
-           03  FILLER          PIC  X(250).
+           03                  PIC  X(250).
 
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST30  ".
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE
-               "TEST28_201110_2018XX.CSV".
+      *         "TEST28_201110_2018XX.CSV".
+                "TEST28_202601SJIS.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST30.POT1".
 
            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
@@ -69,57 +70,67 @@
            03  WK-CNT          PIC  ZZZ9   VALUE SPACE.
 
            03  WK-TIT1.
-             05  FILLER        PIC  X(040) VALUE
-                 "＊＊＊　アニメタイトル一覧表　＊＊＊　　".
-             05  FILLER        PIC  X(010) VALUE SPACE.
+             05                PIC  X(006) VALUE "＊＊＊".
+             05                PIC  X(002) VALUE SPACE.
+             05                PIC  X(020) VALUE "アニメタイトル一覧表".
+             05                PIC  X(002) VALUE SPACE.
+             05                PIC  X(006) VALUE "＊＊＊".
+             05                PIC  X(014) VALUE SPACE.
              05  WK-TIT1-YY    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE "/".
+             05                PIC  X(001) VALUE "/".
              05  WK-TIT1-MM    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE "/".
+             05                PIC  X(001) VALUE "/".
              05  WK-TIT1-DD    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(002) VALUE SPACE.
+             05                PIC  X(002) VALUE SPACE.
              05  WK-TIT1-HH    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE ":".
+             05                PIC  X(001) VALUE ":".
              05  WK-TIT1-MI    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE ":".
+             05                PIC  X(001) VALUE ":".
              05  WK-TIT1-SS    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(002) VALUE SPACE.
+             05                PIC  X(002) VALUE SPACE.
              05  WK-TIT1-PAGE  PIC  ZZ,ZZ9 VALUE ZERO.
 
            03  WK-TIT1-A4T.
-             05  FILLER        PIC  X(040) VALUE "TEST30-T".
+             05                PIC  X(040) VALUE "TEST30-T".
              05  WK-TIT1-A4T-1 PIC  X(076) VALUE SPACE.
 
            03  WK-TIT1-A4Y.
-             05  FILLER        PIC  X(070) VALUE "TEST30-Y".
+             05                PIC  X(070) VALUE "TEST30-Y".
              05  WK-TIT1-A4Y-1 PIC  X(076) VALUE SPACE.
 
       *    *** 印刷ページ設定でページあたりの行文字数、縦行数が
       *    *** 変わるので、以下設定で印刷する
 
       *    *** 印刷ページ設定
-      *    *** 半角フォント　ＭＳゴシック
-      *    *** 全角フォント　ＭＳゴシック
-      *    *** フォント高　２６ｍｍ、７．３ｐｔ
+      *    *** 半角フォント  ＭＳゴシック
+      *    *** 全角フォント  ＭＳゴシック
+      *    *** フォント高  ２７ｍｍ、７．６ｐｔ
       *    *** 行送り０％
-      *    *** 余白　上１０、下１０、右１０、左１０ｍｍ
+      *    *** 余白  上１０、下１０、右１０、左１０ｍｍ
       *    *** 
-      *    *** 行あたりの文字数：横時２１３  縦時１４６
-      *    *** 縦方向の行数：    横時７１    縦時１０４
+      *    *** 行あたりの文字数：横時１９７  縦時１３５
+      *    *** 縦方向の行数：    横時７０    縦時１０２
 
-      *    *** MAX=146,A4縦用
+           03  WK-YOKO-MOJI      BINARY-LONG SYNC VALUE 197
+           03  WK-YOKO-GYO       BINARY-LONG SYNC VALUE  70.
+           03  WK-TATE-MOJI      BINARY-LONG SYNC VALUE 135.
+           03  WK-TATE-GYO       BINARY-LONG SYNC VALUE 102.
+           03  WK-GYO-4          BINARY-LONG SYNC VALUE ZERO.
+           03  WK-REMAINDER      BINARY-LONG SYNC VALUE ZERO.
+
+      *    *** MAX=135,A4縦用
       *    *** 2+40*3=122
            03  WK-MID1-A4T.
-             05  FILLER        PIC  X(002) VALUE "│".
-             05  FILLER        PIC  X(120) VALUE ALL
-                 " SEQ│  年│季│タイトル　　　　　　　│".
+             05                PIC  X(002) VALUE "│".
+             05                PIC  X(120) VALUE ALL
+                 " SEQ│  年│季│タイトル              │".
 
-      *    *** MAX=213,A4横用
-      *    *** 2+40*5=202
+      *    *** MAX=197,A4横用
+      *    *** 2+40*4=162
            03  WK-MID1-A4Y.
-             05  FILLER        PIC  X(002) VALUE "│".
-             05  FILLER        PIC  X(200) VALUE ALL
-                 " SEQ│  年│季│タイトル　　　　　　　│".
+             05                PIC  X(002) VALUE "│".
+             05                PIC  X(160) VALUE ALL
+                 " SEQ│  年│季│タイトル              │".
 
       *    *** 画面項目
            03  WK-KEI1         PIC  X(002) VALUE "─".
@@ -135,138 +146,138 @@
            03  WK-KEI11        PIC  X(002) VALUE "┼".
 
            03  WK-KEI1-A4T.
-             05  FILLER        PIC  X(002) VALUE "┌"
-             05  FILLER        OCCURS 2.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
+             05                PIC  X(002) VALUE "┌"
+             05                OCCURS 2.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┐"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┐"
 
            03  WK-KEI2-A4T.
-             05  FILLER        PIC  X(002) VALUE "├"
-             05  FILLER        OCCURS 2.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
+             05                PIC  X(002) VALUE "├"
+             05                OCCURS 2.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┤"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┤"
 
            03  WK-KEI3-A4T.
-             05  FILLER        PIC  X(002) VALUE "└"
-             05  FILLER        OCCURS 2.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
+             05                PIC  X(002) VALUE "└"
+             05                OCCURS 2.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┘"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┘"
 
            03  WK-KEI1-A4Y.
-             05  FILLER        PIC  X(002) VALUE "┌"
-             05  FILLER        OCCURS 4.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┬"
+             05                PIC  X(002) VALUE "┌"
+             05                OCCURS 3.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┬"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┐"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┬"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┐"
 
            03  WK-KEI2-A4Y.
-             05  FILLER        PIC  X(002) VALUE "├"
-             05  FILLER        OCCURS 4.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┼"
+             05                PIC  X(002) VALUE "├"
+             05                OCCURS 3.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┼"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┼"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┤"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┼"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┤"
 
            03  WK-KEI3-A4Y.
-             05  FILLER        PIC  X(002) VALUE "└"
-             05  FILLER        OCCURS 4.  
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(004) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(002) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
-               07  FILLER      PIC  X(022) VALUE ALL "─"
-               07  FILLER      PIC  X(002) VALUE "┴"
+             05                PIC  X(002) VALUE "└"
+             05                OCCURS 3.  
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(004) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(002) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
+               07              PIC  X(022) VALUE ALL "─"
+               07              PIC  X(002) VALUE "┴"
 
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(002) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┴"
-             05  FILLER        PIC  X(022) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┘"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(004) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(002) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┴"
+             05                PIC  X(022) VALUE ALL "─"
+             05                PIC  X(002) VALUE "┘"
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
 
        01  PRINT-AREA.
-           03  PR-LINE         OCCURS 50
-                               PIC  X(213) VALUE SPACE.
+           03  PR-LINE         OCCURS 102
+                               PIC  X(197) VALUE SPACE.
 
        01  CNS-AREA.
       *    *** PX の印字位置
@@ -289,7 +300,7 @@
            03  CNS-P7-L        BINARY-LONG SYNC VALUE 2.
            03  CNS-P8-L        BINARY-LONG SYNC VALUE 22.
            03  CNS-P9-L        BINARY-LONG SYNC VALUE 2.
-      *    *** P1-PX の印字合計桁数　スペース含む
+      *    *** P1-PX の印字合計桁数  スペース含む
            03  CNS-L-SIZE      BINARY-LONG SYNC VALUE ZERO.
 
        01  INDEX-AREA.
@@ -322,6 +333,7 @@
       *    *** "1" = A4縦,
       *    *** "0" = A4横
            03  SW-A4TATE       PIC  X(001) VALUE "1".
+      *     03  SW-A4TATE       PIC  X(001) VALUE "0".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -386,22 +398,27 @@
                               + CNS-P4-L + CNS-P5-L + CNS-P6-L
                               + CNS-P7-L + CNS-P8-L + CNS-P9-L
 
+      *    *** WK-REMAINDER 縦、横どちらも、ゼロなので、未使用とする
            IF      SW-A4TATE   =       "1"
       *    *** 割算で商を求め、商 * CNS-L-SIZEを求める
-                   COMPUTE C3 = 146 / CNS-L-SIZE
+                   COMPUTE C3 = WK-TATE-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** 50 = ( 104 - 4 ) / 2
       *    *** - 4 はヘッダー、/ 2 は明細行次の罫線分除く
-                   MOVE    50          TO      R
+      *             MOVE    49          TO      R
+                   COMPUTE WK-GYO-4 = WK-TATE-GYO - 4
+                   DIVIDE WK-GYO-4 BY 2 GIVING R 
+                          REMAINDER WK-REMAINDER
            ELSE
-                   COMPUTE C3 = 213 / CNS-L-SIZE
+                   COMPUTE C3 = WK-YOKO-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** 33 = ( 71 - 5 ) / 2
-      *    *** - 5 はヘッダー、/ 2 は明細行次の罫線分除く
-                   MOVE    33          TO      R
+      *    *** - 4 はヘッダー、/ 2 は明細行次の罫線分除く
+      *             MOVE    33          TO      R
+                   COMPUTE WK-GYO-4 = WK-YOKO-GYO - 4
+                   DIVIDE WK-GYO-4 BY 2 GIVING R 
+                          REMAINDER WK-REMAINDER
            END-IF
 
-      *    *** テーブル（2）以降　垂直線、置き換える
+      *    *** テーブル（2）以降  垂直線、置き換える
            COMPUTE CNS-L-SIZE = CNS-L-SIZE - 2
 
            MOVE    CNS-P1      TO      P1
@@ -427,7 +444,7 @@
                    UNSTRING PIN1-REC
                             DELIMITED BY ","
                        INTO
-                            WK-SEQNO
+      *                      WK-SEQNO
                             WK-YYYY
                             WK-MM
                             WK-KISETU
@@ -547,10 +564,6 @@
       *    *** WRITE POT1
                    PERFORM S130-10     THRU    S130-EX
 
-                   MOVE    SPACE       TO      POT1-REC
-      *    *** WRITE POT1
-                   PERFORM S130-10     THRU    S130-EX
-
                    MOVE    WK-KEI1-A4Y TO      POT1-REC
       *    *** WRITE POT1
                    PERFORM S130-10     THRU    S130-EX
@@ -603,7 +616,7 @@
            EXIT.
 
       *    *** AT END 時処理
-      *    *** 0件でも、ＡＴ　ＥＮＤ時、件数出力
+      *    *** 0件でも、ＡＴ  ＥＮＤ時、件数出力
        S120-10.
 
            COMPUTE PX = P1 + 18
