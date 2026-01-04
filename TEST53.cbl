@@ -27,7 +27,7 @@
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
 
        01  PIN1-REC.
-           03  FILLER          PIC  X(1000).
+           03  FILLER          PIC  X(10000).
 
       *    *** TEST55.POT1 の内容
       *%芸能人（名前順　男性）
@@ -49,7 +49,7 @@
            LABEL RECORDS ARE STANDARD.
 
        01  POT1-REC.
-           03  FILLER          PIC  X(1000).
+           03  FILLER          PIC  X(10000).
 
       *    *** HTML データ
       *    *** 1件目
@@ -89,9 +89,9 @@
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
-           03  WK-FILE         PIC  X(002) VALUE ZERO.
+           03  WK-FILE         PIC  X(003) VALUE ZERO.
            03  WK-FILE-9       REDEFINES WK-FILE
-                               PIC  9(002).
+                               PIC  9(003).
            03  WK-WIDTH        PIC  X(002) VALUE ZERO.
            03  WK-HIRAGANA     PIC  X(001) VALUE ZERO.
            03  WK-NO           PIC  9(004) VALUE ZERO.
@@ -99,11 +99,14 @@
            03  WK-KAKKO        PIC  9(002) VALUE ZERO.
            03  WK-YYYY         PIC  9(004) VALUE ZERO.
            03  WK-SAI          PIC  9(002) VALUE ZERO.
-           03  WK-REC          PIC  X(1000) VALUE SPACE.
-           03  WK-FILE-NAME    OCCURS 100
+           03  WK-REC          PIC  X(10000) VALUE SPACE.
+           03  WK-FILE-NAME    OCCURS 200
                                PIC  X(080) VALUE SPACE.
            03  WK-KANMA-CNT    BINARY-LONG SYNC VALUE ZERO.
            03  WK-BR-CNT       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ACCEPT1       PIC  X(003) VALUE ZERO.
+           03  WK-ACCEPT2       PIC  X(002) VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -154,423 +157,482 @@
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
-           MOVE    "N"         TO      SW-YES
+           MOVE    "O"         TO      WFD-ID
+           MOVE    WK-PGM-NAME TO      WFD-PGM
+           CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+                                       POT1-REC
+
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+      *    *** 入力値のチェックはしない
+               WHEN 2
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+                   ACCEPT  WK-ACCEPT2 FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個又は２個指定"
+                           " TEST53 032 02 <=例"
+                   STOP    RUN
+           END-EVALUATE
+
+           IF      WK-ARGUMENT-NUMBER = 1 OR 2
+                   MOVE    "Y"         TO      SW-YES
+                   MOVE    WK-ACCEPT1  TO      WK-FILE
+           ELSE
+                   MOVE    "N"         TO      SW-YES
+           END-IF
+
            PERFORM UNTIL SW-YES =      "Y" OR "y"
                    DISPLAY " "
                    DISPLAY "PIN1 FILE NAME 数字=?"
 
                    DISPLAY " "
-                   DISPLAY "01.TEST53_po_gr_ja.PIN1"
+                   DISPLAY "001.TEST53_po_gr_ja.PIN1"
                    MOVE    
                    "   ポピュラー音楽の音楽家一覧 (日本・グループ)"
                                TO      WK-FILE-NAME (01)
                    DISPLAY WK-FILE-NAME (01)
 
                    DISPLAY " "
-                   DISPLAY "02.TEST53_po_ko_ja.PIN1"
+                   DISPLAY "002.TEST53_po_ko_ja.PIN1"
                    MOVE    "   ポピュラー音楽の音楽家一覧 (日本・個人)"
                                TO      WK-FILE-NAME (02)
                    DISPLAY WK-FILE-NAME (02)
 
                    DISPLAY " "
-                   DISPLAY "03.TEST53_po_gr_wr.PIN1"
+                   DISPLAY "003.TEST53_po_gr_wr.PIN1"
                    MOVE   
                     "   ポピュラー音楽の音楽家一覧 (日本以外・グループ)"
                                TO      WK-FILE-NAME (03)
                    DISPLAY WK-FILE-NAME (03)
 
                    DISPLAY " "
-                   DISPLAY "04.TEST53_po_ko_wr.PIN1"
+                   DISPLAY "004.TEST53_po_ko_wr.PIN1"
                    MOVE   
                      "   ポピュラー音楽の音楽家一覧 (日本以外・個人)"
                                TO      WK-FILE-NAME (04)
                    DISPLAY WK-FILE-NAME (04)
 
                    DISPLAY " "
-                   DISPLAY "05.TEST53_girl_kr.PIN1"
+                   DISPLAY "005.TEST53_girl_kr.PIN1"
                    MOVE    "   韓国のガール・グループ"
                                TO      WK-FILE-NAME (05)
                    DISPLAY WK-FILE-NAME (05)
 
                    DISPLAY " "
-                   DISPLAY "06.TEST53_idolgirl_gr_ja.PIN1"
+                   DISPLAY "006.TEST53_idolgirl_gr_ja.PIN1"
                    MOVE    "   日本の女性アイドルグループ"
                                TO      WK-FILE-NAME (06)
                    DISPLAY WK-FILE-NAME (06)
 
                    DISPLAY " "
-                   DISPLAY "07.TEST53_girl_ko_ja.PIN1"
+                   DISPLAY "007.TEST53_girl_ko_ja.PIN1"
                    MOVE    "   日本の女性アイドル"
                                TO      WK-FILE-NAME (07)
                    DISPLAY WK-FILE-NAME (07)
 
                    DISPLAY " "
-                   DISPLAY "08.TEST53_E-girls.PIN1"
+                   DISPLAY "008.TEST53_E-girls.PIN1"
                    MOVE    "   E-girls"
                                TO      WK-FILE-NAME (08)
                    DISPLAY WK-FILE-NAME (08)
 
                    DISPLAY " "
-                   DISPLAY "09.TEST53_junioridol_ja.PIN1"
+                   DISPLAY "009.TEST53_junioridol_ja.PIN1"
                    MOVE    "   ジュニアアイドル一覧"
                                TO      WK-FILE-NAME (09)
                    DISPLAY WK-FILE-NAME (09)
 
                    DISPLAY " "
-                   DISPLAY "10.TEST53_aikatsu.PIN1"
+                   DISPLAY "010.TEST53_aikatsu.PIN1"
                    MOVE    "   アイカツ主題歌・挿入歌"
                                TO      WK-FILE-NAME (10)
                    DISPLAY WK-FILE-NAME (10)
 
                    DISPLAY " "
-                   DISPLAY "11.TEST53_talent_birthday.PIN1"
+                   DISPLAY "011.TEST53_talent_birthday.PIN1"
                    MOVE    "   芸能人・誕生日順　（女性・男性）"
                                TO      WK-FILE-NAME (11)
                    DISPLAY WK-FILE-NAME (11)
 
                    DISPLAY " "
-                   DISPLAY "12.TEST53_talent_birthday.PIN1"
+                   DISPLAY "012.TEST53_talent_birthday.PIN1"
                    MOVE    "   芸能人・誕生日順　（女性）"
                                TO      WK-FILE-NAME (12)
                    DISPLAY WK-FILE-NAME (12)
 
                    DISPLAY " "
-                   DISPLAY "13 はC.TEST55 で作成"
-                   DISPLAY "13.TEST55.POT1"
+                   DISPLAY "013 はC.TEST55 で作成"
+                   DISPLAY "013.TEST55.POT1"
                    MOVE    "   芸能人 名前順（女性・男性、女性、男性）"
                                TO      WK-FILE-NAME (13)
                    DISPLAY WK-FILE-NAME (13)
 
                    DISPLAY " "
-                   DISPLAY "14 はC.TEST56 で作成"
-                   DISPLAY "14.TEST56.POT1"
+                   DISPLAY "014 はC.TEST56 で作成"
+                   DISPLAY "014.TEST56.POT1"
                    MOVE    
                    "   日本の女優一覧2000年代生まれ 名前順、誕生日順"
                                TO      WK-FILE-NAME (14)
                    DISPLAY WK-FILE-NAME (14)
 
                    DISPLAY " "
-                   DISPLAY "15 はC.TEST57 で作成"
-                   DISPLAY "15.TEST57.POT1"
+                   DISPLAY "015 はC.TEST57 で作成"
+                   DISPLAY "015.TEST57.POT1"
                    MOVE    "   アイドル大図鑑 名前順、グループ順"
                                TO      WK-FILE-NAME (15)
                    DISPLAY WK-FILE-NAME (15)
 
                    DISPLAY " "
-                   DISPLAY "16.TEST53_jyoyu1990_birthday.PIN1"
+                   DISPLAY "016.TEST53_jyoyu1990_birthday.PIN1"
                    MOVE    "   日本の女優一覧1990年代生まれ"
                                TO      WK-FILE-NAME (16)
                    DISPLAY WK-FILE-NAME (16)
 
                    DISPLAY " "
-                   DISPLAY "17 はC.TEST58 で作成"
-                   DISPLAY "17.TEST58.POT1"
+                   DISPLAY "017 はC.TEST58 で作成"
+                   DISPLAY "017.TEST58.POT1"
                    MOVE    "   日本の女優一覧"
                                TO      WK-FILE-NAME (17)
                    DISPLAY WK-FILE-NAME (17)
 
                    DISPLAY " "
-                   DISPLAY "18 はC.TEST60 で作成"
-                   DISPLAY "18.TEST60.POT1"
+                   DISPLAY "018 はC.TEST60 で作成"
+                   DISPLAY "018.TEST60.POT1"
                    MOVE    "   世界の女優一覧"
                                TO      WK-FILE-NAME (18)
                    DISPLAY WK-FILE-NAME (18)
 
                    DISPLAY " "
-                   DISPLAY "19.TEST53_gakkiall.PIN1"
+                   DISPLAY "019.TEST53_gakkiall.PIN1"
                    MOVE    "   楽器分類別一覧"
                                TO      WK-FILE-NAME (19)
                    DISPLAY WK-FILE-NAME (19)
 
                    DISPLAY " "
-                   DISPLAY "20.TEST53_CLASSIC.PIN1"
+                   DISPLAY "020.TEST53_CLASSIC.PIN1"
                    MOVE    "   クラシック作曲家一覧"
                                TO      WK-FILE-NAME (20)
                    DISPLAY WK-FILE-NAME (20)
 
                    DISPLAY " "
-                   DISPLAY "21 はC.TEST70 で作成"
-                   DISPLAY "21.TEST70.POT1"
+                   DISPLAY "021 はC.TEST70 で作成"
+                   DISPLAY "021.TEST70.POT1"
                    MOVE    "   XVI"
                                TO      WK-FILE-NAME (21)
                    DISPLAY WK-FILE-NAME (21)
 
                    DISPLAY " "
-                   DISPLAY "22 はC.TEST72 で作成"
-                   DISPLAY "22.TEST72.POT1"
+                   DISPLAY "022 はC.TEST72 で作成"
+                   DISPLAY "022.TEST72.POT1"
                    MOVE    "   DMM"
                                TO      WK-FILE-NAME (22)
                    DISPLAY WK-FILE-NAME (22)
 
                    DISPLAY " "
-                   DISPLAY "23 はC.TEST79 で作成"
-                   DISPLAY "23.TEST79.POT1"
+                   DISPLAY "023 はC.TEST79 で作成"
+                   DISPLAY "023.TEST79.POT1"
                    MOVE    "   お菓子系．ｃｏｍ"
                                TO      WK-FILE-NAME (23)
                    DISPLAY WK-FILE-NAME (23)
 
                    DISPLAY " "
-                   DISPLAY "24 はC.TEST122 で作成"
+                   DISPLAY "024 はC.TEST122 で作成"
                    MOVE    "   Qosmio_G50"
                                TO      WK-FILE-NAME (24)
                    DISPLAY WK-FILE-NAME (24)
 
                    DISPLAY " "
-                   DISPLAY "25 はC.TEST78 で作成"
-                   DISPLAY "25.TEST78.POT1"
+                   DISPLAY "025 はC.TEST78 で作成"
+                   DISPLAY "025.TEST78.POT1"
                    MOVE    "   XVI2"
                                TO      WK-FILE-NAME (25)
                    DISPLAY WK-FILE-NAME (25)
 
                    DISPLAY " "
-                   DISPLAY "26 はC.TEST80 で作成"
-                   DISPLAY "26.TEST80.POT1"
+                   DISPLAY "026 はC.TEST80 で作成"
+                   DISPLAY "026.TEST80.POT1"
                    MOVE    "   お菓子系２"
                                TO      WK-FILE-NAME (26)
                    DISPLAY WK-FILE-NAME (26)
 
                    DISPLAY " "
-                   DISPLAY "27 TEST53_actress_kr.PIN1"
+                   DISPLAY "027 TEST53_actress_kr.PIN1"
                    MOVE    "   韓国女優"
                                TO      WK-FILE-NAME (27)
                    DISPLAY WK-FILE-NAME (27)
 
                    DISPLAY " "
-                   DISPLAY "28 TEST83.POT1"
+                   DISPLAY "028 TEST83.POT1"
                    MOVE    "   expo_jam_2018"
                                TO      WK-FILE-NAME (28)
                    DISPLAY WK-FILE-NAME (28)
 
                    DISPLAY " "
       *    *** INPUT HTML 変更の為、現在使用不可、34 で実行する
-                   DISPLAY "29 TEST89.POT1"
+                   DISPLAY "029 TEST89.POT1"
                    MOVE    "   DMM 検索 渚みつき"
                                TO      WK-FILE-NAME (29)
                    DISPLAY WK-FILE-NAME (29)
 
                    DISPLAY " "
-                   DISPLAY "30 TEST70.POT4"
+                   DISPLAY "030 TEST70.POT4"
                    MOVE    "   XVIS"
                                TO      WK-FILE-NAME (30)
                    DISPLAY WK-FILE-NAME (30)
 
                    DISPLAY " "
-                   DISPLAY "31 TEST97U.POT2"
+                   DISPLAY "031 TEST97U.POT2"
                    MOVE    "   Youtube Channel"
                                TO      WK-FILE-NAME (31)
                    DISPLAY WK-FILE-NAME (31)
 
                    DISPLAY " "
-                   DISPLAY "32 TEST103.POT1"
-                   MOVE    "   Youtube 動画サムネイル拡大"
+                   DISPLAY "032 TEST103.POT1"
+                   MOVE    "   Youtube/MissAV 動画サムネイル拡大"
                                TO      WK-FILE-NAME (32)
                    DISPLAY WK-FILE-NAME (32)
 
                    DISPLAY " "
-                   DISPLAY "33 TEST101.POT2"
+                   DISPLAY "033 TEST101.POT2"
                    MOVE    "   楽天検索"
                                TO      WK-FILE-NAME (33)
                    DISPLAY WK-FILE-NAME (33)
 
                    DISPLAY " "
-                   DISPLAY "34 TEST116.POT1"
+                   DISPLAY "034 TEST116.POT1"
                    MOVE    "   ＤＭＭ 動画サムネイル拡大"
                                TO      WK-FILE-NAME (34)
                    DISPLAY WK-FILE-NAME (34)
 
                    DISPLAY " "
-                   DISPLAY "35 TEST53_honkon_gr.PIN1"
+                   DISPLAY "035 TEST53_honkon_gr.PIN1"
                    MOVE    "   香港の女性歌手"
                                TO      WK-FILE-NAME (35)
                    DISPLAY WK-FILE-NAME (35)
 
                    DISPLAY " "
-                   DISPLAY "36 TEST53_honkon_man.PIN1"
+                   DISPLAY "036 TEST53_honkon_man.PIN1"
                    MOVE    "   香港の男性歌手"
                                TO      WK-FILE-NAME (36)
                    DISPLAY WK-FILE-NAME (36)
 
                    DISPLAY " "
-                   DISPLAY "37 TEST53_china_gr.PIN1"
+                   DISPLAY "037 TEST53_china_gr.PIN1"
                    MOVE    "   中国の女性歌手"
                                TO      WK-FILE-NAME (37)
                    DISPLAY WK-FILE-NAME (37)
 
                    DISPLAY " "
-                   DISPLAY "38 TEST53_china_man.PIN1"
+                   DISPLAY "038 TEST53_china_man.PIN1"
                    MOVE    "   中国の男性歌手"
                                TO      WK-FILE-NAME (38)
                    DISPLAY WK-FILE-NAME (38)
 
                    DISPLAY " "
-                   DISPLAY "39 TEST53_taiwan_gr.PIN1"
+                   DISPLAY "039 TEST53_taiwan_gr.PIN1"
                    MOVE    "   台湾の女性歌手"
                                TO      WK-FILE-NAME (39)
                    DISPLAY WK-FILE-NAME (39)
 
                    DISPLAY " "
-                   DISPLAY "40 TEST53_taiwan_man.PIN1"
+                   DISPLAY "040 TEST53_taiwan_man.PIN1"
                    MOVE    "   台湾の男性歌手"
                                TO      WK-FILE-NAME (40)
                    DISPLAY WK-FILE-NAME (40)
 
                    DISPLAY " "
-                   DISPLAY "41 TEST53_中国大陸女性アーティスト一覧.PIN1"
+                  DISPLAY "041 TEST53_中国大陸女性アーティスト一覧.PIN1"
                    MOVE    "   中国大陸女性アーティスト一覧"
                                TO      WK-FILE-NAME (41)
                    DISPLAY WK-FILE-NAME (41)
 
                    DISPLAY " "
-                   DISPLAY "42 TEST53_中国大陸男性アーティスト一覧.PIN1"
+                  DISPLAY "042 TEST53_中国大陸男性アーティスト一覧.PIN1"
                    MOVE    "   中国大陸男性アーティスト一覧"
                                TO      WK-FILE-NAME (42)
                    DISPLAY WK-FILE-NAME (42)
 
                    DISPLAY " "
                    DISPLAY 
-                   "43 TEST53_中国大陸グループアーティスト一覧.PIN1"
+                   "043 TEST53_中国大陸グループアーティスト一覧.PIN1"
                    MOVE    "   中国大陸グループアーティスト一覧"
                                TO      WK-FILE-NAME (43)
                    DISPLAY WK-FILE-NAME (43)
 
                    DISPLAY " "
-                   DISPLAY "44 TEST53_女性アーティスト一覧.PIN1"
+                   DISPLAY "044 TEST53_女性アーティスト一覧.PIN1"
                    MOVE    "   香港台湾女性アーティスト一覧"
                                TO      WK-FILE-NAME (44)
                    DISPLAY WK-FILE-NAME (44)
 
                    DISPLAY " "
-                   DISPLAY "45 TEST53_男性アーティスト一覧.PIN1"
+                   DISPLAY "045 TEST53_男性アーティスト一覧.PIN1"
                    MOVE    "   香港台湾男性アーティスト一覧"
                                TO      WK-FILE-NAME (45)
                    DISPLAY WK-FILE-NAME (45)
 
                    DISPLAY " "
-                   DISPLAY "46 TEST53_グループアーティスト一覧.PIN1"
+                   DISPLAY "046 TEST53_グループアーティスト一覧.PIN1"
                    MOVE    "   香港台湾グループアーティスト一覧"
                                TO      WK-FILE-NAME (46)
                    DISPLAY WK-FILE-NAME (46)
 
                    DISPLAY " "
-                   DISPLAY "47 TEST53_中国系アーティスト一覧.PIN1"
+                   DISPLAY "047 TEST53_中国系アーティスト一覧.PIN1"
                    MOVE    "   中国系アーティスト一覧"
                                TO      WK-FILE-NAME (47)
                    DISPLAY WK-FILE-NAME (47)
 
                    DISPLAY " "
-                   DISPLAY "48 TEST53_中国系アーティスト一覧２.PIN1"
+                   DISPLAY "048 TEST53_中国系アーティスト一覧２.PIN1"
                    MOVE    "   中国系アーティスト２一覧"
                                TO      WK-FILE-NAME (48)
                    DISPLAY WK-FILE-NAME (48)
 
                    DISPLAY " "
-                   DISPLAY "49 TEST53_中国系アーティスト一覧３.PIN1"
+                   DISPLAY "049 TEST53_中国系アーティスト一覧３.PIN1"
                    MOVE    "   中国系アーティスト３一覧"
                                TO      WK-FILE-NAME (49)
                    DISPLAY WK-FILE-NAME (49)
 
                    DISPLAY " "
-                   DISPLAY "50 TEST74.POT1"
+                   DISPLAY "050 TEST74.POT1"
                    MOVE    "   MissAV"
                                TO      WK-FILE-NAME (50)
                    DISPLAY WK-FILE-NAME (50)
 
                    DISPLAY " "
-                   DISPLAY "51 TEST53_girigiri_idol.PIN1"
+                   DISPLAY "051 TEST53_girigiri_idol.PIN1"
                    MOVE    "   ぎりぎりジュニアアイドル"
                                TO      WK-FILE-NAME (51)
                    DISPLAY WK-FILE-NAME (51)
 
                    DISPLAY " "
-                   DISPLAY "52 TEST53_NETFLIX.PIN1"
+                   DISPLAY "052 TEST53_NETFLIX.PIN1"
                    MOVE    "   Netflix"
                                TO      WK-FILE-NAME (52)
                    DISPLAY WK-FILE-NAME (52)
 
                    DISPLAY " "
-                   DISPLAY "53 TEST53_shokubutsu.PIN1"
+                   DISPLAY "053 TEST53_shokubutsu.PIN1"
                    MOVE    "   shokubutsu"
                                TO      WK-FILE-NAME (53)
                    DISPLAY WK-FILE-NAME (53)
                    DISPLAY " "
 
-                   DISPLAY "54 TEST53_zoo_doubutsu.PIN1"
+                   DISPLAY "054 TEST53_zoo_doubutsu.PIN1"
                    MOVE    "   zoo_doubutsu"
                                TO      WK-FILE-NAME (54)
                    DISPLAY WK-FILE-NAME (54)
                    DISPLAY " "
 
-                   DISPLAY "55 TEST53_shoudoubutsu.PIN1"
+                   DISPLAY "055 TEST53_shoudoubutsu.PIN1"
                    MOVE    "   shoudoubutsu"
                                TO      WK-FILE-NAME (55)
                    DISPLAY WK-FILE-NAME (55)
                    DISPLAY " "
 
-                   DISPLAY "56 TEST53_neko.PIN1"
+                   DISPLAY "056 TEST53_neko.PIN1"
                    MOVE    "   neko"
                                TO      WK-FILE-NAME (56)
                    DISPLAY WK-FILE-NAME (56)
                    DISPLAY " "
 
-                   DISPLAY "57 TEST53_inu.PIN1"
+                   DISPLAY "057 TEST53_inu.PIN1"
                    MOVE    "   inu"
                                TO      WK-FILE-NAME (57)
                    DISPLAY WK-FILE-NAME (57)
                    DISPLAY " "
 
-                   DISPLAY "58 TEST53_world_ichiran.PIN1"
+                   DISPLAY "058 TEST53_world_ichiran.PIN1"
                    MOVE    "   world_ichiran"
                                TO      WK-FILE-NAME (58)
                    DISPLAY WK-FILE-NAME (58)
                    DISPLAY " "
 
-                   DISPLAY "59 TEST53_nihon_kankochi.PIN1"
+                   DISPLAY "059 TEST53_nihon_kankochi.PIN1"
                    MOVE    "   nihon_kankochi"
                                TO      WK-FILE-NAME (59)
                    DISPLAY WK-FILE-NAME (59)
                    DISPLAY " "
 
-                   DISPLAY "60 TEST53_100_meizan.PIN1"
+                   DISPLAY "060 TEST53_100_meizan.PIN1"
                    MOVE    "   100_meizan"
                                TO      WK-FILE-NAME (60)
                    DISPLAY WK-FILE-NAME (60)
                    DISPLAY " "
 
-                   DISPLAY "61 TEST53_actress_cn.PIN1"
+                   DISPLAY "061 TEST53_actress_cn.PIN1"
                    MOVE    "   中国女優"
                                TO      WK-FILE-NAME (61)
                    DISPLAY WK-FILE-NAME (61)
                    DISPLAY " "
 
+                   DISPLAY "062 TESTXXX.POT1 <= 062 は永久欠番にする"
+      *    *** MiaaAV データ作成はTEST133 から TEST104 に変更して、
+      *    *** 032として作成
+      *    *** そのままだとhtml>YouTube汎用 に作ってしまうので
+      *    *** html>YouTubeＡＸに作成するように、032=>062 に下記で変更している
+                   MOVE    "   XXXXXXXXXXXXXXXXXXXXXXXX"
+                               TO      WK-FILE-NAME (62)
+                   DISPLAY WK-FILE-NAME (62)
+                   DISPLAY " "
+
+                   DISPLAY "063 TEST53_SHOWA.idol.PIN1"
+                   MOVE    "   昭和アイドル"
+                               TO      WK-FILE-NAME (63)
+                   DISPLAY WK-FILE-NAME (63)
+                   DISPLAY " "
+
                    ACCEPT  WK-FILE
-                   IF      WK-FILE     =   "01"  OR "02" OR "03" OR "04"
-                           OR "05" OR "06" OR "07" OR "08" OR "09"
-                           OR "10" OR "11" OR "12" OR "13" OR "14" 
-                           OR "15" OR "16" OR "17" OR "18" OR "19"
-                           OR "20" OR "21" OR "22" OR "23" OR "24"
-                           OR "25" OR "26" OR "27" OR "28" OR "29"
-                           OR "30" OR "31" OR "32" OR "33" OR "34"
-                           OR "35" OR "36" OR "37" OR "38" OR "39"
-                           OR "40" OR "41" OR "42" OR "43" OR "44"
-                           OR "45" OR "46" OR "47" OR "48" OR "49"
-                           OR "50" OR "51" OR "52" OR "53" OR "54"
-                           OR "55" OR "56" OR "57" OR "58" OR "59"
-                           OR "60" OR "61"
+                   IF      WK-FILE     =  
+                             "001" OR "002" OR "003" OR "004" OR "005"
+                          OR "006" OR "007" OR "008" OR "009" OR "010"
+                          OR "011" OR "012" OR "013" OR "014" OR "015" 
+                          OR "016" OR "017" OR "018" OR "019" OR "020" 
+                          OR "021" OR "022" OR "023" OR "024" OR "025" 
+                          OR "026" OR "027" OR "028" OR "029" OR "030" 
+                          OR "031" OR "032" OR "033" OR "034" OR "035" 
+                          OR "036" OR "037" OR "038" OR "039" OR "040" 
+                          OR "041" OR "042" OR "043" OR "044" OR "045" 
+                          OR "046" OR "047" OR "048" OR "049" OR "050" 
+                          OR "051" OR "052" OR "053" OR "054" OR "055" 
+                          OR "056" OR "057" OR "058" OR "059" OR "060" 
+                          OR "061" OR "XXX" OR "063" 
                            DISPLAY "FILE-NAME="
                            DISPLAY WK-FILE-NAME (WK-FILE-9)
                            DISPLAY " FILE NAME OK ? Y(y)/N"
                            ACCEPT  SW-YES
                    ELSE
-                           DISPLAY " FILE NAME 01-61 INPUT"
+                           DISPLAY " FILE NAME 001-063 INPUT"
                    END-IF
            END-PERFORM
 
-           IF      WK-FILE     =       "32" OR "34"
-               MOVE    "N"         TO      SW-YES
+      *    *** 32=Youtube 動画サムネイル拡大
+      *    *** 34=ＤＭＭ 動画サムネイル拡大
+      *    *** 56=neko
+      *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
+           IF      WK-FILE     =       "032" OR "034"
+                                    OR "056" OR "062"
+
+               IF      WK-ARGUMENT-NUMBER = 2
+                       MOVE    "Y"         TO      SW-YES
+                       MOVE    WK-ACCEPT2  TO      WK-WIDTH
+               ELSE
+                       MOVE    "N"         TO      SW-YES
+               END-IF
                PERFORM UNTIL SW-YES =      "Y" OR "y"
 
                    DISPLAY " "
-                   DISPLAY "32 TEST103.POT1"
+                   DISPLAY "032 TEST103.POT1"
                    DISPLAY "   Youtube 動画サムネイル拡大"
                    DISPLAY "   WIDTH 02 OR 05 INPUT"
 
@@ -587,10 +649,10 @@
            MOVE    "N"         TO      SW-YES
       *    *** 26=お菓子系２ データ分割
       *    *** この処理、やめる
-      *     IF      WK-FILE     =       "26"
+      *     IF      WK-FILE     =       "026"
            IF      WK-FILE     =       "XX"
                PERFORM UNTIL SW-YES =      "Y"
-                   DISPLAY "26.お菓子系２"
+                   DISPLAY "026.お菓子系２"
                    DISPLAY "1.あーお"
                    DISPLAY "2.かーこ"
                    DISPLAY "3.さーそ"
@@ -613,193 +675,197 @@
            END-IF
 
            EVALUATE WK-FILE
-               WHEN "01"
+               WHEN "001"
                    MOVE    "TEST53_po_gr_ja.PIN1" TO WK-PIN1-F-NAME
-               WHEN "02"
+               WHEN "002"
                    MOVE    "TEST53_po_ko_ja.PIN1" TO WK-PIN1-F-NAME
-               WHEN "03"
+               WHEN "003"
                    MOVE    "TEST53_po_gr_wr.PIN1" TO WK-PIN1-F-NAME
-               WHEN "04"
+               WHEN "004"
                    MOVE    "TEST53_po_ko_wr.PIN1" TO WK-PIN1-F-NAME
-               WHEN "05"
+               WHEN "005"
                    MOVE    "TEST53_girl_kr.PIN1" TO WK-PIN1-F-NAME
-               WHEN "06"
+               WHEN "006"
                    MOVE   "TEST53_idolgirl_gr_ja.PIN1" TO WK-PIN1-F-NAME
-               WHEN "07"
+               WHEN "007"
                    MOVE    "TEST53_girl_ko_ja.PIN1" TO WK-PIN1-F-NAME
-               WHEN "08"
+               WHEN "008"
                    MOVE    "TEST53_E-girls.PIN1" TO WK-PIN1-F-NAME
-               WHEN "09"
+               WHEN "009"
                    MOVE    "TEST53_junioridol_ja.PIN1" TO WK-PIN1-F-NAME
-               WHEN "10"
+               WHEN "010"
       *    *** AIKATSU.txt　をCOBSORTでSORT後、「=>（、」=>）に変更して
       *    *** TEST53_aikatsu.PIN1 作成
                    MOVE    "TEST53_aikatsu.PIN1" TO WK-PIN1-F-NAME
-               WHEN "11"
+               WHEN "011"
                    MOVE    "TEST53_talent_birthday.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "12"
+               WHEN "012"
                    MOVE    "TEST53_talent_birthday.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "13"
+               WHEN "013"
                    MOVE    "TEST55.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "14"
+               WHEN "014"
                    MOVE    "TEST56.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "15"
+               WHEN "015"
                    MOVE    "TEST57.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "16"
+               WHEN "016"
                    MOVE    "TEST53_jyoyu1990_birthday.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "17"
+               WHEN "017"
                    MOVE    "TEST58.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "18"
+               WHEN "018"
                    MOVE    "TEST60.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "19"
+               WHEN "019"
                    MOVE    "TEST53_gakkiall.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "20"
+               WHEN "020"
                    MOVE    "TEST53_CLASSIC.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "21"
+               WHEN "021"
                    MOVE    "TEST70.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "22"
+               WHEN "022"
                    MOVE    "TEST72.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "23"
+               WHEN "023"
                    MOVE    "TEST79.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "24"
+               WHEN "024"
                    MOVE    "TEST122.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "25"
+               WHEN "025"
                    MOVE    "TEST78.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "26"
+               WHEN "026"
                    MOVE    "TEST80.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "27"
+               WHEN "027"
                    MOVE    "TEST53_actress_kr.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "28"
+               WHEN "028"
                    MOVE    "TEST83.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "29"
+               WHEN "029"
                    MOVE    "TEST89.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "30"
+               WHEN "030"
                    MOVE    "TEST70.POT4"
                                        TO     WK-PIN1-F-NAME
-               WHEN "31"
+               WHEN "031"
                    MOVE    "TEST97U.POT2"
                                        TO     WK-PIN1-F-NAME
-               WHEN "32"
+               WHEN "032"
                    MOVE    "TEST103.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "33"
+               WHEN "033"
                    MOVE    "TEST101.POT2"
                                        TO     WK-PIN1-F-NAME
-               WHEN "34"
+               WHEN "034"
                    MOVE    "TEST116.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "35"
+               WHEN "035"
                    MOVE    "TEST53_honkon_gr.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "36"
+               WHEN "036"
                    MOVE    "TEST53_honkon_man.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "37"
+               WHEN "037"
                    MOVE    "TEST53_china_gr.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "38"
+               WHEN "038"
                    MOVE    "TEST53_china_man.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "39"
+               WHEN "039"
                    MOVE    "TEST53_taiwan_gr.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "40"
+               WHEN "040"
                    MOVE    "TEST53_taiwan_man.PIN1"
                                        TO     WK-PIN1-F-NAME
       *    *** TEST118.CBL で作成
-               WHEN "41"
+               WHEN "041"
                    MOVE    "TEST53_中国大陸女性アーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "42"
+               WHEN "042"
                    MOVE    "TEST53_中国大陸男性アーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "43"
+               WHEN "043"
                    MOVE   "TEST53_中国大陸グループアーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "44"
+               WHEN "044"
                    MOVE    "TEST53_香港台湾女性アーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "45"
+               WHEN "045"
                    MOVE    "TEST53_香港台湾男性アーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "46"
+               WHEN "046"
                    MOVE   "TEST53_香港台湾グループアーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
       *    *** TEST119.CBL で作成
-               WHEN "47"
+               WHEN "047"
                    MOVE    "TEST53_中国系アーティスト一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "48"
+               WHEN "048"
                    MOVE    "TEST53_中国系アーティスト２一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "49"
+               WHEN "049"
                    MOVE    "TEST53_中国系アーティスト３一覧.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "50"
+               WHEN "050"
                    MOVE    "TEST74.POT1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "51"
+               WHEN "051"
                    MOVE    "TEST53_girigiri_idol.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "52"
+               WHEN "052"
                    MOVE    "TEST53_NETFLIX.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "53"
+               WHEN "053"
                    MOVE    "TEST53_shokubutsu.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "54"
+               WHEN "054"
                    MOVE    "TEST53_zoo_doubutsu.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "55"
+               WHEN "055"
                    MOVE    "TEST53_shoudoubutsu.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "56"
+               WHEN "056"
                    MOVE    "TEST53_neko.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "57"
+               WHEN "057"
                    MOVE    "TEST53_inu.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "58"
+               WHEN "058"
                    MOVE    "TEST53_world_ichiran.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "59"
+               WHEN "059"
                    MOVE    "TEST53_nihon_kankochi.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "60"
+               WHEN "060"
                    MOVE    "TEST53_100_meizan.PIN1"
                                        TO     WK-PIN1-F-NAME
-               WHEN "61"
+               WHEN "061"
                    MOVE    "TEST53_actress_cn.PIN1"
                                        TO     WK-PIN1-F-NAME
+               WHEN "062"
+                   MOVE    "TESTXXX.POT1"
+                                       TO     WK-PIN1-F-NAME
+               WHEN "063"
+                   MOVE    "TEST53_SHOWA.idol.PIN1"
+                                       TO     WK-PIN1-F-NAME
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-FILE ERROR WK-FILE=" WK-FILE
+                   STOP    RUN
 
            END-EVALUATE
 
            OPEN    INPUT       PIN1-F
                    OUTPUT      POT1-F
-
-           MOVE    "O"         TO      WFD-ID
-           MOVE    WK-PGM-NAME TO      WFD-PGM
-           CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
-                                       POT1-REC
 
       *****     CALL "COBDUMP" USING  WK-DATA
            .
@@ -826,7 +892,7 @@
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL I > WK-PIN1-LEN
                IF      PIN1-REC (I:1) = "["
-                   AND ( WK-FILE NOT = "21" AND "25" AND "30" )
+                   AND ( WK-FILE NOT = "021" AND "025" AND "030" )
                        EVALUATE TRUE
                            WHEN PIN1-REC (I + 2:1) = "]"
                                 MOVE    SPACE       TO    PIN1-REC (I:3)
@@ -848,10 +914,10 @@
 
       *    *** ZERO byte コメントとし、カット
                 WHEN WK-PIN1-LEN =     ZERO
-                   IF      WK-FILE   =       "11"
+                   IF      WK-FILE   =       "011"
                        ADD     1           TO      WK-SEX
                        IF      WK-SEX      =       1
-                           AND WK-FILE     =       "11"
+                           AND WK-FILE     =       "011"
       *    *** 男性,
                                MOVE    X"E794B7E680A72C" TO  POT1-REC
 
@@ -874,8 +940,8 @@
       *    *** WK-FILE=21 XVI, 22 DMM, 24 Qosmio, 25 XVI2, 29 DMM 検索,
       *    *** 30 XVIS, 32 Youtube 動画サムネイル拡大
       *    *** 34 DMM 動画サムネイル拡大
-                 AND ( WK-FILE NOT = "21" AND "22" AND "24" AND "25" 
-                        AND "29" AND "30" AND "32" AND "34" )
+                 AND ( WK-FILE NOT = "021" AND "022" AND "024" AND "025" 
+                       AND "029" AND "030" AND "032" AND "034" )
                    CONTINUE
 
       *    *** 日本アイドルグループ を対応
@@ -922,7 +988,7 @@
                    CONTINUE
 
       *    *** ジャパリ無、YYYY年
-               WHEN ( WK-FILE    =       "11" OR "12" )
+               WHEN ( WK-FILE    =       "011" OR "012" )
                 AND PIN1-REC (1:4) IS  NUMERIC
                    MOVE    SPACE       TO      POT1-REC
                    MOVE    "#"         TO      POT1-REC (1:1)
@@ -954,7 +1020,7 @@
 
                    EVALUATE TRUE
       *    *** 26=お菓子系２
-                      WHEN WK-FILE = "26"
+                      WHEN WK-FILE = "026"
                           MOVE    "N"         TO      SW-HIRAGANA
       *                    IF    ( WK-HIRAGANA =       "1"
                           IF    (
@@ -1044,8 +1110,14 @@
                WHEN PIN1-REC (1:12) = X"E382B8E383A3E38391E383AA"
                    MOVE    SPACE       TO      POT1-REC
                    MOVE    "#"         TO      POT1-REC (1:1)
-                   ADD     1           TO      WK-NO
-                   MOVE    WK-NO       TO      POT1-REC (2:4)
+                   IF      PIN1-REC (13:10) =  "#aduxvi-br"
+                                           OR  "#aduDMM-br"
+                                           OR  "#MissAV-br"
+                       MOVE    ZERO        TO      POT1-REC (2:4)
+                   ELSE
+                       ADD     1           TO      WK-NO
+                       MOVE    WK-NO       TO      POT1-REC (2:4)
+                   END-IF
                    MOVE    "."         TO      POT1-REC (6:1)
       *    *** 　 UTF8
                    MOVE    X"E38080"   TO      POT1-REC (7:3)
@@ -1061,33 +1133,44 @@
       *    *** 汎用タイトル
                WHEN PIN1-REC (1:1) = "%"
                    MOVE    PIN1-REC (1:1) TO      POT1-REC (1:1)
-                   MOVE    WK-FILE        TO      POT1-REC (6:2)
       *    *** テーブル横方向表示数
                    MOVE    "08"           TO      POT1-REC (2:2)
-      *    *** 区分(7:1)、タイトル名(8:NN)は前のPGMから引き継ぐ
-                   MOVE    PIN1-REC (2: ) TO      POT1-REC (8:)
                    MOVE    SPACE          TO      POT1-REC (4:2)
+                   MOVE    WK-FILE        TO      POT1-REC (6:3)
+      *    *** 32=Youtube 動画サムネイル拡大
+                   IF      WK-FILE        =       "032"
+      *    *** ＭｉｓｓＡＶ
+                       AND PIN1-REC (3:18) =
+                           X"EFBCADEFBD89EFBD93EFBD93EFBCA1EFBCB6"
+      *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
+                           MOVE    "062"          TO      POT1-REC (6:3)
+                   END-IF
+      *    *** 区分(7:1)、タイトル名(8:NN)は前のPGMから引き継ぐ
+                   MOVE    PIN1-REC (3: ) TO      POT1-REC (9:)
 
       *    *** 32=Youtube 動画サムネイル拡大
       *    *** 34=ＤＭＭ 動画サムネイル拡大
-                   IF      WK-FILE     =       "32" OR "34"
-                           DISPLAY WK-PIN1-LEN
+      *    *** 56=neko
+      *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
+                   IF      WK-FILE     =       "032" OR "034"
+                                            OR "056" OR "062"
+      *    *** タイトルの後に０２か０５付ける
                            MOVE    WK-WIDTH    TO      
-                                   POT1-REC (WK-PIN1-LEN + 7:2)
+                                   POT1-REC (WK-PIN1-LEN + 8:2)
                    END-IF
 
                    EVALUATE TRUE
       *    *** 横方向、表示数セット
       *    *** 23=お菓子系．ｃｏｍ
-                      WHEN WK-FILE = "23"
+                      WHEN WK-FILE = "023"
                            MOVE    "03"        TO      POT1-REC (2:2)
       *    *** 28=expo_jam_2018
-                      WHEN WK-FILE = "28"
+                      WHEN WK-FILE = "028"
       *    *** 29=DMM 検索
-                                  OR "29"
+                                  OR "029"
       *    *** 21=XVI,22=DMM,30=XVIS
-                                  OR "21" OR "22"
-                                  OR "30"
+                                  OR "021" OR "022"
+                                  OR "030"
       *    *** 35=香港の女性歌手
       *    *** 36=香港の男性歌手
       *    *** 37=中国の女性歌手
@@ -1104,17 +1187,20 @@
       *    *** 48=中国系アーティスト２一覧
       *    *** 49=中国系アーティスト３一覧
       *    *** 50=MissAV
-                                  OR "35" OR "36" OR "37" OR "38"
-                                  OR "39" OR "40" OR "41" OR "42"
-                                  OR "43" OR "44" OR "45" OR "46"
-                                  OR "47" OR "48" OR "49" OR "50"
+                                  OR "035" OR "036" OR "037" OR "038"
+                                  OR "039" OR "040" OR "041" OR "042"
+                                  OR "043" OR "044" OR "045" OR "046"
+                                  OR "047" OR "048" OR "049" OR "050"
                            MOVE    "06"        TO      POT1-REC (2:2)
       *    *** 32=Youtube 動画サムネイル拡大
       *    *** 34=DMM 動画サムネイル拡大
-                      WHEN WK-FILE = "32" OR "34"
+      *    *** 56=neko
+      *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
+                      WHEN WK-FILE = "032" OR "034"
+                                  OR "056" OR "062"
                            MOVE    WK-WIDTH    TO      POT1-REC (2:2)
       *    *** 26=お菓子系２
-                      WHEN WK-FILE = "26"
+                      WHEN WK-FILE = "026"
                            MOVE    "06"        TO      POT1-REC (2:2)
       *    *** タイトルにあ、か、さ、…、ら付ける
                            EVALUATE TRUE
@@ -1138,27 +1224,27 @@
                                    MOVE    X"E38289" TO POT1-REC (24:3)
                            END-EVALUATE
                            MOVE    ","         TO      POT1-REC (27:1)
-                      WHEN WK-FILE = "09" OR "16" OR "17"
+                      WHEN WK-FILE = "009" OR "016" OR "017"
       *                     MOVE    "12"           TO      POT1-REC (2:2)
                            MOVE    "08"           TO      POT1-REC (2:2)
-                      WHEN WK-FILE = "02" OR "05" OR "07"
+                      WHEN WK-FILE = "002" OR "005" OR "007"
       *                     MOVE    "10"           TO      POT1-REC (2:2)
                            MOVE    "08"           TO      POT1-REC (2:2)
       *    *** 18 はYOUTUBE のみ、出力
-                      WHEN WK-FILE = "18"
+                      WHEN WK-FILE = "018"
                            MOVE    "08"           TO      POT1-REC (2:2)
                            MOVE    "YT"           TO      POT1-REC (4:2)
       *    *** 15 アイドル大図鑑 G OR N SET
-                      WHEN WK-FILE = "15"
+                      WHEN WK-FILE = "015"
                            MOVE    PIN1-REC (2:1) TO      POT1-REC (4:1)
       *    *** 11 は芸能人（女性・男性）　追加
-                      WHEN WK-FILE = "11"
+                      WHEN WK-FILE = "011"
                            MOVE
                            X"EFBC88E5A5B3E680A7E383BBE794B7E680A7EFBC89"
                                                   TO    POT1-REC (30:21)
                            MOVE    WDT-DATE-YYYY  TO    POT1-REC (52:04)
       *    *** 12 は芸能人（女性）　追加
-                      WHEN WK-FILE = "12"
+                      WHEN WK-FILE = "012"
                            MOVE
                            X"EFBC88E5A5B3E680A7EFBC89"
                                                   TO    POT1-REC (30:12)
@@ -1167,10 +1253,10 @@
                            MOVE    WDT-DATE-YYYY  TO    POT1-REC (43:04)
       *    *** 14 日本の女優一覧2000年代生まれ 名前順、誕生日順
       *    *** 16 日本の女優一覧1990年代生まれ
-      *                WHEN WK-FILE = "14" OR "16"
+      *                WHEN WK-FILE = "014" OR "016"
       *                     MOVE    "07"           TO      POT1-REC (2:2)
       *    *** 21 XVI
-      *                WHEN WK-FILE = "21" OR "22"
+      *                WHEN WK-FILE = "021" OR "022"
       *                     MOVE    "06"           TO      POT1-REC (2:2)
                       WHEN OTHER
                            CONTINUE
@@ -1186,12 +1272,16 @@
       *    *** 31 Youtube Channel
       *    *** 検索文字にカンマ＝、あってもそのまま出力
       *    *** 05 韓国のガール・グループ
+      *    *** 56=neko
+      *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
 
-               WHEN WK-FILE = "21" OR "22" OR "24" OR "25" OR "29"
-                           OR "30" OR "32" OR "34"
-                           OR "50"
-                           OR "31"
-                           OR "05"
+               WHEN WK-FILE = "021" OR "022" OR "024" OR "025" OR "029"
+                           OR "030" OR "032" OR "034"
+                           OR "050"
+                           OR "031"
+                           OR "005"
+                           OR "056"
+                           OR "062"
                    COMPUTE I = WK-PIN1-LEN + 1
                    MOVE    ","         TO      PIN1-REC (I:1)
 
@@ -1201,7 +1291,7 @@
                WHEN OTHER
       *    *** 11 は芸能人（女性・男性）
       *    *** 12 は芸能人（女性）
-                   IF      WK-FILE     =       "11" OR "12"
+                   IF      WK-FILE     =       "011" OR "012"
                        MOVE    ZERO        TO     WK-KAKKO
                        INSPECT PIN1-REC TALLYING WK-KAKKO 
       *    *** （
@@ -1249,14 +1339,14 @@
 
                    EVALUATE TRUE
       *    *** 12 は芸能人（女性）
-                       WHEN WK-FILE = "12"
+                       WHEN WK-FILE = "012"
       *    *** 女性のみ出力
                          IF WK-SEX = ZERO
                            WRITE   POT1-REC    FROM    PIN1-REC
                            ADD     1           TO      WK-POT1-CNT
                          END-IF
       *    *** 26=お菓子系２
-                       WHEN WK-FILE = "26"
+                       WHEN WK-FILE = "026"
                            IF      SW-HIRAGANA =       "Y"
                                    WRITE   POT1-REC    FROM    PIN1-REC
                                    ADD     1           TO    WK-POT1-CNT
