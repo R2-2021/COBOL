@@ -1,5 +1,17 @@
       *    *** YouTube 動画サムネイル、自動付加
       *    *** (Walk East.csv) TEST103.PIN1 => TEST103.POT1
+      *    *** 
+      *    ***   動画     再生リスト対応はTEST104のみ修正した
+      *    ***
+      *    *** TEST103    TEST117
+      *    ***    |          |
+      *    *** TEST53     TEST104
+      *    ***    |          |
+      *    *** TEST54     TEST53
+      *    ***               |
+      *    ***            TEST54
+      *    ***
+      *    *** 出力はどちらも、TEST103.POT1
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST103.
@@ -86,14 +98,13 @@
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-LEN     BINARY-LONG SYNC VALUE ZERO.
 
-           03  WK-FIL-LEN      BINARY-LONG SYNC VALUE ZERO.
            03  WK-WATCH-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-T-LEN        BINARY-LONG SYNC VALUE ZERO.
-           03  WK-FIL          PIC  X(100) VALUE SPACE.
-           03  WK-WATCH        PIC  X(100) VALUE SPACE.
+           03  WK-REL-LEN      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-WATCH        PIC  X(300) VALUE SPACE.
            03  WK-REC          PIC  X(1000) VALUE SPACE.
-           03  WK-REL          PIC  9(003) VALUE ZERO.
-           03  WK-FILE-NAME    PIC  X(032) VALUE SPACE.
+           03  WK-REL          PIC  9(004) VALUE ZERO.
+           03  WK-FILE-NAME    PIC  X(064) VALUE SPACE.
 
       *    *** 初期値 MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
@@ -120,18 +131,18 @@
            03  SW-YES          PIC  X(001) VALUE "N".
 
        01  TBL-AREA.
-           03  TBL01-AREA      OCCURS 500.
-             05  TBL01-NO      PIC  9(003) VALUE ZERO.
-             05  TBL01-ITEM    PIC  X(100) VALUE SPACE.
+           03  TBL01-AREA      OCCURS 1000.
+             05  TBL01-NO      PIC  9(004) VALUE ZERO.
+             05  TBL01-ITEM    PIC  X(300) VALUE SPACE.
              05  TBL01-ITEM-LEN BINARY-LONG SYNC VALUE ZERO.
-             05  TBL01-HEAD    PIC  X(100) VALUE SPACE.
+             05  TBL01-HEAD    PIC  X(300) VALUE SPACE.
              05  TBL01-HEAD-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-CNT     BINARY-LONG SYNC VALUE ZERO.
 
-           03  TBL02-AREA      OCCURS 1000.
+           03  TBL02-AREA      OCCURS 2000.
              05  TBL02-NO-IDX  PIC  9(001) VALUE ZERO.
              05  TBL02-NO      OCCURS 5
-                               PIC  9(003) VALUE ZERO.
+                               PIC  9(004) VALUE ZERO.
              05  TBL02-POT1-REC PIC X(1000) VALUE SPACE.
 
        PROCEDURE               DIVISION.
@@ -144,8 +155,10 @@
            PERFORM S030-10     THRU    S030-EX
 
            PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
+                   IF      WK-PIN2-LEN >       ZERO
       *    *** TBL01 SET
-                   PERFORM S032-10     THRU    S032-EX
+                           PERFORM S032-10     THRU    S032-EX
+                   END-IF
 
       *    *** READ PIN2
                    PERFORM S030-10     THRU    S030-EX
@@ -279,6 +292,7 @@
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
+                   MOVE    ",,"        TO   PIN1-REC (WK-PIN1-LEN + 1:2)
            END-READ
            .
        S020-EX.
@@ -301,17 +315,35 @@
        S032-10.
 
            ADD     1           TO      K1
-           IF      K1          >       500
+           IF      K1          >       1000
                    DISPLAY WK-PGM-NAME " TBL01 OVER K1=" K1
+                   DISPLAY WK-PGM-NAME "同じ機能のTEST104 で再実行して"
                    STOP    RUN
            END-IF
+
+           MOVE    SPACE       TO      TBL01-ITEM     (K1)
+                                       TBL01-HEAD     (K1)
+           MOVE    ZERO        TO      TBL01-ITEM-LEN (K1)
+                                       TBL01-HEAD-LEN (K1)
+                                       WK-REL
+                                       WK-REL-LEN
 
            UNSTRING PIN2-REC
                    DELIMITED BY ","
                    INTO
                    TBL01-ITEM (K1) COUNT TBL01-ITEM-LEN (K1)
                    TBL01-HEAD (K1) COUNT TBL01-HEAD-LEN (K1)
-                   WK-REL
+                   WK-REL          COUNT WK-REL-LEN
+
+           IF      WK-REL-LEN  =       ZERO
+                   DISPLAY WK-PGM-NAME " WK-REL-LEN=ZERO ERROR "
+                           " WK-PIN2-CNT=" WK-PIN2-CNT
+                           " WK-REL-LEN=" WK-REL-LEN
+                           " K1=" K1 
+                           " TBL01-ITEM-LEN (K1)=" TBL01-ITEM-LEN (K1)
+                           " TBL01-HEAD-LEN (K1)=" TBL01-HEAD-LEN (K1)
+                   STOP    RUN
+           END-IF
 
            IF      WK-REL      =       ZERO
                    MOVE    K1          TO      TBL01-NO (K1)
@@ -329,7 +361,7 @@
        S100-10.
 
            ADD     1           TO      K2
-           IF      K2          >       1000
+           IF      K2          >       2000
                    DISPLAY WK-PGM-NAME " TBL02 OVER K2=" K2
                    STOP    RUN
            END-IF
@@ -379,7 +411,7 @@
            MOVE    SPACE       TO      WK-REC
            MOVE    ZERO        TO      WK-T-LEN
            UNSTRING PIN1-REC
-                   DELIMITED BY "&t=" OR "     " OR "&amp"
+                   DELIMITED BY "&t=" OR "&amp" OR ",,     "
                    INTO
                    WK-REC     COUNT    WK-T-LEN
 
@@ -396,6 +428,10 @@
 
            MOVE    "https://i.ytimg.com/vi/" TO WK-REC (I:23)
            ADD     23          TO      I
+
+      *    *** https://i.ytimg.com/vi/GCzl5-_Anss/maxresdefault.jpg 1280*720
+      *    *** https://i.ytimg.com/vi/GCzl5-_Anss/sddefault.jpg 640*480
+      *    *** https://i.ytimg.com/vi/GCzl5-_Anss/hqdefault.jpg 480*360
 
            IF      WK-WATCH-LEN NOT =  ZERO
                    MOVE    WK-WATCH    TO      WK-REC (I:WK-WATCH-LEN)
@@ -417,6 +453,7 @@
                            AND PIN1-REC (K:TBL01-ITEM-LEN (K1)) =
                                TBL01-ITEM (K1) (1:TBL01-ITEM-LEN (K1))
                            AND TBL02-NO-IDX (K2) <= 4
+
                            EVALUATE TRUE
                              WHEN TBL02-NO-IDX (K2) = ZERO
                                MOVE    1           TO  TBL02-NO-IDX (K2)
