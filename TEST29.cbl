@@ -11,12 +11,10 @@
 
       *    *** アニメ  タイトルデータ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** アニメ一覧
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -42,9 +40,6 @@
       *         "TEST29.PIN1".
                 "TEST28_202601SJIS.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST29.POT1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -223,18 +218,7 @@
            MOVE    WDT-DATE-SS TO      WK-TIT1-SS
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   OUTPUT      POT1-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -288,9 +272,10 @@
        S020-10.
 
            READ    PIN1-F
-
-           IF      WK-PIN1-STATUS =    ZERO
-                   ADD     1           TO        WK-PIN1-CNT
+               AT END
+                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+               NOT AT END
+                   ADD     1           TO      WK-PIN1-CNT
                    UNSTRING PIN1-REC
                             DELIMITED BY ","
                        INTO
@@ -300,15 +285,7 @@
                             WK-KISETU
                             WK-TITLE2
                             WK-SITE
-           ELSE
-               IF  WK-PIN1-STATUS =    10
-                   MOVE    HIGH-VALUE  TO    WK-PIN1-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
 
       *    *** 19,1 から漢字始まる時、セットしない
            MOVE    SPACE       TO      WK-TITLE
@@ -461,14 +438,7 @@
        S130-10.
 
            WRITE   POT1-REC
-           IF      WK-POT1-STATUS =    ZERO
-                   ADD     1           TO      WK-POT1-CNT
-           ELSE
-                   DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR STATUS="
-                           WK-POT1-STATUS 
-                           " WK-POT1-CNT=" WK-POT1-CNT
-                   STOP    RUN
-           END-IF
+           ADD     1           TO      WK-POT1-CNT
            .
        S130-EX.
            EXIT.
@@ -477,18 +447,7 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   POT1-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -496,13 +455,13 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-PAGE     TO      WK-PAGE-E
-           DISPLAY WK-PGM-NAME " POT1 ﾍﾟｰｼﾞ= " WK-PAGE-E
+           DISPLAY WK-PGM-NAME " POT1 頁   = " WK-PAGE-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
