@@ -1,11 +1,11 @@
 
-ç¾åœ¨æœªä½¿ç”¨
+Œ»Ý–¢Žg—p
 AUTOEXEC.bat
 CD C:\Users\koko\Documents\COBOL
 COPY *.* I:\COBOL\
 
 
-C.X ã¯ä»»æ„ã€å¤‰æ›´å¾Œã€å®Ÿè¡Œ
+C.X ‚Í”CˆÓA•ÏXŒãAŽÀs
 
 C.bat
 COBC -x XXXXXXXX.cbl
@@ -30,58 +30,58 @@ COPY FILEITEM.PDEK.PRM1 FILEITEM.P3EK.PRM1
 
 
 C.COBSORT.T001.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST26.POT2 æ”¾é€æ—¥é †ã€€ï¼Šï¼Šï¼Š
+REM –––@TEST26.POT2 •ú‘—“ú‡@–––
 COBSORT COBSORT.T001.PRM1
 
 C.COBSORT.T002.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST28.POT1 ã‚¿ã‚¤ãƒˆãƒ«é †ã€€ï¼Šï¼Šï¼Š
+REM –––@TEST28.POT1 ƒ^ƒCƒgƒ‹‡@–––
 COBSORT COBSORT.T002.PRM1
 
 C.COBSORT.T003.bat
-REM ï¼Šï¼Šï¼Šã€€TEST62.POT1 SORTç”¨ã€€ï¼Šï¼Šï¼Š
+REM –––@TEST62.POT1 SORT—p@–––
 COBSORT COBSORT.T003.PRM1
 
 C.COBSORT.T004.bat
-ã¾ã ã€
-COBSORT.T004.PRM1 ç„¡ã„
+‚Ü‚¾A
+COBSORT.T004.PRM1 –³‚¢
 
 C.COBSORT.T005.bat
-REM ï¼Šï¼Šï¼Šã€€COBFIND.POT1 SORTç”¨ã€€ï¼Šï¼Šï¼Š
+REM –––@COBFIND.POT1 SORT—p@–––
 COBSORT COBSORT.T005.PRM1
 
 C.COBSORT.T006.bat
-REM ï¼Šï¼Šï¼Šã€€COBFIND.POT1 SORTç”¨ã€€ï¼Šï¼Šï¼Š
-åŒã˜ã ã£ãŸã€ç”¨é€”ä¸æ˜Žã€€KEYã¯é•ã†
+REM –––@COBFIND.POT1 SORT—p@–––
+“¯‚¶‚¾‚Á‚½A—p“r•s–¾@KEY‚Íˆá‚¤
 COBSORT COBSORT.T006.PRM1
 
 C.COBSORT.T011.bat
-REM ï¼Šï¼Šï¼Šã€€TEST70 XVI HTML DATA SORTç”¨ã€€ï¼Šï¼Šï¼Š
-REM TEST70.PIN3 ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
+REM –––@TEST70 XVI HTML DATA SORT—p@–––
+REM TEST70.PIN3 ƒL[ƒ[ƒhƒf[ƒ^
 COBSORT COBSORT.T011.PRM1
-REM TEST70.PIN4 å¥³å„ªãƒ‡ãƒ¼ã‚¿
+REM TEST70.PIN4 ——Dƒf[ƒ^
 COBSORT COBSORT.T012.PRM1
 
 REM C.COBSORT.T013.bat
-REM ï¼Šï¼Šï¼Šã€€TEST84.POT3 XVI TAG KEYWORD DATA SORTç”¨ã€€ï¼Šï¼Šï¼Š
-REM TEST84.POT3 ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
+REM –––@TEST84.POT3 XVI TAG KEYWORD DATA SORT—p@–––
+REM TEST84.POT3 ƒL[ƒ[ƒhƒf[ƒ^
 COBSORT COBSORT.T013.PRM1
 
 REM C.COBSORT.T014.bat
-REM ï¼Šï¼Šï¼Šã€€TEST70.POT2 XVI TAG KEYWORD DATA SORTç”¨ã€€ï¼Šï¼Šï¼Š
-REM TEST70.POT2 ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
+REM –––@TEST70.POT2 XVI TAG KEYWORD DATA SORT—p@–––
+REM TEST70.POT2 ƒL[ƒ[ƒhƒf[ƒ^
 COBSORT COBSORT.T014.PRM1
 
 
 
 C.FILEDTCR.T001.bat
-REM ï¼Šï¼Šï¼Šã€€ä»»æ„TEST DATA ä½œæˆã€€ï¼Šï¼Šï¼Š
+REM –––@”CˆÓTEST DATA ì¬@–––
 FILEDTCR FILEDTCR.T001.PRM1
 
 C.FILEDTCR.T002.bat
-REM ï¼Šï¼Šï¼Šã€€ä»»æ„TEST UTF8 DATA ä½œæˆã€€ï¼Šï¼Šï¼Š
+REM –––@”CˆÓTEST UTF8 DATA ì¬@–––
 FILEDTCR FILEDTCR.T002.PRM1
 
-REM ï¼Šï¼Šï¼Šã€€TEST44 ç”¨ TEST DATA ä½œæˆã€€ï¼Šï¼Šï¼Š
+REM –––@TEST44 —p TEST DATA ì¬@–––
 FILEDTCR FILEDTCR.T005.PRM1
 
 
@@ -117,7 +117,7 @@ FILEITEM FILEITEM.PDZK.PRM1 FILEITEM.1121.PRM2
 FILEITEM FILEITEM.PDEE.PRM1 FILEITEM.1121.PRM2
 FILEITEM FILEITEM.PDEK.PRM1 FILEITEM.1121.PRM2
 
-åŒä¸Šã¨å†…å®¹åŒã˜
+“¯ã‚Æ“à—e“¯‚¶
 C.FILEITEM.P1.bat 
 C.FILEITEM.P2.bat 
 C.FILEITEM.P3.bat 
@@ -125,23 +125,23 @@ C.FILEITEM.PD.bat
 
 
 C.FILEITEM.T001.bat 
-REM ï¼Šï¼Šï¼Šã€€UTF8 TESTã€€ï¼Šï¼Šï¼Š
+REM –––@UTF8 TEST@–––
 FILEITEM FILEITEM.T001.PRM1 FILEITEM.T001.PRM2
 
 C.FILEITEM.T002.bat 
-REM FILEITEM ä»»æ„ãƒ†ã‚¹ãƒˆ TYPE=CT,C1,C2,C3
+REM FILEITEM ”CˆÓƒeƒXƒg TYPE=CT,C1,C2,C3
 FILEITEM FILEITEM.T002.PRM1 FILEITEM.1121.PRM2
 
 C.FILEITEM.T003.bat 
-REM TEST38.POT1 ãƒ†ã‚¹ãƒˆ
+REM TEST38.POT1 ƒeƒXƒg
 FILEITEM FILEITEM.T003.PRM1 FILEITEM.1121.PRM2
 
 C.FILEITEM.T004.bat 
-REM ï¼Šï¼Šï¼Šã€€ï¼µï¼´ï¼¦ï¼ï¼˜ã€€ä¸€è¦§ã€€ï¼Šï¼Šï¼Š
+REM –––@‚t‚s‚e|‚W@ˆê——@–––
 FILEITEM FILEITEM.T004.PRM1 FILEITEM.1121.PRM2
 
 C.FILEITEM.T005.bat 
-REM ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ä¸€è¦§
+REM ƒTƒuƒ‹[ƒ`ƒ“ˆê——
 COBFIND
 COBSORT  COBSORT.T005.PRM1
 FILEITEM FILEITEM.T005.PRM1 FILEITEM.T005.PRM2
@@ -149,7 +149,7 @@ REM DEL COBFIND.POT1
 REM DEL COBSORT.POT1
 
 C.FILEITEM.T006.bat 
-REM ã‚³ãƒ”ãƒ¼å¥ä¸€è¦§
+REM ƒRƒs[‹åˆê——
 COBFIND
 COBSORT  COBSORT.T006.PRM1
 FILEITEM FILEITEM.T006.PRM1 FILEITEM.T006.PRM2
@@ -157,73 +157,73 @@ DEL COBFIND.POT1
 DEL COBSORT.POT1
 
 C.FILEITEM.T007.bat 
-REM ï¼µï¼´ï¼¦ï¼ï¼˜æ–‡å­—ä¸€è¦§
+REM ‚t‚s‚e|‚W•¶Žšˆê——
 FILEITEM FILEITEM.T007.PRM1 FILEITEM.T007.PRM2
 
 C.FILEITEM.T008.bat 
-REM TEST36.POT2,é›†è¨ˆãƒ†ã‚¹ãƒˆ
+REM TEST36.POT2,WŒvƒeƒXƒg
 FILEITEM FILEITEM.T008.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T009.bat 
-REM ï¼Šï¼Šï¼Šã€€ãƒ†ã‚¹ãƒˆã€€TYPEï¼PD.HENï¼EKã€€ï¼Šï¼Šï¼Š
+REM –––@ƒeƒXƒg@TYPEPD.HENEK@–––
 FILEITEM FILEITEM.T009.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T010.bat 
-REM ï¼Šï¼Šï¼Šã€€èª•ç”Ÿæ—¥ã‹ã‚‰100æ—¥ã”ã¨ã®æ—¥ä»˜ã€€ï¼Šï¼Šï¼Š
+REM –––@’a¶“ú‚©‚ç100“ú‚²‚Æ‚Ì“ú•t@–––
 FILEDTCR FILEDTCR.T004.PRM1
 FILEITEM FILEITEM.T010.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T011.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST26.POT2 æ”¾é€æ—¥é †ã€€ï¼Šï¼Šï¼Š
+REM –––@TEST26.POT2 •ú‘—“ú‡@–––
 COBSORT COBSORT.T001.PRM1
-COBSORTã€€ï¼Ÿï¼Ÿ
+COBSORT@HH
 
 C.FILEITEM.T012.bat
-REM ï¼Šï¼Šï¼Šã€€å›½åˆ¥ä»¶æ•°ã€€ï¼Šï¼Šï¼Š
+REM –––@‘•ÊŒ”@–––
 REM INPUT TEST60.PIN2
 FILEITEM FILEITEM.T012.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T013.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST64.POT1 ãƒã‚¤ã‚ªãƒªã‚ºãƒ ã€€ï¼Šï¼Šï¼Š
+REM –––@TEST64.POT1 ƒoƒCƒIƒŠƒYƒ€@–––
 FILEITEM FILEITEM.T013.PRM1 FILEITEM.0111.PRM2
 FILEITEM FILEITEM.T014.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T014.bat 
-ãƒã‚¤ã‚ªãƒªã‚ºãƒ  ãƒžã‚¤ãƒŠã‚¹åˆ† T013 ã§å®Ÿè¡Œãªã®ã§ç„¡ã„
+ƒoƒCƒIƒŠƒYƒ€ ƒ}ƒCƒiƒX•ª T013 ‚ÅŽÀs‚È‚Ì‚Å–³‚¢
 
 C.FILEITEM.T015.bat 
-EM *** COBXREF ã‚°ãƒ­ãƒ¼ãƒãƒ«æ›´æ–°é …ç›®ãƒã‚§ãƒƒã‚¯ ã‚½ãƒ¼ãƒˆç”¨
-REM ===> FILEITEM.T015.POT1 ã§ä½œæˆ
+EM *** COBXREF ƒOƒ[ƒoƒ‹XV€–Úƒ`ƒFƒbƒN ƒ\[ƒg—p
+REM ===> FILEITEM.T015.POT1 ‚Åì¬
 
 C.FILEITEM.T016.bat 
-ï¼Šï¼Šï¼Šã€€COBXREFã€€ç™ºç”Ÿå›žæ•°ã€å†ãƒã‚§ãƒƒã‚¯ã€€ï¼Šï¼Šï¼Š
+–––@COBXREF@”­¶‰ñ”AÄƒ`ƒFƒbƒN@–––
 
 C.FILEITEM.T017.bat 
-REM ï¼Šï¼Šï¼Šã€€ï¼³ï¼¯ï¼µï¼²ï¼£ï¼¥ã€€ï¼¬ï¼©ï¼³ï¼´ã€€ï¼Šï¼Šï¼Š
-REM ===> FILEITEM.T017.POT1 ã§ä½œæˆ
+REM –––@‚r‚n‚t‚q‚b‚d@‚k‚h‚r‚s@–––
+REM ===> FILEITEM.T017.POT1 ‚Åì¬
 FILEITEM FILEITEM.T017.PRM1 FILEITEM.0111.PRM2
 
 C.FILEITEM.T018.bat 
-ï¼Šï¼Šï¼Šã€€2020.10ã€€ã‚¢ãƒ‹ãƒ¡ã€€å£°å„ªé †ã€€ï¼Šï¼Šï¼Š
+–––@2020.10@ƒAƒjƒ@º—D‡@–––
 
 C.FILEITEM.T019.bat 
-ï¼Šï¼Šï¼Šã€€2020.10ã€€ã‚¢ãƒ‹ãƒ¡ã€€OP,EDãƒ‡ãƒ¼ã‚¿ã€€ï¼Šï¼Šï¼Š
+–––@2020.10@ƒAƒjƒ@OP,EDƒf[ƒ^@–––
 
 C.FILEITEM.T020.bat 
-ï¼Šï¼Šï¼Šã€€2021.04ã€€ã‚¢ãƒ‹ãƒ¡ã€€äºˆç´„ç”¨ã€€ä¸€è¦§ã€€ï¼Šï¼Šï¼Š
+–––@2021.04@ƒAƒjƒ@—\–ñ—p@ˆê——@–––
 
 C.FILEITEM.T021.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST84.POT3 XVI TAG KEYWORD DATA SORTç”¨ã€€ï¼Šï¼Šï¼Š
-REM ===> FILEITEM.T021.POT1 ä½œæˆ
+REM –––@TEST84.POT3 XVI TAG KEYWORD DATA SORT—p@–––
+REM ===> FILEITEM.T021.POT1 ì¬
 FILEITEM FILEITEM.T021.PRM1 FILEITEM.0011.PRM2
 
 C.FILEITEM.T022.bat 
-REM ï¼Šï¼Šï¼Šã€€TEST44.POT1,POT2 DATAã€€ï¼Šï¼Šï¼Š
-REM ===> FILEITEM.T022.POT1 ä½œæˆ
+REM –––@TEST44.POT1,POT2 DATA@–––
+REM ===> FILEITEM.T022.POT1 ì¬
 FILEITEM FILEITEM.T022.PRM1 FILEITEM.0121.PRM2
 
-REM ï¼Šï¼Šï¼Šã€€TEST59.POT1(COBRND TEST)ã€€ï¼Šï¼Šï¼Š
-REM ===> FILEITEM.T025.POT1 ä½œæˆ
+REM –––@TEST59.POT1(COBRND TEST)@–––
+REM ===> FILEITEM.T025.POT1 ì¬
 FILEITEM FILEITEM.T025.PRM1 FILEITEM.0110.PRM2
 
 
@@ -238,21 +238,21 @@ TEST10
 TEST28
 
 C.TEST60.bat
-REM ï¼Šï¼Šï¼Šã€€XVI COUNTRY HTMLã€€ï¼Šï¼Šï¼Š
+REM –––@XVI COUNTRY HTML@–––
 TEST60
 TEST53
 TEST54
 
 C.TEST61.bat
-REM ï¼Šï¼Šï¼Šã€€YouTube ã‚¢ãƒ‹ãƒ¡å¹´ä»£é †ã€ã‚¿ã‚¤ãƒˆãƒ«é †ãƒ‡ãƒ¼ã‚¿ä½œæˆã€€ï¼Šï¼Šï¼Š
-REM Pthon ã§Webreq.animeito202101.py æœ€æ–° YYYYMMã‚’ä½œã‚Šã€å®Ÿè¡ŒF5
-REM ä½œæˆã•ã‚ŒãŸ
-REM TEST10 TEST10.PIN2 ã® ï¼‘è¡Œç›® YYYYMM å¤‰æ›´ã—ã¦å®Ÿè¡Œ
-REM TEST26 å®Ÿè¡Œ
-REM TEST28 å®Ÿè¡Œ
-REM TEST50.PIN1 ã«ã€€æœ€æ–°YYYY.MM TEST28.POT1 ãƒ‡ãƒ¼ã‚¿è¿½åŠ 
-REM TEST62.POT2 ã«ä»¶æ•°ã‚ã‚‹ã¨ãã€æ¼¢å­—ã‚ˆã¿ãƒ‡ãƒ¼ã‚¿è¿½åŠ  TEST62.PIN3 TEST62å†å®Ÿè¡Œ
-REM TEST50.CBL,TEST51.CBL ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ä¸€è¦§ æœ€æ–°å¹´åº¦æœˆå¤‰æ›´ IDï¼ã¯å¤‰æ›´ãªã„ã¿ãŸã„
+REM –––@YouTube ƒAƒjƒ”N‘ã‡Aƒ^ƒCƒgƒ‹‡ƒf[ƒ^ì¬@–––
+REM Pthon ‚ÅWebreq.animeito202101.py ÅV YYYYMM‚ðì‚èAŽÀsF5
+REM ì¬‚³‚ê‚½
+REM TEST10 TEST10.PIN2 ‚Ì ‚Ps–Ú YYYYMM •ÏX‚µ‚ÄŽÀs
+REM TEST26 ŽÀs
+REM TEST28 ŽÀs
+REM TEST50.PIN1 ‚É@ÅVYYYY.MM TEST28.POT1 ƒf[ƒ^’Ç‰Á
+REM TEST62.POT2 ‚ÉŒ”‚ ‚é‚Æ‚«AŠ¿Žš‚æ‚Ýƒf[ƒ^’Ç‰Á TEST62.PIN3 TEST62ÄŽÀs
+REM TEST50.CBL,TEST51.CBL ƒAƒjƒƒCƒg@ƒAƒjƒˆê—— ÅV”N“xŒŽ•ÏX ID‚Í•ÏX‚È‚¢‚Ý‚½‚¢
 REM
 REM   *    *** TEST10
 REM   *    ***   |
@@ -266,13 +266,13 @@ REM   *    *** COBSORT COBSORT.T003.PRM1
 REM   *    ***   |
 REM   *    *** TEST63
 REM   *    ***   |
-REM   *    *** TEST51 ã‚¢ãƒ‹ãƒ¡ åå‰é † ï½ˆï½”ï½ï½Œ ä½œæˆ
+REM   *    *** TEST51 ƒAƒjƒ –¼‘O‡ ‚ˆ‚”‚‚Œ ì¬
 REM   *    ***   |
 REM   *    *** COBSORT COBSORT.T009.PRM1
 REM   *    ***   |
 REM   *    *** TEST73
 REM   *    ***   |
-REM   *    *** TEST50 ã‚¢ãƒ‹ãƒ¡ å¹´ä»£é † ï½ˆï½”ï½ï½Œ ä½œæˆ
+REM   *    *** TEST50 ƒAƒjƒ ”N‘ã‡ ‚ˆ‚”‚‚Œ ì¬
 
 TEST61
 TEST62
@@ -285,53 +285,55 @@ TEST50
 
 C.TEST69.bat
 
-C.TEST69_2.bat <= ALL è¨˜è¿°ã‚ã‚Šã€€
-REM *** YouTibe html ã‚†ã„ã‹ãŠã‚Šã€çŸ³åŽŸå¤ç¹”ç­‰ã€€ï¼·atchã€€ï¼¬ist ä½œæˆ
+C.TEST69_2.bat <= ALL ‹Lq‚ ‚è@
+REM *** YouTibe html ‚ä‚¢‚©‚¨‚èAÎŒ´‰ÄD“™@‚vatch@‚kist ì¬
 TEST69 youtube.J_S_Bach_The_Violin_Concertos2.html
 TEST68 J_S_Bach_The_Violin_Concertos
 
 C.TEST70.bat
-REM XVI HTML ä½œæˆ
-REM Google ã§ãƒ–ãƒƒã‚¯ãƒžãƒ¼ã‚¯ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã™ã‚‹ã€TEST10.PIN2 bookmarks.html ã«å¤‰æ›´ã™ã‚‹
+REM XVI HTML ì¬
+REM Google ‚ÅƒuƒbƒNƒ}[ƒNƒGƒNƒXƒ|[ƒg‚·‚éATEST10.PIN2 bookmarks.html ‚É•ÏX‚·‚é
 TEST10
 TEST70
 TEST53
 TEST54
 
 C.TEST72.bat
-REM DMM HTML ä½œæˆ
-REM Google ã§ãƒ–ãƒƒã‚¯ãƒžãƒ¼ã‚¯ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã™ã‚‹ã€TEST10.PIN2 bookmarks.html ã«å¤‰æ›´ã™ã‚‹
+REM DMM HTML ì¬
+REM Google ‚ÅƒuƒbƒNƒ}[ƒNƒGƒNƒXƒ|[ƒg‚·‚éATEST10.PIN2 bookmarks.html ‚É•ÏX‚·‚é
 TEST10
 TEST72
 TEST53
 TEST54
 
 C.TEST74.bat
-REM Qosmio dirã‹ã‚‰ HTML ä½œæˆ
-REM Qosmio dir TEST74_China.PIN1 ä½œæˆ
+REM Qosmio dir‚©‚ç HTML ì¬
+REM Qosmio dir TEST74_China.PIN1 ì¬
 TEST74
 TEST53
 TEST54
 
 
-R.bat TESTNN å®Ÿè¡Œ
+R.bat TESTNN ŽÀs
 
 
 C.TEST89.bat
-REM DMM HTML ä½œæˆ
-REM DMM æ¤œç´¢å¾Œã€ï¼µï¼²ï¼¬ã‚’ï¼°ï½™ï½”ï½ˆï½ï½Žã«ã€TEST10.PIN2 DMM_XXX.html ã«å¤‰æ›´ã™ã‚‹
+REM DMM HTML ì¬
+REM DMM ŒŸõŒãA‚t‚q‚k‚ð‚o‚™‚”‚ˆ‚‚Ž‚ÉATEST10.PIN2 DMM_XXX.html ‚É•ÏX‚·‚é
 TEST10
 TEST89
 TEST53
 TEST54
 
 C.TEST108.bat
-XVI ã‚«ãƒ³ãƒžã€ã‚½ãƒ¼ãƒˆã‚­ãƒ¼(æ•°å­—ã€ã‚«ãƒŠã€ã‹ãªã€æ¼¢å­—èª­ã¿)ä»˜åŠ 
-TEST70.PIN5 ãƒ‡ãƒ¼ã‚¿ä½œæˆ => TEST110.POT1
+TEST108.PIN1 <= €–Ú’Ç‰Á
+XVI ƒJƒ“ƒ}Aƒ\[ƒgƒL[(”ŽšAƒJƒiA‚©‚ÈAŠ¿Žš“Ç‚Ý)•t‰Á
+TEST70.PIN5 ƒf[ƒ^ì¬ => TEST110.POT1
 
 TEST108
 TEST109
 COBSORT COBSORT.T015.PRM1
-TEST70 OR TEST72
+TEST110
+TEST70 OR TEST72 OR TEST74
 TEST53
 TEST54
