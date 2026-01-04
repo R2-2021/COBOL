@@ -124,6 +124,8 @@
                  X"E5B9B43132E69C883331E697A5E78FBEE59CA82C".
       *    *** 変換前 が入っているデータ
       * 01  WDE03-BUF1             PIC  X(001) ANY LENGTH.
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ACCEPT1       PIC  X(001) VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -263,7 +265,30 @@
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
 
-           MOVE    "N"         TO      SW-YES
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+      *    *** 入力値のチェックはしない
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST55 A <=例"
+                   STOP    RUN
+           END-EVALUATE
+
+           IF      WK-ARGUMENT-NUMBER = 1
+                   MOVE    "Y"         TO      SW-YES
+                   MOVE    WK-ACCEPT1  TO      SW-SEX
+           ELSE
+                   MOVE    "N"         TO      SW-YES
+           END-IF
+
            PERFORM UNTIL SW-YES =      "Y"
                    DISPLAY " "
                    DISPLAY "出力性別 A,W,M 入力"

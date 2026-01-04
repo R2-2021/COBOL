@@ -205,10 +205,6 @@
                    PERFORM S030-10     THRU    S030-EX
            END-PERFORM
 
-           DISPLAY WK-PGM-NAME " TBL01 I1-MAX=" I1-MAX
-           DISPLAY WK-PGM-NAME " TBL02 I2-MAX=" I2-MAX
-           DISPLAY WK-PGM-NAME " TBL03 I3-MAX=" I3-MAX
-
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
 
                EVALUATE TRUE

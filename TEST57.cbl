@@ -40,7 +40,7 @@
            LABEL RECORDS ARE STANDARD
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
-           03  FILLER          PIC  X(1000).
+           03  FILLER          PIC  X(2000).
 
        FD  PIN2-F
            LABEL RECORDS ARE STANDARD
@@ -172,6 +172,8 @@
            03  WK-MODE         PIC  X(002) VALUE "AA".
       *    *** 初期値 HENKAN=US (UTF8=>SJIS)
            03  WK-HENKAN       PIC  X(006) VALUE "US".
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ACCEPT1       PIC  X(001) VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -284,6 +286,7 @@
       *    *** READ PIN1 区切り入力
            PERFORM S020-10     THRU    S020-EX
 
+      *    *** DUMMY READ
       *    *** READ PIN2
            PERFORM S030-10     THRU    S030-EX
 
@@ -306,8 +309,14 @@
            PERFORM S040-10     THRU    S040-EX
 
            PERFORM UNTIL WK-PIN3-EOF = HIGH-VALUE
+                   IF      PIN3-REC (1:1) =    "%"
+      *    *** ジャパリ
+                        OR PIN3-REC (1:12) = X"E382B8E383A3E38391E383AA"
+                           CONTINUE
+                   ELSE
       *    *** PIN3 TBL SET
-                   PERFORM S042-10     THRU    S042-EX
+                           PERFORM S042-10     THRU    S042-EX
+                   END-IF
       *    *** READ PIN3
                    PERFORM S040-10     THRU    S040-EX
            END-PERFORM
@@ -318,8 +327,12 @@
            PERFORM S050-10     THRU    S050-EX
 
            PERFORM UNTIL WK-PIN4-EOF = HIGH-VALUE
+                   IF      PIN4-REC (1:1) =    "*"
+                           CONTINUE
+                   ELSE
       *    *** PIN4 TBL SET
-                   PERFORM S052-10     THRU    S052-EX
+                           PERFORM S052-10     THRU    S052-EX
+                   END-IF
       *    *** READ PIN3
                    PERFORM S050-10     THRU    S050-EX
            END-PERFORM
@@ -332,6 +345,12 @@
                    PERFORM S020-10     THRU    S020-EX
 
       *    *** グループ出力
+                   IF      WK-PIN1-LEN =       ZERO
+                           DISPLAY WK-PGM-NAME " PIN1-F GROUP 無し"
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-PIN1-LEN=" WK-PIN1-LEN
+                           STOP    RUN
+                   END-IF
                    IF      SW-WRITE    =       "G"
                            PERFORM S170-10     THRU    S170-EX
                    END-IF
@@ -340,7 +359,6 @@
 
       *    *** READ PIN1 メンバー入力
                    PERFORM S020-10     THRU    S020-EX
-
       *    *** TBL05 に PIN1　氏名セット
                    PERFORM S150-10     THRU    S150-EX
 
@@ -350,6 +368,7 @@
                            PERFORM S110-10     THRU    S110-EX
                    END-PERFORM
 
+      *    *** DUMMY READ
       *    *** READ PIN1 区切り入力 最終の区切りは無い
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
@@ -422,7 +441,30 @@
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
 
-           MOVE    "N"         TO      SW-YES
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+      *    *** 入力値のチェックはしない
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST57 N <=例"
+                   STOP    RUN
+           END-EVALUATE
+
+           IF      WK-ARGUMENT-NUMBER = 1
+                   MOVE    "Y"         TO      SW-YES
+                   MOVE    WK-ACCEPT1  TO      SW-WRITE
+           ELSE
+                   MOVE    "N"         TO      SW-YES
+           END-IF
+
            PERFORM UNTIL SW-YES =      "Y"
                    DISPLAY " "
                    DISPLAY "出力順 N,B 入力"
@@ -833,28 +875,34 @@
       *    *** SW-WRITE = "N" 名前順
            IF      SW-WRITE      =       "N"
                IF      SW-SEARCH       =       "N"
-                   MOVE    " , , ,"    TO      POT1-REC (J3:6)
-                   ADD     6           TO      J3
+                   MOVE    " ,"        TO      POT1-REC (J3:2)
+                   ADD     2           TO      J3
+
                    MOVE    WK-GROUP-LEN TO     L
                    MOVE    WK-GROUP    TO      POT1-REC (J3:L)
                    ADD     L           TO      J3
+
+                   MOVE    " , , ,"    TO      POT1-REC (J3:6)
+                   ADD     6           TO      J3
+               ELSE
                    MOVE    " ,"        TO      POT1-REC (J3:2)
                    ADD     2           TO      J3
-               ELSE
-                   MOVE    " , ,"      TO      POT1-REC (J3:4)
-                   ADD     4           TO      J3
+
+                   MOVE    WK-GROUP-LEN TO     L
+                   MOVE    WK-GROUP    TO      POT1-REC (J3:L)
+                   ADD     L           TO      J3
+
+                   MOVE    " ,"        TO      POT1-REC (J3:2)
+                   ADD     2           TO      J3
+
                    MOVE    TBL07-IMG2-LEN (I6)  
                                        TO      L
                    MOVE    TBL07-IMG2 (I6) (1:L) 
                                        TO      POT1-REC (J3:L)
                    ADD     L           TO      J3
-                   MOVE    " ,"        TO      POT1-REC (J3:2)
-                   ADD     2           TO      J3
-                   MOVE    WK-GROUP-LEN TO     L
-                   MOVE    WK-GROUP    TO      POT1-REC (J3:L)
-                   ADD     L           TO      J3
-                   MOVE    " ,"        TO      POT1-REC (J3:2)
-                   ADD     2           TO      J3
+
+                   MOVE    " , ,"      TO      POT1-REC (J3:4)
+                   ADD     4           TO      J3
                END-IF
            ELSE
                IF      SW-SEARCH       =       "N"
@@ -935,28 +983,33 @@
       *    *** SW-WRITE = "N" 名前順
            IF      SW-WRITE      =       "N"
                IF      SW-SEARCH       =       "N"
+                   MOVE    " ,"        TO      POT1-REC (J3:2)
+                   ADD     2           TO      J3
+
+                   MOVE    WK-GROUP-LEN TO     L
+                   MOVE    WK-GROUP    TO      POT1-REC (J3:L)
+                   ADD     L           TO      J3
+
                    MOVE    " , , ,"    TO      POT1-REC (J3:6)
                    ADD     6           TO      J3
+               ELSE
+                   MOVE    " ,"        TO      POT1-REC (J3:2)
+                   ADD     2           TO      J3
+
                    MOVE    WK-GROUP-LEN TO     L
                    MOVE    WK-GROUP    TO      POT1-REC (J3:L)
                    ADD     L           TO      J3
                    MOVE    " ,"        TO      POT1-REC (J3:2)
                    ADD     2           TO      J3
-               ELSE
-                   MOVE    " , ,"      TO      POT1-REC (J3:4)
-                   ADD     4           TO      J3
+
                    MOVE    TBL07-IMG2-LEN (I6)  
                                        TO      L
                    MOVE    TBL07-IMG2 (I6) (1:L) 
                                        TO      POT1-REC (J3:L)
                    ADD     L           TO      J3
-                   MOVE    " ,"        TO      POT1-REC (J3:2)
-                   ADD     2           TO      J3
-                   MOVE    WK-GROUP-LEN TO     L
-                   MOVE    WK-GROUP    TO      POT1-REC (J3:L)
-                   ADD     L           TO      J3
-                   MOVE    " ,"        TO      POT1-REC (J3:2)
-                   ADD     2           TO      J3
+
+                   MOVE    " , ,"      TO      POT1-REC (J3:4)
+                   ADD     4           TO      J3
                END-IF
            ELSE
                IF      SW-SEARCH       =       "N"
@@ -989,10 +1042,10 @@
                    MOVE    SPACE       TO      TBL04-FURIGANA(TBL04-IDX)
                    MOVE    POT1-REC    TO      TBL04-REC (TBL04-IDX)
 
-                   MOVE    "P"         TO      WFD-ID
-                   MOVE    "UTF8"      TO      WFD-KANJI
-                   CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
-                                               POT1-REC
+      *             MOVE    "P"         TO      WFD-ID
+      *             MOVE    "UTF8"      TO      WFD-KANJI
+      *             CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+      *                                         POT1-REC
 
                    ADD     1           TO      WK-POT1-CNTN
                    ADD     1           TO      TBL04-IDX-MAX
@@ -1044,7 +1097,21 @@
 
                    MOVE    WK-NKEY     TO      POT1-REC (13:3)
 
-                   WRITE   POT1-REC
+                   IF      WK-NKEY     NOT =   SPACE
+                       WRITE   POT1-REC
+                       IF      WK-POT1-STATUS NOT =  ZERO
+                               DISPLAY WK-PGM-NAME 
+                                       " POT1-F WRITE ERROR STATUS="
+                                       WK-POT1-STATUS
+                               STOP    RUN
+                       END-IF
+
+                       ADD     1           TO      WK-POT1-CNT
+                   END-IF
+               END-IF
+
+               IF      WK-NKEY     NOT =   SPACE
+                   WRITE   POT1-REC    FROM    TBL04-REC (K)
                    IF      WK-POT1-STATUS NOT =  ZERO
                            DISPLAY WK-PGM-NAME 
                                    " POT1-F WRITE ERROR STATUS="
@@ -1055,15 +1122,6 @@
                    ADD     1           TO      WK-POT1-CNT
                END-IF
 
-               WRITE   POT1-REC    FROM    TBL04-REC (K)
-               IF      WK-POT1-STATUS NOT =  ZERO
-                       DISPLAY WK-PGM-NAME 
-                               " POT1-F WRITE ERROR STATUS="
-                               WK-POT1-STATUS
-                       STOP    RUN
-               END-IF
-
-               ADD     1           TO      WK-POT1-CNT
                MOVE    WK-NKEY     TO      WK-OKEY
            END-PERFORM
            .
@@ -1078,9 +1136,13 @@
            MOVE    SPACE       TO      TBL05-SHIMEI     (I5)
            MOVE    ZERO        TO      TBL05-SHIMEI-LEN (I5)
 
+      *     DISPLAY WK-PIN1-CNT
+
            PERFORM VARYING M FROM 1 BY 1
                    UNTIL M > WK-PIN1-LEN 
-                   IF      PIN1-REC (M:1) =    ","
+      *    *** SPACE だと、1文字スペースとして扱われる
+      *    *** SPACES だと、複数文字スペースとして扱われる
+                   IF      PIN1-REC (M:1) =    "," OR SPACES
       *                 OR  WK-PIN1-LEN =       M 
       *     DISPLAY I5 " SHIMEI=" TBL05-SHIMEI (I5) " " WK-PIN1-CNT
                            ADD     1           TO      I5
@@ -1098,7 +1160,9 @@
                            ADD     1           TO      M2
                            IF      M2          >       30
                                    DISPLAY WK-PGM-NAME 
+                                           " WK-PIN1-CNT=" WK-PIN1-CNT
                                            " TBL05 SHIMEI OVER M2=" M2
+                                           " I5=" I5
                                    STOP    RUN
                            END-IF
                            MOVE    PIN1-REC (M:1) TO   
@@ -1118,6 +1182,7 @@
        S160-10.
 
            MOVE    PIN1-REC    TO      WK-TITLE
+           MOVE    SW-WRITE    TO      WK-TITLE (2:1)
       *    *** TITLE WRITE %XXX...
            IF      SW-WRITE    =       "N"
       *    *** （名前順）,
@@ -1165,6 +1230,22 @@
            MOVE    1           TO      P
            MOVE    PIN1-REC (1:L) TO   POT1-REC (P:L)
            ADD     L           TO      P
+
+      *    *** 乃木坂46
+           IF      PIN1-REC (1:11) =   X"E4B983E69CA8E59D823436"
+                   MOVE    11          TO      L
+           END-IF
+
+      *    *** 櫻坂46
+           IF      PIN1-REC (1:8)  =   X"E6ABBBE59D823436"
+                   MOVE    8           TO      L
+           END-IF
+
+      *    *** 日向坂46
+           IF      PIN1-REC (1:11) =   X"E697A5E59091E59D823436"
+                   MOVE    11          TO      L
+           END-IF
+
            MOVE    " ,"        TO      POT1-REC (P:2)
            ADD     2           TO      P
 
@@ -1181,15 +1262,25 @@
 
            IF      SW-SEARCH   =       "Y"
                    MOVE    TBL06-HTTP-LEN (I) TO L2
-                   MOVE    TBL06-HTTP (I) (1:L2) TO  POT1-REC (P:L2)
-                   ADD     L2          TO      P
+                   IF      L2          =       ZERO
+                           CONTINUE
+                   ELSE
+                           MOVE    TBL06-HTTP (I) (1:L2) TO  
+                                   POT1-REC (P:L2)
+                           ADD     L2          TO      P
+                   END-IF
 
                    MOVE    " ,"        TO      POT1-REC (P:2)
                    ADD     2           TO      P
 
                    MOVE    TBL06-IMG-LEN (I) TO L2
-                   MOVE    TBL06-IMG  (I) (1:L2) TO  POT1-REC (P:L2)
-                   ADD     L2          TO      P
+                   IF      L2          =       ZERO
+                           CONTINUE
+                   ELSE
+                           MOVE    TBL06-IMG  (I) (1:L2) TO 
+                                   POT1-REC (P:L2)
+                           ADD     L2          TO      P
+                   END-IF
 
                    MOVE    " ,"        TO      POT1-REC (P:2)
            ELSE

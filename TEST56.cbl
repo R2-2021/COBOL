@@ -11,17 +11,18 @@
 
       *    *** 苗字データ　ＵＴＦ８
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** フリガナ データ
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
-                               STATUS   WK-PIN2-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.
+
+      *    *** NETFLIX データ
+       SELECT PIN3-F           ASSIGN   WK-PIN3-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    ***  苗字データ フリガナセット後
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -39,6 +40,12 @@
        01  PIN2-REC.
            03  FILLER          PIC  X(100).
 
+       FD  PIN3-F
+           LABEL RECORDS ARE STANDARD
+           RECORD VARYING DEPENDING ON WK-PIN3-LEN.
+       01  PIN3-REC.
+           03  FILLER          PIC  X(100).
+
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
@@ -54,26 +61,27 @@
                "TEST56_jyoyu2000_birthday.PIN1".
       *         "TEST56_jyoyu2000_birthday.PIN11".
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST55.PIN2".
+           03  WK-PIN3-F-NAME  PIC  X(032) VALUE "TEST53_NETFLIX.PIN1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST56.POT1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-PIN2-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN2-EOF     PIC  X(001) VALUE LOW-VALUE.
+           03  WK-PIN3-EOF     PIC  X(001) VALUE LOW-VALUE.
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-LEN     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-PIN3-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-PIN3-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNTY    BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNTN    BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-PIN3-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNTY-E  PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNTN-E  PIC --,---,---,--9 VALUE ZERO.
@@ -107,6 +115,14 @@
            03  WK-I4-LEN       BINARY-LONG SYNC VALUE ZERO.
            03  WK-I5-LEN       BINARY-LONG SYNC VALUE ZERO.
 
+           03  WK-K1           PIC  X(100) VALUE SPACE.
+           03  WK-K2           PIC  X(100) VALUE SPACE.
+           03  WK-K3           PIC  X(100) VALUE SPACE.
+
+           03  WK-K1-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-K2-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-K3-LEN       BINARY-LONG SYNC VALUE ZERO.
+
            03  WK-HEX.
              05  FILLER        PIC  X(001) VALUE LOW-VALUE.
              05  WK-HEX2.
@@ -119,6 +135,8 @@
            03  WK-SUH          PIC  9(009) VALUE ZERO.
            03  WK-OKEY         PIC  X(004) VALUE LOW-VALUE.
            03  WK-NKEY         PIC  X(004) VALUE LOW-VALUE.
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ACCEPT1       PIC  X(001) VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -135,6 +153,7 @@
            03  J2              BINARY-LONG SYNC VALUE ZERO.
            03  J3              BINARY-LONG SYNC VALUE ZERO.
            03  K               BINARY-LONG SYNC VALUE ZERO.
+           03  K1              BINARY-LONG SYNC VALUE ZERO.
            03  L               BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
@@ -142,6 +161,7 @@
            03  SW-SET          PIC  X(001) VALUE "N".
            03  SW-DO           PIC  X(001) VALUE "N".
            03  SW-WRITE        PIC  X(001) VALUE "N".
+           03  SW-SEARCH       PIC  X(001) VALUE "N".
 
        01  TBL04-IDX-MAX       BINARY-LONG SYNC VALUE ZERO.
        01  TBL-AREA.
@@ -177,6 +197,16 @@
              05  TBL04-FURIGANA PIC  X(030) VALUE HIGH-VALUE.
              05  TBL04-REC     PIC  X(100) VALUE SPACE.
 
+      *    *** NETFLIX
+       01  TBL-AREA5.
+           03  TBL05-AREA      OCCURS 300
+                               ASCENDING KEY IS TBL05-NAME
+                               INDEXED BY TBL05-IDX.
+             05  TBL05-NAME    PIC  X(100) VALUE HIGH-VALUE.
+             05  TBL05-NAME-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL05-NFADDR  PIC  X(100) VALUE SPACE.
+             05  TBL05-NFADDR-LEN BINARY-LONG SYNC VALUE ZERO.
+
        PROCEDURE               DIVISION.
        M100-10.
 
@@ -189,18 +219,44 @@
       *    *** READ PIN2
            PERFORM S030-10     THRU    S030-EX
 
-           PERFORM UNTIL WK-PIN2-EOF   =       HIGH-VALUE
+           PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
       *    *** TBL01 SET
                    PERFORM S100-10     THRU    S100-EX
       *    *** READ PIN2
                    PERFORM S030-10     THRU    S030-EX
            END-PERFORM
 
-           DISPLAY WK-PGM-NAME " TBL01 I1-MAX=" I1-MAX
-           DISPLAY WK-PGM-NAME " TBL02 I2-MAX=" I2-MAX
-           DISPLAY WK-PGM-NAME " TBL03 I3-MAX=" I3-MAX
+      *     DISPLAY WK-PGM-NAME " TBL01 I1-MAX=" I1-MAX
+      *     DISPLAY WK-PGM-NAME " TBL02 I2-MAX=" I2-MAX
+      *     DISPLAY WK-PGM-NAME " TBL03 I3-MAX=" I3-MAX
 
-           PERFORM UNTIL WK-PIN1-EOF   =       HIGH-VALUE
+
+
+      *    *** READ PIN3
+           PERFORM S040-10     THRU    S040-EX
+
+           PERFORM UNTIL WK-PIN3-EOF = HIGH-VALUE
+                   IF      WK-PIN3-LEN =       ZERO
+                        OR PIN3-REC (1:1) =   "%"
+      *    *** ジャパリ
+                        OR PIN3-REC(1:12) =  X"E382B8E383A3E38391E383AA"
+                        OR WK-K2   (1:1)  = SPACE
+                           CONTINUE
+      *    *** TBL05 SET
+                   ELSE
+                           PERFORM S042-10     THRU    S042-EX
+                   END-IF
+      *    *** READ PIN3
+                   PERFORM S040-10     THRU    S040-EX
+           END-PERFORM
+
+      *    *** TBL05 SORT
+           SORT    TBL05-AREA
+                   ASCENDING KEY TBL05-NAME
+
+
+
+           PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
       *    *** WRITE POT1
       *    *** 苗字 フリガナ チェック
                    PERFORM S110-10     THRU    S110-EX
@@ -208,9 +264,13 @@
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
 
+
+
       *    *** TBL04 SORT
            SORT    TBL04-AREA
                    ASCENDING KEY TBL04-FURIGANA
+
+
 
       *    *** WRITE POT1
            PERFORM S140-10     THRU    S140-EX
@@ -231,31 +291,38 @@
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                               PIN2-F
+                               PIN3-F
+                   OUTPUT      POT1-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
 
-           MOVE    "N"         TO      SW-YES
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+      *    *** 入力値のチェックはしない
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST56 N <=例"
+                   STOP    RUN
+           END-EVALUATE
+
+           IF      WK-ARGUMENT-NUMBER = 1
+                   MOVE    "Y"         TO      SW-YES
+                   MOVE    WK-ACCEPT1  TO      SW-WRITE
+           ELSE
+                   MOVE    "N"         TO      SW-YES
+           END-IF
+
            PERFORM UNTIL SW-YES =      "Y"
                    DISPLAY " "
                    DISPLAY "出力順 N,B 入力"
@@ -281,8 +348,6 @@
       *    *** READ PIN1
        S020-10.
 
-           READ    PIN1-F
-
            MOVE    SPACE       TO      WK-P1-I1
                                        WK-P1-I2
                                        WK-P1-I3
@@ -290,7 +355,10 @@
                                        WK-P1-I2-LEN
                                        WK-P1-I3-LEN
 
-           IF      WK-PIN1-STATUS =    ZERO
+           READ    PIN1-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN1-CNT
 
                    UNSTRING PIN1-REC
@@ -309,23 +377,13 @@
                            MOVE    1           TO     WK-P1-I3-LEN
                            MOVE    SPACE       TO     WK-P1-I3
                    END-IF
-           ELSE
-               IF  WK-PIN1-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S020-EX.
            EXIT.
 
       *    *** READ PIN2
        S030-10.
-
-           READ    PIN2-F
 
            MOVE    SPACE       TO      WK-I1
                                        WK-I2
@@ -338,7 +396,10 @@
                                        WK-I4-LEN
                                        WK-I5-LEN
 
-           IF      WK-PIN2-STATUS =    ZERO
+           READ    PIN2-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
 
                    UNSTRING PIN2-REC
@@ -349,17 +410,52 @@
                            WK-I3    COUNT WK-I3-LEN
                            WK-I4    COUNT WK-I4-LEN
                            WK-I5    COUNT WK-I5-LEN
-           ELSE
-               IF  WK-PIN2-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S030-EX.
+           EXIT.
+
+      *    *** READ PIN3
+       S040-10.
+
+           MOVE    SPACE       TO      WK-K1
+                                       WK-K2
+                                       WK-K3
+           MOVE    ZERO        TO      WK-K1-LEN
+                                       WK-K2-LEN
+                                       WK-K3-LEN
+
+           READ    PIN3-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN3-EOF
+               NOT  AT  END
+                   ADD     1           TO      WK-PIN3-CNT
+
+                   UNSTRING PIN3-REC
+                           DELIMITED BY ","
+                           INTO
+                           WK-K1    COUNT WK-K1-LEN
+                           WK-K2    COUNT WK-K2-LEN
+                           WK-K3    COUNT WK-K3-LEN
+           END-READ
+           .
+       S040-EX.
+           EXIT.
+
+       S042-10.
+
+           ADD     1           TO      K1
+           IF      K1          >       300
+                   DISPLAY WK-PGM-NAME " TBL05 OVER K1=" K1
+                   STOP    RUN
+           END-IF
+
+           MOVE    WK-K1       TO      TBL05-NAME       (K1)
+           MOVE    WK-K1-LEN   TO      TBL05-NAME-LEN   (K1)
+           MOVE    WK-K2       TO      TBL05-NFADDR     (K1)
+           MOVE    WK-K2-LEN   TO      TBL05-NFADDR-LEN (K1)
+           .
+       S042-EX.
            EXIT.
 
       *    *** TBL SET
@@ -414,6 +510,14 @@
                    MOVE    PIN1-REC    TO      WK-TITLE
                    EXIT    PARAGRAPH
            END-IF
+
+           SEARCH  ALL TBL05-AREA
+               AT  END
+                   MOVE    "N"         TO      SW-SEARCH
+               WHEN TBL05-NAME (TBL05-IDX) 
+                 =  WK-P1-I1 (1:WK-P1-I1-LEN)
+                   MOVE    "Y"         TO      SW-SEARCH
+           END-SEARCH
 
       *    *** 名前（ひらがな）有
            IF      WK-P1-I2    NOT =   SPACE
@@ -584,6 +688,15 @@
            MOVE    ","         TO      POT1-REC (J3:1)
            ADD     1           TO      J3
 
+           IF      SW-SEARCH   =       "Y"
+                   MOVE    TBL05-NFADDR-LEN (TBL05-IDX) TO L
+                   MOVE    TBL05-NFADDR (TBL05-IDX)  (1:L) TO
+                           POT1-REC (J3:L)
+                   ADD     L           TO      J3
+           END-IF
+           MOVE    ","         TO      POT1-REC (J3:1)
+           ADD     1           TO      J3
+
            IF      SW-WRITE      =       "N"
                    MOVE    WK-FURIGANA TO      TBL04-FURIGANA(TBL04-IDX)
                    MOVE    POT1-REC    TO      TBL04-REC (TBL04-IDX)
@@ -603,7 +716,6 @@
            IF      TBL04-IDX   >       3000
                    DISPLAY WK-PGM-NAME 
                            " TBL04 OVER TBL04-IDX=" TBL04-IDX
-                           WK-POT1-STATUS
                    STOP    RUN
            END-IF
            .
@@ -636,6 +748,15 @@
            MOVE    ","         TO      POT1-REC (J3:1)
            ADD     1           TO      J3
 
+           IF      SW-SEARCH   =       "Y"
+                   MOVE    TBL05-NFADDR-LEN (TBL05-IDX) TO L
+                   MOVE    TBL05-NFADDR (TBL05-IDX)  (1:L) TO
+                           POT1-REC (J3:L)
+                   ADD     L           TO      J3
+           END-IF
+           MOVE    ","         TO      POT1-REC (J3:1)
+           ADD     1           TO      J3
+
            IF      SW-WRITE      =       "N"
                    MOVE    SPACE       TO      TBL04-FURIGANA(TBL04-IDX)
                    MOVE    POT1-REC    TO      TBL04-REC (TBL04-IDX)
@@ -660,7 +781,6 @@
            IF      TBL04-IDX   >       3000
                    DISPLAY WK-PGM-NAME 
                            " TBL04 OVER TBL04-IDX=" TBL04-IDX
-                           WK-POT1-STATUS
                    STOP    RUN
            END-IF
            .
@@ -681,23 +801,11 @@
                                        TO      WK-TITLE (43:19)
            END-IF
            WRITE   POT1-REC    FROM    WK-TITLE
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME 
-                           " POT1-F WRITE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
            ADD     1           TO      WK-POT1-CNT
 
            IF      SW-DO       =       "Y"
                    MOVE    "$DO=Y"     TO      POT1-REC
                    WRITE   POT1-REC
-                   IF      WK-POT1-STATUS NOT =  ZERO
-                           DISPLAY WK-PGM-NAME 
-                                   " POT1-F WRITE ERROR STATUS="
-                                   WK-POT1-STATUS
-                           STOP    RUN
-                   END-IF
                    ADD     1           TO      WK-POT1-CNT
            END-IF
 
@@ -716,23 +824,11 @@
                    END-IF
 
                    WRITE   POT1-REC
-                   IF      WK-POT1-STATUS NOT =  ZERO
-                           DISPLAY WK-PGM-NAME 
-                                   " POT1-F WRITE ERROR STATUS="
-                                   WK-POT1-STATUS
-                           STOP    RUN
-                   END-IF
 
                    ADD     1           TO      WK-POT1-CNT
                END-IF
 
                WRITE   POT1-REC    FROM    TBL04-REC (K)
-               IF      WK-POT1-STATUS NOT =  ZERO
-                       DISPLAY WK-PGM-NAME 
-                               " POT1-F WRITE ERROR STATUS="
-                               WK-POT1-STATUS
-                       STOP    RUN
-               END-IF
 
                ADD     1           TO      WK-POT1-CNT
                MOVE    WK-NKEY     TO      WK-OKEY
@@ -745,25 +841,9 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F CLOSE ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   PIN2-F
+                   PIN3-F
+                   POT1-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -776,6 +856,9 @@
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
            DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
+           MOVE    WK-PIN3-CNT TO      WK-PIN3-CNT-E
+           DISPLAY WK-PGM-NAME " PIN3 ｹﾝｽｳ = " WK-PIN3-CNT-E
+                   " (" WK-PIN3-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
            DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
