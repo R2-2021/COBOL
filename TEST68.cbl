@@ -1,7 +1,7 @@
-      *    *** YouTube html „ÇÜ„ÅÑ„Åã„Åä„Çä„ÄÅÁü≥ÂéüÂ§èÁπî„ÄÄÔº∑atch„ÄÄÔº¨ist ‰ΩúÊàê
+      *    *** YouTube html Ç‰Ç¢Ç©Ç®ÇËÅAêŒå¥âƒêDÅ@ÇvatchÅ@Çkist çÏê¨
       *    *** 
-      *    *** „ÉÅ„É£„Éó„Çø„Éº„ÅÆÊôÇ„ÄÅË°®È°å„Å®Ë°®Á§∫ÊôÇÈñì„Åö„Çå„Å¶„ÅÑ„Çã„Åå„ÄÅ
-      *    *** TEST69„ÅßÁõ¥„Åô„ÅÆÈõ£„Åó„ÅÑÁÇ∫„ÄÅTEST69„ÅßÂá∫Âäõ„Åï„Çå„ÇãWATCH„ÅÆÁßíÊï∞Â§âÊõ¥„Åô„Çã
+      *    *** É`ÉÉÉvÉ^Å[ÇÃéûÅAï\ëËÇ∆ï\é¶éûä‘Ç∏ÇÍÇƒÇ¢ÇÈÇ™ÅA
+      *    *** TEST69Ç≈íºÇ∑ÇÃìÔÇµÇ¢à◊ÅATEST69Ç≈èoóÕÇ≥ÇÍÇÈWATCHÇÃïbêîïœçXÇ∑ÇÈ
       *    *** 
       *    *** JOB TEST69
       *    ***        |
@@ -14,18 +14,18 @@
        INPUT-OUTPUT            SECTION.
        FILE-CONTROL.
 
-      *    *** WATCH DATA„ÄÄÔºµÔº¥Ôº¶Ôºò
-      *    *** TEST10 => TEST66 => TEST69,TEST68 „Å´„Åó„Åü
+      *    *** WATCH DATAÅ@ÇtÇsÇeÇW
+      *    *** TEST10 => TEST66 => TEST69,TEST68 Ç…ÇµÇΩ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** twiiter,instagram „Éá„Éº„Çø„ÄÄÊú™‰ΩøÁî®
+      *    *** playlist É^ÉCÉgÉãïsñæÉZÉbÉg
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
                                STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** HTML „Éá„Éº„Çø
+      *    *** HTML ÉfÅ[É^
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -36,7 +36,7 @@
        FD  PIN1-F
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
-           03  FILLER          PIC  X(1024).
+           03  FILLER          PIC  X(10000).
 
        FD  PIN2-F
            RECORD VARYING DEPENDING ON WK-PIN2-LEN.
@@ -45,7 +45,7 @@
 
        FD  POT1-F.
        01  POT1-REC.
-           03  FILLER          PIC  X(1024).
+           03  FILLER          PIC  X(10000).
 
        WORKING-STORAGE         SECTION.
 
@@ -59,12 +59,12 @@
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST68.PIN2".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST68.POT1".
 
-      *    *** Êº¢Â≠ó„ÅØÔº≥Ôº™Ôº©Ôº≥„Åß„Å™„ÅÑ„Å®ÊñáÂ≠óÂåñ„Åë„Åô„Çã
+      *    *** äøéöÇÕÇrÇiÇhÇrÇ≈Ç»Ç¢Ç∆ï∂éöâªÇØÇ∑ÇÈ
            03  WK-POT1-F-NAME.
-             05  PIC X(023) VALUE "C:\Users\xxxx\OneDrive\".
-             05  PIC X(012) VALUE "„Éâ„Ç≠„É•„É°„É≥„Éà".
+             05  PIC X(023) VALUE "C:\Users\koko\OneDrive\".
+             05  PIC X(012) VALUE "ÉhÉLÉÖÉÅÉìÉg".
              05  PIC X(013) VALUE "\HTML\YouTube".
-             05  PIC X(004) VALUE "Â£∞ÂÑ™".
+             05  PIC X(004) VALUE "ê∫óD".
              05  PIC X(006) VALUE "\index".
              05  WK-POT1-F-NAME21 PIC X(200) VALUE SPACE.
            03  WK-POT1-F-NAME2  PIC X(200) VALUE SPACE.
@@ -100,35 +100,36 @@
            03  WK-NUM          PIC  9(003) VALUE ZERO.
 
            03  WK-YOUTUBE-TITLE PIC  X(1024) VALUE SPACE.
-      *    *** USERÂêçÔºà‰ΩúÊàêËÄÖÔºâ
-           03  WK-TEXT2        PIC  X(1024) VALUE SPACE.
-      *    *** „Çø„Ç§„Éà„É´Âêç
+      *    *** USERñºÅiçÏê¨é“Åj
+           03  WK-TEXT2        PIC  X(2000) VALUE SPACE.
+      *    *** É^ÉCÉgÉãñº
            03  WK-TITLE        PIC  X(1024) VALUE SPACE.
-      *    *** CHANNEL,USER „Ç¢„Éâ„É¨„Çπ
+      *    *** CHANNEL,USER ÉAÉhÉåÉX
            03  WK-HTTPS        PIC  X(1024) VALUE SPACE.
-      *    *** WATCH „Ç¢„Éâ„É¨„Çπ,Ê§úÁ¥¢ „Ç¢„Éâ„É¨„Çπ
+      *    *** WATCH ÉAÉhÉåÉX,åüçı ÉAÉhÉåÉX
            03  WK-WATCH        PIC  X(1024) VALUE SPACE.
-      *    *** ÁîªÂÉè „Ç¢„Éâ„É¨„Çπ
+           03  WK-WATCH2       PIC  X(1024) VALUE SPACE.
+      *    *** âÊëú ÉAÉhÉåÉX
            03  WK-IMG          PIC  X(1024) VALUE SPACE.
-      *    *** ÈÄöÂ∏∏„ÄÄ„Çø„Ç§„Éà„É´„Éª‰ΩúÊàêËÄÖÁ≠âÊúâ„Çä„ÄÅÂÜçÁîüÊôÇÈñì„ÄÄÊôÇÂàÜÁßí
-      *    *** ÔºèPLAYLIST„ÅÆÊôÇ„ÄÅ„Çø„Ç§„Éà„É´ÔºëÔºåÔºí„ÄÅ
-           03  WK-LABEL        PIC  X(1024) VALUE SPACE.
-      *    *** ÂÜçÁîüÊôÇÈñì
-           03  WK-LABEL2       PIC  X(1024) VALUE SPACE.
-      *    *** PLAYLIST „Ç¢„Éâ„É¨„Çπ
+      *    *** í èÌÅ@É^ÉCÉgÉãÅEçÏê¨é“ìôóLÇËÅAçƒê∂éûä‘Å@éûï™ïb
+      *    *** Å^PLAYLISTÇÃéûÅAÉ^ÉCÉgÉãÇPÅCÇQÅA
+           03  WK-LABEL        PIC  X(2000) VALUE SPACE.
+      *    *** çƒê∂éûä‘
+           03  WK-LABEL2       PIC  X(2000) VALUE SPACE.
+      *    *** PLAYLIST ÉAÉhÉåÉX
            03  WK-PLAYLIST     PIC  X(1024) VALUE SPACE.
-      *    *** VIDEO Êú¨Êï∞
+      *    *** VIDEO ñ{êî
            03  WK-VIDEOCOUNT   PIC  X(1024) VALUE SPACE.
-      *    *** ÈÄöÂ∏∏„ÅØ1.‰Ωï„ÅãÊúàÂâç„ÄÅ2.Ë¶ñËÅ¥ÂõûÊï∞
-      *    *** Ôºè1.PLAYLIST„ÅÆÊôÇ„ÄÅ2.„Çø„Ç§„Éà„É´ÔºëÔºåÔºí„ÄÅ
-      *    *** ‰Ωï„ÅãÊúàÂâç
+      *    *** í èÌÇÕ1.âΩÇ©åéëOÅA2.éãíÆâÒêî
+      *    *** Å^1.PLAYLISTÇÃéûÅA2.É^ÉCÉgÉãÇPÅCÇQÅA
+      *    *** âΩÇ©åéëO
            03  WK-SIMPLETEXT   PIC  X(1024) VALUE SPACE.
-      *    *** Ë¶ñËÅ¥ÂõûÊï∞
+      *    *** éãíÆâÒêî
            03  WK-SIMPLETEXT2  PIC  X(1024) VALUE SPACE.
-      *    *** ÂÜçÁîü„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì„ÇíË¶ã„ÇãÁ≠â
-           03  WK-TEXT3        PIC  X(1024) VALUE SPACE.
+      *    *** çƒê∂ÉäÉXÉgÇÃëSëÃÇå©ÇÈìô
+           03  WK-TEXT3        PIC  X(2000) VALUE SPACE.
 
-      *    *** ÁßíÊï∞
+      *    *** ïbêî
            03  WK-BYOU         PIC  9(006) VALUE ZERO.
            03  WK-HH-X.
              05  WK-HH         PIC  9(002) VALUE ZERO.
@@ -153,12 +154,12 @@
            03  WK-MAN-CNT      BINARY-LONG SYNC VALUE ZERO.
            03  WK-OKU-CNT      BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** ÂàùÊúüÂÄ§ MODE=AA   (ANK=>ANK)
+      *    *** èâä˙íl MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
-      *    *** ÂàùÊúüÂÄ§ HENKAN=SU (SJIS=>UTF8)
+      *    *** èâä˙íl HENKAN=SU (SJIS=>UTF8)
            03  WK-HENKAN       PIC  X(002) VALUE "SU".
            03  WK-SAISEILIST.
-      *    *** ÂÜçÁîü„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì„ÇíË¶ã„Çã
+      *    *** çƒê∂ÉäÉXÉgÇÃëSëÃÇå©ÇÈ
              05  PIC  X(010) VALUE   X"E5868DE7949FE383AAE3".
              05  PIC  X(023) VALUE
              X"82B9E38388E381AEE585A8E4BD93E38292E8A68BE3828B".
@@ -177,19 +178,20 @@
            03  L               BINARY-LONG SYNC VALUE ZERO.
 
        01  TBL-AREA.
-           03  TBL01-AREA      OCCURS 1000
-                               ASCENDING KEY IS TBL01-TITLE
+           03  TBL01-AREA      OCCURS 300
+                               ASCENDING KEY IS TBL01-SITE
                                INDEXED BY TBL01-IDX.
-             05  TBL01-TITLE   PIC  X(100) VALUE HIGH-VALUE.
-      *    *** PIN2 twiiter,instagram
-             05  TBL01-SITE    OCCURS 5
-                               PIC  X(200) VALUE SPACE.
+             05  TBL01-SITE    PIC  X(1024) VALUE HIGH-VALUE.
+             05  TBL01-TITLE   PIC  X(1024) VALUE HIGH-VALUE.
 
        01  SW-AREA.
            03  SW-SEARCH       PIC  X(001) VALUE "N".
            03  SW-FIRST        PIC  X(001) VALUE "Y".
            03  SW-PLAYLIST     PIC  X(001) VALUE "N".
            03  SW-HONNO-DOUGA  PIC  X(001) VALUE "N".
+
+       01  SAVE-AREA.
+           03  SV-WATCH        PIC  X(1024) VALUE SPACE.
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -200,10 +202,10 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
-      *    *** PIN1 WK-TEXT2 (10:1) „Åå„Çπ„Éö„Éº„Çπ„Å™„Çâ„ÄÅ.bat „ÅßÂÖ•Âäõ„Åó„Åü
-      *    *** „Éï„Ç°„Ç§„É´Âêç„ÇíTITEL„Å´‰Ωø„ÅÜ
+      *    *** PIN1 WK-TEXT2 (10:1) Ç™ÉXÉyÅ[ÉXÇ»ÇÁÅA.bat Ç≈ì¸óÕÇµÇΩ
+      *    *** ÉtÉ@ÉCÉãñºÇTITELÇ…égÇ§
            IF      WK-TEXT2 (10:1) =   SPACE
-      *    *** „Ç≥„Éº„ÉâÂ§âÊèõ„ÄÄSJIS=>UTF8
+      *    *** ÉRÅ[Éhïœä∑Å@SJIS=>UTF8
                    PERFORM S040-10     THRU    S040-EX
            END-IF
            MOVE    WK-TEXT2 (2:) TO    WK-YOUTUBE-TITLE
@@ -211,7 +213,7 @@
       *    *** OPEN 2
            PERFORM S012-10     THRU    S012-EX
 
-      *    *** WRITE POT1 (HTML Ââç„Éá„Éº„ÇøÂá∫Âäõ)
+      *    *** WRITE POT1 (HTML ëOÉfÅ[É^èoóÕ)
            PERFORM S050-10     THRU    S050-EX
 
 
@@ -228,16 +230,16 @@
 
       *    *** TBL01 SORT
            SORT    TBL01-AREA
-                   ASCENDING KEY TBL01-TITLE
+                   ASCENDING KEY TBL01-SITE
 
 
 
-      *    *** #NN link Âá∫Âäõ
+      *    *** #NN link èoóÕ
            PERFORM UNTIL WK-PIN1-EOF =  HIGH-VALUE
                    EVALUATE PIN1-REC (1:1)
                        WHEN "#"
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ3
-      *    *** TWICE TEXT : #TWICE3 ÂØæÂøú
+      *    *** #NN ÉåÉRÅ[Éhï“èW3
+      *    *** TWICE TEXT : #TWICE3 ëŒâû
                            IF    PIN1-REC (2:2) IS NUMERIC
                                PERFORM S130-10     THRU    S130-EX
                            END-IF
@@ -256,50 +258,67 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
+           MOVE    SPACE       TO      WK-WATCH2
+           UNSTRING WK-WATCH
+                    DELIMITED BY "&pp" OR "&list" OR SPACE
+                    INTO
+                    WK-WATCH2
+
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
-                   EVALUATE PIN1-REC (1:1)
-                       WHEN "%"
+
+                   EVALUATE TRUE
+                       WHEN PIN1-REC (1:1) = "%"
                            CONTINUE
-                       WHEN "#"
-      *    *** TWICE TEXT : #TWICE3 ÂØæÂøú
+                       WHEN PIN1-REC (1:1) = "#"
+      *    *** TWICE TEXT : #TWICE3 ëŒâû
                            IF    PIN1-REC (2:2) IS NUMERIC
                                IF      PIN1-REC (1:3) =     "#01"
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ1
+      *    *** #NN ÉåÉRÅ[Éhï“èW1
                                    PERFORM S110-10     THRU    S110-EX
                                ELSE
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ2
+      *    *** #NN ÉåÉRÅ[Éhï“èW2
                                    PERFORM S120-10     THRU    S120-EX
                                END-IF
                            ELSE
 
                                IF      WK-SIMPLETEXT2 (2:1) = ":"
                                     OR WK-SIMPLETEXT2 (3:1) = ":"
-      *    *** „ÉÅ„É£„Éó„Çø„ÉºÁßíÊï∞Â§âÊõ¥
+      *    *** É`ÉÉÉvÉ^Å[ïbêîïœçX
                                    PERFORM S101-10     THRU    S101-EX
                                END-IF
-      *    *** <td> „Éá„Éº„ÇøÂá∫Âäõ
+      *    *** <td> ÉfÅ[É^èoóÕ
                                PERFORM S100-10     THRU    S100-EX
                            END-IF
-                       WHEN " "
+                       WHEN PIN1-REC (1:1) = " "
                            CONTINUE
                        WHEN OTHER
-
                            IF      WK-SIMPLETEXT2 (2:1) = ":"
                                 OR WK-SIMPLETEXT2 (3:1) = ":"
-      *    *** „ÉÅ„É£„Éó„Çø„ÉºÁßíÊï∞Â§âÊõ¥
+      *    *** É`ÉÉÉvÉ^Å[ïbêîïœçX
                                PERFORM S101-10     THRU    S101-EX
                            END-IF
-      *    *** <td> „Éá„Éº„ÇøÂá∫Âäõ
-                           PERFORM S100-10     THRU    S100-EX
+                           IF      WK-WATCH2 NOT = SV-WATCH
+                                OR WK-PLAYLIST (1:32) =
+                                   "https://www.youtube.com/playlist"
+      *                         AND SV-WATCH NOT = SPACE
+      *    *** <td> ÉfÅ[É^èoóÕ
+                               PERFORM S100-10     THRU    S100-EX
+                           END-IF
                    END-EVALUATE
+
+                   MOVE    SPACE       TO      SV-WATCH
+                   UNSTRING WK-WATCH
+                            DELIMITED BY "&pp" OR "&list" OR SPACE
+                            INTO
+                            SV-WATCH
 
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
 
                    IF      WK-TITLE    =
-      *    *** „ÉÅ„É£„É≥„Éç„É´„Å´ÁßªÂãï 2‰ª∂Á∂ö„Åë„Å¶„ÄÅÁÑ°„ÅÑ„Å®ÊÄù„Çè„Çå„Çã„ÅÆ„Åß„ÄÅ
-      *    *** Ôºë‰ª∂Ë™≠„ÅøÈ£õ„Å∞„Åó„Åô„Çã
-      *    *** „ÉÅ„É£„É≥„Éç„É´„Å´ÁßªÂãï
+      *    *** É`ÉÉÉìÉlÉãÇ…à⁄ìÆ 2åèë±ÇØÇƒÅAñ≥Ç¢Ç∆évÇÌÇÍÇÈÇÃÇ≈ÅA
+      *    *** ÇPåèì«Ç›îÚÇŒÇµÇ∑ÇÈ
+      *    *** É`ÉÉÉìÉlÉãÇ…à⁄ìÆ
                    X"E38381E383A3E383B3E3838DE383ABE381ABE7A7BBE58B95"
       *    *** READ PIN1
                            PERFORM S020-10     THRU    S020-EX
@@ -307,12 +326,12 @@
                            CONTINUE
                    END-IF
 
-      *    *** „ÉÅ„É£„Éó„Çø„Éº„ÅÆÊôÇ„ÄÅ„Åù„ÅÆ‰ªñ„ÄÅÊäò„Çä„Åü„Åü„ÇÄ„ÅØÔºë„Å§Ââç„ÅÆ„ÉÅ„É£„Éó„Çø„Éº„Å®Âêå„Åò
-      *    *** ÁßíÊï∞ÈñãÂßã„Å™„ÅÆ„Åß„ÄÅ
-      *    *** Ôºë‰ª∂Ë™≠„ÅøÈ£õ„Å∞„Åó„Åô„Çã
-      *    *** „Åù„ÅÆ‰ªñ
+      *    *** É`ÉÉÉvÉ^Å[ÇÃéûÅAÇªÇÃëºÅAê‹ÇËÇΩÇΩÇﬁÇÕÇPÇ¬ëOÇÃÉ`ÉÉÉvÉ^Å[Ç∆ìØÇ∂
+      *    *** ïbêîäJénÇ»ÇÃÇ≈ÅA
+      *    *** ÇPåèì«Ç›îÚÇŒÇµÇ∑ÇÈ
+      *    *** ÇªÇÃëº
                    IF      WK-TITLE  (1:9)   = X"E3819DE381AEE4BB96"
-      *    *** Êäò„Çä„Åü„Åü„ÇÄ
+      *    *** ê‹ÇËÇΩÇΩÇﬁ
                        AND WK-LABEL2 (1:15)  = 
                                    X"E68A98E3828AE3819FE3819FE38280"
       *    *** READ PIN1
@@ -320,9 +339,15 @@
                    ELSE
                            CONTINUE
                    END-IF
+
+                   MOVE    SPACE       TO      WK-WATCH2
+                   UNSTRING WK-WATCH
+                            DELIMITED BY "&pp" OR "&list" OR SPACE
+                            INTO
+                            WK-WATCH2
            END-PERFORM
 
-      *    *** WRITE POT1 (HTML Âæå„Éá„Éº„ÇøÂá∫Âäõ)
+      *    *** WRITE POT1 (HTML å„ÉfÅ[É^èoóÕ)
            PERFORM S070-10     THRU    S070-EX
 
       *    *** CLOSE
@@ -354,7 +379,7 @@
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
                            WK-ARGUMENT-NUMBER
-                   DISPLAY WK-PGM-NAME " POT1-F 1ÂÄã„Åæ„ÅßÊåáÂÆöÂèØ"
+                   DISPLAY WK-PGM-NAME " POT1-F 1å¬Ç‹Ç≈éwíËâ¬"
                    STOP    RUN
            END-EVALUATE
 
@@ -372,7 +397,7 @@
                    STOP    RUN
            END-IF
 
-      *    *** „Çµ„Éñ„É´„Éº„ÉÅ„É≥„ÅßFILEDUMP ‰ΩøÁî®ÊôÇ„ÅØ,FILEDUMP „ÅÆOPENÂÖà„Å´CALL„Åô„Çã
+      *    *** ÉTÉuÉãÅ[É`ÉìÇ≈FILEDUMP égópéûÇÕ,FILEDUMP ÇÃOPENêÊÇ…CALLÇ∑ÇÈ
            MOVE    "O"         TO      WFD-ID
            MOVE    WK-PGM-NAME TO      WFD-PGM
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -460,16 +485,16 @@
                    MOVE    ZERO        TO      WK-MAN-CNT
                    MOVE    ZERO        TO      WK-OKU-CNT
                    INSPECT WK-SIMPLETEXT (1:WK-SIMPLETEXT-LEN) TALLYING
-      *    *** ‰∏á
+      *    *** ñú
                            WK-MAN-CNT FOR ALL X"E4B887"
-      *    *** ÂÑÑ
+      *    *** â≠
                            WK-OKU-CNT FOR ALL X"E58484"
                    IF      WK-MAN-CNT  =       ZERO
                        AND WK-OKU-CNT  =       ZERO
                        MOVE    ZERO        TO      WK-SHICHO-CNT
                        INSPECT WK-SIMPLETEXT (1:WK-SIMPLETEXT-LEN)
                            TALLYING
-      *    *** ÂõûË¶ñËÅ¥
+      *    *** âÒéãíÆ
                            WK-SHICHO-CNT FOR ALL X"E59B9EE8A696E881B4"
                        IF      WK-SHICHO-CNT NOT = ZERO
       *    *** .=>,
@@ -482,16 +507,16 @@
                    MOVE    ZERO        TO      WK-OKU-CNT
                    INSPECT WK-SIMPLETEXT2 (1:WK-SIMPLETEXT2-LEN) 
                            TALLYING
-      *    *** ‰∏á
+      *    *** ñú
                            WK-MAN-CNT FOR ALL X"E4B887"
-      *    *** ÂÑÑ
+      *    *** â≠
                            WK-OKU-CNT FOR ALL X"E58484"
                    IF      WK-MAN-CNT  =       ZERO
                        AND WK-OKU-CNT  =       ZERO
                        MOVE    ZERO        TO      WK-SHICHO-CNT
                        INSPECT WK-SIMPLETEXT2(1:WK-SIMPLETEXT2-LEN)
                           TALLYING
-      *    *** ÂõûË¶ñËÅ¥
+      *    *** âÒéãíÆ
                            WK-SHICHO-CNT FOR ALL X"E59B9EE8A696E881B4"
                        IF      WK-SHICHO-CNT NOT = ZERO
       *    *** .=>,
@@ -500,7 +525,7 @@
                        END-IF
                    END-IF
 
-      *    *** Á¢∫Ë™çÊ∏à„Åø
+      *    *** ämîFçœÇ›
                    IF     WK-LABEL2 (1:12) = X"E7A2BAE8AA8DE6B888E381BF"
                            MOVE    SPACE       TO     WK-LABEL2
                            MOVE    ZERO        TO     WK-LABEL2-LEN
@@ -519,28 +544,19 @@
       *    *** READ PIN2
        S030-10.
 
-           MOVE    SPACE       TO      WK-TITLE2
-                                       WK-SITE1
-                                       WK-SITE2
-                                       WK-SITE3
-                                       WK-SITE4
-                                       WK-SITE5
-
+           MOVE    SPACE       TO      WK-SITE1
+                                       WK-TITLE2
+                                       
            READ    PIN2-F
                AT  END
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
                NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
-      *    *** 256„Éê„Ç§„Éà„Åæ„Åß„Åó„ÅãÂÖ•„Çâ„Å™„ÅÑ
-                   UNSTRING PIN2-REC
-                           DELIMITED BY ","
+      *    *** 256ÉoÉCÉgÇ‹Ç≈ÇµÇ©ì¸ÇÁÇ»Ç¢
+                   UNSTRING PIN2-REC DELIMITED BY ","
                            INTO
-                           WK-TITLE2
                            WK-SITE1
-                           WK-SITE2
-                           WK-SITE3
-                           WK-SITE4
-                           WK-SITE5
+                           WK-TITLE2
            END-READ
 
            IF      WK-PIN2-STATUS NOT =  ZERO AND 10
@@ -555,25 +571,20 @@
       *    *** PIN2 TBL SET
        S032-10.
 
-           IF      TBL01-IDX   >       1000
+           IF      TBL01-IDX   >       300
                    DISPLAY WK-PGM-NAME
                            " TBL01-TBL OVER TBL01-IDX=" TBL01-IDX
                    STOP    RUN
            END-IF
 
            MOVE    WK-TITLE2   TO      TBL01-TITLE (TBL01-IDX)
-           MOVE    WK-SITE1    TO      TBL01-SITE  (TBL01-IDX 1)
-           MOVE    WK-SITE2    TO      TBL01-SITE  (TBL01-IDX 2)
-           MOVE    WK-SITE3    TO      TBL01-SITE  (TBL01-IDX 3)
-           MOVE    WK-SITE4    TO      TBL01-SITE  (TBL01-IDX 4)
-           MOVE    WK-SITE5    TO      TBL01-SITE  (TBL01-IDX 5)
-
+           MOVE    WK-SITE1    TO      TBL01-SITE  (TBL01-IDX)
            SET     TBL01-IDX   UP  BY  1
            .
        S032-EX.
            EXIT.
 
-      *    *** „Ç≥„Éº„ÉâÂ§âÊèõ SJIS=>UTF8
+      *    *** ÉRÅ[Éhïœä∑ SJIS=>UTF8
        S040-10.
 
            MOVE    "CHANGE"    TO      WDE05-ID
@@ -586,8 +597,8 @@
                                        WK-POT1-F-NAME2
                                        WK-POT1-F-NAME2U
 
-      *    *** ,ÁÑ°„ÅÑ„ÅÆ„Åß1024ÂÖ•„Å£„Å¶„ÅÑ„Çã„Åü„ÇÅ„ÄÅ„É™„Çª„ÉÉ„Éà
-      *    *** 9 „ÅØYouTube „ÅÆÈï∑„Åï
+      *    *** ,ñ≥Ç¢ÇÃÇ≈1024ì¸Ç¡ÇƒÇ¢ÇÈÇΩÇﬂÅAÉäÉZÉbÉg
+      *    *** 9 ÇÕYouTube ÇÃí∑Ç≥
            MOVE    9           TO      WK-TEXT2-LEN
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL I > 200
@@ -601,7 +612,7 @@
        S040-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML Ââç„Éá„Éº„ÇøÂá∫Âäõ)
+      *    *** WRITE POT1 (HTML ëOÉfÅ[É^èoóÕ)
        S050-10.
 
            IF      WK-IMG (1:8) =      "PLAYLIST"
@@ -729,7 +740,7 @@
        S060-EX.
            EXIT.
 
-      *    *** WRITE POT1 (HTML Âæå„Éá„Éº„ÇøÂá∫Âäõ)
+      *    *** WRITE POT1 (HTML å„ÉfÅ[É^èoóÕ)
        S070-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a></body></html>'
@@ -740,7 +751,7 @@
        S070-EX.
            EXIT.
 
-      *    *** <td> „Éá„Éº„ÇøÂá∫Âäõ
+      *    *** <td> ÉfÅ[É^èoóÕ
        S100-10.
 
            ADD     1           TO      I
@@ -811,19 +822,19 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** Êú¨„ÅÆÂãïÁîª
+      *    *** ñ{ÇÃìÆâÊ
            IF      WK-TEXT2 (WK-TEXT2-LEN - 12:12) =
                    X"E69CACE381AEE58B95E794BB"
                    MOVE    "Y"         TO      SW-HONNO-DOUGA
            END-IF
 
-      *    *** „Éì„Éá„Ç™Êú¨Êï∞Âêå„ÅòÊôÇ„ÄÅVIDEOCOUNT „Çí„ÇØ„É™„Ç¢„Éº
+      *    *** ÉrÉfÉIñ{êîìØÇ∂éûÅAVIDEOCOUNT ÇÉNÉäÉAÅ[
            IF      WK-VIDEOCOUNT (1:WK-VIDEOCOUNT-LEN - 1)
                  = WK-TEXT2 (1:WK-VIDEOCOUNT-LEN - 1)
                    MOVE    SPACE       TO      WK-VIDEOCOUNT
            END-IF
 
-      *    *** VIDEO Êú¨Êï∞
+      *    *** VIDEO ñ{êî
            IF      WK-VIDEOCOUNT (1:1) = SPACE
                    CONTINUE
            ELSE
@@ -831,20 +842,20 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** TEST69 „Åß Êú¨„ÅÆÂãïÁîª„ÄÅÊú¨ÁõÆ ËøΩÂä†„Åó„Åü
+      *    *** TEST69 Ç≈ ñ{ÇÃìÆâÊÅAñ{ñ⁄ í«â¡ÇµÇΩ
                    MOVE    WK-VIDEOCOUNT (1:WK-VIDEOCOUNT-LEN) TO
                            POT1-REC (1:)
       *             IF      SW-HONNO-DOUGA =    "Y"
-      *    *** Êú¨„ÅÆÂãïÁîª
+      *    *** ñ{ÇÃìÆâÊ
       *                     MOVE    X"E69CACE381AEE58B95E794BB" TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:12)
       *             ELSE
       *                 IF      SW-PLAYLIST =       "Y"
-      *    *** Êú¨ÁõÆ
+      *    *** ñ{ñ⁄
       *                     MOVE    X"E69CACE79BAE" TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:6)
       *                 ELSE
-      *    *** Êú¨
+      *    *** ñ{
       *                     MOVE    X"E69CAC"   TO
       *                             POT1-REC (1 + WK-VIDEOCOUNT-LEN:3)
       *                 END-IF
@@ -854,9 +865,9 @@
            END-IF
 
            IF      WK-PLAYLIST (1:1) = SPACE
-      *    *** PLAYLIST „Åß„Å™„ÅÑÊôÇ„ÄÅ
+      *    *** PLAYLIST Ç≈Ç»Ç¢éûÅA
 
-      *    *** ‰Ωï„ÅãÊúàÂâçÔºè„Çø„Ç§„Éà„É´Ôºë
+      *    *** âΩÇ©åéëOÅ^É^ÉCÉgÉãÇP
                    IF      WK-SIMPLETEXT (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -871,8 +882,8 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** PLAYLIST „Åß„Å™„ÅÑÊôÇ„ÄÅÂÜçÁîüÊôÇÈñì„ÅÆ„Åø„ÄÅÂá∫Âäõ
-      *    *** ÂÜçÁîüÊôÇÈñì„ÄÄ1
+      *    *** PLAYLIST Ç≈Ç»Ç¢éûÅAçƒê∂éûä‘ÇÃÇ›ÅAèoóÕ
+      *    *** çƒê∂éûä‘Å@1
                    IF      WK-LABEL (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -885,7 +896,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** Ë¶ñËÅ¥ÂõûÊï∞Ôºè„Çø„Ç§„Éà„É´Ôºí
+      *    *** éãíÆâÒêîÅ^É^ÉCÉgÉãÇQ
                    IF      WK-SIMPLETEXT2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -900,7 +911,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** ÂÜçÁîüÊôÇÈñì„ÄÄÔºí
+      *    *** çƒê∂éûä‘Å@ÇQ
                    IF      WK-LABEL2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -913,9 +924,54 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
            ELSE
-      *    *** PLAYLIST „ÅÆÊôÇ„ÄÅ
+      *    *** PLAYLIST ÇÃéûÅA
 
-      *    *** „Çø„Ç§„Éà„É´?
+      *    *** 
+                    SEARCH ALL TBL01-AREA
+                        AT  END 
+                           CONTINUE
+                        WHEN TBL01-SITE (TBL01-IDX)  (1:WK-PLAYLIST-LEN)
+                           = WK-PLAYLIST (1:WK-PLAYLIST-LEN)
+
+                           MOVE    '<br><br>'  TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    TBL01-TITLE (TBL01-IDX)
+                                               TO      POT1-REC (1:)
+
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+                   END-SEARCH
+
+                   IF      WK-WATCH (1:1) NOT = SPACE
+
+                           MOVE    '<br><br>'  TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    '<a href="' TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    WK-WATCH    TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    '">'        TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    "FIRST VIDEOS" TO   POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    "</a>"      TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+                   END-IF
+
+      *    *** É^ÉCÉgÉã?
                    IF      WK-TEXT3 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -930,7 +986,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** „Çø„Ç§„Éà„É´Ôºë
+      *    *** É^ÉCÉgÉãÇP
                    IF      WK-SIMPLETEXT (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -945,7 +1001,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** ÂÜçÁîüÊôÇÈñìÔºë
+      *    *** çƒê∂éûä‘ÇP
                    IF      WK-LABEL (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -958,7 +1014,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** „Çø„Ç§„Éà„É´Ôºí
+      *    *** É^ÉCÉgÉãÇQ
                    IF      WK-SIMPLETEXT2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -973,7 +1029,7 @@
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
 
-      *    *** ÂÜçÁîüÊôÇÈñìÔºí
+      *    *** çƒê∂éûä‘ÇQ
                    IF      WK-LABEL2 (1:1) = SPACE
                            CONTINUE
                    ELSE
@@ -987,6 +1043,13 @@
                    END-IF
            END-IF
 
+      *    *** ÉLÉÖÅ[Ç…í«â¡
+           IF      WK-TEXT2 (1:18) = 
+                   X"E382ADE383A5E383BCE381ABE8BFBDE58AA0"
+                   MOVE    SPACE       TO      WK-TEXT2
+                   MOVE    ZERO        TO      WK-TEXT2-LEN
+           END-IF
+
            IF      WK-TEXT2 (1:1) = SPACE
                    IF      WK-WATCH (1:45) =
                    "https://www.youtube.com/results?search_query="
@@ -994,7 +1057,7 @@
                                            TO      POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
-      *    *** Ê§úÁ¥¢
+      *    *** åüçı
                        MOVE    X"E6A49CE7B4A2" TO  POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
@@ -1002,10 +1065,10 @@
                        CONTINUE
                    END-IF
            ELSE
-      *    *** https://www.youtube.com „ÅÆ„Åø„ÅÆÊôÇ„ÄÅ
+      *    *** https://www.youtube.com ÇÃÇ›ÇÃéûÅA
                IF      WK-HTTPS (1:24) =   "https://www.youtube.com "
 
-      *    *** ÂÜçÁîü„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì„ÇíË¶ã„Çã
+      *    *** çƒê∂ÉäÉXÉgÇÃëSëÃÇå©ÇÈ
                   IF      WK-TITLE (1:33) =   WK-SAISEILIST
                        MOVE    '<br><br><a href="'
                                        TO      POT1-REC
@@ -1037,7 +1100,7 @@
                                            TO      POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
-      *    *** Ê§úÁ¥¢
+      *    *** åüçı
                        MOVE    X"E6A49CE7B4A2" TO  POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
@@ -1045,26 +1108,36 @@
                        CONTINUE
                    END-IF
 
-                   MOVE    '<br><br><a href="'
-                                       TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                   IF      WK-HTTPS (1:1) = SPACE
+                       MOVE    '<br><br>'  TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    WK-HTTPS    TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                       MOVE    WK-TEXT2    TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
+                   ELSE
+                       MOVE    '<br><br><a href="'
+                                           TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '">'        TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                       MOVE    WK-HTTPS    TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    WK-TEXT2    TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                       MOVE    '">'        TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    "</a>"      TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                       MOVE    WK-TEXT2    TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
+
+                       MOVE    "</a>"      TO      POT1-REC
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
+                   END-IF
                END-IF
            END-IF
 
@@ -1076,14 +1149,14 @@
        S100-EX.
            EXIT.
 
-      *    *** „ÉÅ„É£„Éó„Çø„ÉºÁßíÊï∞Â§âÊõ¥
+      *    *** É`ÉÉÉvÉ^Å[ïbêîïœçX
        S101-10.
 
-      *    *** WK-SIMPLETEXT2-LEN „ÅØ+2„ÄÄ„ÅÆÈï∑„Åï„ÅåÂÖ•„Å£„Å¶„ÅÑ„Çã
+      *    *** WK-SIMPLETEXT2-LEN ÇÕ+2Å@ÇÃí∑Ç≥Ç™ì¸Ç¡ÇƒÇ¢ÇÈ
 
            MOVE    ZERO        TO      WK-BYOU
            EVALUATE TRUE
-      *    *** M:SS SS„ÅØÔºíÊ°Å„Å®ÊÄù„Çè„Çå„Çã
+      *    *** M:SS SSÇÕÇQåÖÇ∆évÇÌÇÍÇÈ
                WHEN WK-SIMPLETEXT2-LEN = 6
                    MOVE    WK-SIMPLETEXT2 (3:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (2:1) = ":"
@@ -1091,14 +1164,14 @@
                            MOVE    WK-SIMPLETEXT2 (1:1) TO WK-MM-X (2:1)
                            COMPUTE WK-BYOU = WK-MM * 60 + WK-SS
                    END-IF
-      *    *** MM:SS MM,SS„ÅØÔºíÊ°Å„Å®ÊÄù„Çè„Çå„Çã
+      *    *** MM:SS MM,SSÇÕÇQåÖÇ∆évÇÌÇÍÇÈ
                WHEN WK-SIMPLETEXT2-LEN = 7
                    MOVE    WK-SIMPLETEXT2 (4:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (3:1) = ":"
                            MOVE    WK-SIMPLETEXT2 (1:2) TO WK-MM-X (1:2)
                            COMPUTE WK-BYOU = WK-MM * 60 + WK-SS
                    END-IF
-      *    *** H:MM:SS MM,SS„ÅØÔºíÊ°Å„Å®ÊÄù„Çè„Çå„Çã
+      *    *** H:MM:SS MM,SSÇÕÇQåÖÇ∆évÇÌÇÍÇÈ
                WHEN WK-SIMPLETEXT2-LEN = 9
                    MOVE    WK-SIMPLETEXT2 (6:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (2:1) = ":"
@@ -1108,7 +1181,7 @@
                            COMPUTE WK-BYOU = WK-HH * 3600
                                            + WK-MM * 60 + WK-SS
                    END-IF
-      *    *** HH:MM:SS HH,MM,SS„ÅØÔºíÊ°Å„Å®ÊÄù„Çè„Çå„Çã
+      *    *** HH:MM:SS HH,MM,SSÇÕÇQåÖÇ∆évÇÌÇÍÇÈ
                WHEN WK-SIMPLETEXT2-LEN = 10
                    MOVE    WK-SIMPLETEXT2 (7:2) TO WK-SS-X (1:2)
                    IF      WK-SIMPLETEXT2 (3:1) = ":"
@@ -1119,7 +1192,7 @@
                    END-IF
            END-EVALUATE
 
-      *    *** WK-WATCH-LEN „ÇÇÂæå„Çç„Å´„Çπ„Éö„Éº„Çπ„Åå„ÅÇ„Çã„Åü„ÇÅ„ÄÅË™øÊï¥„Åó„Åü‰ΩçÁΩÆ„ÅßÊØîËºÉ
+      *    *** WK-WATCH-LEN Ç‡å„ÇÎÇ…ÉXÉyÅ[ÉXÇ™Ç†ÇÈÇΩÇﬂÅAí≤êÆÇµÇΩà íuÇ≈î‰är
            IF      WK-WATCH (WK-WATCH-LEN - 1: 1) = "s"
                AND WK-WATCH (WK-WATCH-LEN - 2: 1) IS NUMERIC
                    EVALUATE TRUE
@@ -1172,7 +1245,7 @@
        S101-EX.
            EXIT.
 
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ1
+      *    *** #NN ÉåÉRÅ[Éhï“èW1
        S110-10.
 
            MOVE    '<h2><br><a name="  ">'
@@ -1195,7 +1268,7 @@
        S110-EX.
            EXIT.
 
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ2
+      *    *** #NN ÉåÉRÅ[Éhï“èW2
        S120-10.
 
            MOVE    '</tr></table><a href="#top">TOP</a>'
@@ -1203,8 +1276,8 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** <br> Ôºë„Å§„Å†„Å®„ÄÅËá™ÂãïÁöÑ„Å´ÈÄ£Áï™„ÅåÊÆµËêΩ„Å´ÂÖ•„Çã ÂÖ•„Çâ„Å™„ÅÑÊôÇ„ÇÇ„ÅÇ„Çã
-      *    *** <br> Ôºí„Å§„Å†„Å®„ÄÅËá™ÂãïÁöÑ„Å´ÈÄ£Áï™„ÅåÊÆµËêΩ„Å´ÂÖ•„Çâ„Å™„ÅÑ
+      *    *** <br> ÇPÇ¬ÇæÇ∆ÅAé©ìÆìIÇ…òAî‘Ç™íióéÇ…ì¸ÇÈ ì¸ÇÁÇ»Ç¢éûÇ‡Ç†ÇÈ
+      *    *** <br> ÇQÇ¬ÇæÇ∆ÅAé©ìÆìIÇ…òAî‘Ç™íióéÇ…ì¸ÇÁÇ»Ç¢
            MOVE    '<h2><br><a name="  ">'
                                TO      POT1-REC
            MOVE    PIN1-REC (2:2) TO   POT1-REC (18:2)
@@ -1226,46 +1299,52 @@
        S120-EX.
            EXIT.
 
-      *    *** #NN „É¨„Ç≥„Éº„ÉâÁ∑®ÈõÜ3
+      *    *** #NN ÉåÉRÅ[Éhï“èW3
        S130-10.
 
            IF      PIN1-REC (1:3) =    "#01"
-                   MOVE '<a href="https://www.instagram.com/">'
-                                       TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
 
-      *    *** instagram.com/home
-                   MOVE    "instagram"
-                                       TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '</a><br>'      TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
 
                    MOVE    '<a href="https://twitter.com/">'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** twitter.com/
-                   MOVE    "twitter"
+      *    *** X
+                   MOVE    "X"         TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '</a><br><br>'  TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+
+
+                   MOVE '<a href="https://www.instagram.com/">'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '</a><br>'  TO      POT1-REC
+      *    *** instagram
+                   MOVE    "instagram"
+                                       TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '</a><br><br>'      TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+
 
                    MOVE '<a href="https://www.animatetimes.com/seiyu/">'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** Â£∞ÂÑ™„Éã„É•„Éº„Çπ
+      *    *** ê∫óDÉjÉÖÅ[ÉX
                    MOVE    X"E5A3B0E584AAE3838BE383A5E383BCE382B9"
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1276,25 +1355,29 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
+
+
                    MOVE    '<a href="index.html">'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    
+                   MOVE
               '<img src="image/icon136.gif" alt="icon136.gif" width=20>'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-      *    *** Â£∞ÂÑ™
+      *    *** ê∫óD
                    MOVE    X'E5A3B0E584AA'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '</a><br>'  TO      POT1-REC
+                   MOVE    '</a><br><br>'  TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
+
+
 
                    MOVE    '<a href="indexanime.html">'
                                        TO      POT1-REC
@@ -1306,15 +1389,17 @@
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-      *    *** „Ç¢„Éã„É°Âπ¥‰ª£È†Ü
+      *    *** ÉAÉjÉÅîNë„èá
                    MOVE    X'E382A2E3838BE383A1E5B9B4E4BBA3E9A086'
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '</a><br>'  TO      POT1-REC
+                   MOVE    '</a><br><br>'  TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
+
+
 
                    MOVE    '<a href="indexanimesort.html">'
                                        TO      POT1-REC
@@ -1327,8 +1412,8 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** „Ç¢„Éã„É°„Çø„Ç§„Éà„É´È†Ü
-                   MOVE    
+      *    *** ÉAÉjÉÅÉ^ÉCÉgÉãèá
+                   MOVE
                    X'E382A2E3838BE383A1E382BFE382A4E38388E383ABE9A086'
                                        TO      POT1-REC
                    WRITE   POT1-REC
@@ -1355,12 +1440,12 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-      *    *** #NN Ôº∏Ôº∏Ôº∏Ôº∏Ôº∏ => NN Ôº∏Ôº∏Ôº∏Ôº∏Ôº∏
+      *    *** #NN ÇwÇwÇwÇwÇw => NN ÇwÇwÇwÇwÇw
            MOVE    PIN1-REC (5:) TO    POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-           MOVE    '</a><br>'  TO      POT1-REC
+           MOVE    '</a><br><br>'  TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
            .
@@ -1402,13 +1487,13 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ÔΩπÔæùÔΩΩÔΩ≥ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 π›Ω≥ = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 ÔΩπÔæùÔΩΩÔΩ≥ = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 π›Ω≥ = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ÔΩπÔæùÔΩΩÔΩ≥ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 π›Ω≥ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
