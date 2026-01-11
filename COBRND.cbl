@@ -12,12 +12,10 @@
 
       *    *** ‚r‚i‚h‚rAº—DŽ–¼ƒf[ƒ^
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** ‚t‚s‚e‚WAº—DŽ–¼ƒf[ƒ^
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
-                               STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -48,9 +46,6 @@
       *    *** UTF8
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE
                "COBRND.seiyuall.utf8.csv".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-PIN2-STATUS  PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN2-EOF     PIC  X(001) VALUE LOW-VALUE.
@@ -146,20 +141,8 @@
       *    *** OPEN,‰Šú’lƒZƒbƒg
        S010-10.
 
-           OPEN    INPUT       PIN1-F.
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN2-F.
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
+           OPEN    INPUT       PIN1-F
+           OPEN    INPUT       PIN2-F
       *    *** TBL01-NUM (I) ‚Í–¢Žg—p‚É‚·‚é
       *     PERFORM VARYING I FROM 1 BY 1
       *             UNTIL   I > 99
@@ -396,19 +379,8 @@
       *    *** CLOSE
        S900-10.
 
-           CLOSE   PIN1-F.
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN2-F.
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F CLOSE ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
+           CLOSE   PIN1-F
+           CLOSE   PIN2-F
            .
        S900-EX.
            EXIT.
