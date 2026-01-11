@@ -1,4 +1,12 @@
       *    *** bookmarks.html XVIデータ抽出
+      *    *** 
+      *    *** 私は叡智を極める修行中の身であるため普段から複数の
+      *    *** 無料アダルトサイトで修行を重ねていますので、＜＝他からの流用
+      *    *** アクセスしやすいように、htmlを作っています。
+      *    *** このプログラムは、このような内容の為、
+      *    *** １８禁（１８歳未満使用不可）です。
+      *    *** 使用については、参照者のモラルに任せます。
+      *    *** 
       *    *** PIN3,PIN4,PIN5のデータはPOT1,POT4両方に出力
       *    *** PIN1データは、#aduxvi女優名あーお の直前までは、
       *    *** POT1,POT4両方に出力
@@ -208,7 +216,7 @@
            03  WK-PIN5-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-A            PIC  X(1000) VALUE SPACE.
-           03  WK-ID           PIC  X(010) VALUE SPACE.
+           03  WK-ID           PIC  X(015) VALUE SPACE.
            03  WK-TITLE        PIC  X(500) VALUE SPACE.
            03  WK-IMG          PIC  X(500) VALUE SPACE.
            03  WK-PIN5-ITEM1   PIC  X(100) VALUE SPACE.
@@ -220,6 +228,24 @@
            03  WK-TITLE-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN5-ITEM1-LEN BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN5-ITEM2-LEN BINARY-LONG SYNC VALUE ZERO.
+      *    *** のプロフィールのページ
+           03  WK-PROF.
+             05                PIC  X(015) VALUE 
+                               X"E381AEE38397E383ADE38395E382A3".
+             05                PIC  X(018) VALUE
+                               X"E383BCE383ABE381AEE3839AE383BCE382B8".
+      *    *** のアダルト女優のページ
+           03  WK-ADA.
+             05                PIC  X(015) VALUE 
+                               X"E381AEE382A2E38380E383ABE38388".
+             05                PIC  X(018) VALUE
+                               X"E5A5B3E584AAE381AEE3839AE383BCE382B8".
+      *    *** - 素人とチャンネルのページ
+           03  WK-SIRO.
+             05                PIC  X(019) VALUE 
+                              X"2D20E7B4A0E4BABAE381A8E38381E383A3E383".
+             05                PIC  X(019) VALUE 
+                              X"B3E3838DE383ABE381AEE3839AE383BCE382B8".
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -243,7 +269,7 @@
            03  TBL01-AREA      OCCURS 2000
                                ASCENDING KEY IS TBL01-ID
                                INDEXED BY TBL01-IDX.
-             05  TBL01-ID      PIC  X(010) VALUE HIGH-VALUE.
+             05  TBL01-ID      PIC  X(015) VALUE HIGH-VALUE.
              05  TBL01-IMG     PIC  X(500) VALUE SPACE.
              05  TBL01-TITLE   PIC  X(500) VALUE SPACE.
              05  TBL01-PIN2-REC PIC X(1000) VALUE SPACE.
@@ -265,6 +291,9 @@
            03  SW-SEARCH       PIC  X(001) VALUE "N".
            03  SW-FIRST        PIC  X(001) VALUE "Y".
            03  SW-RED          PIC  X(001) VALUE "N".
+      *    *** RED=Y 検索を.RED用にする
+      *    *** RED=N 検索を.COM用にする
+           03  SW-RED2         PIC  X(001) VALUE "N".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -277,7 +306,7 @@
 
            PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
                    IF  PIN2-REC (1:29) = "https://www.xvideos.com/video"
-                    OR PIN2-REC (1:28) = "http://www.xvideos.com/video"
+      *              OR PIN2-REC (1:28) = "http://www.xvideos.com/video"
                     OR PIN2-REC (1:29) = "https://www.xvideos.red/video"
       *    *** PIN2 TBL SET
                        PERFORM S032-10     THRU    S032-EX
@@ -300,8 +329,8 @@
 
                    IF      PIN1-REC (10:29) = 
                            "https://www.xvideos.com/video"
-                        OR PIN1-REC (10:28) = 
-                           "http://www.xvideos.com/video"
+      *                  OR PIN1-REC (10:28) = 
+      *                     "http://www.xvideos.com/video"
                         OR PIN1-REC (10:29) =
                            "https://www.xvideos.red/video"
       *    *** PIN1 TBL SET
@@ -410,6 +439,7 @@
 
 
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+                        OR PIN1-REC (1:6) =    "MissAV"
 
       *    *** #aduxvi可愛い
                    IF      PIN1-REC (1:15) =
@@ -588,11 +618,11 @@
 
            IF      PIN1-REC (10:29) = "https://www.xvideos.com/video"
                 OR PIN1-REC (10:29) = "https://www.xvideos.red/video"
-                   UNSTRING PIN1-REC (39:11) DELIMITED BY "/"
+                   UNSTRING PIN1-REC (39:16) DELIMITED BY "/"
                        INTO WK-ID
            ELSE
       *    *** こちらは、.COM のみと思われる
-                   UNSTRING  PIN1-REC (38:11) DELIMITED BY "/"
+                   UNSTRING  PIN1-REC (38:16) DELIMITED BY "/"
                        INTO WK-ID
            END-IF
 
@@ -604,6 +634,10 @@
                    IF      PIN1-REC (30:3) =   "red"
                        IF  TBL01-RED (TBL01-IDX) NOT = SPACE
       *                 AND SW-RED = "Y"
+      
+      *    *** ダブリは TEST10.POT1 を調査し、同じWK-IDが複数存在する
+      *    *** １つにする
+      
                            DISPLAY WK-PGM-NAME " ダブリ WK-ID=" WK-ID
                          " TBL01-RED (TBL01-IDX)=" TBL01-RED (TBL01-IDX)
                          " TBL01-COM (TBL01-IDX)=" TBL01-COM (TBL01-IDX)
@@ -684,12 +718,15 @@
       *    *** /videoNNNNN/
       *    *** /videoNNNNNN/ 等もある、将来の変更の為、N１０桁
       *    *** /videoNNNNNNNNNN/ まで対応する
+      *    *** 2024.03.16 時点でアドレス変更になっている
+      *    *** <A HREF="https://www.xvideos.com/video.khiihuk6c51/_1" 
+
            IF      WK-TITLE (1:29) = "https://www.xvideos.com/video"
                 OR WK-TITLE (1:29) = "https://www.xvideos.red/video"
-                   UNSTRING WK-TITLE (30:11) DELIMITED BY "/"
+                   UNSTRING WK-TITLE (30:16) DELIMITED BY "/"
                        INTO TBL01-ID (TBL01-IDX)
            ELSE
-                   UNSTRING WK-TITLE (29:11) DELIMITED BY "/"
+                   UNSTRING WK-TITLE (29:16) DELIMITED BY "/"
                        INTO TBL01-ID (TBL01-IDX)
            END-IF
 
@@ -803,18 +840,24 @@
            MOVE    " ,"        TO      POT1-REC (J:2)
            ADD     2           TO      J
 
-      *     MOVE    "https://www.xvideos.com/?k="  
-           MOVE    "https://www.xvideos.red/?k="  
+           IF      SW-RED2     =       "N"
+                   MOVE    "https://www.xvideos.com/?k="  
                                TO      POT1-REC (J:27)
+           ELSE
+                   MOVE    "https://www.xvideos.red/?k="  
+                               TO      POT1-REC (J:27)
+           END-IF
            ADD     27          TO      J
 
            MOVE    PIN3-REC (1:WK-PIN3-LEN)  
                                TO      POT1-REC (J:WK-PIN3-LEN)
            ADD     WK-PIN3-LEN TO      J
 
-           MOVE    "&premium=1"
-                               TO      POT1-REC (J:10)
-           ADD     10          TO      J
+           IF      SW-RED2     =       "Y"
+                   MOVE    "&premium=1"
+                                       TO      POT1-REC (J:10)
+                   ADD     10          TO      J
+           END-IF
 
            MOVE    " ,OF ,"    TO      POT1-REC (J:6)
            ADD     6           TO      J
@@ -861,18 +904,24 @@
            MOVE    " ,"        TO      POT1-REC (J:2)
            ADD     2           TO      J
 
-      *     MOVE    "https://www.xvideos.com/?k="  
-           MOVE    "https://www.xvideos.red/?k="  
+           IF      SW-RED2     =       "N"
+                   MOVE    "https://www.xvideos.com/?k="  
                                TO      POT1-REC (J:27)
+           ELSE
+                   MOVE    "https://www.xvideos.red/?k="  
+                               TO      POT1-REC (J:27)
+           END-IF
            ADD     27          TO      J
 
            MOVE    PIN4-REC (1:WK-PIN4-LEN)  
                                TO      POT1-REC (J:WK-PIN4-LEN)
            ADD     WK-PIN4-LEN TO      J
 
-           MOVE    "&premium=1"
-                               TO      POT1-REC (J:10)
-           ADD     10          TO      J
+           IF      SW-RED2     =       "Y"
+                   MOVE    "&premium=1"
+                                       TO      POT1-REC (J:10)
+                   ADD     10          TO      J
+           END-IF
 
            MOVE    " ,OF ,"    TO      POT1-REC (J:6)
            ADD     6           TO      J
@@ -932,9 +981,13 @@
            MOVE    " ,"        TO      POT1-REC (J:2)
            ADD     2           TO      J
 
-      *     MOVE    "https://www.xvideos.com/?k="  
-           MOVE    "https://www.xvideos.red/?k="  
+           IF      SW-RED2     =       "N"
+                   MOVE    "https://www.xvideos.com/?k="  
                                TO      POT1-REC (J:27)
+           ELSE
+                   MOVE    "https://www.xvideos.red/?k="  
+                               TO      POT1-REC (J:27)
+           END-IF
            ADD     27          TO      J
 
       *     MOVE    PIN5-REC (1:WK-PIN5-LEN)  
@@ -953,9 +1006,11 @@
                    ADD     WK-PIN5-ITEM2-LEN TO J
            END-IF
 
-           MOVE    "&premium=1"
-                               TO      POT1-REC (J:10)
-           ADD     10          TO      J
+           IF      SW-RED2     =       "Y"
+                   MOVE    "&premium=1"
+                                       TO      POT1-REC (J:10)
+                   ADD     10          TO      J
+           END-IF
 
            MOVE    " ,OF ,"  
                                TO      POT1-REC (J:6)
@@ -1129,9 +1184,103 @@
                    MOVE    ZERO        TO      I3
                    PERFORM VARYING I FROM 1 BY 1
                            UNTIL I > WK-PIN1-LEN
-                              OR PIN1-REC (I:7) = "http://"
+      *                        OR PIN1-REC (I:7) = "http://"
                               OR ( I NOT = 1 
                                AND PIN1-REC (I:8) = "https://" )
+
+      *    *** 指定した文字以降削除して出力
+      *    *** を検索結果
+                              OR PIN1-REC (I:15) = 
+                                 X"E38292E6A49CE7B4A2E38199E3828B"
+
+      *    *** のチャンネルのページ
+                              OR PIN1-REC (I:30) = 
+         X"E381AEE38381E383A3E383B3E3838DE383ABE381AEE3839AE383BCE382B8"
+
+      *    *** のプロフィールのページ
+                              OR PIN1-REC (I:33) = WK-PROF
+
+      *    *** のアダルト女優のページ
+                              OR PIN1-REC (I:33) = WK-ADA
+
+      *    *** のモデルのページ
+                              OR PIN1-REC (I:24) = 
+                     X"E381AEE383A2E38387E383ABE381AEE3839AE383BCE382B8"
+
+      *    *** -javhd.netでもっと
+                              OR PIN1-REC (I:22) = 
+                     X"2D6A617668642E6E6574E381A7E38282E381A3E381A8"
+
+      *    *** -JavHD.netでもっと
+                              OR PIN1-REC (I:22) = 
+                     X"2D4A617648442E6E6574E381A7E38282E381A3E381A8"
+
+      *    *** -JAVHD.NETでもっと
+                              OR PIN1-REC (I:22) = 
+                     X"2D4A415648442E4E4554E381A7E38282E381A3E381A8"
+
+      *    *** -詳細はjavhd.net
+                              OR PIN1-REC (I:19) = 
+                     X"2DE8A9B3E7B4B0E381AF6A617668642E6E6574"
+
+      *    *** -69avscomでもっと
+                              OR PIN1-REC (I:21) = 
+                     X"2D3639617673636F6DE381A7E38282E381A3E381A8"
+
+      *    *** -JAVBERRY.COM
+                              OR PIN1-REC (I:13) = 
+                     X"2D4A415642455252592E434F4D"
+
+      *    *** フルバージョン
+      *                        OR PIN1-REC (I:21) = 
+      *               X"E38395E383ABE38390E383BCE382B8E383A7E383B3"
+
+      *    *** -Pissjp.comでもっと
+                              OR PIN1-REC (I:23) = 
+                     X"2D506973736A702E636F6DE381A7E38282E381A3E381A8"
+
+      *    *** : 続きを見る
+                              OR PIN1-REC (I:17) = 
+                     X"3A20E7B69AE3818DE38292E8A68BE3828B"
+
+      *    *** フルビデオ
+                              OR PIN1-REC (I:15) = 
+                     X"E38395E383ABE38393E38387E382AA"
+
+      *    *** -nanairo.co
+                              OR PIN1-REC (I:11) = 
+                     X"2D6E616E6169726F2E636F"
+
+      *    *** の高画質フル動画は
+                              OR PIN1-REC (I:27) = 
+               X"E381AEE9AB98E794BBE8B3AAE38395E383ABE58B95E794BBE381AF"
+
+      *    *** -Japanesemamascomでもっと
+                              OR PIN1-REC (I:29) = 
+           X"2D4A6170616E6573656D616D6173636F6DE381A7E38282E381A3E381A8"
+
+      *    *** -hotajpcomでもっと
+                              OR PIN1-REC (I:22) = 
+           X"2D686F74616A70636F6DE381A7E38282E381A3E381A8"
+
+      *    *** |フルHD：
+                              OR PIN1-REC (I:12) = 
+           X"7CE38395E383AB4844EFBC9A"
+
+      *    *** ：もっと見る
+                              OR PIN1-REC (I:18) = 
+           X"EFBC9AE38282E381A3E381A8E8A68BE3828B"
+
+      *    *** titjob-Slurpjp.comでもっと
+                              OR PIN1-REC (I:30) = 
+         X"7469746A6F622D536C7572706A702E636F6DE381A7E38282E381A3E381A8"
+
+      *    *** -Slurpjp.comでもっと
+                              OR PIN1-REC (I:30) = 
+           X"2D536C7572706A702E636F6DE381A7E38282E381A3E381A8"
+
+      *    *** - 人とチャンネルのページ
+                              OR PIN1-REC (I:38) = WK-SIRO
 
                        EVALUATE TRUE
       *    *** タイトル先頭にhttps:// ならSPACEまでカット
@@ -1211,7 +1360,7 @@
 
                    MOVE    "N"         TO      SW-SEARCH
                    IF      WK-A (1:29) = "https://www.xvideos.com/video"
-                        OR WK-A (1:28) = "http://www.xvideos.com/video"
+      *                  OR WK-A (1:28) = "http://www.xvideos.com/video"
                         OR WK-A (1:29) = "https://www.xvideos.red/video"
       *    *** IMG SET
                        PERFORM S110-10     THRU    S110-EX
@@ -1281,10 +1430,10 @@
 
            IF      WK-A (1:29) = "https://www.xvideos.com/video"
                 OR WK-A (1:29) = "https://www.xvideos.red/video"
-                   UNSTRING WK-A (30:11) DELIMITED BY "/"
+                   UNSTRING WK-A (30:16) DELIMITED BY "/"
                        INTO WK-ID
            ELSE
-                   UNSTRING  WK-A (29:11) DELIMITED BY "/"
+                   UNSTRING  WK-A (29:16) DELIMITED BY "/"
                        INTO WK-ID
            END-IF
 
