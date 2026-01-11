@@ -26,7 +26,7 @@
        FILE                    SECTION.
 
        FD  PRM1-F
-           LABEL RECORDS ARE STANDARD.
+           RECORD VARYING DEPENDING ON WK-PRM1-LEN.
        01  PRM1-REC.
            03  PRM1-PRM        PIC  X(003).
            03  FILLER          PIC  X(077).
@@ -73,9 +73,9 @@
            03  WK-PGM-NAME     PIC  X(008) VALUE "COBSORT ".
 
            03  WK-PRM1-F-NAME  PIC  X(032) VALUE "COBSORT.PRM1".
-           03  WK-PIN1-F-NAME  PIC  X(032) VALUE SPACE.
+           03  WK-PIN1-F-NAME  PIC  X(064) VALUE SPACE.
            03  WK-SIO1-F-NAME  PIC  X(032) VALUE "SORTWORK".
-           03  WK-POT1-F-NAME  PIC  X(032) VALUE SPACE.
+           03  WK-POT1-F-NAME  PIC  X(064) VALUE SPACE.
 
            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
            03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
@@ -95,6 +95,8 @@
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-OMIT-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-INCLUDE-CNT-E PIC --,---,---,--9 VALUE ZERO.
+
+           03  WK-PRM1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-OMIT-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-INCLUDE-CNT  BINARY-LONG SYNC VALUE ZERO.
@@ -174,30 +176,30 @@
                                BINARY-LONG SYNC.
 
            03  WK-PRM1DT.
-             05  WK-PRM1DT01   PIC  X(032) VALUE SPACE.
-      *    *** F-IN,F-OT ファイル名３２バイト
-             05  WK-PRM1DT02   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT03   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT04   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT05   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT06   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT07   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT08   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT09   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT10   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT11   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT12   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT13   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT14   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT15   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT16   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT17   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT18   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT19   PIC  X(032) VALUE SPACE.
-             05  WK-PRM1DT20   PIC  X(032) VALUE SPACE.
+             05  WK-PRM1DT01   PIC  X(064) VALUE SPACE.
+      *    *** F-IN,F-OT ファイル名６４バイト
+             05  WK-PRM1DT02   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT03   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT04   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT05   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT06   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT07   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT08   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT09   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT10   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT11   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT12   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT13   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT14   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT15   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT16   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT17   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT18   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT19   PIC  X(064) VALUE SPACE.
+             05  WK-PRM1DT20   PIC  X(064) VALUE SPACE.
            03  WK-PRM1DT-R      REDEFINES WK-PRM1DT.
              05  WK-PRM1DT-T    OCCURS 20
-                               PIC  X(032).
+                               PIC  X(064).
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -1302,6 +1304,8 @@
            IF      WK-PIN1-STATUS NOT =  ZERO
                    DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
                            WK-PIN1-STATUS
+                   DISPLAY WK-PGM-NAME " PIN1-F FILE NAME="
+                           WK-PIN1-F-NAME
                    STOP    RUN
            END-IF
 
@@ -1309,6 +1313,8 @@
            IF      WK-POT1-STATUS NOT =  ZERO
                    DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
                            WK-POT1-STATUS
+                   DISPLAY WK-PGM-NAME " POT1-F FILE NAME="
+                           WK-POT1-F-NAME
                    STOP    RUN
            END-IF
            .
@@ -1490,8 +1496,15 @@
                            ACCEPT  SW-YES
                    END-PERFORM
            ELSE
+               IF      WK-PRM1DT03 =       SPACE
                    MOVE    WK-PRM1DT02 TO      WK-PIN1-F-NAME
-           END-IF           .
+               ELSE
+      *    *** FILE 名にＳＰＡＣＥ含まれることがあるため
+                   MOVE    PRM1-REC (6:WK-PRM1-LEN - 5) TO
+                           WK-PIN1-F-NAME
+               END-IF
+           END-IF
+           .
        S024-EX.
            EXIT.
 
@@ -1512,7 +1525,12 @@
                            ACCEPT  SW-YES
                    END-PERFORM
            ELSE
+               IF      WK-PRM1DT03 =       SPACE
                    MOVE    WK-PRM1DT02 TO      WK-POT1-F-NAME
+               ELSE
+                   MOVE    PRM1-REC (6:WK-PRM1-LEN - 5) TO
+                           WK-POT1-F-NAME
+               END-IF
            END-IF
            .
        S025-EX.
@@ -1745,7 +1763,7 @@
                    DISPLAY WK-PGM-NAME " PRM1-F OMIT=N LEN="
                            " 第3ﾊﾟﾗﾒｰﾀで指定"
                    STOP    RUN
-            END-IF
+           END-IF
 
            MOVE    P           TO      TBL02-POS (O)
            MOVE    L           TO      TBL02-LEN (O)
@@ -1767,7 +1785,7 @@
                    DISPLAY WK-PGM-NAME " PRM1-F OMIT=N TYPE="
                            " 第4ﾊﾟﾗﾒｰﾀで指定"
                    STOP    RUN
-            END-IF
+           END-IF
 
            IF      WK-PRM1DT09(1:5) = "VALUE"
                    IF      WK-PRM1DT08(1:2) =  "CH"
@@ -1785,7 +1803,7 @@
                    DISPLAY WK-PGM-NAME " PRM1-F OMIT=N VALUE="
                            " 第5ﾊﾟﾗﾒｰﾀで指定"
                    STOP    RUN
-            END-IF
+           END-IF
 
            .
        S027-EX.
@@ -1852,6 +1870,9 @@
       *    *** KEY1= は必須 PRM2 参照しない
                            IF      WK-KEY1-CHAR =         "CH"
                                MOVE    WK-CSVDT-T(P1) TO     SIO1-KEY1-X
+      *    *** 漢数字変更
+                               PERFORM S114-10     THRU    S114-EX
+
                            ELSE
                                 MOVE    ZERO          TO     SIO1-KEY1-9
                                 MOVE    WK-CSV-L(P1)  TO  L1
@@ -1867,6 +1888,8 @@
                            IF      WK-PRM2     =         "A" OR "D"
                                IF      WK-KEY2-CHAR =         "CH"
                                    MOVE    WK-CSVDT-T(P2) TO SIO1-KEY2-X
+      *    *** 漢数字変更
+                                   PERFORM S114-10     THRU    S114-EX
                                ELSE
                                    MOVE    ZERO          TO  SIO1-KEY2-9
                                    MOVE    WK-CSV-L(P2)  TO  L2
@@ -1883,6 +1906,8 @@
                            IF      WK-PRM3     =         "A" OR "D"
                                IF      WK-KEY3-CHAR =         "CH"
                                    MOVE    WK-CSVDT-T(P3) TO SIO1-KEY3-X
+      *    *** 漢数字変更
+                                   PERFORM S114-10     THRU    S114-EX
                                ELSE
                                    MOVE    ZERO          TO  SIO1-KEY3-9
                                    MOVE    WK-CSV-L(P3)  TO  L3
@@ -1915,6 +1940,8 @@
 
                            IF      WK-KEY1-CHAR =         "CH"
                                MOVE    PIN1-REC(P1:L1) TO    SIO1-KEY1-X
+      *    *** 漢数字変更
+                               PERFORM S114-10     THRU    S114-EX
                            ELSE
                                 MOVE    ZERO          TO     SIO1-KEY1-9
                                 COMPUTE P1X = 11 - L1
@@ -1928,6 +1955,8 @@
                            IF      WK-PRM2     =         "A" OR "D"
                                IF      WK-KEY2-CHAR =         "CH"
                                    MOVE   PIN1-REC(P2:L2) TO SIO1-KEY2-X
+      *    *** 漢数字変更
+                                   PERFORM S114-10     THRU    S114-EX
                                ELSE
                                 MOVE    ZERO          TO     SIO1-KEY2-9
                                 COMPUTE P2X = 11 - L2
@@ -1942,6 +1971,8 @@
                            IF      WK-PRM3     =         "A" OR "D"
                                IF      WK-KEY3-CHAR =         "CH"
                                    MOVE   PIN1-REC(P3:L3) TO SIO1-KEY3-X
+      *    *** 漢数字変更
+                                   PERFORM S114-10     THRU    S114-EX
                                ELSE
                                 MOVE    ZERO          TO     SIO1-KEY3-9
                                 COMPUTE P3X = 11 - L3
@@ -1952,6 +1983,7 @@
                                 PERFORM S120-10 THRU S120-EX
                                END-IF
                            END-IF
+
                        END-IF
 
       *                 MOVE    WK-PIN1-CNT TO        WK-PIN1-CNTX
@@ -2118,6 +2150,77 @@
            END-PERFORM
            .
        S113-EX.
+           EXIT.
+
+       S114-10.
+
+           INSPECT SIO1-KEY1-X REPLACING 
+      *    *** 一
+                                        ALL X"E4B880" BY X"E28680"
+      *    *** 二
+                                        ALL X"E4BA8C" BY X"E28681"
+      *    *** 三
+                                        ALL X"E4B889" BY X"E28682"
+      *    *** 四
+                                        ALL X"E59B9B" BY X"E28683"
+      *    *** 五
+                                        ALL X"E4BA94" BY X"E28684"
+      *    *** 六
+                                        ALL X"E585AD" BY X"E28685"
+      *    *** 七
+                                        ALL X"E4B883" BY X"E28686"
+      *    *** 八
+                                        ALL X"E585AB" BY X"E28687"
+      *    *** 九
+                                        ALL X"E4B99D" BY X"E28688"
+      *    *** 十
+                                        ALL X"E58D81" BY X"E28689"
+
+           INSPECT SIO1-KEY2-X REPLACING 
+      *    *** 一
+                                        ALL X"E4B880" BY X"E28680"
+      *    *** 二
+                                        ALL X"E4BA8C" BY X"E28681"
+      *    *** 三
+                                        ALL X"E4B889" BY X"E28682"
+      *    *** 四
+                                        ALL X"E59B9B" BY X"E28683"
+      *    *** 五
+                                        ALL X"E4BA94" BY X"E28684"
+      *    *** 六
+                                        ALL X"E585AD" BY X"E28685"
+      *    *** 七
+                                        ALL X"E4B883" BY X"E28686"
+      *    *** 八
+                                        ALL X"E585AB" BY X"E28687"
+      *    *** 九
+                                        ALL X"E4B99D" BY X"E28688"
+      *    *** 十
+                                        ALL X"E58D81" BY X"E28689"
+
+           INSPECT SIO1-KEY3-X REPLACING 
+      *    *** 一
+                                        ALL X"E4B880" BY X"E28680"
+      *    *** 二
+                                        ALL X"E4BA8C" BY X"E28681"
+      *    *** 三
+                                        ALL X"E4B889" BY X"E28682"
+      *    *** 四
+                                        ALL X"E59B9B" BY X"E28683"
+      *    *** 五
+                                        ALL X"E4BA94" BY X"E28684"
+      *    *** 六
+                                        ALL X"E585AD" BY X"E28685"
+      *    *** 七
+                                        ALL X"E4B883" BY X"E28686"
+      *    *** 八
+                                        ALL X"E585AB" BY X"E28687"
+      *    *** 九
+                                        ALL X"E4B99D" BY X"E28688"
+      *    *** 十
+                                        ALL X"E58D81" BY X"E28689"
+           .
+       S114-EX.
            EXIT.
 
       *    *** TYPE=ZD 用 項目チェック
