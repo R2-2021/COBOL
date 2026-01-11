@@ -137,6 +137,9 @@
            03  L3              BINARY-LONG SYNC VALUE ZERO.
            03  P               BINARY-LONG SYNC VALUE ZERO.
 
+       01  SW-AREA.
+           03  SW-RED          PIC  X(001) VALUE "Y".
+
        PROCEDURE               DIVISION.
        M100-10.
 
@@ -199,7 +202,12 @@
                    MOVE    PIN2-YYYYMM     TO  WK-PIN1-F-NAME (14:06)
                    MOVE    ".html"         TO  WK-PIN1-F-NAME (20:05)
                ELSE
-                   MOVE    PIN2-REC        TO  WK-PIN1-F-NAME
+                   IF      PIN2-REC (1:19) =   "#bookmarks.html.xvi"
+                           MOVE    PIN2-REC (1:15) TO  WK-PIN1-F-NAME
+                           MOVE    "N"         TO      SW-RED
+                   ELSE
+                           MOVE    PIN2-REC        TO  WK-PIN1-F-NAME
+                   END-IF
                END-IF
            END-IF
 
@@ -399,8 +407,18 @@
       *                         END-IF
                            END-IF
                        END-IF
-                       WRITE   POT1-REC
-                       ADD     1           TO        WK-POT1-CNT
+                       IF      SW-RED      =       "N"
+                               IF      POT1-REC (1:33)  =                                  ELSE
+                                   '<A HREF="https://www.xvideos.red/'
+                                       CONTINUE
+                               ELSE
+                                   WRITE   POT1-REC
+                                   ADD     1             TO  WK-POT1-CNT
+                               END-IF
+                       ELSE
+                               WRITE   POT1-REC
+                               ADD     1           TO        WK-POT1-CNT
+                       END-IF
                        MOVE    J           TO        I
                    ELSE
       *                    IF WK-PIN1-CNT = 81 OR 82
@@ -436,8 +454,18 @@
                            END-IF
 
                            MOVE    PIN1-REC(I:L) TO      POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1             TO      WK-POT1-CNT
+                           IF      SW-RED      =       "N"                           ELSE
+                               IF      POT1-REC (1:33)  =                                  ELSE
+                                   '<A HREF="https://www.xvideos.red/'
+                                       CONTINUE
+                               ELSE
+                                   WRITE   POT1-REC
+                                   ADD     1             TO  WK-POT1-CNT
+                               END-IF
+                           ELSE
+                                   WRITE   POT1-REC
+                                   ADD     1             TO  WK-POT1-CNT
+                           END-IF
                            MOVE    SPACE         TO      POT1-REC
       *     IF  POT1-REC = " Ashley Storm"
       *         DISPLAY WK-POT1-CNT " i=" I
