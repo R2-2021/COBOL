@@ -28,18 +28,26 @@
       *    *** 　７．其れ、則ちスケッチ。＝＞其れ．則ちスケッチ。
 
       *    *** TEST98.POT2 アンマッチ分の
-      *    *** C:\Users\xxxx\OneDrive\ドキュメント\HTML\YouTube汎用\
+      *    *** C:\Users\koko\OneDrive\ドキュメント\HTML\YouTube汎用\
       *    *** Youtubechannel.files
       *    *** にimage0nnn.png nnnnは奇数でチャンネルのサムネイル画像を
       *    *** 登録する
       *    *** TEST97U.POT2 にTEST98.POT2 アンマッチ分にimage0nnn.png
       *    *** を追加して、登録する
       *    *** 
-      *    *** C:\Users\xxxx\OneDrive\ドキュメント\HTML\YouTube汎用\
+      *    *** C:\Users\koko\OneDrive\ドキュメント\HTML\YouTube汎用\
       *    *** Youtubechannel.filesのファイル名、
       *    *** 未使用 imageNNNN=が出たとき、そのままでも問題ないが、
       *    *** 最後のNNNNをDISPLAYされたNNNNに変更して、
       *    *** TEST97U.POT2も同様に変更すれば、未使用分がなくなる
+      *    *** 
+      *    ***  Ｙｏｕｔｕｂｅ仕様変更の為、csvでダウンロード後、
+      *    ***  下記で実行する
+      *    ***  ”=>スペース
+      *    ***  
+      *    ***  TEST128
+      *    ***     |
+      *    ***  TEST98
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST98.
@@ -109,7 +117,9 @@
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE
       *         "YoutubeChannel20220427.csv".
-               "YoutubeChannel.csv".
+      *         "YoutubeChannel.csv".
+      *         "TEST123.POT1".
+               "TEST128.POT1".
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST97U.POT2".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST98.POT1".
            03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST98.POT2".
@@ -409,7 +419,7 @@
                    END-IF
                END-PERFORM
 
-      *    *** C:\Users\xxxx\OneDrive\ドキュメント\HTML\YouTube汎用\Youtubechannel.files
+      *    *** C:\Users\koko\OneDrive\ドキュメント\HTML\YouTube汎用\Youtubechannel.files
       *    *** WK-PNG = ./Youtubechannel.files/image0189.png
       *    *** imageNNNN NNNN 未使用分をチェック
       *    *** WK-PNG-NOは0001,0003,0005,...
@@ -480,10 +490,11 @@
                            ADD     1           TO      O
                    END-PERFORM
 
-                   MOVE    " ,./Youtubechannel.files/imagennnn.png"
-                                       TO      POT2-REC (O:38)
-                   MOVE    WK-IMG-SEQ  TO      POT2-REC (O + 30:4)
-                   ADD     2           TO      WK-IMG-SEQ
+      *             MOVE    " ,./Youtubechannel.files/imagennnn.png"
+      *                                 TO      POT2-REC (O:38)
+                   MOVE    " , ,"       TO      POT2-REC (O:4)
+      *             MOVE    WK-IMG-SEQ  TO      POT2-REC (O + 30:4)
+      *             ADD     2           TO      WK-IMG-SEQ
                    WRITE   POT2-REC
 
                    IF      WK-POT2-STATUS =    ZERO
