@@ -1,6 +1,6 @@
       *    *** C:,M: BACKUP FILE DIR SORT
-      *    *** CHCP 65001 (UTF8) „ÅßDIR ÂèñÂæó
-      *    *** C.DIR02.BAT „Åß Ôº§Ôº©Ôº≤ÂèñÂæó
+      *    *** CHCP 65001 (UTF8) Ç≈DIR éÊìæ
+      *    *** C.DIR02.BAT Ç≈ ÇcÇhÇqéÊìæ
       *    *** 
       *    *** 
 
@@ -16,30 +16,30 @@
       *                    SORT STATUS   WK-SIO1-STATUS.
                                STATUS   WK-SIO1-STATUS.
 
-      *    *** DIR „ÅßÂèñÂæó„Åó„Åü„Éï„Ç°„Ç§„É´
+      *    *** DIR Ç≈éÊìæÇµÇΩÉtÉ@ÉCÉã
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
                                STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** BACKUP„Åó„Åü„Éï„Ç°„Ç§„É´ (M:xxxx-PC\...) ÂàùÂõûTEST87„Åß‰ΩúÊàê
+      *    *** BACKUPÇµÇΩÉtÉ@ÉCÉã (M:koko-PC\...) èââÒTEST87Ç≈çÏê¨
        SELECT PIO1-F           ASSIGN   WK-PIO1-F-NAME
                                STATUS   WK-PIO1-STATUS
            ORGANIZATION INDEXED
            ACCESS RANDOM
            RECORD KEY PIO1-KEY.
 
-      *    *** BACKUP Âæå(M:xxxx-PC\...)„ÅÆ„Éï„Ç°„Ç§„É´Âêç„Å´Â§âÊèõ
+      *    *** BACKUP å„(M:koko-PC\...)ÇÃÉtÉ@ÉCÉãñºÇ…ïœä∑
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
                                STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** COPY .bat ‰ΩúÊàê
+      *    *** COPY .bat çÏê¨
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
                                STATUS   WK-POT2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** M: „ÅÆÊôÇ „Åì„Åì„Å´„ÇÇÂá∫Âäõ
-      *    *** BACKUP Âæå(M:xxxx-PC\...)„ÅÆ„Éï„Ç°„Ç§„É´Âêç„Å´Â§âÊèõ
+      *    *** M: ÇÃéû Ç±Ç±Ç…Ç‡èoóÕ
+      *    *** BACKUP å„(M:koko-PC\...)ÇÃÉtÉ@ÉCÉãñºÇ…ïœä∑
        SELECT POT3-F           ASSIGN   WK-POT3-F-NAME
                                STATUS   WK-POT3-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
@@ -57,7 +57,7 @@
            03  SIO1-HM.
              05  SIO1-HH       PIC  X(002).
              05  SIO1-MI       PIC  X(002).
-      *    *** ÂÆüÈöõ„ÅØ„Éï„Ç°„Ç§„É´Âêç„ÅØ250ÊñáÂ≠ó„Åæ„Åß„ÄÅ„Éë„Çπ„ÇÇÂê´„ÇÅ„Å¶259ÊñáÂ≠ó„Åæ„Åß
+      *    *** é¿ç€ÇÕÉtÉ@ÉCÉãñºÇÕ250ï∂éöÇ‹Ç≈ÅAÉpÉXÇ‡ä‹ÇﬂÇƒ259ï∂éöÇ‹Ç≈
            03  SIO1-FILE       PIC  X(256).
            03  SIO1-LEN        PIC  9(003).
            03  SIO1-DIR        PIC  X(003).
@@ -109,17 +109,17 @@
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST85  ".
 
-      *    *** CHCP 65001 (UTF8) „ÅßDIR ÂèñÂæó
+      *    *** CHCP 65001 (UTF8) Ç≈DIR éÊìæ
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST85.PIN1".
-      *    *** (\COBOL„ÅÆÂ†¥ÊâÄ„Åß) DIR /S /O:N > DIR.TXT
-      *    *** DIR M:\xxxx-PC /S /O:N > DIR2.TXT
-      *    *** (\xxxx„ÅÆÂ†¥ÊâÄ„Åß) DIR  /S /O:N > DIR3.TXT
+      *    *** (\COBOLÇÃèÍèäÇ≈) DIR /S /O:N > DIR.TXT
+      *    *** DIR M:\koko-PC /S /O:N > DIR2.TXT
+      *    *** (\kokoÇÃèÍèäÇ≈) DIR  /S /O:N > DIR3.TXT
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR.TXT".
 
-      *    *** (M:\xxxx-PC„ÅÆÂ†¥ÊâÄ„Åß) DIR  /S > DIR2.TXT
+      *    *** (M:\koko-PCÇÃèÍèäÇ≈) DIR  /S > DIR2.TXT
       *    *** C.DIR02.BAT
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR2.TXT".
-      *    *** >TEST85 DIR2.TXT  <= DIR2.TXT ÂÆüË°åÊôÇ
+      *    *** >TEST85 DIR2.TXT  <= DIR2.TXT é¿çséû
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "DIR.TXT".
            03  WK-PIO1-F-NAME.
              05                PIC  X(007) VALUE "TEST87.".
@@ -175,10 +175,10 @@
              05  WK-COM-CNT-E  PIC  ----,---,--9 VALUE ZERO.
            03  WK-DIR          PIC  X(256) VALUE SPACE.
            03  WK-FILE         PIC  X(001) VALUE SPACE.
-      *     03  WK-PC-ID        PIC  X(011) VALUE "M:\xxxx-PC\".
+      *     03  WK-PC-ID        PIC  X(011) VALUE "M:\koko-PC\".
            03  WK-PC-ID.
              05                PIC  X(003) VALUE "M:\".
-      *    *** xxxx or wwww
+      *    *** koko or asus
              05  WK-PC-NAME    PIC  X(004) VALUE SPACE.
              05                PIC  X(004) VALUE "-PC\".
 
@@ -233,19 +233,19 @@
 
            ACCEPT  WK-ARGUMENT-NUMBER FROM     ARGUMENT-NUMBER
 
-      *    *** PRM1-F ÊåáÂÆöÁÑ°„ÅóÔºàARGUMENT-NUMBER=0Ôºâ„ÄÅÊó¢ÂÆöÂÄ§‰ΩøÁî®
-      *    *** ARGUMENT-NUMBER=1 „ÅÆÊôÇ„ÄÅPRM1-F ÊåáÂÆö„Åô„Çã
-      *    *** ARGUMENT-NUMBER=2 „ÅÆÊôÇ„ÄÅPRM1-F,PRM2-F „ÅÆÈ†Ü„Å´ÊåáÂÆö„Åô„Çã
+      *    *** PRM1-F éwíËñ≥ÇµÅiARGUMENT-NUMBER=0ÅjÅAä˘íËílégóp
+      *    *** ARGUMENT-NUMBER=1 ÇÃéûÅAPRM1-F éwíËÇ∑ÇÈ
+      *    *** ARGUMENT-NUMBER=2 ÇÃéûÅAPRM1-F,PRM2-F ÇÃèáÇ…éwíËÇ∑ÇÈ
            EVALUATE WK-ARGUMENT-NUMBER
                WHEN 0
                    MOVE    "DIR.txt"   TO      WK-PIN1-F-NAME
-                   MOVE    "xxxx"      TO      WK-PC-NAME
+                   MOVE    "koko"      TO      WK-PC-NAME
                    DISPLAY WK-PGM-NAME " ARGUMENT-NUMBER="
                            WK-ARGUMENT-NUMBER
                    DISPLAY WK-PGM-NAME " PIN1-F=" WK-PIN1-F-NAME
                WHEN 1
                    ACCEPT  WK-PIN1-F-NAME FROM ARGUMENT-VALUE
-                   MOVE    "xxxx"      TO      WK-PC-NAME
+                   MOVE    "koko"      TO      WK-PC-NAME
                    DISPLAY WK-PGM-NAME " ARGUMENT-NUMBER="
                            WK-ARGUMENT-NUMBER
                    DISPLAY WK-PGM-NAME " ARG-1=" WK-PIN1-F-NAME
@@ -259,15 +259,15 @@
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
                            WK-ARGUMENT-NUMBER
-                   DISPLAY WK-PGM-NAME " PIN1-F 1ÂÄã„Åæ„ÅßÊåáÂÆöÂèØ"
-                   DISPLAY WK-PGM-NAME " ÊåáÂÆöÁÑ°„ÅØ„ÄÅPIN1-F=DIR.txt"
+                   DISPLAY WK-PGM-NAME " PIN1-F 1å¬Ç‹Ç≈éwíËâ¬"
+                   DISPLAY WK-PGM-NAME " éwíËñ≥ÇÕÅAPIN1-F=DIR.txt"
                    STOP    RUN
            END-EVALUATE
 
-           IF      WK-PC-NAME  =       "xxxx" OR "wwww"
+           IF      WK-PC-NAME  =       "koko" OR "asus"
                    CONTINUE
            ELSE
-                   DISPLAY WK-PGM-NAME " ARG-2=xxxx OR wwww „ÇíÊåáÂÆö„Åô„Çã"
+                   DISPLAY WK-PGM-NAME " ARG-2=koko OR asus ÇéwíËÇ∑ÇÈ"
                            " WK-PC-NAME=" WK-PC-NAME
                    STOP    RUN
            END-IF
@@ -280,7 +280,7 @@
       *     MOVE    "N"         TO      SW-YES
       *     PERFORM UNTIL SW-YES =      "Y"
       *             DISPLAY " "
-      *             DISPLAY "PIN1 FILE NAME Êï∞Â≠ó=?"
+      *             DISPLAY "PIN1 FILE NAME êîéö=?"
 
       *             DISPLAY " "
       *             DISPLAY "1.DIR.txt   C:\Users"
@@ -303,7 +303,7 @@
       *             MOVE    "DIR2.txt" TO WK-PIN1-F-NAME
       *     END-EVALUATE
 
-      *    *** SORT-F „ÅØOPEN „ÅÑ„Çâ„Å™„ÅÑ
+      *    *** SORT-F ÇÕOPEN Ç¢ÇÁÇ»Ç¢
 
            OPEN    INPUT       PIN1-F
            IF      WK-PIN1-STATUS NOT =  ZERO
@@ -367,12 +367,22 @@
                                CALL   "DATETIME" USING WDT-DATETIME-AREA
                            END-IF
                            IF      WK-PIN1-LEN >       256
+                             IF   PIN1-REC (15:15) = "C:\Users\koko\." 
+                               OR PIN1-REC (15:16) = "C:\Users\yuuri\."
+                               OR PIN1-REC (15:17) = "C:\Users\cassis\."
+      *    *** äøéöÇ…Ç»Ç¡ÇΩà◊
+                               OR PIN1-REC (02:15) = "C:\Users\koko\." 
+                               OR PIN1-REC (02:16) = "C:\Users\yuuri\."
+                               OR PIN1-REC (02:17) = "C:\Users\cassis\."
+                                  CONTINUE
+                             ELSE
                                DISPLAY WK-PGM-NAME
                                        " PIN1-F LEN ERROR =" WK-PIN1-LEN
                                        " WK-PIN1-CNT =" WK-PIN1-CNT
       *                         STOP    RUN
+                             END-IF
                            END-IF
-      *    *** Á∑®ÈõÜ &  RELEASE
+      *    *** ï“èW &  RELEASE
                            PERFORM S110-SEC    THRU    S110-EX
                    ELSE
                        IF  WK-PIN1-STATUS =    10
@@ -389,10 +399,11 @@
        S100-EX.
            EXIT.
 
-      *    *** Á∑®ÈõÜ & RELEASE
+      *    *** ï“èW & RELEASE
        S110-SEC                SECTION.
        S110-10.
 
+      *    *** DIR.txt äøéöÅiÇrÇiÇhÇrÅjÇ…Ç»Ç¡ÇƒÇΩ
            EVALUATE TRUE
                WHEN WK-PIN1-LEN = ZERO
                    CONTINUE
@@ -402,12 +413,23 @@
                WHEN PIN1-REC (01:18) =
                     " Volume in drive M"
                    CONTINUE
+               WHEN PIN1-REC (01:18) =
+                    " Volume in drive C"
+                   CONTINUE
+               WHEN PIN1-REC (01:09) =
+                    " ÉhÉâÉCÉu"
+                   CONTINUE
                WHEN PIN1-REC (01:21) =
                     " Volume Serial Number"
+                   CONTINUE
+               WHEN PIN1-REC (01:11) =
+                    " É{ÉäÉÖÅ[ÉÄ"
                    CONTINUE
                WHEN PIN1-REC (22:05) = "<DIR>"
                    CONTINUE
                WHEN PIN1-REC (18:07) = "File(s)"
+                   CONTINUE
+               WHEN PIN1-REC (18:12) = "å¬ÇÃÉtÉ@ÉCÉã"
                    CONTINUE
                WHEN PIN1-REC (19:07) = "File(s)"
                    CONTINUE
@@ -417,14 +439,30 @@
                    CONTINUE
                WHEN PIN1-REC (19:06) = "Dir(s)"
                    CONTINUE
+
+      *    *** chcp 65001 (UTF8) ÇæÇ∆ÅAÉtÉ@ÉCÉãñæç◊à»äOâpêîÇ≈ï\ãLÇ≥ÇÍÇÈ
                WHEN PIN1-REC (01:14) = " Directory of "
-      *    *** I= 1„Éê„Ç§„ÉàÁõÆ„ÅØ„Çπ„Éö„Éº„Çπ
+      *    *** I= 1ÉoÉCÉgñ⁄ÇÕÉXÉyÅ[ÉX
                    COMPUTE I  = WK-PIN1-LEN - 14
                    COMPUTE I2 = WK-PIN1-LEN - 15
                    ADD     1           TO      WK-DIR-CNT
                    MOVE    PIN1-REC (15:I) TO  WK-DIR
                    MOVE    I           TO      I3
-      *    *** DIR Â§âÊèõ
+      *    *** DIR ïœä∑
+                   PERFORM S120-SEC    THRU    S120-EX
+
+      *    *** chcp 932 (SJIS) ÇæÇ∆ÅAÉtÉ@ÉCÉãñæç◊à»äOäøéöÇ≈ï\ãLÇ≥ÇÍÇÈ
+               WHEN PIN1-REC (11:15) = " ÇÃÉfÉBÉåÉNÉgÉä"
+                   MOVE    PIN1-REC (2:WK-PIN1-LEN - 16) TO
+                       PIN1-REC (15:WK-PIN1-LEN - 16)
+      *             COMPUTE WK-PIN1-LEN = 15 + WK-PIN1-LEN - 16 - 1
+                   COMPUTE WK-PIN1-LEN = WK-PIN1-LEN - 2
+                   COMPUTE I  = WK-PIN1-LEN - 14
+                   COMPUTE I2 = WK-PIN1-LEN - 15
+                   ADD     1           TO      WK-DIR-CNT
+                   MOVE    PIN1-REC (15:I) TO  WK-DIR
+                   MOVE    I           TO      I3
+      *    *** DIR ïœä∑
                    PERFORM S120-SEC    THRU    S120-EX
                WHEN OTHER
       *    ***PIN1-REC (1:4):YYYY
@@ -461,15 +499,15 @@
                                    MOVE    "Y"         TO      SW-SYSTEM
                                END-IF
                            END-PERFORM
-      *    *** PIN1-REC (37:1)=. FILEÂêçÂÖàÈ†≠„ÅØSYSTEM FILE „ÅØÈô§Â§ñ„Åô„Çã
+      *    *** PIN1-REC (37:1)=. FILEñºêÊì™ÇÕSYSTEM FILE ÇÕèúäOÇ∑ÇÈ
                            IF      PIN1-REC (37:1) = "."
-      *    *** TEST87.POT1.dat,TEST87.POT1.idx „ÅØÈô§Â§ñ„Åô„Çã
+      *    *** TEST87.POT1.dat,TEST87.POT1.idx ÇÕèúäOÇ∑ÇÈ
                                 OR PIN1-REC (37:15) = "TEST87.POT1.dat"
                                 OR PIN1-REC (37:15) = "TEST87.POT1.idx"
-                            OR PIN1-REC (37:20) = "TEST87.xxxx.POT1.dat"
-                            OR PIN1-REC (37:20) = "TEST87.xxxx.POT1.idx"
-                            OR PIN1-REC (37:20) = "TEST87.wwww.POT1.dat"
-                            OR PIN1-REC (37:20) = "TEST87.wwww.POT1.idx"
+                            OR PIN1-REC (37:20) = "TEST87.koko.POT1.dat"
+                            OR PIN1-REC (37:20) = "TEST87.koko.POT1.idx"
+                            OR PIN1-REC (37:20) = "TEST87.asus.POT1.dat"
+                            OR PIN1-REC (37:20) = "TEST87.asus.POT1.idx"
                                 OR PIN1-REC (37:07) = "DIR.txt"
                                 OR PIN1-REC (37:08) = "DIR1.txt"
                                 OR PIN1-REC (37:08) = "dir2.txt"
@@ -496,7 +534,7 @@
                                ADD    1           TO      WK-SIO1RL-CNT
 
                                IF      WK-DIR (1:3) = "C:\"
-      *    *** C:\ BACKUP CHECK TEST87.POT1 ËøΩÂä† POT2 COPY.BAT ‰ΩúÊàê
+      *    *** C:\ BACKUP CHECK TEST87.POT1 í«â¡ POT2 COPY.BAT çÏê¨
                                    PERFORM S130-SEC    THRU    S130-EX
                                END-IF
                            END-IF
@@ -514,13 +552,13 @@
        S110-EX.
            EXIT.
 
-      *    *** DIR Á∑®ÈõÜ
+      *    *** DIR ï“èW
        S120-SEC                SECTION.
        S120-10.
 
            MOVE    "Y"         TO      SW-HIT
-      *    *** C:\Users\xxxx\OneDrive\„Éâ„Ç≠„É•„É°„É≥„Éà\COBOL =>
-      *    *** M:\xxxx-PC\C\xxxx\OneDrive\„Éâ„Ç≠„É•„É°„É≥„Éà\COBOL
+      *    *** C:\Users\koko\OneDrive\ÉhÉLÉÖÉÅÉìÉg\COBOL =>
+      *    *** M:\koko-PC\C\koko\OneDrive\ÉhÉLÉÖÉÅÉìÉg\COBOL
            EVALUATE TRUE
 
                WHEN PIN1-REC (15:11) = "M:\trashbox"
@@ -528,65 +566,65 @@
 
 
 
-      *    *** xxxx skip files
-               WHEN PIN1-REC (15:21) = "C:\Users\xxxx\videos2"
+      *    *** koko skip files
+               WHEN PIN1-REC (15:21) = "C:\Users\koko\videos2"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:23) = "C:\Users\xxxx\anaconda3"
+               WHEN PIN1-REC (15:23) = "C:\Users\koko\anaconda3"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:15) = "C:\Users\xxxx\."
+               WHEN PIN1-REC (15:15) = "C:\Users\koko\."
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:21) = "C:\Users\xxxx\AppData"
-                   MOVE    "N"         TO      SW-HIT
-
-
-
-      *    *** yyyyyy skip files
-               WHEN PIN1-REC (15:17) = "C:\Users\yyyyyy\."
-                   MOVE    "N"         TO      SW-HIT
-               WHEN PIN1-REC (15:23) = "C:\Users\yyyyyy\AppData"
+               WHEN PIN1-REC (15:21) = "C:\Users\koko\AppData"
                    MOVE    "N"         TO      SW-HIT
 
 
 
-      *    *** zzzzz skip files
-               WHEN PIN1-REC (15:16) = "C:\Users\zzzzz\."
+      *    *** cassis skip files
+               WHEN PIN1-REC (15:17) = "C:\Users\cassis\."
+                   MOVE    "N"         TO      SW-HIT
+               WHEN PIN1-REC (15:23) = "C:\Users\cassis\AppData"
                    MOVE    "N"         TO      SW-HIT
 
-               WHEN PIN1-REC (15:22) = "C:\Users\zzzzz\AppData"
+
+
+      *    *** yuuri skip files
+               WHEN PIN1-REC (15:16) = "C:\Users\yuuri\."
+                   MOVE    "N"         TO      SW-HIT
+
+               WHEN PIN1-REC (15:22) = "C:\Users\yuuri\AppData"
                    MOVE    "N"         TO      SW-HIT
 
       *         WHEN PIN1-REC (15:09) = "C:\Users\"
 
-               WHEN PIN1-REC (15:13) = "C:\Users\xxxx"
+               WHEN PIN1-REC (15:13) = "C:\Users\koko"
 
       *    *** I2 = WK-PIN1-LEN - 15
-      *    *** WK-PC-ID = M:\xxxx-PC\
+      *    *** WK-PC-ID = M:\koko-PC\
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2)   
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** ÊúÄÂæå„Å´Ôø•„Çª„ÉÉ„Éà
+      *    *** ç≈å„Ç…ÅèÉZÉbÉg
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
-               WHEN PIN1-REC (15:15) = "C:\Users\yyyyyy"
+               WHEN PIN1-REC (15:15) = "C:\Users\cassis"
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2) 
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** ÊúÄÂæå„Å´Ôø•„Çª„ÉÉ„Éà
+      *    *** ç≈å„Ç…ÅèÉZÉbÉg
                    MOVE    "\"         TO      SIO1-FILE  (12 + I2:1)
                    COMPUTE I = 12 + I2
 
-               WHEN PIN1-REC (15:14) = "C:\Users\zzzzz"
+               WHEN PIN1-REC (15:14) = "C:\Users\yuuri"
                    MOVE    WK-PC-ID    TO      SIO1-FILE
                    MOVE    PIN1-REC (16:I2)
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** ÊúÄÂæå„Å´Ôø•„Çª„ÉÉ„Éà
+      *    *** ç≈å„Ç…ÅèÉZÉbÉg
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
@@ -595,21 +633,21 @@
                    MOVE    PIN1-REC (16:I2) 
                                        TO      SIO1-FILE (12:I2)
                    MOVE    "C"         TO      SIO1-FILE (12:1)
-      *    *** ÊúÄÂæå„Å´Ôø•„Çª„ÉÉ„Éà
+      *    *** ç≈å„Ç…ÅèÉZÉbÉg
                    MOVE    "\"         TO      SIO1-FILE (12 + I2:1)
                    COMPUTE I = 12 + I2
 
       *    *** I = WK-PIN1-LEN - 14
                WHEN PIN1-REC (15:03) = "M:\"
                     MOVE    PIN1-REC (15:I) TO SIO1-FILE
-      *    *** ÊúÄÂæå„Å´Ôø•„Çª„ÉÉ„Éà
+      *    *** ç≈å„Ç…ÅèÉZÉbÉg
                     MOVE    "\"        TO      SIO1-FILE (I + 1:1)
                     ADD     1          TO      I
-      *    *** I „ÅÆÈï∑„ÅïÂ§âÊõ¥ÁÑ°
+      *    *** I ÇÃí∑Ç≥ïœçXñ≥
                WHEN OTHER
       *    *** Directory of C:\Users\All Users\Acronis\TrueImageHome\Logs
       *    ***  Directory of C:\Users\Default
-      *    *** \All Users „Åå„ÅÇ„Çã
+      *    *** \All Users Ç™Ç†ÇÈ
                    MOVE    "N"         TO      SW-HIT
                    ADD     1           TO      WK-OTHER-CNT
            END-EVALUATE
@@ -617,7 +655,7 @@
        S120-EX.
            EXIT.
 
-      *    *** C:\ BACKUP CHECK TEST87.POT1 ËøΩÂä† POT2 XCOPY.BAT ‰ΩúÊàê
+      *    *** C:\ BACKUP CHECK TEST87.POT1 í«â¡ POT2 XCOPY.BAT çÏê¨
        S130-SEC                SECTION.
        S130-10.
 
@@ -632,7 +670,7 @@
       *    *** 23:KEY NOT FOUND
            IF      WK-PIO1-STATUS =    23
 
-      *    *** PATH SPACE Âê´„ÇÄ„ÅÆ„Åß„ÄÅÂºïÁî®Á¨¶"„ÅßÂõ≤„ÇÄ
+      *    *** PATH SPACE ä‹ÇﬁÇÃÇ≈ÅAà¯ópïÑ"Ç≈àÕÇﬁ
       *             MOVE    'XCOPY /e /y "' TO  POT2-REC
                    MOVE    'XCOPY /e /y /i "' TO  POT2-REC
       *             MOVE    14          TO      P
@@ -641,7 +679,7 @@
                    ADD     I3          TO      P
                    MOVE    "\"         TO      POT2-REC (P:1)
                    ADD     1           TO      P
-      *    *** I4:FILEÂêç„ÄÄÈï∑„Åï
+      *    *** I4:FILEñºÅ@í∑Ç≥
                    COMPUTE I4 = WK-PIN1-LEN - 36
                    MOVE    PIN1-REC (37:I4) TO POT2-REC (P:I4)
                    ADD     I4          TO      P
@@ -683,7 +721,7 @@
       *    *** 00:NOT KEY INVALID
                IF      WK-PIO1-STATUS  =       ZERO
                    ADD     1           TO      WK-PIO1-CNT
-      *    *** YYYYMMDDHHMM C: Â§âÊõ¥„ÅÇ„Å£„ÅüÊôÇ„ÄÅCOPYÊñá‰ΩúÊàê„Åô„Çã
+      *    *** YYYYMMDDHHMM C: ïœçXÇ†Ç¡ÇΩéûÅACOPYï∂çÏê¨Ç∑ÇÈ
                    IF      SIO1-REC (1:12) > PIO1-REC (1:12)
 
       *                 MOVE    'XCOPY /e /y "' TO  POT2-REC
@@ -694,7 +732,7 @@
                        ADD     I3          TO      P
                        MOVE    "\"         TO      POT2-REC (P:1)
                        ADD     1           TO      P
-      *    *** I4:FILEÂêç„ÄÄÈï∑„Åï
+      *    *** I4:FILEñºÅ@í∑Ç≥
                        COMPUTE I4 = WK-PIN1-LEN - 36
                        MOVE    PIN1-REC (37:I4) TO POT2-REC (P:I4)
                        ADD     I4          TO      P
@@ -731,15 +769,15 @@
                        ADD     1           TO      WK-PIO1RW-CNT
                    ELSE
                        IF      SIO1-REC (1:12) = PIO1-REC (1:12)
-      *    *** YYYYMMDDHHMM C: Â§âÊõ¥ÁÑ°„ÅØ„ÄÅCOPYÊñá‰ΩúÊàê„Åó„Å™„ÅÑ
-      *    *** SIO1-REC (1:12) : ‰ªäÂõûÂèñÂæó dir
-      *    *** PIO1-REC (1:12) : ÂâçÂõû„Åæ„Åß„ÅÆ„Éê„ÉÉ„ÇØ„Ç¢„ÉÉ„Éó„Åó„Åüdir
+      *    *** YYYYMMDDHHMM C: ïœçXñ≥ÇÕÅACOPYï∂çÏê¨ÇµÇ»Ç¢
+      *    *** SIO1-REC (1:12) : ç°âÒéÊìæ dir
+      *    *** PIO1-REC (1:12) : ëOâÒÇ‹Ç≈ÇÃÉoÉbÉNÉAÉbÉvÇµÇΩdir
                           CONTINUE
                        ELSE
       *    ***         IF      SIO1-REC (1:12) < PIO1-REC (1:12)
                            DISPLAY " "
                            DISPLAY WK-PGM-NAME
-                                   " BACKUP ÂàÜ„ÅÆÊñπ„ÅåÊõ¥Êñ∞Â±•Ê≠¥Â§ß„Åç„ÅÑ"
+                                   " BACKUP ï™ÇÃï˚Ç™çXêVóöóëÂÇ´Ç¢"
                                    " SIO1-F SIO1-REC (1:12) <"
                                    " PIO1-REC (1:12) ERROR"
                            DISPLAY WK-PGM-NAME
@@ -870,40 +908,40 @@
            DISPLAY WK-PGM-NAME " END"
 
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ‰ª∂Êï∞ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 åèêî = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
 
            MOVE    WK-SIO1RL-CNT TO    WK-SIO1RL-CNT-E
-           DISPLAY WK-PGM-NAME " SIO1RL‰ª∂Êï∞= " WK-SIO1RL-CNT-E
+           DISPLAY WK-PGM-NAME " SIO1RLåèêî= " WK-SIO1RL-CNT-E
                    " (" WK-SIO1-F-NAME ")"
            MOVE    WK-SIO1RT-CNT TO    WK-SIO1RT-CNT-E
-           DISPLAY WK-PGM-NAME " SIO1RT‰ª∂Êï∞= " WK-SIO1RT-CNT-E
+           DISPLAY WK-PGM-NAME " SIO1RTåèêî= " WK-SIO1RT-CNT-E
                    " (" WK-SIO1-F-NAME ")"
 
            MOVE    WK-PIO1-CNT TO      WK-PIO1-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1RD‰ª∂Êï∞= " WK-PIO1-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1RDåèêî= " WK-PIO1-CNT-E
                    " (" WK-PIO1-F-NAME ")"
            MOVE    WK-PIO1WR-CNT TO    WK-PIO1WR-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1WR‰ª∂Êï∞= " WK-PIO1WR-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1WRåèêî= " WK-PIO1WR-CNT-E
                    " (" WK-PIO1-F-NAME ")"
            MOVE    WK-PIO1RW-CNT TO    WK-PIO1RW-CNT-E
-           DISPLAY WK-PGM-NAME " PIO1RW‰ª∂Êï∞= " WK-PIO1RW-CNT-E
+           DISPLAY WK-PGM-NAME " PIO1RWåèêî= " WK-PIO1RW-CNT-E
                    " (" WK-PIO1-F-NAME ")"
 
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ‰ª∂Êï∞ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 åèêî = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 ‰ª∂Êï∞ = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 åèêî = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
-           DISPLAY WK-PGM-NAME " POT3 ‰ª∂Êï∞ = " WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 åèêî = " WK-POT3-CNT-E
                    " (" WK-POT3-F-NAME ")"
 
            MOVE    WK-DIR-CNT  TO      WK-DIR-CNT-E
-           DISPLAY WK-PGM-NAME " DIR  ‰ª∂Êï∞ = " WK-DIR-CNT-E
+           DISPLAY WK-PGM-NAME " DIR  åèêî = " WK-DIR-CNT-E
            MOVE    WK-OTHER-CNT TO     WK-OTHER-CNT-E
-           DISPLAY WK-PGM-NAME " OTHER‰ª∂Êï∞ = " WK-OTHER-CNT-E
+           DISPLAY WK-PGM-NAME " OTHERåèêî = " WK-OTHER-CNT-E
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
