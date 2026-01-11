@@ -57,6 +57,20 @@
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-LEN     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-DATA1.
+             05                PIC  X(050) VALUE ALL "ABC".
+             05                PIC  X(001) VALUE ",".
+             05                PIC  X(050) VALUE ALL "ABC".
+           03  WK-DATA2        PIC  X(030) VALUE SPACE.
+           03  WK-DATA3        PIC  X(030) VALUE SPACE.
+           03  WK-DATA41       PIC S9(009) VALUE -123456789.
+           03  WK-DATA42       PIC S9(009) VALUE -12345678.
+           03  WK-DATA5        PIC  ZZZ,ZZZ,ZZ9 VALUE ZERO.
+           03  WK-DATA6        PIC  -ZZ,ZZZ,ZZ9 VALUE ZERO.
+           03  WK-DATA7        PIC  ---,---,--9 VALUE ZERO.
+
+           03  WK-DATA2-LEN    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-DATA3-LEN    BINARY-LONG SYNC VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -84,14 +98,17 @@
            PERFORM S010-10     THRU    S010-EX
 
       *    *** READ PIN1
-           PERFORM S020-10     THRU    S020-EX
+      *     PERFORM S020-10     THRU    S020-EX
 
-           PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+      *     PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
       *    *** WRITE POT1
-                   PERFORM S100-10     THRU    S100-EX
+      *             PERFORM S100-10     THRU    S100-EX
       *    *** READ PIN1
-                   PERFORM S020-10     THRU    S020-EX
-           END-PERFORM
+      *             PERFORM S020-10     THRU    S020-EX
+      *     END-PERFORM
+
+      *    *** WRITE POT1
+           PERFORM S200-10     THRU    S200-EX
 
       *    *** CLOSE
            PERFORM S900-10     THRU    S900-EX
@@ -184,6 +201,57 @@
            END-IF
            .
        S100-EX.
+           EXIT.
+
+
+      *    *** WRITE POT1
+       S200-10.
+                   UNSTRING WK-DATA1
+                       DELIMITED BY ","
+                       INTO
+                           WK-DATA2 COUNT WK-DATA2-LEN
+                           WK-DATA3 COUNT WK-DATA3-LEN
+                   END-UNSTRING
+
+           DISPLAY WK-DATA2-LEN " " WK-DATA2
+           DISPLAY WK-DATA3-LEN " " WK-DATA3
+
+      *    *** 送り出しのサイズがXXX-LENに入る
+      *    *** 
+      *C:\Users\koko\OneDrive\ドキュメント\COBOL>COBSAM08
+      *COBSAM08 START
+      *+0000000050 ABCABCABCABCABCABCABCABCABCABC
+      *+0000000050 ABCABCABCABCABCABCABCABCABCABC
+
+           MOVE    WK-DATA41   TO      WK-DATA5
+                                       WK-DATA6
+                                       WK-DATA7
+
+           DISPLAY " "
+           DISPLAY "WK-DATA5=" WK-DATA5
+           DISPLAY "WK-DATA6=" WK-DATA6
+           DISPLAY "WK-DATA7=" WK-DATA7
+
+           MOVE    WK-DATA42   TO      WK-DATA5
+                                       WK-DATA6
+                                       WK-DATA7
+
+           DISPLAY " "
+           DISPLAY "WK-DATA5=" WK-DATA5
+           DISPLAY "WK-DATA6=" WK-DATA6
+           DISPLAY "WK-DATA7=" WK-DATA7
+
+      *    *** PIC で-（マイナス）指定すると、符号優先で数字がカットされる
+      *    *** 
+      *WK-DATA5=123,456,789
+      *WK-DATA6=-23,456,789
+      *WK-DATA7=-23,456,789
+
+      *WK-DATA5= 12,345,678
+      *WK-DATA6=-12,345,678
+      *WK-DATA7=-12,345,678
+F           .
+       S200-EX.
            EXIT.
 
       *    *** CLOSE
