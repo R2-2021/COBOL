@@ -23,17 +23,18 @@
 
       *    *** お菓子系データ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** TEST80.POT1 https:,img お菓子系データ
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
-                               STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** お菓子系データ ｉｍｇセット後
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.
+
+      *    *** TEST54用 IMGデータ作成
+       SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -54,19 +55,21 @@
        01  POT1-REC.
            03  FILLER          PIC  X(1000).
 
+       FD  POT2-F.
+       01  POT2-REC.
+           03  FILLER          PIC  X(1000).
+
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST79  ".
 
+      *    *** TEST80.POT1 => TEST79_okashik_idol.PIN1 コピー
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE 
                "TEST79_okashik_idol.PIN1".
 
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST80.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST79.POT1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-PIN2-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
+           03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST79.POT2".
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN2-EOF     PIC  X(001) VALUE LOW-VALUE.
@@ -74,10 +77,12 @@
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-POT2-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-POT2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-LEN     BINARY-LONG SYNC VALUE ZERO.
@@ -130,20 +135,21 @@
 
 
       *    *** READ PIN2
-           PERFORM S030-10     THRU    S030-EX
+      *    *** からのセットやめる
+      *     PERFORM S030-10     THRU    S030-EX
 
-           PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
+      *     PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
       *    *** PIN2 TBL SET
-                   PERFORM S032-10     THRU    S032-EX
+      *             PERFORM S032-10     THRU    S032-EX
       *    *** READ PIN2
-                   PERFORM S030-10     THRU    S030-EX
-           END-PERFORM
+      *             PERFORM S030-10     THRU    S030-EX
+      *     END-PERFORM
 
 
 
       *    *** TBL01 SORT
-           SORT    TBL01-AREA
-                   ASCENDING KEY TBL01-NAME
+      *     SORT    TBL01-AREA
+      *             ASCENDING KEY TBL01-NAME
 
 
 
@@ -152,15 +158,27 @@
 
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
                    IF      PIN1-REC (1:1) =    "%"
-                        OR PIN1-REC (1:24) =
+      *                  OR PIN1-REC (1:24) =
       *    *** ジャパリアイドル
-                   X"E382B8E383A3E38391E383AAE382A2E382A4E38389E383AB"
+      *             X"E382B8E383A3E38391E383AAE382A2E382A4E38389E383AB"
                            WRITE   POT1-REC    FROM    PIN1-REC
                            ADD     1           TO      WK-POT1-CNT
                    ELSE
+                       IF      WK-PIN1-LEN =   3
+      *    *** ジャパリ
+                           MOVE    X"E382B8E383A3E38391E383AA" TO
+                                   POT1-REC
+                           MOVE    PIN1-REC (1:3) TO   POT1-REC (13:3)
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+                       ELSE
       *    *** WRITE POT1
-                           PERFORM S100-10     THRU    S100-EX
-
+      *                     PERFORM S100-10     THRU    S100-EX
+                           WRITE   POT1-REC    FROM    PIN1-REC
+                           ADD     1           TO      WK-POT1-CNT
+      *    *** WRITE POT2
+                           PERFORM S120-10     THRU    S120-EX
+                       END-IF
                    END-IF
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
@@ -182,25 +200,9 @@
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                               PIN2-F
+                   OUTPUT      POT1-F
+                               POT2-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -222,20 +224,12 @@
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
            END-READ
- 
-           IF      WK-PIN1-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
           .
        S020-EX.
            EXIT.
 
       *    *** READ PIN2
        S030-10.
-
-           READ    PIN2-F
 
            MOVE    SPACE       TO      WK-NAME
                                        WK-HTTPS
@@ -244,25 +238,18 @@
                                        WK-HTTPS-LEN
                                        WK-IMG-LEN
 
-           IF      WK-PIN2-STATUS =    ZERO
+           READ    PIN2-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
 
-      *    *** 256バイトまでしか入らない
-                   UNSTRING PIN2-REC
-                           DELIMITED BY ","
-                           INTO
+                   UNSTRING PIN2-REC DELIMITED BY ","
+                       INTO
                            WK-NAME  COUNT WK-NAME-LEN
                            WK-HTTPS COUNT WK-HTTPS-LEN
                            WK-IMG   COUNT WK-IMG-LEN
-           ELSE
-               IF  WK-PIN2-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S030-EX.
            EXIT.
@@ -317,16 +304,9 @@
            ELSE
                    MOVE    WK-NAME     TO      POT1-REC
                    MOVE    " , , ,"    TO      POT1-REC (I:6)
-                   WRITE   POT1-REC
 
-                   IF      WK-POT1-STATUS =    ZERO
-                           ADD     1           TO      WK-POT1-CNT
-                    ELSE
-                           DISPLAY WK-PGM-NAME
-                                   " POT1-F WRITE ERROR STATUS="
-                                   WK-POT1-STATUS
-                           STOP    RUN
-                   END-IF
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
            END-IF
            .
        S100-EX.
@@ -360,41 +340,53 @@
            ADD    2            TO      P
 
            WRITE  POT1-REC
-
-           IF      WK-POT1-STATUS =    ZERO
-                   ADD     1           TO      WK-POT1-CNT
-           ELSE
-                   DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+           ADD     1           TO      WK-POT1-CNT
            .
        S110-EX.
+           EXIT.
+
+       S120-10.
+
+           MOVE    SPACE       TO      WK-NAME
+                                       WK-HTTPS
+                                       WK-IMG
+           MOVE    ZERO        TO      WK-NAME-LEN
+                                       WK-HTTPS-LEN
+                                       WK-IMG-LEN
+
+           UNSTRING PIN1-REC
+                   DELIMITED BY ","
+                   INTO
+                   WK-NAME  COUNT WK-NAME-LEN
+                   WK-HTTPS COUNT WK-HTTPS-LEN
+                   WK-IMG   COUNT WK-IMG-LEN
+
+           MOVE    1           TO      P
+           MOVE    WK-NAME (1:WK-NAME-LEN - 1) TO POT2-REC
+           ADD     WK-NAME-LEN -1 TO      P
+
+           MOVE    ","         TO      POT2-REC (P:1)
+           ADD     1           TO      P
+
+           MOVE    WK-IMG (1:WK-IMG-LEN) TO POT2-REC (P:WK-IMG-LEN)
+           ADD     WK-IMG-LEN  TO      P
+
+           MOVE    ","         TO      POT2-REC (P:1)
+           ADD     1           TO      P
+
+           WRITE   POT2-REC
+           ADD     1           TO      WK-POT2-CNT
+           .
+       S120-EX.
            EXIT.
 
       *    *** CLOSE
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F CLOSE ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   PIN2-F
+                   POT1-F
+                   POT2-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -402,14 +394,17 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 件数 = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
+           MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
+                   " (" WK-POT2-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
