@@ -1,5 +1,11 @@
       *    *** CALL,COPY 使用プログラムチェック
       *    *** 
+      *    *** C.FILEITEM.T005.bat 
+      *    *** REM サブルーチン一覧
+      *    *** 
+      *    *** C.FILEITEM.T006.bat 
+      *    *** REM コピー句一覧
+
       *    *** 入力はDIR *.CBL 内容をPIN1にコピーしておく
       *    *** 
        IDENTIFICATION          DIVISION.
@@ -13,11 +19,9 @@
        FILE-CONTROL.
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -50,9 +54,6 @@
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "COBFIND.PIN1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "COBFIND.POT1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -121,7 +122,7 @@
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
 
-           PERFORM UNTIL   WK-PIN1-EOF   =     HIGH-VALUE
+           PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
 
       *    *** TBL SET
                    PERFORM S100-10     THRU    S100-EX
@@ -144,7 +145,7 @@
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
 
-                   PERFORM UNTIL   WK-PIN1-EOF   =     HIGH-VALUE
+                   PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
 
       *    *** FIND CHECK WRITE POT1
                            PERFORM S200-10     THRU    S200-EX
@@ -173,11 +174,6 @@
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
            OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
 
            MOVE    "O"         TO      WFD-ID
            MOVE    WK-PGM-NAME TO      WFD-PGM
@@ -191,13 +187,6 @@
        S011-10.
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   DISPLAY WK-PGM-NAME " PIN1-F FILE NAME="
-                           WK-PIN1-F-NAME
-                   STOP    RUN
-           END-IF
            MOVE    LOW-VALUE   TO      WK-PIN1-EOF
            MOVE    ZERO        TO      WK-LINENO
            .
@@ -208,13 +197,6 @@
        S012-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   DISPLAY WK-PGM-NAME " PIN1-F FILE NAME="
-                           WK-PIN1-F-NAME
-                   STOP    RUN
-           END-IF
            .
        S012-EX.
            EXIT.
@@ -223,19 +205,12 @@
        S020-10.
 
            READ    PIN1-F
-
-           IF      WK-PIN1-STATUS =    ZERO
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN1-CNT
                                                WK-LINENO
-           ELSE
-                   IF      WK-PIN1-STATUS =    10
-                           MOVE    HIGH-VALUE  TO    WK-PIN1-EOF
-                   ELSE
-                           DISPLAY WK-PGM-NAME " PIN1-F READ ERROR"
-                                   " STATUS="  WK-PIN1-STATUS
-                           STOP    RUN
-                   END-IF
-           END-IF
+           END-READ
            .
        S020-EX.
            EXIT.
@@ -354,12 +329,6 @@
       *                         WK-PIN1-DT05 = "(PIN1="
                            WRITE   POT1-REC
                            ADD     1           TO      WK-POT1-CNT
-                           IF      WK-POT1-STATUS NOT = ZERO
-                                   DISPLAY WK-PGM-NAME
-                                           " POT1-F WRITE ERROR"
-                                           " STATUS="  WK-POT1-STATUS
-                                   STOP    RUN
-                           END-IF
                        END-IF
                    END-IF
            END-IF
@@ -372,11 +341,6 @@
        S900-10.
 
            CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -385,9 +349,9 @@
            DISPLAY WK-PGM-NAME " END"
 
       *    *** PIN1-F-NAME LAST FILE NAME
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT
                    " (" WK-PIN1-F-NAME ")"
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
