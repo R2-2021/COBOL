@@ -1,4 +1,11 @@
       *    *** bookmarks.html DMMデータ抽出
+      *    *** 
+      *    *** 私は叡智を極める修行中の身であるため普段から複数の
+      *    *** 無料アダルトサイトで修行を重ねていますので、＜＝他からの流用
+      *    *** アクセスしやすいように、htmlを作っています。
+      *    *** このプログラムは、このような内容の為、
+      *    *** １８禁（１８歳未満使用不可）です。
+      *    *** 使用については、参照者のモラルに任せます。
       *    ***
       *    *** JOB TEST10   TEST71
       *    ***        |        |
@@ -785,19 +792,48 @@
       *    *** 動画のタイトルをPOT1-REC 先頭にセット
                    PERFORM VARYING I FROM 1 BY 1
                            UNTIL I > WK-PIN1-LEN
+
+      *    *** 指定した文字以降削除して出力
       *    *** - エロ動画・
                               OR PIN1-REC (I:18) = 
                                  X"202D20E382A8E383ADE58B95E794BBE383BB"
+      *    *** のエロ動画
+                              OR PIN1-REC (I:15) = 
+                                 X"E381AEE382A8E383ADE58B95E794BB"
       *    *** - 無料エロ
                               OR PIN1-REC (I:15) = 
                                  X"202D20E784A1E69699E382A8E383AD"
       *    *** - FANZA
-                              OR PIN1-REC (I:08) = 
-                                 " - FANZA"
+      *                        OR PIN1-REC (I:08) = 
+      *                           " - FANZA"
       *    ***  - ソフト・
+      *                        OR PIN1-REC (I:15) = 
+      *                           X"202D20E382BDE38395E38388E383BB"
+
+      *    *** の検索結果
                               OR PIN1-REC (I:15) = 
-                                 X"202D20E382BDE38395E38388E383BB"
+                                 X"E381AEE6A49CE7B4A2E7B590E69E9C"
+
                        EVALUATE TRUE
+
+                           WHEN PIN1-REC (I:08) = " - FANZA"
+                               AND
+      *    *** 動画
+                                 PIN1-REC (I + 8:6) =
+                                 X"E58B95E794BB"
+                               ADD     14          TO      I
+                           WHEN PIN1-REC (I:08) = " - FANZA"
+                               AND
+      *    *** 月額動画
+                                 PIN1-REC (I + 8:12) =
+                                 X"E69C88E9A18DE58B95E794BB"
+                               ADD     20          TO      I
+                           WHEN PIN1-REC (I:08) = " - FANZA"
+                               AND
+      *    *** 無料動画
+                                 PIN1-REC (I + 8:12) =
+                                 X"E784A1E69699E58B95E794BB"
+                               ADD     20          TO      I
                            WHEN PIN1-REC (I:08) = " - FANZA"
                                ADD     08          TO      I
                            WHEN OTHER
@@ -808,7 +844,7 @@
                                MOVE    PIN1-REC (I:1) TO POT1-REC (I3:1)
                        END-EVALUATE
                    END-PERFORM
-                   
+
                    ADD     2           TO      I3
                    MOVE    ","         TO      POT1-REC (I3:1)
 
