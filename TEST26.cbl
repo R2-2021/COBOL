@@ -931,6 +931,46 @@
            END-IF
 
            IF      SW-SPAN-CLASS =     "1"
+
+      *    *** 公式サイト無しや対応
+                   IF      WK-HTML1 (1:1) NOT = SPACE
+                       IF      WK-HTML1 (1:12) =   "animateTimes"
+      *    *** アニメ一覧
+                            OR WK-HTML1 (8:15) =  
+                           X"E382A2E3838BE383A1E4B880E8A6A7"
+      *    *** 関連記事
+                            OR WK-HTML1 (1:12) =  
+                           X"E996A2E980A3E8A898E4BA8B"
+      *    *** アニメ一覧
+                            OR WK-HTML1 (1:15) =  
+                           X"E382A2E3838BE383A1E4B880E8A6A7"
+      *    *** 最新記事
+                            OR WK-HTML1 (1:12) =  
+                           X"E69C80E696B0E8A898E4BA8B"
+      *    *** 放送のアニメ
+                            OR WK-HTML1 (8:18) =  
+                           X"E694BEE98081E381AEE382A2E3838BE383A1"
+      *    *** おすすめアニメ
+                            OR WK-HTML1 (1:21) =  
+                           X"E3818AE38199E38199E38281E382A2E3838BE383A1"
+      *    *** 1 
+                            OR WK-HTML1 (1:2)  =  "1 "
+      *    *** &times;
+                            OR WK-HTML1 (1:7)  =  "&times;"
+                               CONTINUE
+                       ELSE
+      *    *** タイトルデータ出力
+                           PERFORM S140-10   THRU    S140-EX
+                       END-IF
+                   END-IF
+
+                   MOVE    SPACE       TO      WK-HTML1  
+                                               WK-HTML2
+                                               WK-HTML3
+                   MOVE    1           TO      WK-HTML1-L
+                                               WK-HTML2-L
+                                               WK-HTML3-L
+
       *    *** タイトル名
       *    *** 2017 頃、タイトルにX"09" = TAB 取る
                    IF    PIN1-REC (WK-PIN1-LEN:1) = X"09"
