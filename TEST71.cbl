@@ -40,9 +40,9 @@
        FD  POT2-F
            LABEL RECORDS ARE STANDARD.
        01  POT2-REC.
-           03  POT2-KEY        PIC  X(096).
-           03                  PIC  X(004).
-           03  POT2-CNT        PIC  9(009).
+      *     03  POT2-CNT        PIC  9(009).
+      *     03                  PIC  X(001).
+           03  POT2-KEY        PIC  X(300).
 
        WORKING-STORAGE         SECTION.
 
@@ -50,7 +50,10 @@
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST71  ".
 
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "COBSORT.POT1".
-           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST84.POT3S".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST84.POT3S".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST75.SORT.POT1".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST127.SORT.POT1".
+           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST130.POT1.SORT".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST71.POT1".
            03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST71.POT2".
 
@@ -80,13 +83,13 @@
            03  WK-OLD-REC      PIC  X(10000) VALUE LOW-VALUE.
 
            03  WK-OLD-KEY.
-             05  WK-OLD-KEY1   PIC  X(032) VALUE LOW-VALUE.
-             05  WK-OLD-KEY2   PIC  X(032) VALUE LOW-VALUE.
-             05  WK-OLD-KEY3   PIC  X(032) VALUE LOW-VALUE.
+             05  WK-OLD-KEY1   PIC  X(100) VALUE LOW-VALUE.
+             05  WK-OLD-KEY2   PIC  X(100) VALUE LOW-VALUE.
+             05  WK-OLD-KEY3   PIC  X(100) VALUE LOW-VALUE.
            03  WK-NEW-KEY.
-             05  WK-NEW-KEY1   PIC  X(032) VALUE LOW-VALUE.
-             05  WK-NEW-KEY2   PIC  X(032) VALUE LOW-VALUE.
-             05  WK-NEW-KEY3   PIC  X(032) VALUE LOW-VALUE.
+             05  WK-NEW-KEY1   PIC  X(100) VALUE LOW-VALUE.
+             05  WK-NEW-KEY2   PIC  X(100) VALUE LOW-VALUE.
+             05  WK-NEW-KEY3   PIC  X(100) VALUE LOW-VALUE.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -178,14 +181,14 @@
                        AND WK-LEN3     NOT =   ZERO )
                       OR ( WK-POS3     NOT =   ZERO
                        AND WK-LEN3     =       ZERO )
-                        OR WK-LEN1     >       32
-                        OR WK-LEN2     >       32
-                        OR WK-LEN3     >       32
+                        OR WK-LEN1     >       100
+                        OR WK-LEN2     >       100
+                        OR WK-LEN3     >       100
                         OR WK-POS1 + WK-LEN1 > 10000
                         OR WK-POS2 + WK-LEN2 > 10000
                         OR WK-POS3 + WK-LEN3 > 10000
                            DISPLAY WK-PGM-NAME " POS,LEN 数字で指定"
-                                   " LENは32 まで　POS1,LEN1 は必須"
+                                   " LENは100 まで　POS1,LEN1 は必須"
                                    " WK-POS1 + WK-LEN1 <= 10000 "
                            MOVE    "N"         TO      SW-YES
                    ELSE
@@ -275,9 +278,14 @@
            END-IF
 
       *    *** 件数
-           IF      WK-POT2B-CNT >      50
+      *     IF      WK-POT2B-CNT >      50
+      *     IF      WK-POT2B-CNT >      2
+      *     IF      WK-POT2B-CNT >      1
+           IF      WK-POT2B-CNT =      1
+      *     IF      WK-POT2B-CNT >      ZERO
                    MOVE    WK-OLD-KEY  TO      POT2-KEY
-                   MOVE    WK-POT2B-CNT TO     POT2-CNT
+      *             MOVE    WK-POT2B-CNT TO     POT2-CNT
+                   INSPECT POT2-KEY REPLACING ALL LOW-VALUE BY SPACE
                    WRITE   POT2-REC
 
                    IF      WK-POT2-STATUS =    ZERO
