@@ -11,7 +11,9 @@
       *    ***   |
       *    *** COBSORT COBSORT.T015.PRM1
       *    ***   |
-      *    *** TEST70
+      *    *** TEST110
+      *    ***   |
+      *    *** TEST70 TEST72 TEST74
       *    ***   |
       *    *** TEST53
       *    ***   |
@@ -170,7 +172,7 @@
 
       *    *** PIN3 —p
        01  TBL03-AREA-G.
-           03  TBL03-AREA      OCCURS 1000
+           03  TBL03-AREA      OCCURS 3000
                                ASCENDING KEY IS TBL03-KANJI
                                INDEXED BY TBL03-IDX.
       *    *** Š¿Žš‚l‚`‚w‚S•¶Žš
@@ -517,7 +519,7 @@
       *    *** TBL03 SET
        S041-10.
 
-           IF      TBL03-IDX   >       1000
+           IF      TBL03-IDX   >       3000
                    DISPLAY WK-PGM-NAME
                            " TBL03-TBL OVER TBL03-IDX=" TBL03-IDX
                    STOP    RUN
