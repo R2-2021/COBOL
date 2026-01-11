@@ -10,7 +10,7 @@
       *    ***   |
       *    *** TEST110
       *    ***   |
-      *    *** TEST70
+      *    *** TEST70 TEST72 TEST74
       *    ***   |
       *    *** TEST53
       *    ***   |
@@ -97,6 +97,11 @@
            03  WK-NEW-KEY.
              05  WK-NEW-ID     PIC  X(003) VALUE LOW-VALUE.
 
+           03  WK-OLD-KEY2.
+             05  WK-OLD-ITEM1  PIC  X(100) VALUE LOW-VALUE.
+           03  WK-NEW-KEY2.
+             05  WK-NEW-ITEM1  PIC  X(100) VALUE LOW-VALUE.
+
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
@@ -172,6 +177,7 @@
        S020-10.
 
            MOVE    WK-NEW-KEY  TO      WK-OLD-KEY
+           MOVE    WK-NEW-KEY2 TO      WK-OLD-KEY2
            MOVE    SPACE       TO      WK-PIN1-ITEM1
                                        WK-PIN1-ITEM2
                                        WK-PIN1-ITEM3
@@ -193,10 +199,12 @@
                            WK-PIN1-ITEM3 COUNT WK-PIN1-ITEM3-LEN
                            WK-PIN1-ITEM4 COUNT WK-PIN1-ITEM4-LEN
                    MOVE    WK-PIN1-ITEM4 (1:3) TO      WK-NEW-KEY
+                   MOVE    WK-PIN1-ITEM1       TO      WK-NEW-KEY2
            ELSE
                IF  WK-PIN1-STATUS =    10
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                                                WK-NEW-KEY
+                                               WK-NEW-KEY2
                ELSE
                    DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
                            WK-PIN1-STATUS
@@ -210,11 +218,15 @@
       *    *** WRITE POT1
        S100-10.
 
-           WRITE   POT1-REC    FROM    PIN1-REC
-           IF      WK-POT1-STATUS NOT = ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
+           IF      WK-OLD-KEY2 =       WK-NEW-KEY2
+                   CONTINUE
+           ELSE
+                   WRITE   POT1-REC    FROM    PIN1-REC
+                   IF      WK-POT1-STATUS NOT = ZERO
+                           DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR"
+                                  " STATUS=" WK-POT1-STATUS
+                           STOP    RUN
+                   END-IF
            END-IF
 
            ADD     1           TO      WK-POT1-CNT
