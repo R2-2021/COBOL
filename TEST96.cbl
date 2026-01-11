@@ -38,13 +38,13 @@
        FD  PIN1-F
            LABEL RECORDS ARE STANDARD
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
-       01  PIN1-REC            PIC  X(500).
+       01  PIN1-REC            PIC  X(1000).
 
        FD  PIN2-F
            LABEL RECORDS ARE STANDARD
            RECORD VARYING DEPENDING ON WK-PIN2-LEN.
        01  PIN2-REC.
-           03                  PIC  X(10000).
+           03                  PIC  X(1000).
 
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
@@ -62,8 +62,8 @@
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST96  ".
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE
-               "Youtubechannel_sort.txt".
-           03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST49.PIN3".
+               "TEST103.Random Walker Yu.PIN2".
+           03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST96.PIN2".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST96.POT1".
            03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST96.POT2".
 
@@ -226,7 +226,6 @@
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
-                   DISPLAY "WK-PIN1-CNT=" WK-PIN1-CNT
                    UNSTRING PIN1-REC
                            DELIMITED BY SPACE
                            INTO
@@ -268,12 +267,15 @@
       *                 UNTIL I > WK-PIN2-LEN - WK-CHANNEL-LEN
       *                    OR WK-INS-CNT NOT = ZERO
 
+           MOVE    ZERO        TO      WK-INS-CNT
+           IF      WK-CHANNEL-LEN >    ZERO
                    MOVE    WK-CHANNEL-LEN TO K
 
       *             INSPECT PIN1-REC (2:) TALLYING
       *                     WK-INS-CNT FOR LEADING TBL01-ID (I) (1:K)
                    INSPECT PIN2-REC TALLYING
                            WK-INS-CNT FOR ALL WK-CHANNEL (1:K)
+           END-IF
 
       *     END-PERFORM
            .
