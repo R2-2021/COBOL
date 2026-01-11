@@ -1,4 +1,14 @@
       *    *** XVI PIN4 国選択指示のみ、出力対象
+      *    *** 
+      *    *** PIN1 データはXVIDEOSのAV女優=>ランキング=>A-Zリストから作ったみたい
+      *    *** 
+      *    *** PIN3 の２桁文字を指定
+      *    *** 
+      *    *** TEST60
+      *    ***    |
+      *    *** TEST53
+      *    ***    |
+      *    *** TEST54
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             TEST60.
