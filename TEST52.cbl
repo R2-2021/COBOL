@@ -52,7 +52,7 @@
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST52.PIN2".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST52.POT1".
       *    *** 作成したデータ
-      *    *** C:\Users\xxxx\OneDrive\ドキュメント\HTML\YouTube汎用\ 配下の
+      *    *** C:\Users\koko\OneDrive\ドキュメント\HTML\YouTube汎用\ 配下の
       *    *** TEST52.POT1 => indexイージーリスニング.html にコピーする
 
            03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
@@ -719,13 +719,13 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-      *    *** instagram.com/home
+      *    *** instagram.com
                    MOVE    "instagram"
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    '</a><br>'      TO      POT1-REC
+                   MOVE    '</a><br><br>' TO   POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
@@ -735,7 +735,7 @@
                    ADD     1           TO      WK-POT1-CNT
 
       *    *** twitter.com/home
-                   MOVE    "twitter"
+                   MOVE    "X"
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
@@ -788,12 +788,13 @@
                IF      PIN1-REC (2:2) =
                     "06" OR "11" OR "16" OR "21" OR "26" OR "31"
                  OR "36" OR "39" OR "44"
-                   MOVE    '</a><br>'  TO      POT1-REC
+                   MOVE    '</a><br><br>' TO   POT1-REC
                    MOVE    ZERO        TO      WK-LEFT-POS
                ELSE
                    MOVE    '</a>'      TO      POT1-REC
                END-IF
            END-IF
+
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
            .
