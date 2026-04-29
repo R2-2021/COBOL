@@ -58,7 +58,7 @@
 
       *    *** NETFLIX
        01  TBL-AREA5.
-           03  TBL01-AREA      OCCURS 300
+           03  TBL01-AREA      OCCURS 1000
                                ASCENDING KEY IS TBL01-NAME
                                INDEXED BY TBL01-IDX.
              05  TBL01-NAME    PIC  X(100) VALUE HIGH-VALUE.
@@ -173,7 +173,7 @@
        S022-10.
 
            ADD     1           TO      K1
-           IF      K1          >       300
+           IF      K1          >       1000
                    DISPLAY WK-PGM-NAME " TBL01 OVER K1=" K1
                    STOP    RUN
            END-IF

@@ -56,7 +56,8 @@
        FILE                    SECTION.
 
        FD  PRM1-F
-           LABEL RECORDS ARE STANDARD.
+           LABEL RECORDS ARE STANDARD
+           RECORD VARYING DEPENDING ON WK-PRM1-LEN.
        01  PRM1-REC.
              05  FILLER        PIC  X(128).
 
@@ -128,6 +129,7 @@
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN2-EOF     PIC  X(001) VALUE LOW-VALUE.
 
+           03  WK-PRM1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-LEN     BINARY-LONG SYNC VALUE 10000.
            03  WK-PIN2-LENX    BINARY-LONG SYNC VALUE 10000.
@@ -314,6 +316,11 @@
            03  WK-MID1-A4Y     PIC  X(300) VALUE SPACE.
            03  WK-HAI-A4Y      PIC  X(300) VALUE SPACE.
 
+           03  WK-MID1         PIC  X(016) VALUE SPACE.
+           03  WK-MID2         PIC  X(016) VALUE SPACE.
+           03  WK-MID3         PIC  X(016) VALUE SPACE.
+           03  WK-Z4           PIC  Z9     VALUE ZERO.
+
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
@@ -411,8 +418,8 @@
              05                PIC  X(010) VALUE "23,158,120".
              05                PIC  X(010) VALUE "24,158,115".
              05                PIC  X(010) VALUE "25,146,110".
-      *    *** 標準的な値
              05                PIC  X(010) VALUE "26,146,106".
+      *    *** 標準的な値
              05                PIC  X(010) VALUE "27,135,102".
              05                PIC  X(010) VALUE "28,135,098".
              05                PIC  X(010) VALUE "29,126,095".
@@ -443,8 +450,8 @@
              05                PIC  X(010) VALUE "23,230,082".
              05                PIC  X(010) VALUE "24,230,079".
              05                PIC  X(010) VALUE "25,213,076".
-      *    *** 標準的な値
              05                PIC  X(010) VALUE "26,213,073".
+      *    *** 標準的な値
              05                PIC  X(010) VALUE "27,197,070".
              05                PIC  X(010) VALUE "28,197,067".
              05                PIC  X(010) VALUE "29,184,065".
@@ -537,6 +544,11 @@
            03  S               BINARY-LONG SYNC VALUE ZERO.
            03  T               BINARY-LONG SYNC VALUE ZERO.
            03  U               BINARY-LONG SYNC VALUE ZERO.
+           03  Z               BINARY-LONG SYNC VALUE ZERO.
+           03  Z1              BINARY-LONG SYNC VALUE ZERO.
+           03  Z2              BINARY-LONG SYNC VALUE ZERO.
+           03  Z3              BINARY-LONG SYNC VALUE ZERO.
+           03  Z4              BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
 
@@ -813,9 +825,12 @@
                    READ    PRM1-F
 
                    IF      WK-PRM1-STATUS =    ZERO
+                           MOVE    ","         TO        
+                                   PRM1-REC (WK-PRM1-LEN + 1:1)
                            ADD     1           TO        WK-PRM1-CNT
                            UNSTRING PRM1-REC
-                               DELIMITED BY "," OR  "=" OR SPACE
+      *                         DELIMITED BY "," OR  "=" OR SPACE
+                               DELIMITED BY "," OR  "="
                                INTO
                                WK-PRM01 COUNT P01-L
                                WK-PRM02 COUNT P02-L
@@ -859,6 +874,12 @@
       *                             PERFORM S028-10  THRU    S028-EX
                                WHEN "MID"
                                    PERFORM S030-10  THRU    S030-EX
+                               WHEN "MID1"
+                                   PERFORM S031-10  THRU    S031-EX
+                               WHEN "MID2"
+                                   PERFORM S031-10  THRU    S031-EX
+                               WHEN "MID3"
+                                   PERFORM S031-10  THRU    S031-EX
                                WHEN OTHER
                                    CONTINUE
                            END-EVALUATE
@@ -1075,6 +1096,7 @@
 
            MOVE    1           TO      N
            MOVE    WK-TIT      TO      WK-TIT1-TIT
+
       *    *** C1は繰り返し列数
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL I > C1
@@ -1178,14 +1200,17 @@
                    END-IF
            END-PERFORM
 
+           COMPUTE Z = ( PRM2-GYOU / 3 ) - 16 
+           MOVE    Z           TO      Z1
+
            IF      SW-MID      =       "Y"
                PERFORM VARYING K FROM 1 BY 1
-                   UNTIL   K > R + 4
+                   UNTIL   K > PRM2-GYOU
                    EVALUATE TRUE
 
-                     WHEN K = 10
+                     WHEN K = Z1
                        MOVE    "CHANGE"    TO      WDE07-ID
-                       MOVE    "LISTID"    TO      WDE07-ASCII
+                       MOVE    WK-MID1     TO      WDE07-ASCII
                        CALL    "DECODE07"  USING   WDE07-DECODE07-AREA
                        PERFORM VARYING T FROM 1 BY 1
                            UNTIL T > 16
@@ -1193,10 +1218,23 @@
                            ADD     1           TO      WK-POT1-CNT
                        END-PERFORM
                        ADD     15          TO      K
+                       COMPUTE Z2 = K + Z
 
-                     WHEN K = 30
+                     WHEN K = Z2
                        MOVE    "CHANGE"    TO      WDE07-ID
-                       MOVE    WK-LISTID   TO      WDE07-ASCII
+                       MOVE    WK-MID2     TO      WDE07-ASCII
+                       CALL    "DECODE07"  USING   WDE07-DECODE07-AREA
+                       PERFORM VARYING T FROM 1 BY 1
+                           UNTIL T > 16
+                           WRITE   POT1-REC    FROM    WDE07-LINE (T)
+                           ADD     1           TO      WK-POT1-CNT
+                       END-PERFORM
+                       ADD     15          TO      K
+                       COMPUTE Z3 = K + Z
+
+                     WHEN K = Z3
+                       MOVE    "CHANGE"    TO      WDE07-ID
+                       MOVE    WK-MID3     TO      WDE07-ASCII
                        CALL    "DECODE07"  USING   WDE07-DECODE07-AREA
                        PERFORM VARYING T FROM 1 BY 1
                            UNTIL T > 16
@@ -2139,6 +2177,34 @@
        S030-EX.
            EXIT.
 
+      *    *** MID1=,MID2=,MID3=
+       S031-10.
+
+           COMPUTE Z4 = PRM2-MOJISU / 17
+           MOVE    Z4          TO      WK-Z4
+           IF      P02-L       >       Z4
+                   DISPLAY WK-PGM-NAME " PRM1-F MID1=N PARA ERROR "
+                           PRM1-REC
+                   DISPLAY WK-PGM-NAME 
+                        " MID=N (N=1,2,3)"
+                        " 最大" WK-Z4 
+                        "バイト（英数字、漢字不可）で指定"
+                        " P02-L=" P02-L
+                   STOP    RUN
+           END-IF
+
+           EVALUATE TRUE
+               WHEN WK-PRM01 = "MID1"
+                   MOVE    WK-PRM02    TO      WK-MID1
+               WHEN WK-PRM01 = "MID2"
+                   MOVE    WK-PRM02    TO      WK-MID2
+               WHEN WK-PRM01 = "MID3"
+                   MOVE    WK-PRM02    TO      WK-MID3
+           END-EVALUATE
+           .
+       S031-EX.
+           EXIT.
+
       *    *** READ PIN1 OR PIN2
        S100-10.
 
@@ -2983,14 +3049,9 @@
            ADD     1           TO      WK-PAGE
            MOVE    WK-PAGE     TO      WK-TIT1-PAGE
            MOVE    SPACE       TO      POT1-REC
-           IF      PRM2-MOJISU <       105
-                   COMPUTE U = PRM2-MOJISU - 89
-           ELSE
-                   COMPUTE U = C - (( C - 88 ) / 2 ) - 89
-           END-IF
+           COMPUTE U = ( PRM2-MOJISU - 88 ) / 2
 
            IF      SW-A4TATE   =       "1"
-
       *             MOVE    WK-TIT1     TO      WK-TIT1-A4T-1
       *             WRITE   POT1-REC    FROM    WK-TIT1-A4T
       *    *** ヘッダー１行目 リスト中央に出力
@@ -3040,14 +3101,10 @@
                    ADD     1           TO      WK-POT1-CNT
                                                L4
                    IF      SW-KAIGYO   =       "2"
-                        IF      K          =         R
-                                CONTINUE
-                        ELSE
-                                MOVE    SPACE     TO      POT1-REC
-                                WRITE   POT1-REC
-                                ADD     1         TO      WK-POT1-CNT
-                                                          L4
-                        END-IF
+                            MOVE    SPACE     TO      POT1-REC
+                            WRITE   POT1-REC
+                            ADD     1         TO      WK-POT1-CNT
+                                                      L4
                    ELSE
                             CONTINUE
                    END-IF

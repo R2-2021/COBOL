@@ -6,6 +6,8 @@ F-OT=FILEITEM.POT1,MODE=OUTPUT
 
 TITLE=＊＊＊　テスト　＊＊＊
 
+MID=Y
+
 LISTID=FILEITEM-Y
 
 KEY=1,POS=12,LEN=4
@@ -59,13 +61,13 @@ DT=06,POS=32,LEN=20,TYPE=CH,SUM=N,TITLE=声優,HEN=ZK
 
 *** KEY WORD:TITLE=,DT=,F-IN=,F-OT=,LISTID=,KEY=,KEYMID= 指定順は任意
 
-*** TITLE=帳票タイトル指定、４０文字まで
+*** TITLE=帳票タイトル指定、６０文字まで
     文字列指定の所に、半角スペース、＝、，は指定不可 以下の文字列指定の所も同様
 
 *** DT=  でプリントデータ項目指定する　２０項目まで指定可
 ***    DT=NNのNNは1-20の範囲で指定
-***    POS= 項目開始位置　1-65536の範囲で指定
-***    LEN= 長さ　ゾーンタイプ１１まで、パック６まで、CHは４０まで,
+***    POS= 項目開始位置　1-32760の範囲で指定
+***    LEN= 長さ　ゾーンタイプ１１まで、パック６まで、CHは８０まで,
            HEは２０まで、C1,C2,C3,CTは９まで桁落ちした時エラーになる
 ***    TYPE=CH等、出力文字タイプ指定
 ***        CH:英数字、漢字
@@ -103,7 +105,12 @@ DT=06,POS=32,LEN=20,TYPE=CH,SUM=N,TITLE=声優,HEN=ZK
 ***       MODE=OUTPUT,O,EXTEND,E を指定　指定無はOUTPUTで書き込み
 ***       EXTEND は追加で書き込み 出力帳票ファイル１ファイルにしたい時指定
 
-*** LISTID= で帳票左上のＩＤ指定 ２５文字まで
+*** MID=YかNを指定、１頁目にMID1=、MID2=、MID3=内容を出力する
+*** MID1=XXXXXXXX 8文字まで指定可
+*** MID2=YYYYYYYY 8文字まで指定可
+*** MID3=ZZZZZZZZ 8文字まで指定可
+
+*** LISTID= で帳票左上のＩＤ指定 ６０文字まで
 
 *** KEY= で集計キーを指定
 ***       KEY=1-3で指定可

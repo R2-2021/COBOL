@@ -207,7 +207,7 @@
 
       *    *** INCLUDE 用
        01  TBL-AREA.
-           03  TBL01-AREA      OCCURS 10.
+           03  TBL01-AREA      OCCURS 100.
              05  TBL01-CNT     BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-POS     BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-LEN     BINARY-LONG SYNC VALUE ZERO.
@@ -219,7 +219,7 @@
                07              PIC X(022) VALUE ZERO.
 
       *    *** OMIT 用
-           03  TBL02-AREA      OCCURS 10.
+           03  TBL02-AREA      OCCURS 100.
              05  TBL02-CNT     BINARY-LONG SYNC VALUE ZERO.
              05  TBL02-POS     BINARY-LONG SYNC VALUE ZERO.
              05  TBL02-LEN     BINARY-LONG SYNC VALUE ZERO.
@@ -1344,7 +1344,44 @@
        S022-10.
 
            IF      WK-PRM1DT02(1:1) = "1" OR "2" OR "3"
-                   CONTINUE
+                   EVALUATE TRUE
+                       WHEN WK-PRM1DT02(1:1) = "1"
+                           IF      WK-PRM (1:1) = "A" OR "D"
+                                   CONTINUE
+                           ELSE
+                                   DISPLAY WK-PGM-NAME 
+                                           " PRM1-F KEY= PARA ERROR="
+                                           PRM1-REC
+                                   DISPLAY WK-PGM-NAME 
+                                          " SORT=A OR D 先に指定"
+                                   STOP    RUN
+                           END-IF
+                       WHEN WK-PRM1DT02(1:1) = "2"
+                           IF      WK-PRM (2:1) = "A" OR "D"
+                                   CONTINUE
+                           ELSE
+                                   DISPLAY WK-PGM-NAME 
+                                           " PRM1-F KEY= PARA ERROR="
+                                           PRM1-REC
+                                   DISPLAY WK-PGM-NAME 
+                                          " SORT=AA,AD,DA,DD" 
+                                          " いずれか先に指定"
+                                   STOP    RUN
+                           END-IF
+                       WHEN OTHER
+                           IF      WK-PRM (3:1) = "A" OR "D"
+                                   CONTINUE
+                           ELSE
+                                   DISPLAY WK-PGM-NAME 
+                                           " PRM1-F KEY= PARA ERROR="
+                                           PRM1-REC
+                                   DISPLAY WK-PGM-NAME 
+                                          " SORT=AAA,AAD,ADA,ADD,"
+                                          "DAA,DAD,DDA,DDD"
+                                          " いずれか先に指定"
+                                   STOP    RUN
+                           END-IF
+                   END-EVALUATE
            ELSE
                    DISPLAY WK-PGM-NAME " PRM1-F KEY= PARA ERROR="
                            PRM1-REC
@@ -1541,7 +1578,7 @@
        S026-10.
 
            IF      FUNCTION NUMVAL(WK-PRM1DT02) >= 0 AND 
-                   FUNCTION NUMVAL(WK-PRM1DT02) <= 9
+                   FUNCTION NUMVAL(WK-PRM1DT02) <= 99
                    ADD     FUNCTION NUMVAL(WK-PRM1DT02) 1 GIVING I
                    ADD     1           TO      TBL01-CNT (I)
                    IF      TBL01-CNT(I) >      1
@@ -1549,7 +1586,7 @@
                                    " PRM1-F INCLUDE= PARA ERROR="
                                    PRM1-REC
                            DISPLAY WK-PGM-NAME
-                                   " INCLUDE=N N同じ値 違う値 0-9で指定"
+                                  " INCLUDE=N N同じ値 違う値 0-99で指定"
                            STOP    RUN
                    ELSE
                            CONTINUE
@@ -1557,7 +1594,7 @@
            ELSE
                    DISPLAY WK-PGM-NAME " PRM1-F INCLUDE= PARA ERROR="
                            PRM1-REC
-                   DISPLAY WK-PGM-NAME " INCLUDE= 0-9で指定"
+                   DISPLAY WK-PGM-NAME " INCLUDE= 0-99で指定"
                    STOP    RUN
            END-IF
 
@@ -1678,7 +1715,7 @@
        S027-10.
 
            IF      FUNCTION NUMVAL(WK-PRM1DT02) >= 0 AND 
-                   FUNCTION NUMVAL(WK-PRM1DT02) <= 9
+                   FUNCTION NUMVAL(WK-PRM1DT02) <= 99
                    ADD     FUNCTION NUMVAL(WK-PRM1DT02) 1 GIVING O
                    ADD     1           TO      TBL02-CNT (O)
                    IF      TBL02-CNT(O) >      1
@@ -1686,7 +1723,7 @@
                                    " PRM1-F OMIT= PARA ERROR="
                                    PRM1-REC
                            DISPLAY WK-PGM-NAME
-                                   " OMIT=N N同じ値 違う値 0-9で指定"
+                                   " OMIT=N N同じ値 違う値 0-99で指定"
                            STOP    RUN
                    ELSE
                            CONTINUE
@@ -1694,7 +1731,7 @@
            ELSE
                    DISPLAY WK-PGM-NAME " PRM1-F OMIT= PARA ERROR="
                            PRM1-REC
-                   DISPLAY WK-PGM-NAME " OMIT= 0-9で指定"
+                   DISPLAY WK-PGM-NAME " OMIT= 0-99で指定"
                    STOP    RUN
            END-IF
 
