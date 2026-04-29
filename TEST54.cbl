@@ -145,6 +145,10 @@
            03  WK-SITE-MAX     BINARY-LONG SYNC VALUE ZERO.
            03  WK-JYAPARI-CNT  BINARY-LONG SYNC VALUE ZERO.
            03  WK-FILE         PIC  X(003) VALUE SPACE.
+           03  WK-JYUNI.
+             05                PIC  X(006) VALUE X"E9A086E4BD8D".
+             05                PIC  X(003) VALUE " : ".
+             05  WK-JYUNI1     PIC  X(003) VALUE SPACE.
       *    *** 日本の女優一覧2000年代生まれ（誕生日順）
            03  WK-2000JYOYU. 
         05 PIC X(020) VALUE X"E697A5E69CACE381AEE5A5B3E584AAE4B880E8A6".
@@ -1005,8 +1009,13 @@
                                MOVE    '<p class="welcome2">'
                                                TO      POT1-REC
                              ELSE
-                               MOVE    '<p class="welcome6">'
-                                               TO      POT1-REC
+                               IF      WK-WIDTH     =       5
+                                 MOVE    '<p class="welcome5">'
+                                                 TO      POT1-REC
+                               ELSE
+                                 MOVE    '<p class="welcome6">'
+                                                 TO      POT1-REC
+                               END-IF
                              END-IF
                            END-IF
                            WRITE   POT1-REC
@@ -1028,8 +1037,6 @@
                                             OR "028"
       *    *** 29=DMM 検索
                                             OR "029"
-      *    *** 32=Youtube 動画サムネイル拡大
-                                            OR "032"
       *    *** 34=DMM 動画サムネイル拡大
       *                                      OR "034"
       *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
@@ -1049,19 +1056,22 @@
       *    *** 47=中国系アーティスト一覧
       *    *** 48=中国系アーティスト２一覧
       *    *** 49=中国系アーティスト３一覧
+      *    *** 64=音韓、女性韓国アイドルグループ
                                   OR "035" OR "036" OR "037" OR "038"
                                   OR "039" OR "040" OR "041" OR "042"
                                   OR "043" OR "044" OR "045" OR "046"
-                                  OR "047" OR "048" OR "049"
+                                  OR "047" OR "048" OR "049" OR "064"
                            MOVE    '<p class="welcome6">'
                                        TO      POT1-REC
       *    *** 56=neko
                        WHEN WK-FILE     =      "056"
+      *    *** 32=Youtube 動画サムネイル拡大
+                                            OR "032"
                            IF      WK-WIDTH     =       2
                                    MOVE    '<p class="welcome2">'
                                              TO      POT1-REC
                            ELSE
-                                   MOVE    '<p class="welcome6">'
+                                   MOVE    '<p class="welcome5">'
                                              TO      POT1-REC
                            END-IF
 
@@ -1237,6 +1247,9 @@
                   OR  ( WK-TITLE-A (1:19) = "https://missav.com/"
                     AND SW-MISSAV = "Y" )
       *    *** MissAV
+                  OR  ( WK-TITLE-A (1:22) = "https://missav123.com/"
+                    AND SW-MISSAV = "Y" )
+      *    *** MissAV
                   OR  ( WK-TITLE-A (1:18) = "https://missav.ws/"
                     AND SW-MISSAV = "Y" )
       *    *** MissAV
@@ -1391,6 +1404,8 @@
                                     OR "034"
       *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
                                     OR "062"
+      *    *** 64=音韓、女性韓国アイドルグループ
+                                    OR "064"
                    IF      WK-TITLE-A  =       SPACE
                            CONTINUE
                    ELSE
@@ -2096,6 +2111,42 @@
                END-IF
            END-IF
 
+      *    *** FILE=64 音韓、女性韓国アイドルグループ,WK-TITLE-A=IMG
+      *    *** 
+           IF      WK-FILE     =       "064"
+
+      *    *** WK-ITEM3 順位
+                   MOVE    WK-ITEM3    TO      WK-JYUNI1
+                   MOVE    WK-JYUNI    TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '<br><br>'
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '<img src="'
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    WK-TITLE-A  TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '" loading="lazy" alt="">'
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+                   MOVE    '<br><br>'
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+                   GO  TO  S100-21-10
+           END-IF
+
       *    *** IMG データ声優は//YouTube声優/image\から、全部画像が登録
       *    *** されている事としてhtml作成する
       *    *** 女優データは//YouTube汎用/image から
@@ -2393,8 +2444,7 @@
 
       *    *** x
 
-           MOVE
-         "<a href='https://x.com/search?q="
+           MOVE    "<a href='https://x.com/search?q="
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -2434,8 +2484,7 @@
       *    *** 上の段
 
       *    *** google
-           MOVE
-                   "<a href='https://www.google.co.jp/search?q="
+           MOVE    "<a href='https://www.google.co.jp/search?q="
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -2451,8 +2500,7 @@
            ADD     1           TO      WK-POT1-CNT
 
       *    *** wiki
-           MOVE
-                   "<a href='https://ja.wikipedia.org/wiki/"
+           MOVE    "<a href='https://ja.wikipedia.org/wiki/"
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -2623,6 +2671,12 @@
                            WRITE   POT1-REC
                            ADD     1           TO      WK-POT1-CNT
                    END-IF
+           END-IF
+
+      *    *** FILE=64 音韓、女性韓国アイドルグループ,WK-TITLE-A=IMG
+      *    *** 
+           IF      WK-FILE     =       "064"
+                   GO  TO  S100-30
            END-IF
 
            .
@@ -3215,8 +3269,7 @@
 
       *    *** x
 
-           MOVE
-         "<a href='https://x.com/search?q="
+           MOVE    "<a href='https://x.com/search?q="
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -3254,8 +3307,7 @@
            ADD     1           TO      WK-POT1-CNT
 
       *    *** google
-           MOVE
-                   "<a href='https://www.google.co.jp/search?q="
+           MOVE    "<a href='https://www.google.co.jp/search?q="
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
@@ -3271,8 +3323,7 @@
            ADD     1           TO      WK-POT1-CNT
 
       *    *** wiki
-           MOVE
-                   "<a href='https://ja.wikipedia.org/wiki/"
+           MOVE    "<a href='https://ja.wikipedia.org/wiki/"
                                TO      POT1-REC
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT

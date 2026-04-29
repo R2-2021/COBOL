@@ -123,8 +123,9 @@
 
        01  SW-AREA.
            03  SW-YES          PIC  X(001) VALUE "N".
-           03  SW-HIRAGANA     PIC  X(001) VALUE "N".
            03  SW-END          PIC  X(001) VALUE "N".
+           03  SW-HIRAGANA     PIC  X(001) VALUE "N".
+           03  SW-PER          PIC  X(001) VALUE "N".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -592,6 +593,12 @@
                    DISPLAY WK-FILE-NAME (63)
                    DISPLAY " "
 
+                   DISPLAY "064 TEST53_girl_kr2.PIN1"
+                   MOVE    "   音韓、女性韓国アイドルグループ"
+                               TO      WK-FILE-NAME (64)
+                   DISPLAY WK-FILE-NAME (64)
+                   DISPLAY " "
+
                    ACCEPT  WK-FILE
                    IF      WK-FILE     =  
                              "001" OR "002" OR "003" OR "004" OR "005"
@@ -606,13 +613,13 @@
                           OR "046" OR "047" OR "048" OR "049" OR "050" 
                           OR "051" OR "052" OR "053" OR "054" OR "055" 
                           OR "056" OR "057" OR "058" OR "059" OR "060" 
-                          OR "061" OR "XXX" OR "063" 
+                          OR "061" OR "XXX" OR "063" OR "064"
                            DISPLAY "FILE-NAME="
                            DISPLAY WK-FILE-NAME (WK-FILE-9)
                            DISPLAY " FILE NAME OK ? Y(y)/N"
                            ACCEPT  SW-YES
                    ELSE
-                           DISPLAY " FILE NAME 001-063 INPUT"
+                           DISPLAY " FILE NAME 001-064 INPUT"
                    END-IF
            END-PERFORM
 
@@ -857,6 +864,9 @@
                                        TO     WK-PIN1-F-NAME
                WHEN "063"
                    MOVE    "TEST53_SHOWA.idol.PIN1"
+                                       TO     WK-PIN1-F-NAME
+               WHEN "064"
+                   MOVE    "TEST53_girl_kr2.PIN1"
                                        TO     WK-PIN1-F-NAME
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-FILE ERROR WK-FILE=" WK-FILE
@@ -1108,6 +1118,11 @@
 
       *    *** ジャパリ
                WHEN PIN1-REC (1:12) = X"E382B8E383A3E38391E383AA"
+                   IF      SW-PER      =       "N"
+                           DISPLAY WK-PGM-NAME 
+                                   " % タイトルレコード無しエラー"
+                           STOP    RUN
+                   END-IF
                    MOVE    SPACE       TO      POT1-REC
                    MOVE    "#"         TO      POT1-REC (1:1)
                    IF      PIN1-REC (13:10) =  "#aduxvi-br"
@@ -1132,6 +1147,7 @@
 
       *    *** 汎用タイトル
                WHEN PIN1-REC (1:1) = "%"
+                   MOVE    "Y"            TO      SW-PER
                    MOVE    PIN1-REC (1:1) TO      POT1-REC (1:1)
       *    *** テーブル横方向表示数
                    MOVE    "08"           TO      POT1-REC (2:2)
@@ -1187,10 +1203,12 @@
       *    *** 48=中国系アーティスト２一覧
       *    *** 49=中国系アーティスト３一覧
       *    *** 50=MissAV
+      *    *** 64=音韓、女性韓国アイドルグループ
                                   OR "035" OR "036" OR "037" OR "038"
                                   OR "039" OR "040" OR "041" OR "042"
                                   OR "043" OR "044" OR "045" OR "046"
                                   OR "047" OR "048" OR "049" OR "050"
+                                  OR "064"
                            MOVE    "06"        TO      POT1-REC (2:2)
       *    *** 32=Youtube 動画サムネイル拡大
       *    *** 34=DMM 動画サムネイル拡大

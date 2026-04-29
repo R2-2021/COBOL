@@ -62,7 +62,7 @@
            03  WK-TITLE2       PIC  X(020) VALUE SPACE.
            03  WK-SITE         PIC  X(100) VALUE SPACE.
 
-           03  WK-CNT          PIC  ZZZ9   VALUE SPACE.
+           03  WK-CNT          PIC  ZZZ,ZZ9 VALUE SPACE.
 
            03  WK-TIT1.
              05                PIC  X(006) VALUE "ÅñÅñÅñ".
@@ -106,26 +106,26 @@
       *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇPÇXÇV  ècéûÇPÇRÇT
       *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇO    ècéûÇPÇOÇQ
 
-           03  WK-YOKO-MOJI      BINARY-LONG SYNC VALUE 197
-           03  WK-YOKO-GYO       BINARY-LONG SYNC VALUE  70.
-           03  WK-TATE-MOJI      BINARY-LONG SYNC VALUE 135.
-           03  WK-TATE-GYO       BINARY-LONG SYNC VALUE 102.
-           03  WK-GYO-4          BINARY-LONG SYNC VALUE ZERO.
-           03  WK-REMAINDER      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-YOKO-MOJI    BINARY-LONG SYNC VALUE 197
+           03  WK-YOKO-GYO     BINARY-LONG SYNC VALUE  70.
+           03  WK-TATE-MOJI    BINARY-LONG SYNC VALUE 135.
+           03  WK-TATE-GYO     BINARY-LONG SYNC VALUE 102.
+           03  WK-GYO-4        BINARY-LONG SYNC VALUE ZERO.
+           03  WK-REMAINDER    BINARY-LONG SYNC VALUE ZERO.
 
       *    *** MAX=135,A4ècóp 
       *    *** ç≈å„ÉXÉyÅ[ÉXÇ≈Ç‡ÅA136à»è„ÇÕâ¸çsÇµÇƒÇµÇ‹Ç§
       *    *** 34*3=102
-           03  WK-MID1-A4T  PIC  X(102) VALUE ALL
+           03  WK-MID1-A4T     PIC  X(102) VALUE ALL
               " SEQ   îN ãG É^ÉCÉgÉã             ".
-           03  WK-HAI-A4T   PIC  X(102) VALUE ALL
+           03  WK-HAI-A4T      PIC  X(102) VALUE ALL
               "--------------------------------- ".
 
       *    *** MAX=197,A4â°óp
       *    *** 34*5=170
-           03  WK-MID1-A4Y  PIC  X(170) VALUE ALL
+           03  WK-MID1-A4Y     PIC  X(170) VALUE ALL
               " SEQ   îN ãG É^ÉCÉgÉã             ".
-           03  WK-HAI-A4Y   PIC  X(170) VALUE ALL
+           03  WK-HAI-A4Y      PIC  X(170) VALUE ALL
               "--------------------------------- ".
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
@@ -424,8 +424,8 @@
            MOVE    "*** "      TO      PR-LINE (J) (P1:4)
            MOVE    WK-PIN1-CNT TO      WK-CNT
            COMPUTE P1 = P1 + 4
-           MOVE    WK-CNT      TO      PR-LINE (J) (P1:4)
-           COMPUTE P1 = P1 + 4
+           MOVE    WK-CNT      TO      PR-LINE (J) (P1:7)
+           COMPUTE P1 = P1 + 7
            MOVE    " åè ***"   TO      PR-LINE (J) (P1:7)
 
       *    *** PRINT TBL WRITE

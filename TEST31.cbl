@@ -61,7 +61,7 @@
            03  WK-TITLE2       PIC  X(022) VALUE SPACE.
            03  WK-SITE         PIC  X(100) VALUE SPACE.
 
-           03  WK-CNT          PIC  ZZZ9   VALUE SPACE.
+           03  WK-CNT          PIC  -ZZZ,ZZ9 VALUE SPACE.
 
            03  WK-TIT1.
              05                PIC  X(006) VALUE "ÅñÅñÅñ".
@@ -105,25 +105,25 @@
       *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇPÇXÇV  ècéûÇPÇRÇT
       *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇO    ècéûÇPÇOÇQ
 
-           03  WK-YOKO-MOJI      BINARY-LONG SYNC VALUE 197
-           03  WK-YOKO-GYO       BINARY-LONG SYNC VALUE  70.
-           03  WK-TATE-MOJI      BINARY-LONG SYNC VALUE 135.
-           03  WK-TATE-GYO       BINARY-LONG SYNC VALUE 102.
-           03  WK-GYO-4          BINARY-LONG SYNC VALUE ZERO.
-           03  WK-REMAINDER      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-YOKO-MOJI    BINARY-LONG SYNC VALUE 197
+           03  WK-YOKO-GYO     BINARY-LONG SYNC VALUE  70.
+           03  WK-TATE-MOJI    BINARY-LONG SYNC VALUE 135.
+           03  WK-TATE-GYO     BINARY-LONG SYNC VALUE 102.
+           03  WK-GYO-4        BINARY-LONG SYNC VALUE ZERO.
+           03  WK-REMAINDER    BINARY-LONG SYNC VALUE ZERO.
 
       *    *** MAX=135,A4ècóp
-      *    *** 35*3=105
+      *    *** 39*3=117
            03  WK-MID1-A4T.
-             05                PIC  X(105) VALUE ALL
-                 " SEQ    îN ãG É^ÉCÉgÉã             ".
+             05                PIC  X(117) VALUE ALL
+                 "     SEQ    îN ãG É^ÉCÉgÉã             ".
       *           1234**7890*23*56789012345678901234*
 
       *    *** MAX=197,A4â°óp
-      *    *** 35*5=175
+      *    *** 39*5=195
            03  WK-MID1-A4Y.
-             05                PIC  X(175) VALUE ALL
-                 " SEQ    îN ãG É^ÉCÉgÉã             ".
+             05                PIC  X(195) VALUE ALL
+                 "     SEQ    îN ãG É^ÉCÉgÉã             ".
 
       *    *** âÊñ çÄñ⁄
            03  WK-KEI1         PIC  X(002) VALUE "Ñü".
@@ -140,12 +140,12 @@
 
            03  WK-KEI1-A4T.
              05                OCCURS 3.
-               07              PIC  X(034) VALUE ALL "Ñü".
+               07              PIC  X(038) VALUE ALL "Ñü".
                07              PIC  X(001) VALUE SPACE.
 
            03  WK-KEI1-A4Y.
              05                OCCURS 5.
-               07              PIC  X(034) VALUE ALL "Ñü".
+               07              PIC  X(038) VALUE ALL "Ñü".
                07              PIC  X(001) VALUE SPACE.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
@@ -153,18 +153,18 @@
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
 
        01  PRINT-AREA.
-           03  PR-LINE         OCCURS 50
-                               PIC  X(213) VALUE SPACE.
+           03  PR-LINE         OCCURS 102
+                               PIC  X(197) VALUE SPACE.
 
        01  CNS-AREA.
       *    *** PX ÇÃàÛéöà íu
            03  CNS-P1          BINARY-LONG SYNC VALUE 1.
-           03  CNS-P2          BINARY-LONG SYNC VALUE 7.
-           03  CNS-P3          BINARY-LONG SYNC VALUE 12.
-           03  CNS-P4          BINARY-LONG SYNC VALUE 15.
+           03  CNS-P2          BINARY-LONG SYNC VALUE 11.
+           03  CNS-P3          BINARY-LONG SYNC VALUE 16.
+           03  CNS-P4          BINARY-LONG SYNC VALUE 19.
 
       *    *** PX ÇÃåÖêî
-           03  CNS-P1-L        BINARY-LONG SYNC VALUE 4.
+           03  CNS-P1-L        BINARY-LONG SYNC VALUE 8.
            03  CNS-P2-L        BINARY-LONG SYNC VALUE 4.
            03  CNS-P3-L        BINARY-LONG SYNC VALUE 2.
            03  CNS-P4-L        BINARY-LONG SYNC VALUE 20.
@@ -194,8 +194,8 @@
        01  SW-AREA.
       *    *** "1" = A4èc,
       *    *** "0" = A4â°
-           03  SW-A4TATE       PIC  X(001) VALUE "1".
-      *     03  SW-A4TATE       PIC  X(001) VALUE "0".
+      *     03  SW-A4TATE       PIC  X(001) VALUE "1".
+           03  SW-A4TATE       PIC  X(001) VALUE "0".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -255,18 +255,12 @@
       *    *** äÑéZÇ≈è§ÇãÅÇﬂÅAè§ * CNS-L-SIZEÇãÅÇﬂÇÈ
                    COMPUTE C3 = WK-TATE-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** 49 = ( 102 - 4 ) / 2
-      *    *** - 4 ÇÕÉwÉbÉ_Å[ÅA/ 2 ÇÕñæç◊çséüÇÃårê¸ï™èúÇ≠
-      *             MOVE    49          TO      R
                    COMPUTE WK-GYO-4 = WK-TATE-GYO - 4
                    DIVIDE WK-GYO-4 BY 2 GIVING R 
                           REMAINDER WK-REMAINDER
            ELSE
                    COMPUTE C3 = WK-YOKO-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** 33 = ( 70 - 4 ) / 2
-      *    *** - 4 ÇÕÉwÉbÉ_Å[ÅA/ 2 ÇÕñæç◊çséüÇÃårê¸ï™èúÇ≠
-      *             MOVE    33          TO      R
                    COMPUTE WK-GYO-4 = WK-YOKO-GYO - 4
                    DIVIDE WK-GYO-4 BY 2 GIVING R 
                           REMAINDER WK-REMAINDER
@@ -428,12 +422,12 @@
       *    *** 0åèÇ≈Ç‡ÅAÇ`Çs  ÇdÇmÇcéûÅAåèêîèoóÕ
        S120-10.
 
-           COMPUTE PX = P1 + 6
+           COMPUTE PX = P1 + 10
            MOVE    "*** "      TO      PR-LINE (J) (PX:4)
            MOVE    WK-PIN1-CNT TO      WK-CNT
            COMPUTE PX = PX + 4
-           MOVE    WK-CNT      TO      PR-LINE (J) (PX:4)
-           COMPUTE PX = PX + 4
+           MOVE    WK-CNT      TO      PR-LINE (J) (PX:8)
+           COMPUTE PX = PX + 8
            MOVE    " åè ***"   TO      PR-LINE (J) (PX:7)
 
       *    *** PRINT TBL WRITE

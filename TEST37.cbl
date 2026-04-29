@@ -17,26 +17,23 @@
        FILE-CONTROL.
 
        SELECT PRM1-F           ASSIGN   WK-PRM1-F-NAME
-                               STATUS   WK-PRM1-STATUS
       *    *** PACKÅ@çÄñ⁄ÅABINARYçÄñ⁄Ç†ÇÈéûÅABINARY   SEQUENTIALÇ™ïKóv
            ORGANIZATION LINE   SEQUENTIAL.
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
       *     ORGANIZATION LINE   SEQUENTIAL.
            ORGANIZATION RECORD BINARY   SEQUENTIAL.
 
       *    *** PIN2 INDEXED FILE READ ? (INVALID ä‹Çﬁ)
       *    *** 100,000åèÅ@READÇÃèàóùéûä‘Å@         12.75ïb
       *    *** ÉuÉåÉCÉNéûÅ@1,087åèÅ@READÇÃèàóùéûä‘Å@6.83ïb
+      *    *** åªç›ñ¢égóp
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
-                               STATUS   WK-PIN2-STATUS
            ORGANIZATION INDEXED
            ACCESS RANDOM
            RECORD KEY PIN2-KEY.
 
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -46,14 +43,14 @@
            LABEL RECORDS ARE STANDARD.
        01  PRM1-REC.
              05  PRM1-A4TATE   PIC  X(001).
-             05  FILLER        PIC  X(001).
+             05                PIC  X(001).
              05  PRM1-MEISAI   PIC  X(001).
-             05  FILLER        PIC  X(001).
+             05                PIC  X(001).
              05  PRM1-KAIGYO   PIC  X(001).
-             05  FILLER        PIC  X(001).
+             05                PIC  X(001).
              05  PRM1-KAIGYO-BR PIC X(001).
-             05  FILLER        PIC  X(003).
-             05  FILLER        PIC  X(070).
+             05                PIC  X(003).
+             05                PIC  X(070).
 
        FD  PIN1-F
            LABEL RECORDS ARE STANDARD
@@ -70,9 +67,9 @@
            03  PIN1-PSU1       PIC S9(009) PACKED-DECIMAL.
            03  PIN1-K5         PIC  X(001).
            03  PIN1-DATA3      PIC  X(020).
-      *    *** BINARY   SEQUENTIALÇÃéûÅAFILLER,CRLFÇ‡íËã`ÇµÇƒ
+      *    *** BINARY   SEQUENTIALÇÃéûÅA      ,CRLFÇ‡íËã`ÇµÇƒ
       *    *** ÉåÉìÉOÉXçáÇÌÇπÇÈ
-           03  FILLER          PIC  X(027).
+           03                  PIC  X(027).
            03  PIN1-CRLF       PIC  X(002).
 
        FD  PIN2-F
@@ -84,7 +81,7 @@
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
-           03  FILLER          PIC  X(250).
+           03                  PIC  X(250).
 
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
@@ -97,11 +94,6 @@
       *    *** INDEX FILE
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST22.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST37.POT1".
-
-           03  WK-PRM1-STATUS       PIC  9(002) VALUE ZERO.
-           03  WK-PIN1-STATUS       PIC  9(002) VALUE ZERO.
-           03  WK-PIN2-STATUS       PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS       PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -160,30 +152,29 @@
            03  WK-PIN2-I4      PIC  X(1600) VALUE SPACE.
 
            03  WK-TIT1.
-             05  FILLER        PIC  X(040) VALUE
-      *    ***   <=            40åÖ                     =>
-                 "ÅñÅñÅñÅ@ê∫óDÅ@èWåvÅ@ÅñÅñÅñ".
-             05  FILLER        PIC  X(010) VALUE SPACE.
+             05                PIC  X(040) VALUE
+                 "ÅñÅñÅñ  ê∫óD  èWåv  ÅñÅñÅñ".
+             05                PIC  X(010) VALUE SPACE.
              05  WK-TIT1-YY    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE "/".
+             05                PIC  X(001) VALUE "/".
              05  WK-TIT1-MM    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE "/".
+             05                PIC  X(001) VALUE "/".
              05  WK-TIT1-DD    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(002) VALUE SPACE.
+             05                PIC  X(002) VALUE SPACE.
              05  WK-TIT1-HH    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE ":".
+             05                PIC  X(001) VALUE ":".
              05  WK-TIT1-MI    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(001) VALUE ":".
+             05                PIC  X(001) VALUE ":".
              05  WK-TIT1-SS    PIC  9(002) VALUE ZERO.
-             05  FILLER        PIC  X(002) VALUE SPACE.
+             05                PIC  X(002) VALUE SPACE.
              05  WK-TIT1-PAGE  PIC  ZZ,ZZ9 VALUE ZERO.
 
            03  WK-TIT1-A4T.
-             05  FILLER        PIC  X(040) VALUE "TEST37-T".
+             05                PIC  X(040) VALUE "TEST37-T".
              05  WK-TIT1-A4T-1 PIC  X(076) VALUE SPACE.
 
            03  WK-TIT1-A4Y.
-             05  FILLER        PIC  X(070) VALUE "TEST37-Y".
+             05                PIC  X(070) VALUE "TEST37-Y".
              05  WK-TIT1-A4Y-1 PIC  X(076) VALUE SPACE.
 
       *    *** àÛç¸ÉyÅ[ÉWê›íËÇ≈ÉyÅ[ÉWÇ†ÇΩÇËÇÃçsï∂éöêîÅAècçsêîÇ™
@@ -192,38 +183,41 @@
       *    *** àÛç¸ÉyÅ[ÉWê›íË
       *    *** îºäpÉtÉHÉìÉgÅ@ÇlÇrÉSÉVÉbÉN
       *    *** ëSäpÉtÉHÉìÉgÅ@ÇlÇrÉSÉVÉbÉN
-      *    *** ÉtÉHÉìÉgçÇÅ@ÇQÇUÇçÇçÅAÇVÅDÇRÇêÇî
+      *    *** ÉtÉHÉìÉgçÇ  ÇQÇVÇçÇçÅAÇVÅDÇUÇêÇî
       *    *** çsëóÇËÇOÅì
       *    *** ó]îíÅ@è„ÇPÇOÅAâ∫ÇPÇOÅAâEÇPÇOÅAç∂ÇPÇOÇçÇç
       *    *** 
-      *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇQÇPÇR  ècéûÇPÇSÇU
-      *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇP    ècéûÇPÇOÇS
+      *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇPÇXÇV  ècéûÇPÇRÇT
+      *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇO    ècéûÇPÇOÇQ
 
-      *    *** MAX=146,A4ècóp
+           03  WK-YOKO-MOJI    BINARY-LONG SYNC VALUE 197
+           03  WK-YOKO-GYO     BINARY-LONG SYNC VALUE  70.
+           03  WK-TATE-MOJI    BINARY-LONG SYNC VALUE 135.
+           03  WK-TATE-GYO     BINARY-LONG SYNC VALUE 102.
+           03  WK-GYO-4        BINARY-LONG SYNC VALUE ZERO.
+           03  WK-REMAINDER    BINARY-LONG SYNC VALUE ZERO.
+
+      *    *** MAX=135,A4ècóp
       *    *** 62*2=124
                  03  WK-MID1-A4T  PIC  X(124) VALUE ALL
-                                                     "       NO.   îN åé
-      -       "             ZSU             PSU     ê∫óDñº ".
+       "       NO.   îN åé             ZSU             PSU     ê∫óDñº ".
            03  WK-HAI-A4T   PIC  X(124) VALUE ALL
-                                         "------------------------------
-      -    "------------------------------- ".
+       "------------------------------------------------------------- ".
 
-      *    *** MAX=213,A4â°óp
+      *    *** MAX=197,A4â°óp
       *    *** 62*3=186
            03  WK-MID1-A4Y  PIC  X(186) VALUE ALL
-                                                     "       NO.   îN åé
-      -       "             ZSU             PSU     ê∫óDñº ".
+       "       NO.   îN åé             ZSU             PSU     ê∫óDñº ".
            03  WK-HAI-A4Y   PIC  X(186) VALUE ALL
-                                         "------------------------------
-      -    "------------------------------- ".
+       "------------------------------------------------------------- ".
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
 
        01  PRINT-AREA.
-           03  PR-LINE         OCCURS 101
-                               PIC  X(213) VALUE SPACE.
+           03  PR-LINE         OCCURS 102
+                               PIC  X(197) VALUE SPACE.
 
        01  KEY-AREA.
              05  KEY-OLD.
@@ -269,28 +263,28 @@
            03  P6              BINARY-LONG SYNC VALUE ZERO.
            03  PX              BINARY-LONG SYNC VALUE ZERO.
 
-      *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇQÇPÇR  ècéûÇPÇSÇU
-      *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇP    ècéûÇPÇOÇS
            03  R               BINARY-LONG SYNC VALUE ZERO.
 
+
+      *    *** SW-ì‡óeÇÕTEST37.PRM1 ÇÊÇËÉZÉbÉgÇ∑ÇÈ
        01  SW-AREA.
 
       *    *** "1" = A4èc,
       *    *** "0" = A4â°
-           03  SW-A4TATE       PIC  X(001) VALUE "1".
+           03  SW-A4TATE       PIC  X(001) VALUE "X".
 
       *    *** "0" = ñæç◊ñ≥Çµ
       *    *** "1" = ñæç◊èoóÕ
-           03  SW-MEISAI       PIC  X(001) VALUE "1".
+           03  SW-MEISAI       PIC  X(001) VALUE "X".
 
       *    *** ñæç◊â¸çsêîÅAñæç◊ñ≥ÇµÇÃéûÅAÅhÇPÅhÇÃï˚Ç™ó«Ç¢
       *    *** "1" = 1çsÅ@â¸çs
       *    *** "2" = 2çsÅ@â¸çs
-           03  SW-KAIGYO       PIC  X(001) VALUE "1".
+           03  SW-KAIGYO       PIC  X(001) VALUE "X".
 
       *    *** "0" = ÉuÉåÉCÉNéûÇÃâ¸çsñ≥Çµ
       *    *** "1" = ÉuÉåÉCÉNéûÇÃâ¸çsóLÇË
-           03  SW-KAIGYO-BR    PIC  X(001) VALUE "1".
+           03  SW-KAIGYO-BR    PIC  X(001) VALUE "X".
 
            03  SW-ERROR        PIC  X(001) VALUE "N".
 
@@ -357,23 +351,14 @@
            MOVE    WDT-DATE-SS TO      WK-TIT1-SS
 
            OPEN    INPUT       PRM1-F
-           IF      WK-PRM1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PRM1-F OPEN ERROR STATUS="
-                           WK-PRM1-STATUS
-                   STOP    RUN
-           END-IF
 
            READ    PRM1-F
-               AT  END
-                   CONTINUE
-               NOT  AT  END
+               AT END
+                   DISPLAY WK-PGM-NAME " PRM1-F READ ZEROåè ERROR"
+                   STOP    RUN
+               NOT AT END
                    CONTINUE
            END-READ
-           IF      WK-PRM1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PRM1-F READ ERROR STATUS="
-                           WK-PRM1-STATUS
-                   STOP    RUN
-           END-IF
 
            MOVE    "N"         TO      SW-ERROR
            IF      PRM1-A4TATE =       "0" OR "1"
@@ -404,25 +389,8 @@
            END-IF
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   INPUT       PIN2-F
+                   OUTPUT      POT1-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -434,26 +402,24 @@
 
            IF      SW-A4TATE   =       "1"
       *    *** äÑéZÇ≈è§ÇãÅÇﬂÅAè§ * CNS-L-SIZEÇãÅÇﬂÇÈ
-                   COMPUTE C = 146 / CNS-L-SIZE
+                   COMPUTE C = WK-TATE-MOJI / CNS-L-SIZE
                    COMPUTE C = C   * CNS-L-SIZE
-      *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇQÇPÇR  ècéûÇPÇSÇU
-      *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇP    ècéûÇPÇOÇS
                    IF      SW-KAIGYO   =       "2"
-      *    *** 50 = 101 / 2
-                           MOVE    50          TO      R
+                           COMPUTE WK-GYO-4 = WK-TATE-GYO - 4
+                           DIVIDE WK-GYO-4 BY 2 GIVING R 
+                                  REMAINDER WK-REMAINDER
                    ELSE
-      *    *** 101 = 104 - 3 (ÉwÉbÉ_Å[)
-                           MOVE   101          TO      R
+                           COMPUTE R = WK-TATE-GYO - 4
                    END-IF
            ELSE
-                   COMPUTE C = 213 / CNS-L-SIZE
+                   COMPUTE C = WK-YOKO-MOJI / CNS-L-SIZE
                    COMPUTE C = C   * CNS-L-SIZE
-      *    *** 34 = 68 / 2
                    IF      SW-KAIGYO   =       "2"
-                           MOVE    34          TO      R
+                           COMPUTE WK-GYO-4 = WK-YOKO-GYO - 4
+                           DIVIDE WK-GYO-4 BY 2 GIVING R 
+                                  REMAINDER WK-REMAINDER
                    ELSE
-      *    *** 68 = 71 - 3 (ÉwÉbÉ_Å[)
-                           MOVE    68          TO      R
+                           COMPUTE R = WK-YOKO-GYO - 4
                    END-IF
            END-IF
 
@@ -473,9 +439,14 @@
            MOVE    KEY-NEW     TO      KEY-OLD
 
            READ    PIN1-F
-
-           IF      WK-PIN1-STATUS =    ZERO
+               AT END
+                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+                                               KEY-NEW
+               NOT AT END
                    ADD     1           TO        WK-PIN1-CNT
+                   MOVE    PIN1-YYYY    TO      KEY-NYYYY
+                   MOVE    PIN1-MM      TO      KEY-NMM
+           END-READ
 
       *    *** PIN1-REC Ç≈íËã`Ç∑ÇÍÇŒÅAÉ]Å[ÉìêîéöÇ≈èàóùÇ≥ÇÍÇÈ
       *    *** UNSTRING Ç≈éÊÇËèoÇ∑Ç∆ÅANUMVALÇ≈êîéöÇ…ÇµÇ»Ç¢Ç∆ÅAÉ[ÉçÇ…Ç»ÇÈ
@@ -496,8 +467,8 @@
 
       *             MOVE    WK-YYYY     TO      KEY-NYYYY
       *             MOVE    WK-MM       TO      KEY-NMM
-                   MOVE    PIN1-YYYY    TO      KEY-NYYYY
-                   MOVE    PIN1-MM      TO      KEY-NMM
+      *             MOVE    PIN1-YYYY    TO      KEY-NYYYY
+      *             MOVE    PIN1-MM      TO      KEY-NMM
 
       *             MOVE    FUNCTION NUMVAL (WK-SEQNO-X) TO  WK-SEQNO
 
@@ -524,17 +495,6 @@
       *             IF      WK-TALLYING NOT = ZERO
       *                     COMPUTE WK-ZSU1 = WK-ZSU1 * -1
       *             END-IF 
-
-           ELSE
-               IF  WK-PIN1-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
-                                               KEY-NEW
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
 
            GO  TO  S020-EX
 
@@ -576,39 +536,23 @@
       *     COMPUTE PIN2-KEY = FUNCTION NUMVAL(WK-MM)
       *     COMPUTE PIN2-KEY = FUNCTION NUMVAL(KEY-OMM) 
 
-           READ    PIN2-F
-                   KEY PIN2-KEY
+           READ    PIN2-F KEY PIN2-KEY
                INVALID 
-                   CONTINUE
-               NOT INVALID
-                   CONTINUE
-           END-READ
-
-           IF      WK-PIN2-STATUS =    ZERO
-                   ADD     1           TO      WK-PIN2-CNT
-           ELSE
-               IF  WK-PIN2-STATUS =    23
                    MOVE    SPACE       TO      WK-PIN2-I1
                                                WK-PIN2-I2
                                                WK-PIN2-I3
                                                WK-PIN2-I4
-                   GO  TO  S030-EX
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
-                           WK-PIN2-STATUS
-                   DISPLAY WK-PGM-NAME " PIN2-F READ ERROR KEY="
-                           PIN2-KEY
-                   STOP    RUN
-               END-IF
-           END-IF
+               NOT INVALID
+                   ADD     1           TO      WK-PIN2-CNT
 
-           UNSTRING PIN2-REC
-                    DELIMITED BY ","
-                    INTO
-                    WK-PIN2-I1
-                    WK-PIN2-I2
-                    WK-PIN2-I3
-                    WK-PIN2-I4  COUNT L
+                   UNSTRING PIN2-REC
+                       DELIMITED BY ","
+                       INTO
+                           WK-PIN2-I1
+                           WK-PIN2-I2
+                           WK-PIN2-I3
+                           WK-PIN2-I4  COUNT L
+           END-READ
            .
        S030-EX.
            EXIT.
@@ -743,54 +687,43 @@
                    MOVE    WK-TIT1     TO      WK-TIT1-A4T-1
                    WRITE   POT1-REC    FROM    WK-TIT1-A4T
                    ADD     1           TO      WK-POT1-CNT
-                   IF      SW-KAIGYO   =       "2"
-                           MOVE    SPACE       TO      POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1           TO      WK-POT1-CNT
-                   ELSE
-                           CONTINUE
-                   END-IF
+
+                   MOVE    SPACE       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
                    WRITE   POT1-REC    FROM    WK-MID1-A4T
                    ADD     1           TO      WK-POT1-CNT
+
                    WRITE   POT1-REC    FROM    WK-HAI-A4T
                    ADD     1           TO      WK-POT1-CNT
            ELSE
                    MOVE    WK-TIT1     TO      WK-TIT1-A4Y-1
                    WRITE   POT1-REC    FROM    WK-TIT1-A4Y
                    ADD     1           TO      WK-POT1-CNT
-                   IF      SW-KAIGYO   =       "2"
-                           MOVE    SPACE       TO      POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1           TO      WK-POT1-CNT
-                   ELSE
-                           CONTINUE
-                   END-IF
+
+                   MOVE    SPACE       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
                    WRITE   POT1-REC    FROM    WK-MID1-A4Y
                    ADD     1           TO      WK-POT1-CNT
+
                    WRITE   POT1-REC    FROM    WK-HAI-A4Y
                    ADD     1           TO      WK-POT1-CNT
            END-IF
 
            PERFORM VARYING K  FROM 1 BY 1
                    UNTIL   K > R
-                   WRITE   POT1-REC    FROM     PR-LINE (K)
+                   WRITE   POT1-REC    FROM    PR-LINE (K)
                    ADD     1           TO      WK-POT1-CNT
+
                    IF      SW-KAIGYO   =       "2"
-                           IF      SW-A4TATE =       "0"
-                                   IF      K         =       R
-                                           CONTINUE
-                                   ELSE
-                                           MOVE    SPACE     TO POT1-REC
-                                           WRITE   POT1-REC
-                                           ADD     1     TO  WK-POT1-CNT
-                                   END-IF
-                            ELSE
-                                   MOVE    SPACE     TO POT1-REC
-                                   WRITE   POT1-REC
-                                   ADD     1     TO  WK-POT1-CNT
-                            END-IF
+                           MOVE    SPACE       TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
                    ELSE
-                            CONTINUE
+                           CONTINUE
                    END-IF
            END-PERFORM
            .
@@ -866,7 +799,7 @@
            PERFORM S110-10     THRU    S110-EX
 
            COMPUTE PX = P1 + 0
-           MOVE    "**îNÅ@è¨åv" TO     PR-LINE (J) (PX:10)
+           MOVE    "**îN  è¨åv" TO     PR-LINE (J) (PX:10)
 
            COMPUTE PX = PX + 11
            MOVE    KEY-OYYYY   TO      PR-LINE (J) (PX:4)
@@ -919,7 +852,7 @@
        S150-10.
 
            COMPUTE PX = P1 + 0
-           MOVE    "**ëçÅ@çáåv" TO     PR-LINE (J) (PX:10)
+           MOVE    "**ëç  çáåv" TO     PR-LINE (J) (PX:10)
 
            MOVE    WK-TOTAL-ZSU1 TO    WK-ESU
            COMPUTE PX = PX + 19
@@ -946,32 +879,9 @@
        S900-10.
 
            CLOSE   PRM1-F
-           IF      WK-PRM1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PRM1-F CLOSE ERROR STATUS="
-                           WK-PRM1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F CLOSE ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   PIN1-F
+                   PIN2-F
+                   POT1-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -979,19 +889,19 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PRM1-CNT TO      WK-PRM1-CNT-E
-           DISPLAY WK-PGM-NAME " PRM1 π›Ω≥ = " WK-PRM1-CNT-E
+           DISPLAY WK-PGM-NAME " PRM1 åèêî = " WK-PRM1-CNT-E
                    " (" WK-PRM1-F-NAME ")"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 π›Ω≥ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 åèêî = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 π›Ω≥ = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 åèêî = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 π›Ω≥ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 åèêî = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-PAGE     TO      WK-PAGE-E
-           DISPLAY WK-PGM-NAME " POT1 Õﬂ∞ºﬁ= " WK-PAGE-E
+           DISPLAY WK-PGM-NAME " POT1 ï≈   = " WK-PAGE-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

@@ -1060,7 +1060,15 @@
                        PIN1-REC (1:03) = "tvk"      OR
                        PIN1-REC (1:03) = "NHK"      OR
                        PIN1-REC (1:03) = "TBS"      OR
-                       PIN1-REC (7:03) = "TBS"      OR
+                       PIN1-REC (1:05) = "QTORY"    OR
+                       PIN1-REC (1:07) = "YouTube"  OR
+                       PIN1-REC (1:04) = "AT-X"     OR
+                       PIN1-REC (1:04) = "BS11"     OR
+                       PIN1-REC (1:03) = "MBS"      OR
+                       PIN1-REC (1:07) = "Netflix"  OR
+                       PIN1-REC (1:03) = "CBC"      OR
+                       PIN1-REC (1:03) = "WEB"      OR
+
       *    *** 読売テレビ?
                      PIN1-REC (1:15) = X"E8AAADE5A3B2E38386E383ACE38393"
                                                     OR
@@ -1071,11 +1079,42 @@
       *    *** テレビ東京?
                      PIN1-REC (1:15) = X"E38386E383ACE38393E69DB1E4BAAC"
                                                     OR
+      *    *** テレビ
+                     PIN1-REC (1:09) = X"E38386E383ACE38393"
+                                                    OR
+      *    *** テレ東
+                     PIN1-REC (1:09) = X"E38386E383ACE69DB1"
+                                                    OR
       *    *** フジテレビ?
                      PIN1-REC (1:15) = X"E38395E382B8E38386E383ACE38393"
                                                     OR
       *    *** 日本テレビ?
                      PIN1-REC (1:15) = X"E697A5E69CACE38386E383ACE38393"
+                                                    OR
+      *    *** テレビ朝日
+                     PIN1-REC (1:15) = X"E38386E383ACE38393E69C9DE697A5"
+                                                    OR
+      *    *** ABCテレビ
+                     PIN1-REC (1:12) = X"414243E38386E383ACE38393"
+                                                    OR
+      *    *** 公式YouTube
+                     PIN1-REC (1:13) = X"E585ACE5BC8F596F7554756265"
+                                                    OR
+      *    *** 山梨放送
+                     PIN1-REC (1:12) = X"E5B1B1E6A2A8E694BEE98081"
+                                                    OR
+      *    *** チバテレ
+                     PIN1-REC (1:12) = X"E38381E38390E38386E383AC"
+                                                    OR
+      *    *** カンテレ
+                     PIN1-REC (1:12) = X"E382ABE383B3E38386E383AC"
+                                                    OR
+      *    *** 全国
+                     PIN1-REC (1:06) = X"E585A8E59BBD"
+                                                    OR
+      *    *** 鉄道チャンネル
+                     PIN1-REC (1:21) = 
+                     X"E98984E98193E38381E383A3E383B3E3838DE383AB"
                                                     OR
       *    *** ＢＳ? ＢＳ日テレ等
                      PIN1-REC (1:06) = X"EFBCA2"

@@ -62,7 +62,7 @@
            03  WK-TITLE2       PIC  X(020) VALUE SPACE.
            03  WK-SITE         PIC  X(100) VALUE SPACE.
 
-           03  WK-CNT          PIC  ZZZ9   VALUE SPACE.
+           03  WK-CNT          PIC  -ZZZ,ZZ9   VALUE SPACE.
 
            03  WK-TIT1.
              05                PIC  X(006) VALUE "ÅñÅñÅñ".
@@ -106,26 +106,26 @@
       *    *** çsÇ†ÇΩÇËÇÃï∂éöêîÅFâ°éûÇPÇXÇV  ècéûÇPÇRÇT
       *    *** ècï˚å¸ÇÃçsêîÅF    â°éûÇVÇO    ècéûÇPÇOÇQ
 
-           03  WK-YOKO-MOJI      BINARY-LONG SYNC VALUE 197
-           03  WK-YOKO-GYO       BINARY-LONG SYNC VALUE  70.
-           03  WK-TATE-MOJI      BINARY-LONG SYNC VALUE 135.
-           03  WK-TATE-GYO       BINARY-LONG SYNC VALUE 102.
-           03  WK-GYO-4          BINARY-LONG SYNC VALUE ZERO.
-           03  WK-REMAINDER      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-YOKO-MOJI    BINARY-LONG SYNC VALUE 197
+           03  WK-YOKO-GYO     BINARY-LONG SYNC VALUE  70.
+           03  WK-TATE-MOJI    BINARY-LONG SYNC VALUE 135.
+           03  WK-TATE-GYO     BINARY-LONG SYNC VALUE 102.
+           03  WK-GYO-4        BINARY-LONG SYNC VALUE ZERO.
+           03  WK-REMAINDER    BINARY-LONG SYNC VALUE ZERO.
 
       *    *** MAX=135,A4ècóp
-      *    *** 2+40*3=122
+      *    *** 2+44*2=90
            03  WK-MID1-A4T.
              05                PIC  X(002) VALUE "Ñ†".
-             05                PIC  X(120) VALUE ALL
-                 " SEQÑ†  îNÑ†ãGÑ†É^ÉCÉgÉã              Ñ†".
+             05                PIC  X(088) VALUE ALL
+                 "     SEQÑ†  îNÑ†ãGÑ†É^ÉCÉgÉã              Ñ†".
 
       *    *** MAX=197,A4â°óp
-      *    *** 2+40*4=162
+      *    *** 2+44*4=178
            03  WK-MID1-A4Y.
              05                PIC  X(002) VALUE "Ñ†".
-             05                PIC  X(160) VALUE ALL
-                 " SEQÑ†  îNÑ†ãGÑ†É^ÉCÉgÉã              Ñ†".
+             05                PIC  X(176) VALUE ALL
+                 "     SEQÑ†  îNÑ†ãGÑ†É^ÉCÉgÉã              Ñ†".
 
       *    *** âÊñ çÄñ⁄
            03  WK-KEI1         PIC  X(002) VALUE "Ñü".
@@ -142,8 +142,8 @@
 
            03  WK-KEI1-A4T.
              05                PIC  X(002) VALUE "Ñ°"
-             05                OCCURS 2.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+             05                OCCURS 1.  
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
@@ -152,7 +152,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ¶"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ¶"
@@ -163,8 +163,8 @@
 
            03  WK-KEI2-A4T.
              05                PIC  X(002) VALUE "Ñ•"
-             05                OCCURS 2.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+             05                OCCURS 1.  
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
@@ -173,7 +173,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ©"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ©"
@@ -184,8 +184,8 @@
 
            03  WK-KEI3-A4T.
              05                PIC  X(002) VALUE "Ñ§"
-             05                OCCURS 2.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+             05                OCCURS 1.  
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
@@ -194,7 +194,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ®"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ®"
@@ -206,7 +206,7 @@
            03  WK-KEI1-A4Y.
              05                PIC  X(002) VALUE "Ñ°"
              05                OCCURS 3.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
@@ -215,7 +215,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ¶"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ¶"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ¶"
@@ -227,7 +227,7 @@
            03  WK-KEI2-A4Y.
              05                PIC  X(002) VALUE "Ñ•"
              05                OCCURS 3.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
@@ -236,7 +236,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ©"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ©"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ©"
@@ -248,7 +248,7 @@
            03  WK-KEI3-A4Y.
              05                PIC  X(002) VALUE "Ñ§"
              05                OCCURS 3.  
-               07              PIC  X(004) VALUE ALL "Ñü"
+               07              PIC  X(008) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
                07              PIC  X(004) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
@@ -257,7 +257,7 @@
                07              PIC  X(022) VALUE ALL "Ñü"
                07              PIC  X(002) VALUE "Ñ®"
 
-             05                PIC  X(004) VALUE ALL "Ñü"
+             05                PIC  X(008) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ®"
              05                PIC  X(004) VALUE ALL "Ñü"
              05                PIC  X(002) VALUE "Ñ®"
@@ -277,17 +277,17 @@
        01  CNS-AREA.
       *    *** PX ÇÃàÛéöà íu
            03  CNS-P1          BINARY-LONG SYNC VALUE 1.
-           03  CNS-P2          BINARY-LONG SYNC VALUE 3.
-           03  CNS-P3          BINARY-LONG SYNC VALUE 7.
-           03  CNS-P4          BINARY-LONG SYNC VALUE 9.
-           03  CNS-P5          BINARY-LONG SYNC VALUE 13.
-           03  CNS-P6          BINARY-LONG SYNC VALUE 15.
-           03  CNS-P7          BINARY-LONG SYNC VALUE 17.
-           03  CNS-P8          BINARY-LONG SYNC VALUE 19.
-           03  CNS-P9          BINARY-LONG SYNC VALUE 41.
+           03  CNS-P2          BINARY-LONG SYNC VALUE 7.
+           03  CNS-P3          BINARY-LONG SYNC VALUE 11.
+           03  CNS-P4          BINARY-LONG SYNC VALUE 13.
+           03  CNS-P5          BINARY-LONG SYNC VALUE 17.
+           03  CNS-P6          BINARY-LONG SYNC VALUE 19.
+           03  CNS-P7          BINARY-LONG SYNC VALUE 21.
+           03  CNS-P8          BINARY-LONG SYNC VALUE 23.
+           03  CNS-P9          BINARY-LONG SYNC VALUE 45.
       *    *** PX ÇÃåÖêî
            03  CNS-P1-L        BINARY-LONG SYNC VALUE 2.
-           03  CNS-P2-L        BINARY-LONG SYNC VALUE 4.
+           03  CNS-P2-L        BINARY-LONG SYNC VALUE 8.
            03  CNS-P3-L        BINARY-LONG SYNC VALUE 2.
            03  CNS-P4-L        BINARY-LONG SYNC VALUE 4.
            03  CNS-P5-L        BINARY-LONG SYNC VALUE 2.
@@ -327,8 +327,8 @@
        01  SW-AREA.
       *    *** "1" = A4èc,
       *    *** "0" = A4â°
-           03  SW-A4TATE       PIC  X(001) VALUE "1".
-      *     03  SW-A4TATE       PIC  X(001) VALUE "0".
+      *     03  SW-A4TATE       PIC  X(001) VALUE "1".
+           03  SW-A4TATE       PIC  X(001) VALUE "0".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -387,16 +387,12 @@
       *    *** äÑéZÇ≈è§ÇãÅÇﬂÅAè§ * CNS-L-SIZEÇãÅÇﬂÇÈ
                    COMPUTE C3 = WK-TATE-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** - 4 ÇÕÉwÉbÉ_Å[ÅA/ 2 ÇÕñæç◊çséüÇÃårê¸ï™èúÇ≠
-      *             MOVE    49          TO      R
                    COMPUTE WK-GYO-4 = WK-TATE-GYO - 4
                    DIVIDE WK-GYO-4 BY 2 GIVING R 
                           REMAINDER WK-REMAINDER
            ELSE
                    COMPUTE C3 = WK-YOKO-MOJI / CNS-L-SIZE
                    COMPUTE C = C3   * CNS-L-SIZE
-      *    *** - 4 ÇÕÉwÉbÉ_Å[ÅA/ 2 ÇÕñæç◊çséüÇÃårê¸ï™èúÇ≠
-      *             MOVE    33          TO      R
                    COMPUTE WK-GYO-4 = WK-YOKO-GYO - 4
                    DIVIDE WK-GYO-4 BY 2 GIVING R 
                           REMAINDER WK-REMAINDER
@@ -600,8 +596,8 @@
            MOVE    "*** "      TO      PR-LINE (J) (PX:4)
            MOVE    WK-PIN1-CNT TO      WK-CNT
            COMPUTE PX = PX + 4
-           MOVE    WK-CNT      TO      PR-LINE (J) (PX:4)
-           COMPUTE PX = PX + 4
+           MOVE    WK-CNT      TO      PR-LINE (J) (PX:8)
+           COMPUTE PX = PX + 8
            MOVE    " åè ***"   TO      PR-LINE (J) (PX:7)
 
            MOVE    J           TO      J2

@@ -156,6 +156,15 @@
            03  WK-PIN5-ITEM1-LEN BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN5-ITEM2-LEN BINARY-LONG SYNC VALUE ZERO.
 
+           03  WK-ITEM1        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM2        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM3        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM4        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM5        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM6        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM5-LEN    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ITEM6-LEN    BINARY-LONG SYNC VALUE ZERO.
+
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
@@ -171,9 +180,13 @@
            03  I5              BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
            03  J2              BINARY-LONG SYNC VALUE ZERO.
+           03  J3              BINARY-LONG SYNC VALUE ZERO.
+           03  J3-MAX          BINARY-LONG SYNC VALUE ZERO.
+           03  J4              BINARY-LONG SYNC VALUE ZERO.
            03  K               BINARY-LONG SYNC VALUE ZERO.
            03  L               BINARY-LONG SYNC VALUE ZERO.
            03  L2              BINARY-LONG SYNC VALUE ZERO.
+           03  L4              BINARY-LONG SYNC VALUE ZERO.
 
        01  TBL-AREA.
       *    *** テーブルサイズ変更したら、I-MAX も変更する
@@ -186,6 +199,11 @@
              05  TBL01-PIN2-REC PIC X(1000) VALUE SPACE.
              05  TBL01-SET     PIC  X(001) VALUE SPACE.
              05  TBL01-IMG-LEN BINARY-LONG SYNC VALUE ZERO.
+
+           03  TBL03-AREA      OCCURS 5000.
+             05  TBL03-ITEM    PIC  X(100) VALUE SPACE.
+             05  TBL03-ITEM-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL03-CNT     BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
            03  SW-H3           PIC  X(001) VALUE "N".
@@ -347,7 +365,16 @@
 
            READ    PIN1-F
                AT  END
-                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+
+                   DISPLAY WK-PGM-NAME " TITLE-ID ダブリ"
+                   PERFORM VARYING J3 FROM 1 BY 1
+                           UNTIL J3 > J3-MAX
+                           IF      TBL03-CNT (J3) NOT = ZERO 
+                                   DISPLAY TBL03-ITEM (J3) (1:80) 
+                           END-IF
+                   END-PERFORM
+
+]                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
       *             MOVE    "N"         TO      SW-FIRST
                NOT AT END
       *             IF      SW-FIRST    =       "N"
@@ -816,8 +843,68 @@
 
            ADD     12 1        TO      I3
            MOVE    ","         TO      POT1-REC (I3:1)
+
+           IF      WK-A        NOT =   "https://missav.ai/dm10/ja"
+      *    *** TBL03 SET
+                   PERFORM S122-10     THRU    S122-EX
+           END-IF
            .
        S120-EX.
+           EXIT.
+
+      *    *** TBL03 SET
+       S122-10.
+
+           ADD     1           TO      J3
+           IF      J3          >       5000
+                   DISPLAY WK-PGM-NAME " TBL03 OVER J3=" J3
+                   STOP    RUN
+           END-IF
+
+           MOVE    SPACE       TO      TBL03-ITEM     (J3)
+           MOVE    ZERO        TO      TBL03-ITEM-LEN (J3)
+                                       TBL03-CNT      (J3)
+
+           UNSTRING WK-A
+                   DELIMITED BY "/" OR SPACE OR "-uncensored-leak"
+                   INTO
+                   WK-ITEM1
+                   WK-ITEM2
+                   WK-ITEM3
+                   WK-ITEM4
+                   WK-ITEM5 COUNT WK-ITEM5-LEN
+                   WK-ITEM6 COUNT WK-ITEM6-LEN
+           END-UNSTRING
+
+           IF      WK-ITEM6-LEN =      ZERO
+                   MOVE    WK-ITEM5    TO      TBL03-ITEM     (J3)
+                   MOVE    WK-ITEM5-LEN TO     TBL03-ITEM-LEN (J3)
+           ELSE
+                   MOVE    WK-ITEM6    TO      TBL03-ITEM     (J3)
+                   MOVE    WK-ITEM6-LEN TO     TBL03-ITEM-LEN (J3)
+           END-IF
+
+           IF      TBL03-ITEM-LEN (J3) > 100
+                   DISPLAY WK-PGM-NAME " WK-領域 長さオーバー"
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " TBL03-ITEM-LEN (J3)=" TBL03-ITEM-LEN (J3)
+                   STOP    RUN
+           END-IF
+
+           MOVE    J3          TO      J3-MAX
+
+           MOVE    J3          TO      J4
+           MOVE    TBL03-ITEM-LEN (J3) TO L4
+
+           PERFORM VARYING J3 FROM 1 BY 1
+                   UNTIL J3 = J3-MAX
+                   IF      TBL03-ITEM (J4) (1:L4) = 
+                           TBL03-ITEM (J3) (1:L4)
+                           ADD     1           TO       TBL03-CNT (J3)
+                   END-IF
+           END-PERFORM
+           .
+       S122-EX.
            EXIT.
 
       *    *** CLOSE
