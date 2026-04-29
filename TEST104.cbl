@@ -128,9 +128,9 @@
 
       *    *** PRM1 でXXXXXXXX を１件目に指定、ＵＴＦ８も可能だが、
       *    *** ＳＪＩＳに変換可能な時のみ
-           03  WK-PRM1-F-NAME  PIC  X(032) VALUE "TEST103.PRM1 ".
-           03  WK-PRM2-F-NAME  PIC  X(032) VALUE "TEST103.PRM2 ".
-           03  WK-PIN1-F-NAME  PIC  X(064) VALUE 
+           03  WK-PRM1-F-NAME  PIC  X(032) VALUE "TEST103.PRM1".
+           03  WK-PRM2-F-NAME  PIC  X(032) VALUE "TEST103.PRM2".
+           03  WK-PIN1-F-NAME  PIC  X(128) VALUE 
                "TEST103.XXXXXXXX.PIN1".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE 
       *         "TEST103.Walk East.PIN1".
@@ -205,7 +205,16 @@
            03  WK-HENKAN       PIC  X(006) VALUE "US".
 
            03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
-           03  WK-ACCEPT       PIC  9(003) VALUE ZERO.
+           03  WK-ACCEPT       PIC  X(004) VALUE SPACE.
+
+           03  WK-ITEM1        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM2        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM3        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM4        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM5        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM6        PIC  X(100) VALUE SPACE.
+           03  WK-ITEM5-LEN    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ITEM6-LEN    BINARY-LONG SYNC VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -217,6 +226,9 @@
            03  I               BINARY-LONG SYNC VALUE ZERO.
            03  I2              BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
+           03  J1              BINARY-LONG SYNC VALUE ZERO.
+           03  J1-MAX          BINARY-LONG SYNC VALUE ZERO.
+           03  J2              BINARY-LONG SYNC VALUE ZERO.
            03  K               BINARY-LONG SYNC VALUE ZERO.
            03  K1              BINARY-LONG SYNC VALUE ZERO.
            03  K1-MAX          BINARY-LONG SYNC VALUE ZERO.
@@ -226,6 +238,7 @@
            03  L               BINARY-LONG SYNC VALUE ZERO.
            03  L2              BINARY-LONG SYNC VALUE ZERO.
            03  L3              BINARY-LONG SYNC VALUE ZERO.
+           03  L4              BINARY-LONG SYNC VALUE ZERO.
            03  M1              BINARY-LONG SYNC VALUE ZERO.
            03  M1-MAX          BINARY-LONG SYNC VALUE ZERO.
 
@@ -248,6 +261,11 @@
            03  TBL02-AREA      OCCURS 100.
              05  TBL02-ITEM    PIC  X(300) VALUE SPACE.
              05  TBL02-ITEM-LEN BINARY-LONG SYNC VALUE ZERO.
+
+           03  TBL03-AREA      OCCURS 1000.
+             05  TBL03-ITEM    PIC  X(100) VALUE SPACE.
+             05  TBL03-ITEM-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL03-CNT     BINARY-LONG SYNC VALUE ZERO.
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -324,7 +342,6 @@
       *    *** https 降順でダウンロードしても、無修正（uncensored-leak）が
       *    *** 後になってしまうため、無修正（uncensored-leak）の時出力する
       *    *** ABF-164 ニートな姫にもほどがある！ 無職でヲタク、性欲溜まりまくりの干物美少女がチ●ポの快感を思い出しちゃった！ 八掛うみ【MGSだけのおまけ映像付き+35分】,https://missav.ai/dm40/ja/abf-164
-      *    *** ABF-164 ニートな姫にもほどがある！ 無職でヲタク、性欲溜まりまくりの干物美少女がチ●ポの快感を思い出しちゃった！ 八掛うみ【MGSだけのおまけ映像付き+35分】,https://missav.ai/dm2/ja/abf-164-uncensored-leak
 
                                    IF     PIN1-REC (WK-PIN1-LEN - 14:15)
       *    *** 同じＩＤで無修正（uncensored-leak）が２件目以降にある時出力する
@@ -431,8 +448,8 @@
            ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
 
            EVALUATE WK-ARGUMENT-NUMBER
-               WHEN 0
-                   MOVE    1           TO      WK-ACCEPT
+      *         WHEN 0
+      *             MOVE    1           TO      WK-ACCEPT
                WHEN 1
                    ACCEPT  WK-ACCEPT FROM ARGUMENT-VALUE
 
@@ -440,9 +457,9 @@
                    DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
                            WK-ARGUMENT-NUMBER
                    DISPLAY WK-PGM-NAME 
-                           " PRM1-F 読み込みレコードＮｏ 1個まで指定可"
+                           " PRM1-F 読み込み 1個まで指定可"
                    DISPLAY WK-PGM-NAME 
-                           " TEST104 1 <=例 PRM1のレコードＮｏを指定"
+                           " TEST104 A001 <=例 PRM1のレコード1,4を指定"
                    STOP    RUN
            END-EVALUATE
 
@@ -458,10 +475,21 @@
                    END-READ
                    ADD     1           TO      WK-PRM1-CNT
 
-                   IF      WK-ACCEPT   =       WK-PRM1-CNT
+      *             IF      WK-ACCEPT   =       WK-PRM1-CNT
+                   IF      WK-ACCEPT   =       PRM1-REC (1:4)
                            MOVE    "Y"         TO      SW-HIT
                    END-IF
            END-PERFORM
+
+           IF      SW-HIT      =       "N"
+                   DISPLAY WK-PGM-NAME
+                           " PRM1-F 指定レコードＮｏ無し,A001,B001,C001"
+                           " 等指定する"
+                   STOP    RUN
+           ELSE
+                   ADD     -4          TO      WK-PRM1-LEN
+                   MOVE    PRM1-REC (5:) TO    PRM1-REC (1:)
+           END-IF
 
       *    *** ファイル名は漢字のみか、１バイト系のみのどちらかに編集する
            IF      PRM1-REC (1:1) >=   X"E0" AND <= X"EF"
@@ -509,8 +537,6 @@
                                                (WK-PRM1-LEN + 9:5)
            END-IF
 
-      *     STOP RUN
-
            OPEN    INPUT       PRM2-F
                                PIN1-F
                                PIN2-F
@@ -537,6 +563,15 @@
 
            READ    PIN1-F
                AT END
+
+      *             DISPLAY WK-PGM-NAME " TITLE-ID ダブリ"
+      *             PERFORM VARYING J1 FROM 1 BY 1
+      *                     UNTIL J1 > J1-MAX
+      *                     IF      TBL03-CNT (J1) NOT = ZERO 
+      *                             DISPLAY TBL03-ITEM (J1) (1:80) 
+      *                     END-IF
+      *             END-PERFORM
+
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
@@ -584,9 +619,67 @@
                                    " WK-PLAYLIST-LEN=" WK-PLAYLIST-LEN
                           STOP    RUN
                    END-IF
+
+      *    *** TBL03 SET
+      *             PERFORM S022-10     THRU    S022-EX
            END-READ
            .
        S020-EX.
+           EXIT.
+
+      *    *** TBL03 SET
+       S022-10.
+
+           ADD     1           TO      J1
+           IF      J1          >       1000
+                   DISPLAY WK-PGM-NAME " TBL03 OVER J1=" J1
+                   STOP    RUN
+           END-IF
+
+           MOVE    SPACE       TO      TBL03-ITEM     (J1)
+           MOVE    ZERO        TO      TBL03-ITEM-LEN (J1)
+                                       TBL03-CNT      (J1)
+
+           UNSTRING WK-WATCH2
+                   DELIMITED BY "/" OR SPACE OR "-uncensored-leak"
+                   INTO
+                   WK-ITEM1
+                   WK-ITEM2
+                   WK-ITEM3
+                   WK-ITEM4
+                   WK-ITEM5 COUNT WK-ITEM5-LEN
+                   WK-ITEM6 COUNT WK-ITEM6-LEN
+           END-UNSTRING
+
+           IF      WK-ITEM6-LEN =      ZERO
+                   MOVE    WK-ITEM5    TO      TBL03-ITEM     (J1)
+                   MOVE    WK-ITEM5-LEN TO     TBL03-ITEM-LEN (J1)
+           ELSE
+                   MOVE    WK-ITEM6    TO      TBL03-ITEM     (J1)
+                   MOVE    WK-ITEM6-LEN TO     TBL03-ITEM-LEN (J1)
+           END-IF
+
+           IF      TBL03-ITEM-LEN (J1) > 100
+                   DISPLAY WK-PGM-NAME " WK-領域 長さオーバー"
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " TBL03-ITEM-LEN (J1)=" TBL03-ITEM-LEN (J1)
+                   STOP    RUN
+           END-IF
+
+           MOVE    J1          TO      J1-MAX
+
+           MOVE    J1          TO      J2
+           MOVE    TBL03-ITEM-LEN (J1) TO L4
+
+           PERFORM VARYING J1 FROM 1 BY 1
+                   UNTIL J1 = J1-MAX
+                   IF      TBL03-ITEM (J2) (1:L4) = 
+                           TBL03-ITEM (J1) (1:L4)
+                           ADD     1           TO       TBL03-CNT (J1)
+                   END-IF
+           END-PERFORM
+           .
+       S022-EX.
            EXIT.
 
       *    *** READ PIN2
@@ -1248,8 +1341,20 @@
            MOVE    " ,"        TO      WK-REC (I:2)
            ADD     2           TO      I
 
+      *    *** MUDR-042 あの日からずっと…。 緊縛調教中出しされる制服美少女 ひなみれん,
+      *    *** https://missav.ai/dm59/ja/mudr-042
+      *    *** サムネイル画像 NOW PRINTING の為、強制置換え
+
+           IF      WK-WATCH2 (1:45) = 
+                   "https://missav.ai/ja/mudr-042-uncensored-leak"
+                    MOVE
+                 "https://img.supjav.com/images/2026/02/mudr042pl.jpg ," 
+                                       TO      WK-REC (I:53)
+                    ADD     53         TO      I
+           ELSE
       *    *** IMG SET
-           PERFORM S220-10     THRU    S220-EX
+                   PERFORM S220-10     THRU    S220-EX
+           END-IF
 
            MOVE    " ,"        TO      WK-REC (I:2)
            ADD     2           TO      I

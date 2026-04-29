@@ -116,6 +116,7 @@
            03  WK-GENRE1-LEN   BINARY-LONG SYNC VALUE ZERO.
            03  WK-GENRE2-LEN   BINARY-LONG SYNC VALUE ZERO.
            03  WK-SIZE-LEN     BINARY-LONG SYNC VALUE ZERO.
+
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
@@ -131,6 +132,7 @@
            03  P               BINARY-LONG SYNC VALUE ZERO.
            03  P2              BINARY-LONG SYNC VALUE ZERO.
            03  P3              BINARY-LONG SYNC VALUE 1.
+           03  P4              BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
            03  SW-YES          PIC  X(001) VALUE "N".
@@ -219,6 +221,7 @@
                                    MOVE    "L:\TVConnectSuite\" TO
                                            WK-PIN2-F-NAME1
                                WHEN WK-ACCEPT = "2"
+      *                             MOVE    "TEST135_2.PIN1" TO
                                    MOVE    "TEST135_2.PIN1" TO
                                            WK-PIN1-F-NAME
                                    MOVE    "L:\TVConnect_Z420\" TO
@@ -254,7 +257,7 @@
 
            CLOSE   PIN2-F
 
-           MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
+           MOVE    LOW-VALUE   TO      WK-PIN2-EOF
            MOVE    SPACE       TO      WK-PIN2-REC
            MOVE    1           TO      P3
            MOVE    ZERO        TO      WK-PIN2-LEN2
@@ -303,6 +306,7 @@
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
                NOT AT END
                    ADD     1           TO      WK-PIN2-CNT
+
                    MOVE    PIN2-REC    TO
                            WK-PIN2-REC (P3:WK-PIN2-LEN)
                    ADD     WK-PIN2-LEN TO      WK-PIN2-LEN2
@@ -472,8 +476,8 @@
                    END-EVALUATE
            END-PERFORM
 
-           MOVE    WK-DATE (1:7) TO    POT1-REC (P:7)
-           ADD     7           TO      P
+           MOVE    WK-DATE (1:10) TO   POT1-REC (P:10)
+           ADD     10          TO      P
 
            MOVE    ","         TO      POT1-REC (P:1)
            ADD     1           TO      P
@@ -497,14 +501,15 @@
            MOVE    ","         TO      POT1-REC (P:1)
            ADD     1           TO      P
 
-           PERFORM VARYING J FROM 15 BY -1
-                   UNTIL J < 1
-           END-PERFORM
+      *     PERFORM VARYING J FROM 15 BY -1
+      *             UNTIL J < 1
+      *     END-PERFORM
+
            CALL    "C$JUSTIFY" USING WK-SIZE-X "R"
            INSPECT WK-SIZE-X REPLACING FIRST SPACE BY ZERO
            COMPUTE WK-GB2 = WK-SIZE-9 / 1024 / 1024 / 1024
 
-           MOVE    WK-GB       TO    POT1-REC (P:6)
+           MOVE    WK-GB       TO      POT1-REC (P:6)
            ADD     6           TO      P
 
       *     MOVE    WK-SIZE-LEN TO      L
@@ -544,6 +549,7 @@
            ADD     1           TO      P
 
            WRITE   POT1-REC
+
            ADD     1           TO      WK-POT1-CNT
            .
        S100-EX.
