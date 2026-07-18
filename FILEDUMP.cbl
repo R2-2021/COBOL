@@ -192,7 +192,7 @@
                                PIC  9(004) COMP-X.
 
        01  IDX-AREA.
-           03  I               BINARY-LONG SYNC VALUE ZERO.
+      *     03  I               BINARY-LONG SYNC VALUE ZERO.
            03  I2              BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
            03  J2              BINARY-LONG SYNC VALUE ZERO.
@@ -210,8 +210,8 @@
 
        01  SW-AREA.
            05  SW-KANJI        PIC  X(001) VALUE ZERO.
-           05  SW-KANJI2       PIC  X(001) VALUE ZERO.
            05  SW-UTF8         PIC  X(001) VALUE "N"..
+           05  SW-1            PIC  X(001) VALUE ZERO..
 
        LINKAGE                 SECTION.
 
@@ -312,16 +312,21 @@
               MOVE LFD-LEN     TO Buffer-Length
       *    *** 指定された長さが、項目長を超えてる時、項目長にする
       *        IF   Buffer-Len >   LENGTH(Buffer)  OR
-      *             Buffer-Len =   0
+      *             Buffer-Len =   ZERO
               IF   LFD-LEN >   LENGTH(Buffer)
       *          OR
-      *             LFD-LEN =   0
+      *             LFD-LEN =   ZERO
       *    *** 項目長ゼロも有効とする、出力対象外とする
                    MOVE LENGTH(Buffer) TO Buffer-Length
               END-IF
            ELSE
       *    *** 第3パラメータ(LFD-LEN)無い時、引き渡された項目の長さとする
               MOVE LENGTH(Buffer) TO Buffer-Length
+           END-IF
+
+           IF      Buffer-Length >     65536
+                   DISPLAY WK-PGM-NAME " Buffer-Length Over 65536 < "
+                           Buffer-Length
            END-IF
 
            MOVE SPACE             TO Output-Detail1
@@ -331,9 +336,6 @@
                                      OD-I11 OD-I12
 
            SET Addr-Pointer       TO ADDRESS OF Buffer
-
-           MOVE    ZERO        TO      I
-           MOVE    ZERO        TO      SW-KANJI SW-KANJI2
 
            MOVE    104         TO      P1
            MOVE    "N"         TO      SW-UTF8
@@ -346,23 +348,10 @@
 
                    ADD 1 TO Output-Sub
                             P2
-      *    *** 漢字判定したとき、１回判定スキップ 
+
+      *    *** SJIS CHECK
                    IF  LFD-KANJI = "SJIS"
-                     IF  SW-KANJI = "1"
-      *    *** SW-KANJI=1のとき、２バイト目
-                       IF  SW-KANJI2 =  "1"
-                           MOVE   ZERO   TO  SW-KANJI2
-                           ADD    1      TO  I
-                       ELSE
-                           ADD    1      TO  I
-                           MOVE   ZERO   TO  SW-KANJI
-                           PERFORM  S210-10 THRU S210-EX
-                       END-IF
-                     ELSE
-      *    *** 漢字チェック
-                       ADD   1   TO   I
-                       PERFORM  S210-10 THRU S210-EX
-                     END-IF
+                       PERFORM S210-10 THRU S210-EX
                    END-IF
 
                    IF Output-Sub = 1
@@ -394,6 +383,7 @@
                          IF  Output-Sub = 99
                            ADD   Buffer-Sub 2 GIVING I2
                            MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  "1" TO SW-1
                          END-IF
 
                          IF  Output-Sub = 100
@@ -402,51 +392,91 @@
 
                            ADD   Buffer-Sub 2 GIVING I2
                            MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  "2" TO SW-1
                          END-IF
                      END-IF
                    END-IF
 
       *    *** X"20"=SPACE ,X"7E"=~
-      *    *** X"7E" ではカタカナ出ないので、X"FD"に変更
-                   IF   (PIC-X < X"20")
-                     OR (PIC-X = X"7F")
-      *               OR (PIC-X > X"7E" AND PIC-X < X"A1")
-      *               OR (PIC-X > X"DF")) AND
-      *****             SW-KANJI = ZERO
+                   IF   ( PIC-X <  X"20")
+                     OR ( PIC-X =  X"7F")
+                     OR ( PIC-X >= X"FD" AND <= X"FF")
                         MOVE SPACE TO OD-ASCII (Output-Sub)
                         MOVE SPACE TO OD-ASCII2 (P2)
                    ELSE
-                        MOVE PIC-X TO OD-ASCII (Output-Sub)
-                        MOVE PIC-X TO OD-ASCII2 (P2)
+      *    *** 1行前、16:2 "0",SJISなら (1)にSPACEセット,その他ならSET
+                       IF   OUTPUT-SUB = 1
+                            IF   Buffer-Sub = 1
+                                 MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                               OD-ASCII2 (P2)
+                            ELSE
+                              IF  LFD-KANJI = "SJIS"
+                                 IF SW-KANJI = "1"
+                                     MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                                   OD-ASCII2 (P2)
+                                 ELSE
+                                     MOVE SPACE TO OD-ASCII (Output-Sub)
+                                                   OD-ASCII2 (P2)
+                                 END-IF
+                              ELSE
+                                 IF SW-1 = ZERO
+                                     MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                                   OD-ASCII2 (P2)
+                                 ELSE
+                                     MOVE SPACE TO OD-ASCII (Output-Sub)
+                                                   OD-ASCII2 (P2)
+                                 END-IF
+                              END-IF
+                            END-IF
+                        ELSE
+                            IF  LFD-KANJI = "SJIS"
+                                MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                              OD-ASCII2 (P2)
+                            ELSE
+      *    *** UTF8
+
+                              IF OUTPUT-SUB = 2
+
+                                EVALUATE TRUE
+
+                                    WHEN SW-1 = ZERO
+                                    MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                                  OD-ASCII2 (P2)
+
+      *    *** OUTPUT-SUB = 2
+                                    WHEN SW-1 = "1"
+                                    MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                                  OD-ASCII2 (P2)
+                                    MOVE ZERO  TO SW-1
+      *    *** OUTPUT-SUB = 2
+                                    WHEN OTHER
+                                    MOVE SPACE TO OD-ASCII (Output-Sub)
+                                                  OD-ASCII2 (P2)
+                                    MOVE ZERO  TO SW-1
+                                END-EVALUATE
+                              ELSE
+                                MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                              OD-ASCII2 (P2)
+                              END-IF
+                            END-IF
+                        END-IF
                    END-IF
 
-      *             IF  LFD-TYPE = "M"
-
-      *                 DIVIDE PIC-Halfword BY 16
-      *                        GIVING Left-Nibble
-      *                        REMAINDER Right-Nibble
-      *                 ADD 1 TO Left-Nibble Right-Nibble
-      *                 MOVE Hex-Digit (Left-Nibble)
-      *                         TO OD-Hex-1 (Output-Sub)
-      *                 MOVE Hex-Digit (Right-Nibble)
-      *                         TO OD-Hex-2 (Output-Sub)
-
-      *    *** CALL "DECODE03" に変更する
-      *                 MOVE WK-BUF2-L (Buffer-Sub)
-      *                         TO OD-Hex-1 (Output-Sub)
-      *                 MOVE WK-BUF2-R (Buffer-Sub)
-      *                         TO OD-Hex-2 (Output-Sub)
-      *             END-IF
-
                    IF  Output-Sub = 100
-                       IF  SW-KANJI = "1"
-                           ADD   Buffer-Sub 1 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+                       IF   LFD-KANJI = "SJIS"
+                           IF  SW-KANJI = "1"
+                               ADD   Buffer-Sub 1 GIVING I2
+                               MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+                           ELSE
+                               MOVE  SPACE       TO    OD-ASCII(101)
+                           END-IF
                        END-IF
 
                        MOVE  LFD-SEQ  TO OD-SEQ
 
+      *    *** SJIS Byte / LENG  SEQ 固定位置にセット
                        MOVE  OD-I11   TO OD-I12
+      *    *** UTF8 Byte / LENG  SEQ 可変位置にセット
                        MOVE  OD-I11   TO OD-I122 (P1:24)
 
                        IF  LFD-SU = 1
@@ -510,19 +540,16 @@
                                        Output-Detail3
                                        OD-I11 OD-I12
 
-                       MOVE    ZERO        TO      I
-                       MOVE    ZERO        TO      SW-KANJI SW-KANJI2
 
                        MOVE    104         TO      P1
                        MOVE    "N"         TO      SW-UTF8
-                       MOVE    0           TO      Output-Sub
+                       MOVE    ZERO        TO      Output-Sub
                                                    P2
 
-      *                 SET Addr-Pointer UP BY 100
                    END-IF
            END-PERFORM
 
-           IF  Output-Sub > 0
+           IF  Output-Sub > ZERO
                MOVE  LFD-SEQ  TO OD-SEQ
 
                MOVE  OD-I11   TO OD-I12
@@ -594,11 +621,11 @@
               MOVE LFD-LEN     TO Buffer-Length
       *    *** 指定された長さが、項目長を超えてる時、項目長にする
       *        IF   Buffer-Len >   LENGTH(Buffer)  OR
-      *             Buffer-Len =   0
+      *             Buffer-Len =   ZERO
               IF   LFD-LEN >   LENGTH(Buffer) 
       *    *** 項目長ゼロも有効とする、出力対象外とする
       *         OR
-      *             LFD-LEN =   0
+      *             LFD-LEN =   ZERO
                    MOVE LENGTH(Buffer) TO Buffer-Length
               END-IF
            ELSE
@@ -618,9 +645,6 @@
 
       *     SET Addr-Pointer       TO ADDRESS OF Buffer
 
-           MOVE    ZERO        TO      I
-           MOVE    ZERO        TO      SW-KANJI SW-KANJI2
-
            MOVE    104         TO      P1
            MOVE    42          TO      P1-2
 
@@ -638,23 +662,10 @@
                    ADD 1 TO Output-Sub
                             P2
                             P2-2
-      *    *** 漢字判定したとき、１回判定スキップ 
+
+      *    *** SJIS CHECK
                    IF  LFD-KANJI = "SJIS"
-                     IF  SW-KANJI = "1"
-      *    *** SW-KANJI=1のとき、２バイト目
-                       IF  SW-KANJI2 =  "1"
-                           MOVE   ZERO   TO  SW-KANJI2
-                           ADD    1      TO  I
-                       ELSE
-                           ADD    1      TO  I
-                           MOVE   ZERO   TO  SW-KANJI
-                           PERFORM  S210-10 THRU S210-EX
-                       END-IF
-                     ELSE
-      *    *** 漢字チェック
-                       ADD   1   TO   I
-                       PERFORM  S210-10 THRU S210-EX
-                     END-IF
+                       PERFORM S210-10 THRU S210-EX
                    END-IF
 
                    IF Output-Sub = 1
@@ -679,9 +690,14 @@
                    END-IF
 
                    IF  Output-Sub = 100
-                       IF  SW-KANJI = "1"
-                           ADD   Buffer-Sub 1 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+
+                       IF   LFD-KANJI = "SJIS"
+                           IF  SW-KANJI = "1"
+                               ADD   Buffer-Sub 1 GIVING I2
+                               MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+                           ELSE
+                               MOVE  SPACE       TO    OD-ASCII(101)
+                           END-IF
                        END-IF
                    END-IF
 
@@ -691,14 +707,15 @@
                    IF  LFD-KANJI = "UTF8"
                      IF  ( PIC-X >= X"E0" AND PIC-X <= X"EF" ) AND
                          ( Buffer (Buffer-Sub + 1: 1) >= X"80" AND
-                                                      <= X"BF" )
+                                                      <= X"BF" ) AND
+                         ( Buffer-Sub  + 2 <= Buffer-Length )
                          MOVE    "Y"       TO     SW-UTF8
                          ADD     1         TO     P1
                                                   P2
                                                   P2-2
       *    *** 最後の文字漢字 でない時、ずらさない
-                         IF ( Buffer-Length     = Output-Sub ) OR
-                            ( Buffer-Length - 1 = Output-Sub )
+                         IF ( Buffer-Length     = Output-Sub )
+                         OR ( Buffer-Length - 1 = Output-Sub )
                              CONTINUE
                          ELSE
                              ADD     1         TO     P1-2
@@ -706,6 +723,7 @@
 
                          IF  Output-Sub = 99
 
+      *    *** P2 はUTF8用で出演位置、可変
                            ADD   Buffer-Sub 2 GIVING I2
                            MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
                          END-IF
@@ -722,12 +740,9 @@
                    END-IF
 
       *    *** X"20"=SPACE ?,X"7E"=~
-      *    *** X"7E" ではカタカナ出ないので、X"FD"に変更
-                   IF    (PIC-X < X"20")
-                      OR (PIC-X = X"7F")
-      *               OR (PIC-X > X"7E" AND PIC-X < X"A1")
-      *               OR (PIC-X > X"DF")) AND
-      *****               SW-KANJI = ZERO
+                   IF    (PIC-X <  X"20")
+                     OR ( PIC-X =  X"7F")
+                     OR ( PIC-X >= X"FD" AND <= X"FF")
                         MOVE SPACE TO OD-ASCII (Output-Sub)
                                       OD-ASCII2 (P2)
 
@@ -736,53 +751,63 @@
                                          OD4-ASCII2 (P2-2)
                         END-IF
                    ELSE
-                        MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                      OD-ASCII2 (P2)
 
-                        IF Buffer-Length <= 40
-                           MOVE PIC-X TO OD4-ASCII (Output-Sub)
-                                         OD4-ASCII2 (P2-2)
-                        END-IF
+                       EVALUATE TRUE
+
+                           WHEN  ( Buffer-Length - 2 = Output-Sub
+                                OR Buffer-Length - 1 = Output-Sub
+                                OR Buffer-Length     = Output-Sub )
+                             AND ( Buffer (Buffer-Length - 2:1) >= X"E0"
+                                 AND PIC-X <= X"EF" )
+                               MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                             OD-ASCII2 (P2)
+
+                               IF Buffer-Length <= 40
+                                   MOVE PIC-X TO OD4-ASCII (Output-Sub)
+                                                 OD4-ASCII2 (P2-2)
+                               END-IF
+
+                           WHEN  Buffer-Length = Output-Sub
+                            AND (( PIC-X >= X"E0" AND PIC-X <= X"EF" )
+                              OR ( PIC-X >= X"80" AND PIC-X <= X"BF" ))
+                                MOVE SPACE TO OD-ASCII (Output-Sub)
+                                              OD-ASCII2 (P2)
+
+                                IF Buffer-Length <= 40
+                                   MOVE SPACE TO OD4-ASCII (Output-Sub)
+                                                 OD4-ASCII2 (P2-2)
+                                END-IF
+
+                           WHEN  Buffer-Length - 1 = Output-Sub
+                            AND ( PIC-X >= X"E0" AND PIC-X <= X"EF" )
+                                MOVE SPACE TO OD-ASCII (Output-Sub)
+                                              OD-ASCII2 (P2)
+
+                                IF Buffer-Length <= 40
+                                   MOVE SPACE TO OD4-ASCII (Output-Sub)
+                                                 OD4-ASCII2 (P2-2)
+                                END-IF
+
+                           WHEN OTHER
+                               MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                             OD-ASCII2 (P2)
+
+                               IF Buffer-Length <= 40
+                                   MOVE PIC-X TO OD4-ASCII (Output-Sub)
+                                                 OD4-ASCII2 (P2-2)
+                               END-IF
+                       END-EVALUATE
                    END-IF
 
-      *             IF  LFD-TYPE = "M" OR 
-      *             IF  Buffer-Length <= 40
-
-      *                 DIVIDE PIC-Halfword BY 16
-      *                        GIVING Left-Nibble
-      *                        REMAINDER Right-Nibble
-      *                ADD 1 TO Left-Nibble Right-Nibble
-      *                 MOVE Hex-Digit (Left-Nibble)
-      *                         TO OD-Hex-1 (Output-Sub)
-      *                 MOVE Hex-Digit (Right-Nibble)
-      *                         TO OD-Hex-2 (Output-Sub)
-
-      *    *** CALL "DECODE03" に変更する
-      *                 MOVE WK-BUF2-L (Buffer-Sub)
-      *                         TO OD-Hex-1 (Output-Sub)
-      *                 MOVE WK-BUF2-R (Buffer-Sub)
-      *                         TO OD-Hex-2 (Output-Sub)
-
-      *                 IF Buffer-Length <= 40
-      *                     MOVE Hex-Digit (Left-Nibble)
-      *                         TO OD4-Hex-1 (Output-Sub)
-      *                     MOVE Hex-Digit (Right-Nibble)
-      *                         TO OD4-Hex-2 (Output-Sub)
-
-      *                     MOVE WK-BUF2-L (Buffer-Sub)
-      *                             TO OD4-Hex-1 (Output-Sub)
-      *                     MOVE WK-BUF2-R (Buffer-Sub)
-      *                             TO OD4-Hex-2 (Output-Sub)
-      *                 END-IF
-      *             END-IF
            END-PERFORM
 
-           IF  Output-Sub > 0
+           IF  Output-Sub > ZERO
                MOVE  LFD-SEQ  TO OD4-SEQ
                                  OD4-SEQ2
                                  OD-SEQ
                MOVE  LFD-ITEM TO OD4-ITEM
                                  OD4-ITEM2
+      *    *** OD-I11 Byte / LENG  SEQ はUTF8用で出演位置、可変
                MOVE  OD-I11   TO OD-I12
                                  OD4-I13
                                  OD-I122 (P1:24)
@@ -805,10 +830,6 @@
                        END-IF
 
                        IF  SW-UTF8 = "Y"
-      *     IF ( LFD-SEQ = 10 ) OR
-      *        ( LFD-SEQ >=49 AND <= 57 ) 
-      *       CALL "COBDUMP" USING Output-Detail42
-      *     END-IF
                            WRITE POT1-REC FROM Output-Detail42
                        ELSE
                            WRITE POT1-REC FROM Output-Detail4
@@ -897,17 +918,33 @@
        S200-EX.
            EXIT.
 
-      *    *** SJIS 用
+      *    *** SJIS CHECK
+
+      *    *** SJIS １バイト目からチェック、
+      *    *** SJIS なら"1"、
+      *    ***  既に"1"の時、"0" に戻す
+      *    ***  その他の時、"1"
+      *    ***  1234567890123456
+      *    ***  漢字  => 1:2 漢字
+      *    ***   漢字 => 2:2 漢字となる事もあるため、
+      *    *** 漢字２バイト目チェックで、"0"にリセットする
+      *    ***  
        S210-10.
-      *    *** SJIS の時、１００バイト目の漢字を表示させるため
-           IF    ( Buffer (I:2) >= X"8140" AND 
-                   Buffer (I:2) <= X"9FFC" )   OR
-                 ( Buffer (I:2) >= X"E040" AND 
-                   Buffer (I:2) <= X"EAA4" )
-                   MOVE   "1"  TO     SW-KANJI
-                                      SW-KANJI2
+
+      *    *** SJIS 漢字範囲
+           IF    ( Buffer (Buffer-Sub:2) >= X"8140" AND 
+                   Buffer (Buffer-Sub:2) <= X"9FFC" )   OR
+                 ( Buffer (Buffer-Sub:2) >= X"E040" AND 
+                   Buffer (Buffer-Sub:2) <= X"EAA4" )
+               IF  SW-KANJI = "1"
+                   MOVE    "0"       TO      SW-KANJI
+               ELSE
+                   MOVE    "1"       TO      SW-KANJI
+               END-IF
            ELSE
-                   MOVE   ZERO TO     SW-KANJI
+      *    *** SJIS 漢字以外の時、"0"
+      *    *** 
+                   MOVE    "0"       TO      SW-KANJI
            END-IF
            .
        S210-EX.

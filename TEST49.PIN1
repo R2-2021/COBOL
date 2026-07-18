@@ -249,6 +249,14 @@ Lynn,
 #00 YoutubeChannel
 YoutubeChannel,
 
+#00 Instagram(フォロー済)
+Instagram_声優,
+Instagram_女優,
+Instagram_歌手,
+Instagram_アーチスト,
+Instagram_ADR女優,
+Instagram_その他,
+
 #00 ２２／７（キャラクター）
 ２２／７,
 斎藤ニコル,https://nanabunnonijyuuni-mobile.com/images/4/52f/227d0dc775f70673a2db6448cb6f4-02.png ,
@@ -327,6 +335,7 @@ Vtuber,
 世間話,
 料理,
 子供向け,
+ストレッチ,
 
 #00 ドキュメンタリー
 ナショナルジオグラフィック,
@@ -337,14 +346,6 @@ Vtuber,
 #00 日本
 日本ドラマ,
 日本趣味,
-
-#00 Instagram
-Instagram_声優,
-Instagram_女優,
-Instagram_歌手,
-Instagram_アーチスト,
-Instagram_ADR女優,
-Instagram_その他,
 
 #00 中国
 中国,

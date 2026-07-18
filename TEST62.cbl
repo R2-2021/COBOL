@@ -174,6 +174,7 @@
                07  WK-HEX3     PIC  X(002) VALUE LOW-VALUE.
            03  WK-HEX-SU       REDEFINES WK-HEX
                                PIC  9(009) COMP-X.
+           03  WK-YYYY2        PIC  9(004) VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -212,6 +213,8 @@
 
        01  SW-AREA.
            03  SW-SEARCH       PIC  X(001) VALUE "N".
+           03  SW-YES          PIC  X(001) VALUE "N".
+           03  SW-5YEAR        PIC  X(001) VALUE "N".
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -219,8 +222,17 @@
       *    *** OPEN
            PERFORM S010-10     THRU    S010-EX
 
+      *    *** 5年分がYの時、PIN1の年が5年分まで読み飛ばす
+           IF      SW-5YEAR    =       "Y"
+
+                   PERFORM UNTIL WK-PIN1-ITEM1 >=     WK-YYYY2
       *    *** READ PIN1
-           PERFORM S020-10     THRU    S020-EX
+                           PERFORM S020-10     THRU    S020-EX
+                   END-PERFORM
+           ELSE
+      *    *** READ PIN1
+                   PERFORM S020-10     THRU    S020-EX
+           END-IF
 
       *    *** READ PIN2
            PERFORM S030-10     THRU    S030-EX
@@ -430,6 +442,30 @@
            SET     TBL02-IDX   TO      1
            SET     TBL03-IDX   TO      1
 
+           MOVE    "N"         TO      SW-YES
+           PERFORM UNTIL SW-YES =      "Y"
+                   DISPLAY "過去 5年分で作成しますか？ Y OR N"
+                   ACCEPT  SW-5YEAR
+
+                   EVALUATE TRUE
+                       WHEN SW-5YEAR = "Y"
+                           COMPUTE WK-YYYY2 = WDT-DATE-YYYY - 4
+                           DISPLAY
+                           "過去 5年分 " WK-YYYY2 "-" WDT-DATE-YYYY
+                           " で作成します Y を力してください"
+                           ACCEPT  SW-YES
+
+                       WHEN SW-5YEAR = "N"
+                           DISPLAY
+                           " 全年分で作成します Y を力してください"
+                           ACCEPT  SW-YES
+
+                       WHEN OTHER
+                           DISPLAY
+                           "Y OR N で入力してください"
+                   END-EVALUATE
+           END-PERFORM
+
       *****     CALL "COBDUMP" USING  WK-DATA
            .
        S010-EX.
@@ -627,6 +663,12 @@
                    PERFORM S120-10     THRU    S120-EX
            END-IF
 
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+           MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                   POT1-REC (P:WK-PIN1-ITEM4-LEN)
+           ADD     WK-PIN1-ITEM4-LEN TO P
+
            MOVE    ","         TO      POT1-REC (P:1)
 
            WRITE   POT1-REC
@@ -823,6 +865,12 @@
                    PERFORM S120-10     THRU    S120-EX
            END-IF
 
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+           MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                   POT1-REC (P:WK-PIN1-ITEM4-LEN)
+           ADD     WK-PIN1-ITEM4-LEN TO P
+
            MOVE    ","         TO      POT1-REC (P:1)
 
            WRITE   POT1-REC
@@ -860,6 +908,12 @@
            IF      SW-SEARCH   =       "N"
                    PERFORM S120-10     THRU    S120-EX
            END-IF
+
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+           MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                   POT1-REC (P:WK-PIN1-ITEM4-LEN)
+           ADD     WK-PIN1-ITEM4-LEN TO P
 
            MOVE    ","         TO      POT1-REC (P:1)
 
@@ -906,6 +960,12 @@
                    PERFORM S120-10     THRU    S120-EX
            END-IF
 
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+           MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                   POT1-REC (P:WK-PIN1-ITEM4-LEN)
+           ADD     WK-PIN1-ITEM4-LEN TO P
+
            MOVE    ","         TO      POT1-REC (P:1)
 
            WRITE   POT1-REC
@@ -949,6 +1009,12 @@
                    PERFORM S120-10     THRU    S120-EX
            END-IF
 
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+           MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                   POT1-REC (P:WK-PIN1-ITEM4-LEN)
+           ADD     WK-PIN1-ITEM4-LEN TO P
+
            MOVE    ","         TO      POT1-REC (P:1)
 
            WRITE   POT1-REC
@@ -983,10 +1049,24 @@
       *    *** 漢字　ＨＩＴしたら、終了
            IF      SW-SEARCH   =       "Y"
                    ADD     L           TO      P
+
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+                   MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                           POT1-REC (P:WK-PIN1-ITEM4-LEN)
+                   ADD     WK-PIN1-ITEM4-LEN TO P
+
                    MOVE    ","         TO      POT1-REC (P:1)
            ELSE
                    MOVE    X"E38080E38080" TO  POT1-REC (P:6)
                    ADD     6           TO      P
+
+      *    *** ふりがなの後にタイトル文字列も追加する
+      *    *** 魔法ＸＸＸとかのタイトル多いため、タイトル文字列もＳＯＲＴする
+                   MOVE    WK-PIN1-ITEM4 (1:WK-PIN1-ITEM4-LEN) TO
+                           POT1-REC (P:WK-PIN1-ITEM4-LEN)
+                   ADD     WK-PIN1-ITEM4-LEN TO P
+
                    MOVE    ","         TO      POT1-REC (P:1)
 
       *    *** 漢字サーチＨＩＴしない時、POT2-REC に出力

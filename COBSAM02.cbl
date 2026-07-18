@@ -259,11 +259,11 @@
            EVALUATE WK-TESTNO
 
                WHEN "00"
-                   PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+      *             PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
                            PERFORM S200-10     THRU    S200-EX
       *    *** READ PIN1
       *                    PERFORM S020-10     THRU    S020-EX
-                   END-PERFORM
+      *             END-PERFORM
                WHEN "01"
                    PERFORM S210-10     THRU    S210-EX
 

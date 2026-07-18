@@ -93,7 +93,7 @@
              05                PIC  X(001) VALUE ".".
              05                PIC  X(003) VALUE X"E38080".
              05  WK-NO-YYYY    PIC  X(004) VALUE SPACE.
-      *    *** îNÅ@
+      *    *** îN
              05                PIC  X(003) VALUE X"E5B9B4".
              05                PIC  X(003) VALUE X"E38080".
              05  WK-NO-MM      PIC  X(002) VALUE SPACE.

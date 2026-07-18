@@ -50,7 +50,7 @@
                                DISPLAY "1,3,9999 ‚¢‚¸‚ê‚©‚ð“ü—Í"
                            END-IF
                        END-IF
-               END-IF
+                   END-IF
       *             DISPLAY "LO=" WK-LO-NUM " HI=" WK-HI-NUM " CHK="
       *                     WK-CHK-NUM
            END-PERFORM

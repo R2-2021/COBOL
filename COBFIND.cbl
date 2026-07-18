@@ -66,6 +66,7 @@
            03  WK-COPY-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PGID-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-OTHER-CNT    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-SEARCH-CNT   BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-UNST-PTR     BINARY-LONG SYNC VALUE ZERO.
            03  WK-STO-PTR      BINARY-LONG SYNC VALUE ZERO.
@@ -237,6 +238,7 @@
                                        WK-COPY-CNT
                                        WK-PGID-CNT
                                        WK-OTHER-CNT
+                                       WK-SEARCH-CNT
                                        L1 L2 L3 L4 L5
 
       *    *** ¶Šñ‚¹
@@ -249,7 +251,8 @@
                    WK-CALL-CNT FOR ALL "CALL"
                    WK-COPY-CNT FOR ALL "COPY"
       *             WK-OTHER-CNT FOR ALL "PIN1"
-                   WK-OTHER-CNT FOR ALL "INCLUDE"
+      *             WK-OTHER-CNT FOR ALL "INCLUDE"
+      *             WK-SEARCH-CNT FOR ALL "SEARCH"
 
       *     IF      WK-OTHER-CNT NOT =  ZERO
       *             DISPLAY "SV-PGID=" SV-PGID
@@ -263,6 +266,7 @@
 
            IF      WK-CALL-CNT >       ZERO OR
                    WK-COPY-CNT >       ZERO OR
+      *             WK-SEARCH-CNT >     ZERO OR
       *     IF      WK-OTHER-CNT >      ZERO OR
                    WK-PGID-CNT >       ZERO
 
@@ -323,6 +327,7 @@
                            CONTINUE
                    ELSE
                        IF      WK-PIN1-DT01(1:4) = "CALL" OR "COPY"
+      *                 IF      WK-PIN1-DT01(1:6) = "SEARCH"
       *                 IF      WK-PIN1-DT01(1:8) = "DATE-RAP"
       *                 IF      WK-PIN1-DT01 = "DISPLAY" AND
       *                         WK-PIN1-DT02 = "WK-PGM-NAME" AND

@@ -59,8 +59,8 @@
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
       *     03  FILLER          PIC  X(65536).
-           03  FILLER          PIC  X(1000000).
-      *     03  FILLER          PIC  X(100).
+      *     03  FILLER          PIC  X(10000000).
+           03  FILLER          PIC  X(100000).
 
        FD  PIN2-F
            LABEL RECORDS ARE STANDARD.
@@ -118,8 +118,11 @@
            03  WK-VAL          PIC  X(001) VALUE X"20".
            03  WK-FLAG         PIC  X(004) VALUE SPACE.
            03  WK-COUNT-1      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ACCEPT1       PIC  X(100) VALUE SPACE.
 
-       01  WK-PIN1-REC         PIC  X(65536) VALUE SPACE.
+      * 01  WK-PIN1-REC         PIC  X(10000000) VALUE SPACE.
+       01  WK-PIN1-REC         PIC  X(100000) VALUE SPACE.
 
        01  WK-Buf-L            BINARY-LONG SYNC VALUE 10.
 
@@ -171,6 +174,22 @@
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+                   ACCEPT  WK-ACCEPT1 FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST10 XXX.html <=例"
+                   STOP    RUN
+           END-EVALUATE
+
            OPEN    INPUT       PIN2-F
            IF      WK-PIN2-STATUS NOT =  ZERO
                    DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
@@ -185,6 +204,8 @@
            ELSE
                IF  WK-PIN2-STATUS =    10
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
+                   DISPLAY WK-PGM-NAME " PIN2-F READ ZERO 件 ERROR"
+                   STOP    RUN
                ELSE
                    DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
                            WK-PIN2-STATUS
@@ -192,9 +213,12 @@
                END-IF
            END-IF
 
-           IF      PIN2-YYYYMM =       SPACE
-                   CONTINUE
+           IF      WK-ARGUMENT-NUMBER = 1
+               MOVE    WK-ACCEPT1  TO      WK-PIN1-F-NAME
            ELSE
+             IF      PIN2-YYYYMM =       SPACE
+                   CONTINUE
+             ELSE
       *    *** 毎回ABENDするので、TEST45.POT1 をPIN1として、入力する
                IF    ( PIN2-YYYYMM(1:4) >=     2000 AND <= 2040 ) AND
                      ( PIN2-YYYYMM(5:2) >=     01 AND <= 12 )
@@ -209,6 +233,7 @@
                            MOVE    PIN2-REC        TO  WK-PIN1-F-NAME
                    END-IF
                END-IF
+             END-IF
            END-IF
 
            OPEN    INPUT       PIN1-F
@@ -248,7 +273,7 @@
                                        WK-PIN1-REC
            READ    PIN1-F      INTO    WK-PIN1-REC
 
-      *    IF      WK-PIN1-CNT >= 1230 AND <= 1250
+      *     IF      WK-PIN1-CNT >= 1730 AND <= 1734
       *         DISPLAY " " 
       *         DISPLAY WK-PIN1-CNT " " WK-PIN1-LEN " " WK-POT1-CNT
       *         DISPLAY PIN1-REC(1:80)
@@ -258,10 +283,10 @@
       *     IF      WK-PIN1-STATUS =    ZERO OR 4
            IF      WK-PIN1-STATUS =    ZERO
                    ADD     1           TO      WK-PIN1-CNT
+
                    IF      WK-PIN1-LEN >       WK-PIN1-LEN-MAX
                        MOVE    WK-PIN1-LEN TO      WK-PIN1-LEN-MAX
                    END-IF
-
       *     IF WK-PIN1-CNT >= 0 AND <= 121
       *     DISPLAY "WK-PIN1-CNT=" WK-PIN1-CNT " " PIN1-REC (1:20)
 
@@ -345,12 +370,20 @@
       *    *** WRITE POT1
        S100-10.
 
+      *     IF      WK-PIN1-CNT >= 1730 AND <= 1740
+      *         DISPLAY " " 
+      *         DISPLAY WK-PIN1-CNT " " WK-PIN1-LEN " " WK-POT1-CNT
+      *         DISPLAY PIN1-REC(1:80)
+      *         DISPLAY POT1-REC(1:80)
+      *     END-IF
+
       *     IF WK-PIN1-CNT <= 100
       *        CALL "COBDUMP" USING  PIN1-REC WK-Buf-L
       *     END-IF
            MOVE    ZERO        TO      WK-FIND
            PERFORM VARYING I FROM 1 BY 1
                    UNTIL   I   >       WK-PIN1-LEN
+
       *     IF WK-PIN1-CNT >= 0 AND <= 121
       *       DISPLAY "WK-PIN1-CNT=" WK-PIN1-CNT
       *       DISPLAY "I=" I
@@ -408,7 +441,7 @@
                            END-IF
                        END-IF
                        IF      SW-RED      =       "N"
-                               IF      POT1-REC (1:33)  =                                  ELSE
+                               IF      POT1-REC (1:33)  =
                                    '<A HREF="https://www.xvideos.red/'
                                        CONTINUE
                                ELSE
@@ -432,11 +465,12 @@
                            MOVE    +1      TO      L
                            PERFORM VARYING J FROM I BY 1
                                UNTIL   PIN1-REC(J:1) =       "<" OR
-                                       J      >     WK-PIN1-LEN      OR
-                                     ( L             >      1    AND
-                                       PIN1-REC(J:4) IS NUMERIC  AND
+                                       J      >     WK-PIN1-LEN   
+      *                                    OR
+      *                               ( L             >      1    AND
+      *                                 PIN1-REC(J:4) IS NUMERIC  AND
       *    *** 年
-                                       PIN1-REC(J + 4:3) = X"E5B9B4" )
+      *                                 PIN1-REC(J + 4:3) = X"E5B9B4" )
                                ADD     1           TO      L
                            END-PERFORM
                            ADD     -1            TO      L
@@ -454,8 +488,8 @@
                            END-IF
 
                            MOVE    PIN1-REC(I:L) TO      POT1-REC
-                           IF      SW-RED      =       "N"                           ELSE
-                               IF      POT1-REC (1:33)  =                                  ELSE
+                           IF      SW-RED      =       "N"
+                               IF      POT1-REC (1:33)  =
                                    '<A HREF="https://www.xvideos.red/'
                                        CONTINUE
                                ELSE

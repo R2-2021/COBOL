@@ -10,17 +10,18 @@
 
       *    *** SORT 済 データ
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** キーダブリカットデータ
+      *    *** キーダブリ　１件目データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** キーダブリカット 件数追加　データ
+      *    *** キーダブリ　２件目以降データ
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
-                               STATUS   WK-POT2-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.
+
+      *    *** キーダブリ　キーデータ
+       SELECT POT3-F           ASSIGN   WK-POT3-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -35,14 +36,17 @@
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
-           03  FILLER          PIC  X(10000).
+           03                  PIC  X(10000).
 
        FD  POT2-F
            LABEL RECORDS ARE STANDARD.
        01  POT2-REC.
-      *     03  POT2-CNT        PIC  9(009).
-      *     03                  PIC  X(001).
-           03  POT2-KEY        PIC  X(300).
+           03                  PIC  X(10000).
+
+       FD  POT3-F
+           LABEL RECORDS ARE STANDARD.
+       01  POT3-REC.
+           03                  PIC  X(300).
 
        WORKING-STORAGE         SECTION.
 
@@ -53,13 +57,14 @@
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST84.POT3S".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST75.SORT.POT1".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST127.SORT.POT1".
-           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST130.POT1.SORT".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST130.POT1.SORT".
+      *         "TEST26_202607SJIS2.POT1.SORT".
+           03  WK-PIN1-F-NAME  PIC  X(032) VALUE
+               "TEST71.PIN1.SORT".
+
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST71.POT1".
            03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST71.POT2".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT2-STATUS  PIC  9(002) VALUE ZERO.
+           03  WK-POT3-F-NAME  PIC  X(032) VALUE "TEST71.POT3".
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -67,10 +72,12 @@
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT2B-CNT    BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT2-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-POT3-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-POT3-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
@@ -80,6 +87,7 @@
            03  WK-LEN1         PIC  9(005) VALUE ZERO.
            03  WK-LEN2         PIC  9(005) VALUE ZERO.
            03  WK-LEN3         PIC  9(005) VALUE ZERO.
+           03  WK-SJIS         PIC  X(100) VALUE SPACE.
            03  WK-OLD-REC      PIC  X(10000) VALUE LOW-VALUE.
 
            03  WK-OLD-KEY.
@@ -91,9 +99,18 @@
              05  WK-NEW-KEY2   PIC  X(100) VALUE LOW-VALUE.
              05  WK-NEW-KEY3   PIC  X(100) VALUE LOW-VALUE.
 
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
+
+      *    *** 初期値 MODE=AA   (ANK=>ANK)
+           03  WK-MODE         PIC  X(002) VALUE "AA".
+      *    *** 初期値 HENKAN=US (UTF8=>SJIS)
+           03  WK-HENKAN       PIC  X(006) VALUE "US".
+
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
            COPY    CPDATETIME  REPLACING ==:##:== BY ==WDT==.
+
+           COPY    CPDECODE05  REPLACING ==:##:== BY ==WDE05==.
 
        01  INDEX-AREA.
            03  I               BINARY-LONG SYNC VALUE ZERO.
@@ -111,20 +128,67 @@
 
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
-           ADD     1           TO      WK-POT2B-CNT
 
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+               EVALUATE TRUE
+
+                   WHEN WK-OLD-KEY  >  WK-NEW-KEY
+                           DISPLAY WK-PGM-NAME " PIN1-F 未ＳＯＲＴです"
+                                   " WK-PIN1-CNT=" WK-PIN1-CNT
+                           DISPLAY "OLD-KEY=" WK-OLD-KEY
+                           CALL "COBDUMP" USING  WK-OLD-KEY
+
+                           IF      WK-OLD-KEY (1:1) >= X"E0"
+                               AND WK-OLD-KEY (1:1) <= X"E9"
+                               MOVE    "CHANGE"    TO      WDE05-ID
+                               MOVE    WK-HENKAN   TO      WDE05-HENKAN
+                               MOVE    WK-MODE     TO      WDE05-MODE
+                               MOVE    100         TO     WDE05-BUF1-LEN
+                               MOVE    WK-PIN1-CNT TO     WDE05-BUF1-CNT
+      *    *** 漢字 ＵＴＦ８＝＞ＳＪＩＳに変換
+                               CALL "DECODE05" USING WDE05-DECODE05-AREA
+                                                           WK-OLD-KEY
+                                                           WK-SJIS
+                               DISPLAY "OLD-KEY=" WK-SJIS 
+                           END-IF
+
+                           DISPLAY "NEW-KEY=" WK-NEW-KEY
+                           CALL "COBDUMP" USING  WK-NEW-KEY
+
+                           IF      WK-NEW-KEY (1:1) >= X"E0"
+                               AND WK-NEW-KEY (1:1) <= X"E9"
+                               MOVE    "CHANGE"    TO      WDE05-ID
+                               MOVE    WK-HENKAN   TO      WDE05-HENKAN
+                               MOVE    WK-MODE     TO      WDE05-MODE
+                               MOVE    100         TO     WDE05-BUF1-LEN
+                               MOVE    WK-PIN1-CNT TO     WDE05-BUF1-CNT
+      *    *** 漢字 ＵＴＦ８＝＞ＳＪＩＳに変換
+                               CALL "DECODE05" USING WDE05-DECODE05-AREA
+                                                           WK-NEW-KEY
+                                                           WK-SJIS
+                               DISPLAY "NEW-KEY=" WK-SJIS 
+                           END-IF
+
+                           STOP    RUN
+
+                   WHEN WK-OLD-KEY  NOT =   WK-NEW-KEY
+
+                           WRITE   POT1-REC    FROM    PIN1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    WK-NEW-KEY  TO      POT3-REC
+                           INSPECT POT3-REC REPLACING ALL 
+                                   LOW-VALUE BY SPACE
+                           WRITE   POT3-REC
+                           ADD     1           TO      WK-POT3-CNT
+
+                   WHEN OTHER
+                           WRITE   POT2-REC    FROM    PIN1-REC
+                           ADD     1           TO      WK-POT2-CNT
+                   END-EVALUATE
 
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
-
-                   IF      WK-OLD-KEY  =       WK-NEW-KEY
-                           ADD     1           TO      WK-POT2B-CNT
-                   ELSE
-      *    *** WRITE POT1,POT2
-                           PERFORM S100-10     THRU    S100-EX
-                           MOVE     1          TO      WK-POT2B-CNT
-                   END-IF
            END-PERFORM
 
       *    *** CLOSE
@@ -141,6 +205,27 @@
            MOVE    WK-PGM-NAME TO      WDT-DATE-TIME-PGM
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
+
+           MOVE    "OPEN  "    TO      WDE05-ID
+           CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                       PIN1-REC
+                                       POT1-REC
+
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+                   ACCEPT  WK-PIN1-F-NAME FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST71 PIN1.SORT <=例 SORT済ファイルを指定"
+                   STOP    RUN
+           END-EVALUATE
 
            MOVE    "N"         TO      SW-YES
            PERFORM UNTIL SW-YES =      "Y"
@@ -168,25 +253,40 @@
                    IF      WK-POS1     NOT NUMERIC
                         OR WK-POS2     NOT NUMERIC
                         OR WK-POS3     NOT NUMERIC
+
                         OR WK-LEN1     NOT NUMERIC
                         OR WK-LEN2     NOT NUMERIC
                         OR WK-LEN3     NOT NUMERIC
+
                         OR WK-POS1     =       ZERO
                         OR WK-LEN1     =       ZERO
+
+                      OR ( WK-POS1     =       ZERO
+                       AND WK-LEN1     NOT =   ZERO )
+
+                      OR ( WK-POS1     NOT =   ZERO
+                       AND WK-LEN1     =       ZERO )
+
                       OR ( WK-POS2     =       ZERO
                        AND WK-LEN2     NOT =   ZERO )
+
                       OR ( WK-POS2     NOT =   ZERO
                        AND WK-LEN2     =       ZERO )
+
                       OR ( WK-POS3     =       ZERO
                        AND WK-LEN3     NOT =   ZERO )
+
                       OR ( WK-POS3     NOT =   ZERO
                        AND WK-LEN3     =       ZERO )
+
                         OR WK-LEN1     >       100
                         OR WK-LEN2     >       100
                         OR WK-LEN3     >       100
+
                         OR WK-POS1 + WK-LEN1 > 10000
                         OR WK-POS2 + WK-LEN2 > 10000
                         OR WK-POS3 + WK-LEN3 > 10000
+
                            DISPLAY WK-PGM-NAME " POS,LEN 数字で指定"
                                    " LENは100 まで　POS1,LEN1 は必須"
                                    " WK-POS1 + WK-LEN1 <= 10000 "
@@ -198,34 +298,15 @@
            END-PERFORM
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F OPEN ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
-           MOVE    SPACE       TO      POT2-REC
+                   OUTPUT      POT1-F
+                               POT2-F
+                               POT3-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
 
       *****     CALL "COBDUMP" USING  WK-DATA
-
-           MOVE    LOW-VALUE   TO      PIN1-REC
            .
        S010-EX.
            EXIT.
@@ -234,7 +315,6 @@
        S020-10.
 
            MOVE    WK-NEW-KEY  TO      WK-OLD-KEY
-           MOVE    PIN1-REC    TO      WK-OLD-REC
 
            READ    PIN1-F
                AT END
@@ -242,6 +322,7 @@
                                                WK-NEW-KEY
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
+                                               WK-POT2B-CNT
                    MOVE    PIN1-REC (WK-POS1:WK-LEN1)
                                        TO      WK-NEW-KEY1 (1:WK-LEN1)
                    IF      WK-POS2     NOT =   ZERO
@@ -253,12 +334,6 @@
                                        TO      WK-NEW-KEY3 (1:WK-LEN3)
                    END-IF
            END-READ
-
-           IF      WK-PIN1-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
            .
        S020-EX.
            EXIT.
@@ -267,37 +342,29 @@
        S100-10.
 
       *    *** キーダブリカット
-           WRITE   POT1-REC    FROM    WK-OLD-REC
-
-           IF      WK-POT1-STATUS =    ZERO
-                   ADD     1           TO      WK-POT1-CNT
-           ELSE
-                   DISPLAY WK-PGM-NAME " POT1-F WRITE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+      *     WRITE   POT1-REC    FROM    WK-OLD-REC
+           WRITE   POT1-REC    FROM    PIN1-REC
+           ADD     1           TO      WK-POT1-CNT
 
       *    *** 件数
       *     IF      WK-POT2B-CNT >      50
       *     IF      WK-POT2B-CNT >      2
       *     IF      WK-POT2B-CNT >      1
-           IF      WK-POT2B-CNT =      1
+      *     IF      WK-POT2B-CNT =      1
       *     IF      WK-POT2B-CNT >      ZERO
-                   MOVE    WK-OLD-KEY  TO      POT2-KEY
+      *             MOVE    WK-OLD-KEY  TO      POT2-KEY
       *             MOVE    WK-POT2B-CNT TO     POT2-CNT
-                   INSPECT POT2-KEY REPLACING ALL LOW-VALUE BY SPACE
-                   WRITE   POT2-REC
+      *             INSPECT POT2-KEY REPLACING ALL LOW-VALUE BY SPACE
+      *             WRITE   POT2-REC
+      *             ADD     1           TO      WK-POT2-CNT
+      *     END-IF
 
-                   IF      WK-POT2-STATUS =    ZERO
-                           ADD     1           TO      WK-POT2-CNT
-                   ELSE
-                           DISPLAY WK-PGM-NAME
-                                   " POT2-F WRITE ERROR STATUS="
-                                   WK-POT2-STATUS
-                           STOP    RUN
-                   END-IF
-           END-IF
+      *      MOVE    WK-OLD-KEY  TO      POT2-KEY
+      *     MOVE    WK-NEW-KEY  TO      POT2-KEY
+      *     INSPECT POT2-KEY REPLACING ALL LOW-VALUE BY SPACE
 
+      *     WRITE   POT2-REC
+      *     ADD     1           TO      WK-POT2-CNT
            .
        S100-EX.
            EXIT.
@@ -306,25 +373,14 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
+                   POT1-F
+                   POT2-F
+                   POT3-F
 
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F CLOSE ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
+           MOVE    "CLOSE "    TO      WDE05-ID
+           CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                       PIN1-REC
+                                       POT1-REC
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -332,14 +388,17 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 ｹﾝｽｳ = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
+           MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 件数 = " WK-POT3-CNT-E
+                   " (" WK-POT3-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA

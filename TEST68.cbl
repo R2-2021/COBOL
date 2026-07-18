@@ -3,7 +3,9 @@
       *    *** チャプターの時、表題と表示時間ずれているが、
       *    *** TEST69で直すの難しい為、TEST69で出力されるWATCHの秒数変更する
       *    *** 
-      *    *** JOB TEST69
+      *    *** JOB TEST69 
+      *    ***        |
+      *    ***     TEST142
       *    ***        |
       *    ***     TEST68
 
@@ -54,7 +56,8 @@
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE 
       *         "TEST28_201110_202007.csv".
-               "TEST69.POT3".
+      *         "TEST69.POT3".
+               "TEST142.POT1".
 
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST68.PIN2".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST68.POT1".
@@ -163,6 +166,8 @@
              05  PIC  X(010) VALUE   X"E5868DE7949FE383AAE3".
              05  PIC  X(023) VALUE
              X"82B9E38388E381AEE585A8E4BD93E38292E8A68BE3828B".
+           03  WK-SITE1-LEN    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-SITE1-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -289,15 +294,16 @@
       *    *** <td> データ出力
                                PERFORM S100-10     THRU    S100-EX
                            END-IF
-                       WHEN PIN1-REC (1:1) = " "
-                           CONTINUE
+      *                 WHEN PIN1-REC (1:1) = " "
+      *                     CONTINUE
                        WHEN OTHER
                            IF      WK-SIMPLETEXT2 (2:1) = ":"
                                 OR WK-SIMPLETEXT2 (3:1) = ":"
       *    *** チャプター秒数変更
                                PERFORM S101-10     THRU    S101-EX
                            END-IF
-                           IF      WK-WATCH2 NOT = SV-WATCH
+      *                     IF      WK-WATCH2 NOT = SV-WATCH
+                           IF      WK-WATCH2 (1:1) NOT = SPACE
                                 OR WK-PLAYLIST (1:32) =
                                    "https://www.youtube.com/playlist"
       *                         AND SV-WATCH NOT = SPACE
@@ -555,7 +561,7 @@
       *    *** 256バイトまでしか入らない
                    UNSTRING PIN2-REC DELIMITED BY ","
                            INTO
-                           WK-SITE1
+                           WK-SITE1 COUNT WK-SITE1-LEN
                            WK-TITLE2
            END-READ
 
@@ -563,6 +569,9 @@
                    DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
                            WK-PIN2-STATUS
                    STOP    RUN
+           END-IF
+           IF      WK-SITE1-LEN >      WK-SITE1-LEN-MAX
+                   MOVE    WK-SITE1-LEN TO     WK-SITE1-LEN-MAX
            END-IF
            .
        S030-EX.
@@ -867,10 +876,34 @@
            IF      WK-PLAYLIST (1:1) = SPACE
       *    *** PLAYLIST でない時、
 
+                   IF      WK-SIMPLETEXT (1:1)  NOT = SPACE
+                        OR 
+                           WK-LABEL (1:1)       NOT = SPACE
+                        OR 
+                           WK-SIMPLETEXT2 (1:1) NOT = SPACE
+                        OR 
+                           WK-LABEL2 (1:1)      NOT = SPACE
+
+                           IF      WK-HTTPS (1:1) NOT = SPACE
+
+                               MOVE    '<a href="' TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+
+                               MOVE    WK-HTTPS    TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+
+                               MOVE    '">'        TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+                           END-IF
+                   END-IF
       *    *** 何か月前／タイトル１
                    IF      WK-SIMPLETEXT (1:1) = SPACE
                            CONTINUE
                    ELSE
+
                            MOVE    '<br><br>'  TO      POT1-REC
                            WRITE   POT1-REC
                            ADD     1           TO      WK-POT1-CNT
@@ -930,8 +963,11 @@
                     SEARCH ALL TBL01-AREA
                         AT  END 
                            CONTINUE
-                        WHEN TBL01-SITE (TBL01-IDX)  (1:WK-PLAYLIST-LEN)
-                           = WK-PLAYLIST (1:WK-PLAYLIST-LEN)
+      *                  WHEN TBL01-SITE (TBL01-IDX)  (1:WK-PLAYLIST-LEN)
+      *                     = WK-PLAYLIST (1:WK-PLAYLIST-LEN)
+                        WHEN TBL01-SITE (TBL01-IDX) (1:WK-SITE1-LEN-MAX)
+                           = WK-PLAYLIST (1:WK-SITE1-LEN-MAX)
+
 
                            MOVE    '<br><br>'  TO      POT1-REC
                            WRITE   POT1-REC
@@ -969,6 +1005,32 @@
                            MOVE    "</a>"      TO      POT1-REC
                            WRITE   POT1-REC
                            ADD     1           TO      WK-POT1-CNT
+                   END-IF
+
+                   IF      WK-TEXT3 (1:1)       NOT = SPACE
+                        OR 
+                           WK-SIMPLETEXT (1:1)  NOT = SPACE
+                        OR 
+                           WK-LABEL (1:1)       NOT = SPACE
+                        OR 
+                           WK-SIMPLETEXT2 (1:1) NOT = SPACE
+                        OR 
+                           WK-LABEL2 (1:1)      NOT = SPACE
+
+                           IF      WK-HTTPS (1:1) NOT = SPACE
+
+                               MOVE    '<a href="' TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+
+                               MOVE    WK-HTTPS    TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+
+                               MOVE    '">'        TO      POT1-REC
+                               WRITE   POT1-REC
+                               ADD     1           TO      WK-POT1-CNT
+                           END-IF
                    END-IF
 
       *    *** タイトル?

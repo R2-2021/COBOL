@@ -599,6 +599,12 @@
                    DISPLAY WK-FILE-NAME (64)
                    DISPLAY " "
 
+                   DISPLAY "065 TEST139.POT1"
+                   MOVE    "   みんなのAV.com 検索結果 画像拡大"
+                               TO      WK-FILE-NAME (65)
+                   DISPLAY WK-FILE-NAME (65)
+                   DISPLAY " "
+
                    ACCEPT  WK-FILE
                    IF      WK-FILE     =  
                              "001" OR "002" OR "003" OR "004" OR "005"
@@ -613,13 +619,13 @@
                           OR "046" OR "047" OR "048" OR "049" OR "050" 
                           OR "051" OR "052" OR "053" OR "054" OR "055" 
                           OR "056" OR "057" OR "058" OR "059" OR "060" 
-                          OR "061" OR "XXX" OR "063" OR "064"
+                          OR "061" OR "XXX" OR "063" OR "064" OR "065" 
                            DISPLAY "FILE-NAME="
                            DISPLAY WK-FILE-NAME (WK-FILE-9)
                            DISPLAY " FILE NAME OK ? Y(y)/N"
                            ACCEPT  SW-YES
                    ELSE
-                           DISPLAY " FILE NAME 001-064 INPUT"
+                           DISPLAY " FILE NAME 001-065 INPUT"
                    END-IF
            END-PERFORM
 
@@ -868,6 +874,9 @@
                WHEN "064"
                    MOVE    "TEST53_girl_kr2.PIN1"
                                        TO     WK-PIN1-F-NAME
+               WHEN "065"
+                   MOVE    "TEST139.POT1"
+                                       TO     WK-PIN1-F-NAME
                WHEN OTHER
                    DISPLAY WK-PGM-NAME " WK-FILE ERROR WK-FILE=" WK-FILE
                    STOP    RUN
@@ -950,8 +959,11 @@
       *    *** WK-FILE=21 XVI, 22 DMM, 24 Qosmio, 25 XVI2, 29 DMM 検索,
       *    *** 30 XVIS, 32 Youtube 動画サムネイル拡大
       *    *** 34 DMM 動画サムネイル拡大
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
                  AND ( WK-FILE NOT = "021" AND "022" AND "024" AND "025" 
-                       AND "029" AND "030" AND "032" AND "034" )
+                       AND "029" AND "030" AND "032" AND "034"
+                       AND "065"
+                        )
                    CONTINUE
 
       *    *** 日本アイドルグループ を対応
@@ -1128,6 +1140,7 @@
                    IF      PIN1-REC (13:10) =  "#aduxvi-br"
                                            OR  "#aduDMM-br"
                                            OR  "#MissAV-br"
+                                           OR  "#Minnan-br"
                        MOVE    ZERO        TO      POT1-REC (2:4)
                    ELSE
                        ADD     1           TO      WK-NO
@@ -1209,6 +1222,8 @@
                                   OR "043" OR "044" OR "045" OR "046"
                                   OR "047" OR "048" OR "049" OR "050"
                                   OR "064"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                  OR "065"
                            MOVE    "06"        TO      POT1-REC (2:2)
       *    *** 32=Youtube 動画サムネイル拡大
       *    *** 34=DMM 動画サムネイル拡大
@@ -1300,6 +1315,8 @@
                            OR "005"
                            OR "056"
                            OR "062"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                           OR "065"
                    COMPUTE I = WK-PIN1-LEN + 1
                    MOVE    ","         TO      PIN1-REC (I:1)
 

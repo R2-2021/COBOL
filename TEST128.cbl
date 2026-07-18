@@ -22,6 +22,10 @@
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
+      *    *** YOUTUBE CHANNEL トピックチャンネルデータ
+       SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
+           ORGANIZATION LINE   SEQUENTIAL.
+
        DATA                    DIVISION.
        FILE                    SECTION.
 
@@ -34,21 +38,29 @@
        01  POT1-REC.
            03                  PIC  X(1000).
 
+       FD  POT2-F.
+       01  POT2-REC.
+           03                  PIC  X(1000).
+
        WORKING-STORAGE         SECTION.
 
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST128 ".
 
-           03  WK-PIN1-F-NAME  PIC  X(064) VALUE "Youtubechannel2.csv".
-           03  WK-POT1-F-NAME  PIC  X(064) VALUE "TEST128.POT1".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "Youtubechannel2.csv".
+           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "Youtubechannel3.csv".
+           03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST128.POT1".
+           03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST128.POT2".
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-POT2-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-POT2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
@@ -61,6 +73,19 @@
            03  WK-UNSTR0-CNT   BINARY-LONG SYNC VALUE ZERO.
            03  WK-UNSTR1-CNT   BINARY-LONG SYNC VALUE ZERO.
            03  WK-UNSTR2-CNT   BINARY-LONG SYNC VALUE ZERO.
+           03  WK-TOPIC-CNT    BINARY-LONG SYNC VALUE ZERO.
+      *    *** トピックチャンネル登録者数
+           03  WK-TOPIC1.
+             05                PIC  X(020) VALUE
+                 X"E38388E38394E38383E382AFE38381E383A3E383".
+             05                PIC  X(020) VALUE
+                 X"B3E3838DE383ABE799BBE98CB2E88085E695B0".
+      *    *** ムービーチャンネル登録者数
+           03  WK-TOPIC2.
+             05                PIC  X(020) VALUE
+                 X"E383A0E383BCE38393E383BCE38381E383A3E383".
+             05                PIC  X(019) VALUE
+                 X"B3E3838DE383ABE799BBE98CB2E88085E695B0".
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -91,7 +116,23 @@
       *    *** WRITE POT1
       *             PERFORM S100-10     THRU    S100-EX
       *             PERFORM S120-10     THRU    S120-EX
-                   PERFORM S130-10     THRU    S130-EX
+
+                   MOVE    ZERO        TO      WK-TOPIC-CNT
+                   INSPECT PIN1-REC TALLYING
+
+      *    *** トピックチャンネル登録者数
+                           WK-TOPIC-CNT FOR ALL WK-TOPIC1
+
+      *    *** ムービーチャンネル登録者数
+                           WK-TOPIC-CNT FOR ALL WK-TOPIC2
+
+                   IF      WK-TOPIC-CNT =      ZERO
+      *    *** WRITE POT1
+                           PERFORM S130-10     THRU    S130-EX
+                   ELSE
+                           WRITE   POT2-REC    FROM    PIN1-REC
+                           ADD     1           TO      WK-POT2-CNT
+                   END-IF
 
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
@@ -114,6 +155,7 @@
 
            OPEN    INPUT       PIN1-F
                    OUTPUT      POT1-F
+                               POT2-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -263,6 +305,7 @@
 
       *    *** WK-UNSTR-PTR は @の次の位置がセットされる
       *    *** タイトル名取り出し
+      *    *** X"E280A2":･チャンネル登録者数の最初の記号
            UNSTRING PIN1-REC DELIMITED BY "@" OR X"E280A2"
                    INTO WK-REC0 COUNT WK-UNSTR0-CNT
                         WK-REC2 COUNT WK-UNSTR2-CNT
@@ -271,7 +314,9 @@
            MOVE    ZERO        TO      J2
            PERFORM VARYING J FROM 1 BY 1
                    UNTIL J > WK-UNSTR0-CNT
-                   IF      WK-REC0 (J:1) NOT = '"'
+                   IF      WK-REC0 (J:1) = '"'
+                           CONTINUE
+                   ELSE
 
                            IF      WK-REC0 (J:1) =     ","
                                    MOVE    "."         TO
@@ -316,6 +361,7 @@
 
            CLOSE   PIN1-F
                    POT1-F
+                   POT2-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -328,6 +374,9 @@
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
            DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
+           MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
+                   " (" WK-POT2-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA

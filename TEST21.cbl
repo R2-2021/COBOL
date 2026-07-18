@@ -240,26 +240,76 @@
              05  FILLER        PIC  X(002) VALUE "┘"
 
       *    *** HAI4,5,6　はカレンダー用
+      *    *** AMD CPUにしたら、罫線うまく出力しなくなったので、ｰに変更した
            03  WK-HAI4.
-             05  FILLER        PIC  X(002) VALUE "┌"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┬"
-             05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(002) VALUE "┐"
+             05  FILLER        PIC  X(002) VALUE "┌".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(005) VALUE ALL "-".
+             05  FILLER        PIC  X(002) VALUE "┐".
            03  WK-HAI5.
              05  FILLER        PIC  X(002) VALUE "├"
-      *       05  FILLER        PIC  X(004) VALUE ALL "─"
-             05  FILLER        PIC  X(004) VALUE "──"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┤"
+           03  WK-HAI6.
+             05  FILLER        PIC  X(002) VALUE "└"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┘"
+
+      *    *** インテルの時のコーディング
+           03  WK-HAI4H.
+             05  FILLER        PIC  X(002) VALUE "┌".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┬".
+             05  FILLER        PIC  X(004) VALUE ALL "─".
+             05  FILLER        PIC  X(002) VALUE "┐".
+           03  WK-HAI5H.
+             05  FILLER        PIC  X(002) VALUE "├"
+             05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┼"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┼"
@@ -273,7 +323,7 @@
              05  FILLER        PIC  X(002) VALUE "┼"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┤"
-           03  WK-HAI6.
+           03  WK-HAI6H.
              05  FILLER        PIC  X(002) VALUE "└"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┴"
@@ -291,7 +341,52 @@
              05  FILLER        PIC  X(002) VALUE "┘"
 
       *    *** HAI7,8,9　はハイローゲーム用
+      *    *** AMD CPUにしたら、罫線うまく出力しなくなったので、ｰに変更した
            03  WK-HAI7.
+             05  FILLER        PIC  X(002) VALUE "┌"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┬"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┬"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┬"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┬"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┬"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┐"
+           03  WK-HAI8.
+             05  FILLER        PIC  X(002) VALUE "├"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┼"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┤"
+           03  WK-HAI9.
+             05  FILLER        PIC  X(002) VALUE "└"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(005) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┴"
+             05  FILLER        PIC  X(015) VALUE ALL "-"
+             05  FILLER        PIC  X(002) VALUE "┘"
+
+      *    *** インテルの時のコーディング
+           03  WK-HAI7H.
              05  FILLER        PIC  X(002) VALUE "┌"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┬"
@@ -305,7 +400,7 @@
              05  FILLER        PIC  X(002) VALUE "┬"
              05  FILLER        PIC  X(014) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┐"
-           03  WK-HAI8.
+           03  WK-HAI8H.
              05  FILLER        PIC  X(002) VALUE "├"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┼"
@@ -319,7 +414,7 @@
              05  FILLER        PIC  X(002) VALUE "┼"
              05  FILLER        PIC  X(014) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┤"
-           03  WK-HAI9.
+           03  WK-HAI9H.
              05  FILLER        PIC  X(002) VALUE "└"
              05  FILLER        PIC  X(004) VALUE ALL "─"
              05  FILLER        PIC  X(002) VALUE "┴"
@@ -354,6 +449,13 @@
            03  WK-MID1         PIC  X(010) VALUE
                "テスト項目".
            03  WK-MID2.
+             05  FILLER        PIC  X(024) VALUE
+               "│  SEQ│   COMPUTER-NUM"
+             05  FILLER        PIC  X(024) VALUE
+               "│  SEQ│   COMPUTER-NUM".
+             05  FILLER        PIC  X(026) VALUE
+               "│  SEQ│   COMPUTER-NUM│".
+           03  WK-MID2H.
              05  FILLER        PIC  X(022) VALUE
                "│ SEQ│  COMPUTER-NUM"
              05  FILLER        PIC  X(022) VALUE

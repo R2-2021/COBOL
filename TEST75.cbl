@@ -66,14 +66,19 @@
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "dir.txt".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST99_6.POT1".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST97U.POT2".
-           03  WK-PIN1-F-NAME  PIC  X(064) VALUE 
+           03  WK-PIN1-F-NAME  PIC  X(064) VALUE "TEST75.PIN1".
       *         "TEST103.Random Walker Yu.PIN2".
       *         "TEST131.PIN1".
       *         "TEST69.POT1".
       *         "TEST56_jyoyu2000_birthday.PIN1".
       *         "TEST57_idol_daizukan.PIN1".
       *         "TEST103.ＭｉｓｓＡＶ　八掛うみ.PIN1".
-                "TEST103.POT1".
+      *         "TEST103.POT1".
+      *          "TEST10.POT1".
+      *          "TEST53_SHOWA.idol1.PIN1".
+      *          "TEST139.POT1".
+      *          "TEST26_202607SJIS2.POT1.SORT".
+
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST75.PIN2".
       *     03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST99.POT1".
       *     03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST123.POT2".
@@ -116,6 +121,7 @@
            03  WK-HTTPS-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-IMG-LEN      BINARY-LONG SYNC VALUE ZERO.
            03  WK-STR-PTR      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -125,6 +131,7 @@
            03  I               BINARY-LONG SYNC VALUE ZERO.
            03  I-MAX           BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
+           03  J2              BINARY-LONG SYNC VALUE ZERO.
            03  K               BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
@@ -188,6 +195,22 @@
            MOVE    "S"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
+           ACCEPT  WK-ARGUMENT-NUMBER FROM ARGUMENT-NUMBER
+
+           EVALUATE WK-ARGUMENT-NUMBER
+               WHEN 0
+                   CONTINUE
+               WHEN 1
+                   ACCEPT  WK-PIN1-F-NAME FROM ARGUMENT-VALUE
+               WHEN OTHER
+                   DISPLAY WK-PGM-NAME " WK-ARGUMENT-NUMBER ERROR="
+                           WK-ARGUMENT-NUMBER
+                   DISPLAY WK-PGM-NAME 
+                           " ARGUMENT-VALUE 指定無しか１個指定"
+                           " TEST75 PIN1 <=例 抽出対象ファイルを指定"
+                   STOP    RUN
+           END-EVALUATE
+
            OPEN    INPUT       PIN1-F
                                PIN2-F
                    OUTPUT      POT1-F
@@ -231,8 +254,10 @@
                    UNSTRING PIN2-REC
                            DELIMITED BY " ," OR "     "
                            INTO
-                           WK-ID0
+      *                     WK-ID0
                            WK-ID  COUNT WK-ID-LEN
+      *                     DISPLAY "WK-ID=" WK-ID
+      *                              " WK-ID-LEN=" WK-ID-LEN
       *             MOVE    PIN2-REC    TO      WK-ID
       *             MOVE    WK-PIN2-LEN TO      WK-ID-LEN
       
@@ -269,32 +294,30 @@
            MOVE    "N"         TO      SW-SEARCH
            PERFORM VARYING J FROM 1 BY 1
                    UNTIL J > WK-PIN1-LEN
-      *             UNTIL J > 2
                       OR SW-SEARCH = "Y"
 
-                PERFORM VARYING I FROM 1 BY 1
+               PERFORM VARYING I FROM 1 BY 1
                        UNTIL I > I-MAX
                           OR SW-SEARCH = "Y"
-                          OR TBL01-ID (I) = HIGH-VALUE
 
                    MOVE    TBL01-ID-LEN (I) TO  K
-      *             IF      J + K - 1 <= WK-PIN1-LEN 
-      *                 AND PIN1-REC (J:K) =    TBL01-ID (I) (1:K)
-                   IF       PIN1-REC (J:K) =    TBL01-ID (I) (1:K)
-      *             IF      PIN1-REC (2:K) =    TBL01-ID (I) (1:K)
-
-      *    *** K=ZERO だと、条件満たしてしまう
-      *             IF      K           NOT =   ZERO
-      *                 AND PIN1-REC (1:K) =    TBL01-ID (I) (1:K)
+      *    *** コメントにした方が処理早い
+      *             COMPUTE J2 = J + K
+      *             IF  J2 > WK-PIN1-LEN
+      *                 CONTINUE
+      *             ELSE
+      *    *** 最初の１バイトチェックしてから、全桁チェックした方が早い
+                     IF       PIN1-REC (J:1) =    TBL01-ID (I) (1:1)
+                       IF       PIN1-REC (J:K) =    TBL01-ID (I) (1:K)
                            MOVE    "Y"         TO      SW-SEARCH
-                   END-IF
+                       END-IF
+                     END-IF
+      *             END-IF
                END-PERFORM
 
            END-PERFORM
 
            IF      SW-SEARCH   =       "Y"
-           DISPLAY WK-PIN1-CNT " J=" J " K=" K " I=" I  " I-MAX=" I-MAX
-                   
                    WRITE   POT1-REC    FROM    PIN1-REC
                    ADD     1           TO      WK-POT1-CNT
            ELSE

@@ -260,6 +260,7 @@
            03  SW-OMIT         PIC  X(001) VALUE "N".
            03  SW-INCLUDE      PIC  X(001) VALUE "N".
            03  SW-INCLUDE2     PIC  X(001) VALUE "N".
+           03  SW-KANSUUJI     PIC  X(001) VALUE "N".
 
        PROCEDURE               DIVISION.
        M100-SEC                SECTION.
@@ -1254,6 +1255,10 @@
       *    *** OMIT= チェック
                            PERFORM S027-10     THRU    S027-EX
 
+                       WHEN WK-PRM1DT01(1:8) =    "KANSUUJI"
+      *    *** KANSUUJI= チェック
+                           PERFORM S028-10     THRU    S028-EX
+
                        WHEN OTHER
                            CONTINUE
                    END-EVALUATE
@@ -1846,6 +1851,23 @@
        S027-EX.
            EXIT.
 
+      *    *** KANNSUUJI 漢数字
+       S028-SEC                SECTION.
+       S028-10.
+           IF      WK-PRM1DT02(1:1) =  "Y" OR "N"
+                   MOVE    WK-PRM1DT02(1:1) TO    SW-KANSUUJI
+           ELSE
+                   DISPLAY WK-PGM-NAME " PRM1-F KANSUUJI= PARA ERROR="
+                           PRM1-REC
+                   DISPLAY WK-PGM-NAME " KANSUUJI= Y,Nを指定 "
+                           " Y:漢数字表示された順で"
+                           ",N:内部コード順で指定 1つ目は必須"
+                   STOP    RUN
+           END-IF
+           .
+       S028-EX.
+           EXIT.
+
       *    *** READ AND RELEASE
        S100-SEC                SECTION.
        S100-10.
@@ -1908,7 +1930,9 @@
                            IF      WK-KEY1-CHAR =         "CH"
                                MOVE    WK-CSVDT-T(P1) TO     SIO1-KEY1-X
       *    *** 漢数字変更
-                               PERFORM S114-10     THRU    S114-EX
+                               IF  SW-KANSUUJI = "Y"
+                                   PERFORM S114-10     THRU    S114-EX
+                               END-IF
 
                            ELSE
                                 MOVE    ZERO          TO     SIO1-KEY1-9
@@ -1926,7 +1950,9 @@
                                IF      WK-KEY2-CHAR =         "CH"
                                    MOVE    WK-CSVDT-T(P2) TO SIO1-KEY2-X
       *    *** 漢数字変更
-                                   PERFORM S114-10     THRU    S114-EX
+                                   IF  SW-KANSUUJI = "Y"
+                                       PERFORM S114-10     THRU  S114-EX
+                                   END-IF
                                ELSE
                                    MOVE    ZERO          TO  SIO1-KEY2-9
                                    MOVE    WK-CSV-L(P2)  TO  L2
@@ -1944,7 +1970,9 @@
                                IF      WK-KEY3-CHAR =         "CH"
                                    MOVE    WK-CSVDT-T(P3) TO SIO1-KEY3-X
       *    *** 漢数字変更
-                                   PERFORM S114-10     THRU    S114-EX
+                                   IF  SW-KANSUUJI = "Y"
+                                       PERFORM S114-10     THRU  S114-EX
+                                   END-IF
                                ELSE
                                    MOVE    ZERO          TO  SIO1-KEY3-9
                                    MOVE    WK-CSV-L(P3)  TO  L3
@@ -1978,7 +2006,9 @@
                            IF      WK-KEY1-CHAR =         "CH"
                                MOVE    PIN1-REC(P1:L1) TO    SIO1-KEY1-X
       *    *** 漢数字変更
-                               PERFORM S114-10     THRU    S114-EX
+                               IF  SW-KANSUUJI = "Y"
+                                   PERFORM S114-10     THRU    S114-EX
+                               END-IF
                            ELSE
                                 MOVE    ZERO          TO     SIO1-KEY1-9
                                 COMPUTE P1X = 11 - L1
@@ -1993,7 +2023,9 @@
                                IF      WK-KEY2-CHAR =         "CH"
                                    MOVE   PIN1-REC(P2:L2) TO SIO1-KEY2-X
       *    *** 漢数字変更
-                                   PERFORM S114-10     THRU    S114-EX
+                                   IF  SW-KANSUUJI = "Y"
+                                       PERFORM S114-10     THRU  S114-EX
+                                   END-IF
                                ELSE
                                 MOVE    ZERO          TO     SIO1-KEY2-9
                                 COMPUTE P2X = 11 - L2
@@ -2009,7 +2041,9 @@
                                IF      WK-KEY3-CHAR =         "CH"
                                    MOVE   PIN1-REC(P3:L3) TO SIO1-KEY3-X
       *    *** 漢数字変更
-                                   PERFORM S114-10     THRU    S114-EX
+                                   IF  SW-KANSUUJI = "Y"
+                                       PERFORM S114-10     THRU  S114-EX
+                                   END-IF
                                ELSE
                                 MOVE    ZERO          TO     SIO1-KEY3-9
                                 COMPUTE P3X = 11 - L3

@@ -35,7 +35,8 @@
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST56.POT1".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST74X.POT1".
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE 
-               "TEST53_actress_kr.PIN1".
+      *         "TEST53_actress_kr.PIN1".
+               "TEST75.POT2".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST127.POT1".
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
@@ -95,8 +96,16 @@
       *                     CONTINUE
       *             ELSE
       *    *** WRITE POT1
-                           PERFORM S100-10     THRU    S100-EX
+      *                     PERFORM S100-10     THRU    S100-EX
       *             END-IF
+                   IF  PIN1-REC (1:1) NOT = SPACE
+
+                       MOVE    PIN1-REC    TO      POT1-REC
+                       MOVE    ", ,"       TO      
+                               POT1-REC (WK-PIN1-LEN + 1:3)
+                       WRITE   POT1-REC
+                       ADD     1           TO      WK-POT1-CNT
+                   END-IF
 
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX

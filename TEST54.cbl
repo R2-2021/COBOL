@@ -108,20 +108,24 @@
            03  WK-WIDTH        PIC  9(002) VALUE 8.
            03  WK-K2           PIC  9(010) VALUE ZERO.
 
-           03  WK-TITLE        PIC  X(1000) VALUE SPACE.
-           03  WK-TITLE-A      PIC  X(1000) VALUE SPACE.
-           03  WK-TITLE-A1     PIC  X(1000) VALUE SPACE.
-           03  WK-TITLE-A2     PIC  X(1000) VALUE SPACE.
-           03  WK-TITLE-A3     PIC  X(1000) VALUE SPACE.
-           03  WK-ITEM3        PIC  X(1000) VALUE SPACE.
-           03  WK-ITEM4        PIC  X(1000) VALUE SPACE.
+           03  WK-TITLE        PIC  X(600) VALUE SPACE.
+           03  WK-TITLE-X      PIC  X(600) VALUE SPACE.
+           03  WK-TITLE-A      PIC  X(400) VALUE SPACE.
+           03  WK-TITLE-A1     PIC  X(400) VALUE SPACE.
+           03  WK-TITLE-A2     PIC  X(400) VALUE SPACE.
+           03  WK-TITLE-A3     PIC  X(400) VALUE SPACE.
+           03  WK-ITEM3        PIC  X(200) VALUE SPACE.
+           03  WK-ITEM4        PIC  X(200) VALUE SPACE.
+           03  WK-ITEM5        PIC  X(200) VALUE SPACE.
            03  WK-TITLE-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-TITLE2-LEN   BINARY-LONG SYNC VALUE ZERO.
+           03  WK-TITLE2-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
            03  WK-TITLE-A-LEN  BINARY-LONG SYNC VALUE ZERO.
            03  WK-TITLE-A1-LEN BINARY-LONG SYNC VALUE ZERO.
            03  WK-TITLE-A2-LEN BINARY-LONG SYNC VALUE ZERO.
            03  WK-ITEM3-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-ITEM4-LEN    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ITEM5-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-LEFT-POS     PIC  9(004) VALUE ZERO.
            03  WK-SU           PIC  ZZZ,ZZZ,ZZ9 VALUE ZERO.
            03  WK-SITE-LEN     OCCURS 20
@@ -142,7 +146,7 @@
              05  WK-NEXT       PIC  9(004) VALUE ZERO.
 
            03  WK-TITLE-MAX    BINARY-LONG SYNC VALUE ZERO.
-           03  WK-SITE-MAX     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-SITE-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
            03  WK-JYAPARI-CNT  BINARY-LONG SYNC VALUE ZERO.
            03  WK-FILE         PIC  X(003) VALUE SPACE.
            03  WK-JYUNI.
@@ -176,7 +180,19 @@
                  X"616475787669E38397E383ADE38395E382A3".
              05  PIC  X(018) VALUE
                  X"E383BCE383ABE383BBE382A2E3838BE383A1".
-     
+
+           03  WK-META1.
+             05                PIC  X(020) VALUE '<meta http-equiv="Ca'.
+             05                PIC  X(020) VALUE 'che-Control" content'.
+             05                PIC  X(020) VALUE '="no-cache, no-store'.
+             05                PIC  X(019) VALUE ', must-revalidate">'.
+           03  WK-META2.
+             05                PIC  X(020) VALUE '<meta http-equiv="Pr'.
+             05                PIC  X(020) VALUE 'agma" content="no-ca'.
+             05                PIC  X(005) VALUE 'che">'.
+           03  WK-META3.
+             05                PIC  X(020) VALUE '<meta http-equiv="Ex'.
+             05                PIC  X(019) VALUE 'pires" content="0">'.
 
       *    *** 初期値 MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
@@ -227,6 +243,7 @@
            03  P               BINARY-LONG SYNC VALUE ZERO.
            03  Q               BINARY-LONG SYNC VALUE ZERO.
            03  Q1              BINARY-LONG SYNC VALUE ZERO.
+           03  R               BINARY-LONG SYNC VALUE ZERO.
 
        01  SW-AREA.
            03  SW-SEARCH       PIC  X(001) VALUE "N".
@@ -244,16 +261,16 @@
            03  SW-DMM          PIC  X(001) VALUE "N".
 
        01  TBL-AREA.
-           03  TBL01-AREA      OCCURS 10000
+           03  TBL01-AREA      OCCURS 15000
                                ASCENDING KEY IS TBL01-TITLE2
                                INDEXED BY TBL01-IDX.
              05  TBL01-TITLE2  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-TITLE2-LEN BINARY-LONG SYNC VALUE ZERO.
+      *       05  TBL01-TITLE2-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-IMG     PIC  X(200) VALUE HIGH-VALUE.
              05  TBL01-IMG-LEN BINARY-LONG SYNC VALUE ZERO.
       *    *** PIN2 X,instagram
              05  TBL01-SITE    OCCURS 20
-                               PIC  X(200) VALUE SPACE.
+                               PIC  X(400) VALUE SPACE.
 
        PROCEDURE               DIVISION.
        M100-10.
@@ -279,8 +296,16 @@
            PERFORM S030-10     THRU    S030-EX
 
            PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
+                   IF      WK-PIN2-LEN =       ZERO
+      *    *** ＊＊＊
+                        OR PIN2-REC (1:9) =    X"EFBC8AEFBC8AEFBC8A"
+                        OR PIN2-REC (1:1) =    SPACE
+                        OR PIN2-REC (1:1) =    "*"
+                           CONTINUE
+                   ELSE
       *    *** PIN2 TBL SET
-                   PERFORM S032-10     THRU    S032-EX
+                         PERFORM S032-10     THRU    S032-EX
+                   END-IF
       *    *** READ PIN2
                    PERFORM S030-10     THRU    S030-EX
            END-PERFORM
@@ -339,6 +364,7 @@
                                IF      PIN1-REC (10:10) =   "#aduxvi-br"
                                                          OR "#aduDMM-br"
                                                          OR "#MissAV-br"
+                                                         OR "#Minnan-br"
                                    CONTINUE
                                ELSE
       *    *** #NN レコード編集2
@@ -424,6 +450,8 @@
                                     OR "062"
       *    *** 50=MissAV
                                     OR "050"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                    OR "065"
       *    *** ＡＸ：ＳＪＩＳ
                    MOVE    "ＡＸ" TO  WK-POT1-F-NAME22
            END-IF
@@ -438,24 +466,36 @@
       *    *** READ PIN1
        S020-10.
 
-           MOVE    SPACE       TO      WK-TITLE
-                                       WK-TITLE-A
-                                       WK-ITEM3
-                                       WK-ITEM4
-           MOVE    ZERO        TO      WK-TITLE-LEN
-                                       WK-TITLE-A-LEN
-                                       WK-ITEM3-LEN
-                                       WK-ITEM4-LEN
-
            READ    PIN1-F
                AT  END
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT  AT  END
+                   IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                   ELSE
+                           MOVE    ",,,,,"     TO
+                                   PIN1-REC (WK-PIN1-LEN + 1:5)
+                           ADD     5           TO      WK-PIN1-LEN
+                   END-IF
+
                    IF      SW-FIRST    =       "Y"
                        ADD     1           TO      WK-PIN1-CNT
                    ELSE
                        ADD     1           TO      WK-PIN1-CNT2
                    END-IF
+
+                   MOVE    SPACE       TO      WK-TITLE
+                                               WK-TITLE-A
+                                               WK-ITEM3
+                                               WK-ITEM4
+                                               WK-ITEM5
+
+                   MOVE    ZERO        TO      WK-TITLE-LEN
+                                               WK-TITLE-A-LEN
+                                               WK-ITEM3-LEN
+                                               WK-ITEM4-LEN
+                                               WK-ITEM5-LEN
+
                    UNSTRING PIN1-REC
                            DELIMITED BY ","
                            INTO
@@ -463,6 +503,67 @@
                            WK-TITLE-A  COUNT WK-TITLE-A-LEN
                            WK-ITEM3    COUNT WK-ITEM3-LEN
                            WK-ITEM4    COUNT WK-ITEM4-LEN
+                           WK-ITEM5    COUNT WK-ITEM5-LEN
+
+                   IF      WK-TITLE-LEN >     600
+                       IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                       ELSE
+                           DISPLAY WK-PGM-NAME
+                           " PIN1 WK-TITLE レングスオーバー" 
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-TITLE-LEN=" WK-TITLE-LEN
+                           STOP    RUN
+                       END-IF
+                   END-IF
+
+                   IF      WK-TITLE-A-LEN >     400
+                       IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                       ELSE
+                           DISPLAY WK-PGM-NAME
+                           " PIN1 WK-TITLE-A レングスオーバー" 
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-TITLE-A-LEN=" WK-TITLE-A-LEN
+                           STOP    RUN
+                       END-IF
+                   END-IF
+
+                   IF      WK-ITEM3-LEN >     200
+                       IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                       ELSE
+                           DISPLAY WK-PGM-NAME
+                           " PIN1 WK-ITEM3 レングスオーバー" 
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-ITEM3-LEN=" WK-ITEM3-LEN
+                           STOP    RUN
+                       END-IF
+                   END-IF
+
+                   IF      WK-ITEM4-LEN >     200
+                       IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                       ELSE
+                           DISPLAY WK-PGM-NAME
+                           " PIN1 WK-ITEM4 レングスオーバー" 
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-ITEM4-LEN=" WK-ITEM4-LEN
+                           STOP    RUN
+                       END-IF
+                   END-IF
+
+                   IF      WK-ITEM5-LEN >     200
+                       IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
+                           CONTINUE
+                       ELSE
+                           DISPLAY WK-PGM-NAME
+                           " PIN1 WK-ITEM5 レングスオーバー" 
+                           " WK-PIN1-CNT=" WK-PIN1-CNT
+                           " WK-ITEM5-LEN=" WK-ITEM5-LEN
+                           STOP    RUN
+                       END-IF
+                   END-IF
 
       *    *** 後ろスペースカット
                    IF      WK-TITLE (WK-TITLE-LEN:1) = SPACE
@@ -560,6 +661,8 @@
                                 OR "014" OR "015" OR "052" OR "058"
                                 OR "059"
                                 OR "063"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                OR "065"
                                )
                                MOVE    "Y"         TO      SW-IDOLZUKAN
                            END-IF
@@ -571,21 +674,21 @@
       *    *** 50=MissAV
       *    *** 上記のWK-FILEの時でtag-a以降は、横６列にする
                        IF  (( WK-FILE     =       "021" 
-      *    *** aduxvi女優名あ
-                          AND  PIN1-REC (10:18) = 
-                               X"616475787669E5A5B3E584AAE5908DE38182" )
+      *    *** aduxvi　女優名あ
+                          AND  PIN1-REC (10:21) = 
+                         X"616475787669E38080E5A5B3E584AAE5908DE38182" )
                         OR  ( WK-FILE     =       "030"
-      *    *** aduxvi可愛いRED
-                          AND  PIN1-REC (10:18) = 
-                               X"616475787669E58FAFE6849BE38184524544" )
+      *    *** aduxvi　可愛いRED
+                          AND  PIN1-REC (10:21) = 
+                         X"616475787669E38080E58FAFE6849BE38184524544" )
                         OR    ( WK-FILE     =       "022"
-      *    *** aduDMM女優名あ
-                          AND  PIN1-REC (10:18) = 
-                               X"616475444D4DE5A5B3E584AAE5908DE38182" )
+      *    *** aduDMM　女優名あ
+                          AND  PIN1-REC (10:21) = 
+                         X"616475444D4DE38080E5A5B3E584AAE5908DE38182" )
       *                  OR    ( WK-FILE     =       "050"
-      *    *** MissAV女優名あ
-      *                    AND  PIN1-REC (10:18) = 
-      *                         X"4D6973734156E5A5B3E584AAE5908DE38182" )
+      *    *** MissAV　女優名あ
+      *                    AND  PIN1-REC (10:21) = 
+      *                  X"4D6973734156E38080E5A5B3E584AAE5908DE38182" )
                         OR    ( WK-FILE     =       "050"
       *    *** MissAV　単体・巨乳　あ
                           AND  PIN1-REC (10:30) = 
@@ -628,7 +731,7 @@
 
                    IF      SW-TIE-UP =       "Y"
       *    *** タイアップ、２項目無い時、曲名ないので、SPACEにする
-                           IF      WK-TITLE-A  =       SPACE
+                           IF      WK-TITLE-A (1:1) =      SPACE
                                MOVE    SPACE       TO      WK-TITLE
                            END-IF
                    END-IF
@@ -683,32 +786,20 @@
 
            MOVE    SPACE       TO      WK-TITLE2
                                        WK-SITE-TBL
-           MOVE    ZERO        TO      WK-SITE-LEN (001)
-                                       WK-SITE-LEN (002)
-                                       WK-SITE-LEN (003)
-                                       WK-SITE-LEN (004)
-                                       WK-SITE-LEN (005)
-                                       WK-SITE-LEN (006)
-                                       WK-SITE-LEN (007)
-                                       WK-SITE-LEN (008)
-                                       WK-SITE-LEN (009)
-                                       WK-SITE-LEN (010)
-                                       WK-SITE-LEN (011)
-                                       WK-SITE-LEN (012)
-                                       WK-SITE-LEN (013)
-                                       WK-SITE-LEN (014)
-                                       WK-SITE-LEN (015)
-                                       WK-SITE-LEN (016)
-                                       WK-SITE-LEN (017)
-                                       WK-SITE-LEN (018)
-                                       WK-SITE-LEN (019)
-                                       WK-SITE-LEN (020)
+           MOVE    ZERO        TO      WK-TITLE2-LEN
+           PERFORM VARYING R FROM 1 BY 1
+                   UNTIL R > 20
+                   MOVE    ZERO        TO      WK-SITE-LEN (R)
+           END-PERFORM
 
            READ    PIN2-F
                AT  END
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
                NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
+                   MOVE    ",,,,,,,,,,,,,,,,,,,,,"
+                                       TO  PIN2-REC (WK-PIN2-LEN + 1:21)
+                   ADD     21          TO      WK-PIN2-LEN
 
       *    *** 256バイトまでしか入らない
                    UNSTRING PIN2-REC
@@ -743,21 +834,48 @@
       *    *** PIN2 TBL SET
        S032-10.
 
-           IF      TBL01-IDX   >       5000
+           IF      TBL01-IDX   >       15000
                    DISPLAY WK-PGM-NAME
                            " TBL01-TBL OVER TBL01-IDX=" TBL01-IDX
                    STOP    RUN
            END-IF
 
+           IF      WK-TITLE2-LEN >     200
+                   DISPLAY WK-PGM-NAME
+                           " PIN2 データレングスオーバー" 
+                           " WK-PIN2-CNT=" WK-PIN2-CNT
+                           " WK-TITLE2-LEN=" WK-TITLE2-LEN
+                   STOP    RUN
+           END-IF
+
+           PERFORM VARYING R FROM 1 BY 1
+                   UNTIL R > 20
+                   IF      WK-SITE-LEN (R) >  200
+                           DISPLAY WK-PGM-NAME
+                                   " PIN2 SITE レングスオーバー" 
+                                   " WK-PIN2-CNT=" WK-PIN2-CNT
+                           DISPLAY WK-PGM-NAME
+                                   " WK-SITE-LEN (" R ")="
+                                   WK-SITE-LEN (R)
+                           STOP    RUN
+                   END-IF
+           END-PERFORM
+
            MOVE    WK-TITLE2   TO      TBL01-TITLE2 (TBL01-IDX)
-           MOVE    WK-TITLE2-LEN TO    TBL01-TITLE2-LEN (TBL01-IDX)
+      *     MOVE    WK-TITLE2-LEN TO    TBL01-TITLE2-LEN (TBL01-IDX)
+
+           IF      WK-TITLE2-LEN >     WK-TITLE2-LEN-MAX
+                   MOVE    WK-TITLE2-LEN TO    WK-TITLE2-LEN-MAX
+           END-IF
 
            IF      WK-SITE (01)(WK-SITE-LEN (1) - 4:5) = 
-                   ".jpg " OR ".svg "
+      *             ".jpg " OR ".svg "
+                   ".jpg "
       *          OR WK-SITE (01)(WK-SITE-LEN (1) - 3:4) = 
       *            ".jpg" OR ".svg"
                 OR WK-SITE (01)(WK-SITE-LEN (1) - 8:9) = ".jpg?new "
                 OR WK-SITE (01)(WK-SITE-LEN (1) - 10:11) = ".jpg?newav "
+                OR WK-SITE (01)(WK-SITE-LEN (1) - 9:10) = ".jpg?newav"
       *    *** XVI CHANNEL IMG 対応
                    INSPECT WK-SITE (01) REPLACING
                            ALL "==." BY "==,"
@@ -788,21 +906,18 @@
            MOVE    WK-SITE (19) TO     TBL01-SITE (TBL01-IDX 19)
            MOVE    WK-SITE (20) TO     TBL01-SITE (TBL01-IDX 20)
 
-           IF      WK-TITLE-MAX <      WK-TITLE2-LEN
-               AND WK-PIN2-LEN NOT =   ZERO
-               AND WK-TITLE2 (1:1) NOT = SPACE
-                   MOVE    WK-TITLE2-LEN TO    WK-TITLE-MAX
-      *             DISPLAY WK-PIN2-CNT " WK-TITLE-MAX=" WK-TITLE-MAX
-           END-IF
+      *     IF      WK-TITLE-MAX <      WK-TITLE2-LEN
+      *         AND WK-PIN2-LEN NOT =   ZERO
+      *         AND WK-TITLE2 (1:1) NOT = SPACE
+      *             MOVE    WK-TITLE2-LEN TO    WK-TITLE-MAX
+      *     END-IF
 
            PERFORM VARYING P FROM 1 BY 1
                    UNTIL P > 20
-                   IF      WK-SITE-MAX <       WK-SITE-LEN (P)
+                   IF      WK-SITE-LEN-MAX <       WK-SITE-LEN (P)
                        AND WK-PIN2-LEN NOT =   ZERO
                        AND WK-SITE (P) (1:1) NOT = SPACE
-                           MOVE    WK-SITE-LEN (P) TO  WK-SITE-MAX
-      *             DISPLAY WK-PIN2-CNT " WK-SITE-MAX=" WK-SITE-LEN (P)
-      *                     " P=" P
+                           MOVE    WK-SITE-LEN (P) TO  WK-SITE-LEN-MAX
                    END-IF
            END-PERFORM
 
@@ -856,6 +971,15 @@
            MOVE    '<meta charset="utf-8">'
                                TO      POT1-REC
            WRITE   POT1-REC
+           ADD     1           TO      WK-POT1-CNT
+
+           WRITE   POT1-REC    FROM    WK-META1
+           ADD     1           TO      WK-POT1-CNT
+
+           WRITE   POT1-REC    FROM    WK-META2
+           ADD     1           TO      WK-POT1-CNT
+
+           WRITE   POT1-REC    FROM    WK-META3
            ADD     1           TO      WK-POT1-CNT
 
            MOVE    "<title>"   TO      POT1-REC
@@ -969,12 +1093,14 @@
       *    *** 34=ＤＭＭ 動画サムネイル拡大
       *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
       *    *** 18=世界の女優一覧
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
            IF      WK-FILE     =       "021" OR "022"
                                     OR "025" OR "030"
                                     OR "018"
                                     OR "029" OR "034"
                                     OR "050"
                                     OR "062"
+                                    OR "065"
                    IF      WK-ITEM3    =       "OF "
                        IF      L           =       ZERO
       *                     MOVE    '<td valign="top">' TO      POT1-REC
@@ -1061,6 +1187,8 @@
                                   OR "039" OR "040" OR "041" OR "042"
                                   OR "043" OR "044" OR "045" OR "046"
                                   OR "047" OR "048" OR "049" OR "064"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                  OR "065"
                            MOVE    '<p class="welcome6">'
                                        TO      POT1-REC
       *    *** 56=neko
@@ -1107,10 +1235,23 @@
                            WK-COUNT-8 FOR ALL "actors"
                            WK-COUNT-9 FOR ALL "directors"
 
+      *    *** 画像出力をスキップする
       *    *** MissAV　検索のurl
-                   IF   WK-TITLE-A (1:26) = "https://missav.ai/dm10/ja "
-                     OR WK-TITLE-A (1:21) = "https://missav.com/ja"
-                     OR WK-TITLE-A (1:25) = "https://missav.ws/dm10/ja"
+                   IF   WK-TITLE-A (1:25) = "https://missav.ai/dm10/ja"
+      *               OR WK-TITLE-A (1:21) = "https://missav.com/ja"
+      *               OR WK-TITLE-A (1:25) = "https://missav.ws/dm10/ja"
+                    OR WK-TITLE-A (1:27) = "https://njavtv.com/dm221/ja"
+                    OR WK-TITLE-A (1:21) = "https://jable.tv/hot/"
+                    OR WK-TITLE-A (1:27) = "https://www.minnano-av.com/"
+                    OR WK-TITLE-A (1:17) = "file:///C:/Users/"
+      *    *** 最近の更新 AVをオンラインで見る
+                 OR WK-TITLE-A (1:30) = "https://missav.ai/dm539/ja/new"
+      *    *** 新作 AVをオンラインで見る
+             OR WK-TITLE-A (1:34) = "https://missav.ai/dm634/ja/release"
+      *    *** 無修正リーク AVをオンラインで見る
+                    OR WK-TITLE-A (1:42) 
+                    = "https://missav.ai/dm817/ja/uncensored-leak"
+
                         OR WK-COUNT-1 NOT = ZERO
                         OR WK-COUNT-2 NOT = ZERO
                         OR WK-COUNT-3 NOT = ZERO
@@ -1145,6 +1286,8 @@
                                     OR "034"
       *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
                                     OR "062"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                    OR "065"
              IF  WK-ITEM3      =       "OF "
                  CONTINUE
              ELSE
@@ -1256,6 +1399,9 @@
                   OR  ( WK-TITLE-A (1:18) = "https://missav.ai/"
                     AND SW-MISSAV = "Y" )
 
+      *    ***
+                  OR   WK-TITLE-A (1:27) = "https://www.minnano-av.com/"
+
                        MOVE    "<a href='" TO      POT1-REC
                        WRITE   POT1-REC
                        ADD     1           TO      WK-POT1-CNT
@@ -1338,12 +1484,18 @@
 
       *    *** 34=DMM 動画サムネイル拡大
                        IF      WK-FILE     =       "034"
+      *    *** 29=DMM 検索
+                                                OR "029"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                                OR "065"
 
                                MOVE    "<a href='" TO      POT1-REC
                                WRITE   POT1-REC
                                ADD     1           TO      WK-POT1-CNT
 
                                MOVE    "https://missav.ai/ja/search/" TO
+      *                         MOVE    "https://NjavTV.com/ja/search/" TO
+
                                        POT1-REC
                                WRITE   POT1-REC
                                ADD     1           TO      WK-POT1-CNT
@@ -1373,10 +1525,31 @@
                                MOVE    "'><br><br>" TO     POT1-REC
                                WRITE   POT1-REC
                                ADD     1           TO      WK-POT1-CNT
-
                                MOVE    "MISSAV"    TO      POT1-REC
+      *                         MOVE    "NjavTV"    TO      POT1-REC
+
                                WRITE   POT1-REC
                                ADD     1           TO      WK-POT1-CNT
+
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                               IF      WK-FILE = "065"
+
+                                   MOVE    "<br><br>" TO     POT1-REC
+                                   WRITE   POT1-REC
+                                   ADD     1           TO    WK-POT1-CNT
+
+                                   MOVE    WK-ITEM4    TO    POT1-REC
+                                   WRITE   POT1-REC
+                                   ADD     1           TO    WK-POT1-CNT
+
+                                   MOVE    "<br><br>" TO     POT1-REC
+                                   WRITE   POT1-REC
+                                   ADD     1           TO    WK-POT1-CNT
+
+                                   MOVE    WK-ITEM5    TO    POT1-REC
+                                   WRITE   POT1-REC
+                                   ADD     1           TO    WK-POT1-CNT
+                               END-IF
 
                                MOVE    "</a>"      TO      POT1-REC
                                WRITE   POT1-REC
@@ -1406,7 +1579,9 @@
                                     OR "062"
       *    *** 64=音韓、女性韓国アイドルグループ
                                     OR "064"
-                   IF      WK-TITLE-A  =       SPACE
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                    OR "065"
+                   IF      WK-TITLE-A (1:1) =  SPACE
                            CONTINUE
                    ELSE
                            GO  TO  S100-20
@@ -1417,7 +1592,7 @@
 
       *    *** 15=アイドル大図鑑 名前順、グループ順
            IF      WK-FILE     =       "015"
-                   IF      WK-TITLE-A  =       SPACE
+                   IF      WK-TITLE-A (1:1)  = SPACE
                        AND WK-ITEM3 (1:1) =    SPACE
                            CONTINUE
                    ELSE
@@ -1489,8 +1664,10 @@
 
                            IF      M           >       WK-TITLE-LEN
                                MOVE    WK-TITLE-LEN TO     K2
+                               MOVE    WK-TITLE (1:K2)   TO   WK-TITLE-X
                            ELSE
                                ADD     -1 M         GIVING K2
+                               MOVE    WK-TITLE (1:K2)   TO   WK-TITLE-X
                            END-IF
                    END-IF
            ELSE
@@ -1502,15 +1679,16 @@
       *                OR WK-TITLE (K:1) = SPACE
       *             MOVE    K           TO      K2
       *     END-PERFORM
-
-           SET     TBL01-IDX    TO     1
-      *     SEARCH  ALL TBL01-AREA
-           SEARCH  TBL01-AREA
+      *     SET     TBL01-IDX    TO     1
+           SEARCH  ALL TBL01-AREA
+      *     SEARCH  TBL01-AREA
                AT END
                    MOVE    "N"         TO      SW-SEARCH
 
-               WHEN TBL01-TITLE2 (TBL01-IDX) (1:K2) =  WK-TITLE (1:K2)
-                AND TBL01-TITLE2-LEN (TBL01-IDX) = K2
+      *         WHEN TBL01-TITLE2 (TBL01-IDX) (1:K2) =  WK-TITLE (1:K2)
+      *          AND TBL01-TITLE2-LEN (TBL01-IDX) = K2
+               WHEN TBL01-TITLE2 (TBL01-IDX) (1:WK-TITLE2-LEN-MAX)
+                 =  WK-TITLE-X (1:WK-TITLE2-LEN-MAX)
                    MOVE    "Y"         TO      SW-SEARCH
            END-SEARCH
 
@@ -1556,7 +1734,9 @@
       *    *** タレント名、ＳＰＡＣＥ
 
                                     OR "015"
-               IF      WK-TITLE-A  NOT =   SPACE
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                    OR "065"
+               IF      WK-TITLE-A (1:1) NOT =  SPACE
                    AND WK-ITEM3 (1:1) NOT = SPACE
                    MOVE    "<a href='" TO      POT1-REC
                    WRITE   POT1-REC
@@ -1598,7 +1778,7 @@
 
       *    *** 31=YoutubeChannel
            IF      WK-FILE     =       "031"
-               IF      WK-TITLE-A  NOT =   SPACE
+               IF      WK-TITLE-A (1:1) NOT = SPACE
                    AND WK-ITEM3 (1:1) NOT = SPACE
                    MOVE    "<a href='" TO      POT1-REC
                    WRITE   POT1-REC
@@ -1660,6 +1840,10 @@
       *    *** すでに単体?filters=individual がある時、並び替え：総視聴回数
       *    *** &sort=views をつける
                    IF      WK-FILE     =       "050"
+                       AND WK-TITLE-A (1:17) NOT = "file:///C:/Users/"
+                       AND WK-TITLE-A (1:27) NOT = 
+                           "https://www.minnano-av.com/"
+
                        IF  WK-TITLE-A (WK-TITLE-A-LEN - 18:19)
                          = "?filters=individual"
                            MOVE    "&sort=views"
@@ -1856,7 +2040,13 @@
                         OR WK-COUNT-7   NOT =      ZERO
                         OR WK-COUNT-8   NOT =      ZERO
                         OR WK-COUNT-9   NOT =      ZERO
+      *    *** 女優、男優のみ、ＹｏｕＴｕｂｅ出力
+                     IF      WK-COUNT-1   NOT =      ZERO
+                          OR WK-COUNT-8   NOT =      ZERO
                            CONTINUE
+                     ELSE
+                         GO  TO  S100-30
+                     END-IF
                    ELSE
                            IF      SW-MISSAV   =       "N"
       *    *** SW-MISSAV = "N" は
@@ -1878,6 +2068,8 @@
                                     OR "034"
       *    *** 62=ＭｉｓｓＡＶ 動画サムネイル拡大
                                     OR "062"
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+                                    OR "065"
                    GO  TO  S100-30
            END-IF
 
@@ -2024,7 +2216,7 @@
 
                END-EVALUATE
  
-               IF      J2          >=      200
+               IF      J2          >=      400
                        DISPLAY WK-PGM-NAME "WK-PIN1-CNT2=" WK-PIN1-CNT2
                                " WK-TITLE-LEN ERROR=" WK-TITLE-LEN
                                " J2=" J2 " S100-20-KENSAKU2"
@@ -2050,7 +2242,7 @@
       *    *** 15=アイドル大図鑑 名前順、グループ順
       *    *** FILE=15 WK-ITEM3=IMG
            IF      WK-FILE     =       "015"
-               IF      WK-TITLE-A  =       SPACE
+               IF      WK-TITLE-A (1:1) =  SPACE
                    IF  WK-ITEM3 (1:1) =    SPACE
                        CONTINUE
                    ELSE
@@ -2526,7 +2718,8 @@
       *    *** 27=韓国女優
       *    *** 61=中国女優
            IF      WK-FILE     =       "007" OR "011" OR "012" OR "013"
-                                    OR "014" OR "016" OR "017" OR "027"
+                                    OR "014" OR "015"
+                                    OR "016" OR "017" OR "027"
                                     OR "061"
       *    *** netflix
                    MOVE
@@ -2545,24 +2738,63 @@
                    ADD     1           TO      WK-POT1-CNT
            END-IF
 
+      *    *** DECODE08 で対応に変更
       *    *** 14=日本の女優一覧2000年代生まれ 名前順、誕生日順
-           IF      WK-FILE     =       "014"
-               AND WK-ITEM4 (1:1) NOT = SPACE
+      *     IF      WK-FILE     =       "014"
+      *         AND WK-ITEM4 (1:1) NOT = SPACE
       *    *** netflix
-                   MOVE
-                   "<a href='"
-                                       TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+      *             MOVE
+      *             "<a href='"
+      *                                 TO      POT1-REC
+      *             WRITE   POT1-REC
+      *             ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    WK-ITEM4  TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+      *             MOVE    WK-ITEM4    TO      POT1-REC
+      *             WRITE   POT1-REC
+      *             ADD     1           TO      WK-POT1-CNT
 
-                   MOVE    "'><br><br>netflix 2</a>"
+      *             MOVE    "'><br><br>netflix 2</a>"
+      *                                 TO      POT1-REC
+      *             WRITE   POT1-REC
+      *             ADD     1           TO      WK-POT1-CNT
+      *     END-IF
+
+      *    *** 07=日本の女性アイドル
+      *    *** 11=芸能人・誕生日順　（女性・男性）
+      *    *** 12=芸能人・誕生日順　（女性）
+      *    *** 13=芸能人 名前順（女性・男性、女性、男性）
+      *    *** 14=日本の女優一覧2000年代生まれ 名前順、誕生日順 は除く
+      *    *** 15=アイドル大図鑑 名前順、グループ順
+      *    *** 16=日本の女優一覧1990年代生まれ
+      *    *** 17=日本の女優一覧
+      *    *** 27=韓国女優
+      *    *** 61=中国女優
+           IF      WK-FILE     =       "007" OR "011" OR "012" OR "013"
+                                    OR "014"
+                                    OR "015" OR "016" OR "017" OR "027"
+                                    OR "061"
+
+                   MOVE    "SEARCH"    TO      WDE08-ID
+      *    *** 該当女優名のNETFLIX データ取得する
+                   MOVE    WK-TITLE    TO      WDE08-NAME
+                   MOVE    WK-TITLE-LEN TO     WDE08-NAME-LEN
+                   CALL    "DECODE08"  USING   WDE08-DECODE08-AREA
+
+                   IF      WDE08-SEARCH =      "Y"
+      *    *** netflix
+                           MOVE    "<a href='" TO      POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    WDE08-NFADDR TO     POT1-REC
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+
+                           MOVE    "'><br><br>netflix 2</a>"
                                        TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
+                           WRITE   POT1-REC
+                           ADD     1           TO      WK-POT1-CNT
+                   END-IF
            END-IF
 
       *    *** 14=日本の女優一覧2000年代生まれ 名前順、誕生日順
@@ -2579,40 +2811,16 @@
                    ADD     1           TO      WK-POT1-CNT
            END-IF
 
-      *    *** 07=日本の女性アイドル
-      *    *** 11=芸能人・誕生日順　（女性・男性）
-      *    *** 12=芸能人・誕生日順　（女性）
       *    *** 13=芸能人 名前順（女性・男性、女性、男性）
-      *    *** 14=日本の女優一覧2000年代生まれ 名前順、誕生日順 は除く
-      *    *** 15=アイドル大図鑑 名前順、グループ順
-      *    *** 16=日本の女優一覧1990年代生まれ
-      *    *** 17=日本の女優一覧
-      *    *** 27=韓国女優
-      *    *** 61=中国女優
-           IF      WK-FILE     =       "007" OR "011" OR "012" OR "013"
-                                    OR "015" OR "016" OR "017" OR "027"
-                                    OR "061"
+           IF      WK-FILE     =       "013"
 
-                   MOVE    "SEARCH"    TO      WDE08-ID
-      *    *** 該当女優名のNETFLIX データ取得する
-                   MOVE    WK-TITLE    TO      WDE08-NAME
-                   MOVE    WK-TITLE-LEN TO     WDE08-NAME-LEN
-                   CALL    "DECODE08"  USING   WDE08-DECODE08-AREA
-                   IF      WDE08-SEARCH =      "Y"
-      *    *** netflix
-                           MOVE    "<a href='" TO      POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1           TO      WK-POT1-CNT
+                   MOVE    '<br><br>'  TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
 
-                           MOVE    WDE08-NFADDR TO     POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1           TO      WK-POT1-CNT
-
-                           MOVE    "'><br><br>netflix 2</a>"
-                                       TO      POT1-REC
-                           WRITE   POT1-REC
-                           ADD     1           TO      WK-POT1-CNT
-                   END-IF
+                   MOVE    WK-TITLE-A  TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
            END-IF
 
       *    *** 27=韓国女優
@@ -2654,7 +2862,7 @@
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
 
-                   IF      WK-TITLE-A  NOT =   SPACE
+                   IF      WK-TITLE-A (1:1) NOT = SPACE
       *    *** 伊藤美来,https://www.netflix.com/browse/m/person/40025430 ,,
       *    *** ID=40025430 等有り
 
@@ -2853,19 +3061,6 @@
                    END-IF
            END-IF
 
-      *    *** 13=芸能人 名前順（女性・男性、女性、男性）
-           IF      WK-FILE     =       "013"
-
-                   MOVE    '<br><br>'  TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
-
-                   MOVE    WK-TITLE-A  TO      POT1-REC
-                   WRITE   POT1-REC
-                   ADD     1           TO      WK-POT1-CNT
-                   GO  TO  S100-30
-           END-IF
-
       *    *** 月
            IF    ( WK-TITLE-A (2:3) =  X"E69C88"
                 OR WK-TITLE-A (3:3) =  X"E69C88" )
@@ -2948,6 +3143,8 @@
            CALL    "DECODE03"  USING   WK-TITLE-A
                                        WDE03-BUF1-LEN
                                        WDE03-BUF2
+
+
 
       *    *** 下の段
            MOVE    SPACE       TO      POT1-REC
@@ -3374,14 +3571,16 @@
       *     END-PERFORM
            MOVE     WK-TITLE-LEN TO    K2
 
-           SET     TBL01-IDX    TO     1
-      *     SEARCH  ALL TBL01-AREA
-           SEARCH  TBL01-AREA
+      *     SET     TBL01-IDX    TO     1
+           SEARCH  ALL TBL01-AREA
+      *     SEARCH  TBL01-AREA
                AT END
                    MOVE    "N"         TO      SW-SEARCH
 
-               WHEN TBL01-TITLE2 (TBL01-IDX) (1:K2) =  WK-TITLE (1:K2)
-                AND TBL01-TITLE2-LEN (TBL01-IDX) = K2
+      *         WHEN TBL01-TITLE2 (TBL01-IDX) (1:K2) =  WK-TITLE (1:K2)
+      *          AND TBL01-TITLE2-LEN (TBL01-IDX) = K2
+               WHEN TBL01-TITLE2 (TBL01-IDX) (1:WK-TITLE2-LEN-MAX)
+                 =  WK-TITLE (1:WK-TITLE2-LEN-MAX)
                    MOVE    "Y"         TO      SW-SEARCH
            END-SEARCH
 
@@ -3905,10 +4104,10 @@
       *    *** #NNNN.　お
       *    *** あ、い、う、…、を
                            AND  WK-PIN1-LEN = 12 ) OR
-      *    *** MissAV女優名あ、…、ら
+      *    *** MissAV　女優名あ、…、ら
                               ( PIN1-REC (10:6) = "MissAV"
-                           AND  PIN1-REC (16:9) = X"E5A5B3E584AAE5908D"
-                           AND  WK-PIN1-LEN = 27 )
+                           AND  PIN1-REC (19:9) = X"E5A5B3E584AAE5908D"
+                           AND  WK-PIN1-LEN = 30 )
                                MOVE    '"><br><br>' TO     POT1-REC
                            ELSE
                                MOVE    '">'    TO      POT1-REC
@@ -3961,6 +4160,7 @@
       *    *** #NNNN ＸＸＸＸＸ => ＸＸＸＸＸ
            IF      PIN1-REC (10:10) =   "#aduxvi-br" OR "#aduDMM-br"
                                      OR "#MissAV-br"
+                                     OR "#Minnan-br"
                    MOVE    SPACE       TO      POT1-REC
            ELSE
                    MOVE    PIN1-REC (10:) TO   POT1-REC
@@ -3977,6 +4177,21 @@
 
                WHEN SW-IDOLZUKAN = "Y"
                    EVALUATE TRUE
+
+      *    *** 63=昭和アイドル
+      *    *** 65 みんなのAV.com 検索結果 画像拡大
+
+                   WHEN WK-FILE = "063" OR "065"
+                          IF ( PIN1-REC (10:3) =
+      *    *** と
+                                                 X"E381A8"
+                            OR PIN1-REC (10:10) = "#Minnan-br"
+                                                             )
+                                 MOVE    '</a><br><br>' TO     POT1-REC
+                          ELSE
+                                 MOVE    '</a>&nbsp;&nbsp;&nbsp;' 
+                                                 TO     POT1-REC
+                          END-IF
 
       *    *** 01=ポピュラー音楽の音楽家一覧 (日本・グループ)
       *    *** 02=ポピュラー音楽の音楽家一覧 (日本・個人)
@@ -4198,9 +4413,9 @@
       *    *** Ｚ
                                                 OR X"EFBCBA" ) AND
                                    WK-PIN1-LEN = 12 )
-      *    *** aduxvi女優名あーお
+      *    *** aduxvi　女優名あーお
       *    *** あー
-                              OR (PIN1-REC (25:6) = X"E38182E383BC"
+                              OR (PIN1-REC (28:6) = X"E38182E383BC"
       *    *** か
                                                 OR X"E3818BE383BC"
       *    *** さ
@@ -4297,6 +4512,7 @@
                                  MOVE    '</a>&nbsp;&nbsp;&nbsp;' 
                                                  TO     POT1-REC
                            END-IF
+
                        WHEN OTHER
                            MOVE    '</a>&nbsp;&nbsp;&nbsp;' TO  POT1-REC
                    END-EVALUATE
@@ -4381,8 +4597,8 @@
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
 
-           DISPLAY "WK-TITLE-MAX=" WK-TITLE-MAX
-           DISPLAY "WK-SITE-MAX =" WK-SITE-MAX
+           DISPLAY "WK-TITLE2-LEN-MAX=" WK-TITLE2-LEN-MAX
+           DISPLAY "WK-SITE-LEN-MAX   " WK-SITE-LEN-MAX
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT2 TO     WK-PIN1-CNT2-E

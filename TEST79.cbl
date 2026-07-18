@@ -91,6 +91,7 @@
            03  WK-HTTPS        PIC  X(200) VALUE SPACE.
            03  WK-IMG          PIC  X(200) VALUE SPACE.
            03  WK-NAME-LEN     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-NAME-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
            03  WK-HTTPS-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-IMG-LEN      BINARY-LONG SYNC VALUE ZERO.
 
@@ -250,6 +251,9 @@
                            WK-HTTPS COUNT WK-HTTPS-LEN
                            WK-IMG   COUNT WK-IMG-LEN
            END-READ
+           IF      WK-NAME-LEN >       WK-NAME-LEN-MAX
+                   MOVE    WK-NAME-LEN TO      WK-NAME-LEN-MAX
+           END-IF
            .
        S030-EX.
            EXIT.
@@ -294,7 +298,9 @@
                AT END
                    MOVE    "N"         TO      SW-SEARCH
 
-               WHEN TBL01-NAME (TBL01-IDX) (1:L) =  WK-NAME (1:L)
+      *         WHEN TBL01-NAME (TBL01-IDX) (1:L) =  WK-NAME (1:L)
+               WHEN TBL01-NAME (TBL01-IDX) (1:WK-NAME-LEN-MAX)
+                 =  WK-NAME (1:WK-NAME-LEN-MAX)
                    MOVE    "Y"         TO      SW-SEARCH
            END-SEARCH
 

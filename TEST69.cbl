@@ -259,6 +259,7 @@
            03  WK-BUF2-L       BINARY-LONG SYNC VALUE ZERO.
            03  WK-BUF1-L       BINARY-LONG SYNC VALUE ZERO.
            03  WK-CONTENT-L    BINARY-LONG SYNC VALUE ZERO.
+           03  WK-CONTENT2-L   BINARY-LONG SYNC VALUE ZERO.
            03  WK-VIDEORENDERER-CNT BINARY-LONG SYNC VALUE ZERO.
            03  WK-TEXT-OFFICIAL-L BINARY-LONG SYNC VALUE ZERO.
            03  WK-CHANNEL-OFFICIAL-L  BINARY-LONG SYNC VALUE ZERO.
@@ -286,8 +287,10 @@
            03  WK-SIMPLETEXT2  PIC  X(1024) VALUE SPACE.
            03  WK-UNST         PIC  X(1024) VALUE SPACE.
            03  WK-CONTENT      PIC  X(2000) VALUE SPACE.
+           03  WK-CONTENT2     PIC  X(2000) VALUE SPACE.
            03  WK-NO           PIC  9(002) VALUE ZERO.
            03  WK-PQ           PIC  X(200) VALUE SPACE.
+           03  WK-PQ2          PIC  X(200) VALUE SPACE.
            03  WK-QUERY        PIC  X(200) VALUE SPACE.
            03  WK-SJIS         PIC  X(040) VALUE SPACE.
            03  WK-VIDEOIDS     PIC  X(020) VALUE SPACE.
@@ -298,6 +301,20 @@
              05  PIC  X(010) VALUE   X"E5868DE7949FE383AAE3".
              05  PIC  X(023) VALUE
              X"82B9E38388E381AEE585A8E4BD93E38292E8A68BE3828B".
+
+      *    *** ＼毎週月曜日・隔週で配信
+           03  WK-MAISHUU.
+             05    PIC  X(018) VALUE
+               X"EFBCBCE6AF8EE980B1E69C88E69B9CE697A5".
+             05    PIC  X(018) VALUE
+               X"E383BBE99A94E980B1E381A7E9858DE4BFA1".
+      *    *** この動画のチャプター数:
+           03  WK-KONODOUGA..
+             05    PIC  X(017) VALUE
+               X"E38193E381AEE58B95E794BBE381AEE383".
+             05    PIC  X(017) VALUE
+               X"81E383A3E38397E382BFE383BCE695B03A".
+
            03  WK-HISTORY.
              05  PIC  X(030) VALUE "https://i.ytimg.com/vi/Fj7zFNB".
              05  PIC  X(030) VALUE "lyQE/hq720.jpg?sqp=-oaymwEjCOg".
@@ -353,9 +370,10 @@
            03  SW-CHANNEL-NAME PIC  X(001) VALUE "N".
            03  SW-SEARCH       PIC  X(001) VALUE "N".
            03  SW-STOP         PIC  X(001) VALUE "Y".
-           03  SW-VIDEORENDERER PIC  X(001) VALUE "N".
+           03  SW-VIDEORENDERER PIC X(001) VALUE "N".
 
            03  SW-DEBUG        PIC  X(001) VALUE "N".
+      *     03  SW-DEBUG        PIC  X(001) VALUE "Y".
 
        01  TBL-AREA.
            03  TBL01-AREA      OCCURS 1000.
@@ -1328,6 +1346,12 @@
                    WRITE   POT3-REC
                    ADD     1           TO      WK-POT3-CNT
 
+                   IF      WK-PQ (1:3) =       "ych"
+                           MOVE    WK-PQ (4:)  TO      WK-PQ2
+                           MOVE    WK-PQ2      TO      WK-PQ
+                           COMPUTE WK-PQ-L = WK-PQ-L - 3
+                   END-IF
+
       *    *** # : hashtag
       *    *** https://www.youtube.com/hashtag/石原夏織
                    PERFORM S300-10     THRU    S300-EX
@@ -1679,6 +1703,14 @@
                           MOVE    SPACE       TO      WK-CONTENT
                           MOVE    ZERO        TO      WK-CONTENT-L
                   END-IF
+
+                  IF      WK-LABEL2 (1:1) =    SPACE
+                      AND WK-CONTENT2 (1:1) NOT = SPACE
+                          MOVE    WK-CONTENT2  TO      WK-LABEL2
+                          MOVE    WK-CONTENT2-L TO     WK-LABEL2-L
+                          MOVE    SPACE       TO      WK-CONTENT2
+                          MOVE    ZERO        TO      WK-CONTENT2-L
+                  END-IF
            END-IF
 
            IF      SW-RESULTS  =       "Y"
@@ -1708,6 +1740,7 @@
                                                WK-SIMPLETEXT
                                                WK-SIMPLETEXT2
                                                WK-CONTENT
+                                               WK-CONTENT2
                ELSE
 
                    MOVE    SPACE       TO      WK-TEXT2
@@ -1720,6 +1753,7 @@
                                                WK-SIMPLETEXT
                                                WK-SIMPLETEXT2
                                                WK-CONTENT
+                                               WK-CONTENT2
                END-IF
 
            ELSE
@@ -1771,14 +1805,15 @@
 
 
 
+      *    *** 01
            MOVE    SPACE       TO      POT3-REC
 
            MOVE    1           TO      K
 
            IF      SW-DEBUG    =       "Y"
 
-             AND ( WK-POT1-CNT >= 3792
-             AND   WK-POT1-CNT <= 3982 ) 
+             AND ( WK-POT1-CNT >= 5870
+             AND   WK-POT1-CNT <= 6005 ) 
 
                    DISPLAY " "
                    DISPLAY "S210-10 ***********************************"
@@ -1801,6 +1836,7 @@
                    DISPLAY "WK-TEXTX   =" WK-TEXTX (1:60)
                    DISPLAY "WK-LABEL   =" WK-LABEL (1:60)
                    DISPLAY "WK-CONTENT =" WK-CONTENT (1:60)
+                   DISPLAY "WK-CONTENT2=" WK-CONTENT2 (1:60)
                    DISPLAY "WK-VIDEOIDS =" WK-VIDEOIDS
                    DISPLAY "SV-VIDEOIDS =" SV-VIDEOIDS
 
@@ -1811,6 +1847,14 @@
                                                WK-CONTENT
                                                WK-SJIS
                    DISPLAY "WK-CONTENT = "     WK-SJIS
+
+      *    *** HENKAN=SU SJIS <= UTF8
+                   MOVE    "CHANGE"    TO      WDE05-ID
+                   MOVE    "US"        TO      WDE05-HENKAN
+                   CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                               WK-CONTENT2
+                                               WK-SJIS
+                   DISPLAY "WK-CONTENT2= "     WK-SJIS
 
       *    *** HENKAN=SU SJIS <= UTF8
                    MOVE    "CHANGE"    TO      WDE05-ID
@@ -1826,7 +1870,7 @@
                    MOVE    "US"        TO      WDE05-HENKAN
                    CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
       *                                        WK-TEXT2 (1:40)
-               
+
                                                WK-TEXT2
                                                WK-SJIS
                    DISPLAY "WK-TEXT2   =" WK-SJIS
@@ -1926,8 +1970,9 @@
                    ADD     WK-TEXT2-L TO      K
            END-EVALUATE
 
-           MOVE    ","         TO      POT3-REC (K:1)
-           ADD     1           TO      K
+      *    *** 02
+           MOVE    " ,"         TO      POT3-REC (K:2)
+           ADD     2           TO      K
 
            IF      WK-HTTPS (1:1) = SPACE
                    MOVE    SV-HTTPS    TO      POT3-REC (K:WK-HTTPS-L)
@@ -1937,6 +1982,7 @@
                    ADD     WK-HTTPS-L  TO      K
            END-IF
 
+      *    *** 03
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -1950,6 +1996,8 @@
                    MOVE    WK-CHANNEL  TO      POT3-REC (K:WK-CHANNEL-L)
                    ADD     WK-CHANNEL-L TO     K
            END-IF
+
+      *    *** 04
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2039,6 +2087,7 @@
 
            END-EVALUATE
 
+      *    *** 05
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2062,6 +2111,7 @@
                    ADD     WK-WATCH-L  TO      K
            END-IF
 
+      *    *** 06
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2107,6 +2157,7 @@
                END-IF
            END-IF
 
+      *    *** 07
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2118,6 +2169,7 @@
                    ADD     WK-LABEL2-L TO      K
            END-IF
 
+      *    *** 08
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2134,6 +2186,7 @@
                    ADD     WK-PLAYLIST-L TO    K
            END-IF
 
+      *    *** 09
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2157,6 +2210,7 @@
                    ADD     WK-VIDEOCOUNT-L TO  K
            END-IF
 
+      *    *** 10
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2180,6 +2234,7 @@
                    ADD     WK-SIMPLETEXT-L TO  K
            END-IF
 
+      *    *** 11
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2191,6 +2246,7 @@
                    ADD     WK-SIMPLETEXT2-L TO  K
            END-IF
 
+      *    *** 12
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2209,6 +2265,7 @@
                END-IF
            END-IF
 
+      *    *** 13
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
@@ -2346,6 +2403,7 @@
                                        WK-SIMPLETEXT
                                        WK-SIMPLETEXT2
                                        WK-CONTENT
+                                       WK-CONTENT2
                                        WK-VIDEOIDS
                                        POT3-REC
 
@@ -2369,6 +2427,7 @@
                                        WK-SIMPLETEXT-L
                                        WK-SIMPLETEXT2-L
                                        WK-CONTENT-L
+                                       WK-CONTENT2-L
 
            MOVE    "N"         TO
                                        SW-CHANNEL
@@ -2402,8 +2461,8 @@
 
            IF      SW-DEBUG = "Y" 
 
-             AND ( WK-POT1-CNT >= 3792
-             AND   WK-POT1-CNT <= 3982 ) 
+             AND ( WK-POT1-CNT >= 5870
+             AND   WK-POT1-CNT <= 6005 ) 
 
              AND ( POT1-REC (2:8) = "thumbnail"
                 OR POT1-REC (1:9) = "link rel="
@@ -2433,6 +2492,7 @@
               DISPLAY "WK-TEXT2   =" WK-TEXT2 (1:50)
               DISPLAY "WK-TEXTX   =" WK-TEXTX (1:50)
               DISPLAY "WK-CONTENT =" WK-CONTENT (1:50)
+              DISPLAY "WK-CONTENT2=" WK-CONTENT2(1:50)
               DISPLAY "WK-LABEL   =" WK-LABEL (1:50)
               DISPLAY "WK-LABEL2  =" WK-LABEL2 (1:50)
               DISPLAY "WK-WATCH   =" WK-WATCH (1:50)
@@ -2504,6 +2564,7 @@
                                                WK-SIMPLETEXT
                                                WK-SIMPLETEXT2
                                                WK-CONTENT
+                                               WK-CONTENT2
                                                WK-VIDEOIDS
                                                POT3-REC
 
@@ -2527,6 +2588,7 @@
                                                WK-SIMPLETEXT-L
                                                WK-SIMPLETEXT2-L
                                                WK-CONTENT-L
+                                               WK-CONTENT2-L
 
                    MOVE    "N"         TO      
                                                SW-CHANNEL
@@ -2635,15 +2697,15 @@
                             PERFORM S210-10   THRU    S210-EX
                         END-IF
                     ELSE
-                        IF       WK-WATCH (1:1) NOT = SPACE
-                             AND WK-WATCH (1:WK-WATCH-L) 
-                               = SV-WATCH (1:WK-WATCH-L)
-                               CONTINUE
-                        ELSE
+      *                  IF       WK-WATCH (1:1) NOT = SPACE
+      *                       AND WK-WATCH (1:WK-WATCH-L) 
+      *                         = SV-WATCH (1:WK-WATCH-L)
+      *                         CONTINUE
+      *                  ELSE
       *    *** SW-FIRST = "N"
       *    *** WRITE POT3
                             PERFORM S210-10   THRU    S210-EX
-                        END-IF
+      *                  END-IF
                     END-IF
 
       *         WHEN POT1-REC(1:06) = " PQ : "
@@ -2854,6 +2916,11 @@
                     X"E381AEE38381E383A3E383B3E3838DE383ABE799"
                  AND  POT1-REC(29:28) = 
             X"BBE98CB2E38292E8A7A3E999A4E38197E381BEE38199E3818BEFBC9F")
+      *    *** この動画のチャプター数:
+                 OR  POT1-REC(9:34) = WK-KONODOUGA
+      *    *** チャプター数
+                 OR  POT1-REC(9:18) =
+               X"E38381E383A3E38397E382BFE383BCE695B0"
 
                   )
                     CONTINUE
@@ -3062,6 +3129,12 @@
                        X"E382ABE382B9E382BFE3839EE382A4E382BAE381"
                    AND POT1-REC(32:21) = 
                        X"95E3828CE3819FE9809AE79FA5E381AEE381BF" )  
+      *    *** 共有
+                 OR   POT1-REC(12:06) =
+                       X"E585B1E69C89"
+      *    *** ショート
+                 OR   POT1-REC(12:12) =
+                       X"E382B7E383A7E383BCE38388"
                        )
                     CONTINUE
 
@@ -3069,24 +3142,8 @@
       *    *** WATCH 内容がずれる為、一部表示されないので使う
                WHEN POT1-REC(1:11) = " content : "
 
-                    IF  WK-CONTENT NOT = SPACE
-                    AND WK-SIMPLETEXT =  SPACE
-
-                       MOVE    ZERO        TO      L2
-                       PERFORM VARYING J FROM 12 BY 1
-                               UNTIL POT1-REC (J:2) = " ,"
-                                  OR J > P1
-                               ADD     1           TO      L2
-                       END-PERFORM
-
-                       MOVE    L2        TO      L
-
-                       INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
-                       MOVE    POT1-REC(12:L) TO WK-SIMPLETEXT (1:L)
-                       MOVE    L         TO      WK-SIMPLETEXT-L
-                    END-IF
-
-                    IF  WK-CONTENT = SPACE
+                  EVALUATE TRUE
+                    WHEN WK-CONTENT = SPACE
 
                        MOVE    ZERO        TO      L2
                        PERFORM VARYING J FROM 12 BY 1
@@ -3101,7 +3158,52 @@
                        MOVE    POT1-REC(12:L) TO WK-CONTENT (1:L)
                        MOVE    L         TO      WK-CONTENT-L
 
-                    END-IF
+                    WHEN WK-SIMPLETEXT =  SPACE
+
+                       MOVE    ZERO        TO      L2
+                       PERFORM VARYING J FROM 12 BY 1
+                               UNTIL POT1-REC (J:2) = " ,"
+                                  OR J > P1
+                               ADD     1           TO      L2
+                       END-PERFORM
+
+                       MOVE    L2        TO      L
+
+                       INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
+                       MOVE    POT1-REC(12:L) TO WK-SIMPLETEXT (1:L)
+                       MOVE    L         TO      WK-SIMPLETEXT-L
+
+                    WHEN WK-SIMPLETEXT2 =  SPACE
+
+                       MOVE    ZERO        TO      L2
+                       PERFORM VARYING J FROM 12 BY 1
+                               UNTIL POT1-REC (J:2) = " ,"
+                                  OR J > P1
+                               ADD     1           TO      L2
+                       END-PERFORM
+
+                       MOVE    L2        TO      L
+
+                       INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
+                       MOVE    POT1-REC(12:L) TO WK-SIMPLETEXT2 (1:L)
+                       MOVE    L         TO      WK-SIMPLETEXT2-L
+
+                    WHEN WK-CONTENT2 = SPACE
+
+                       MOVE    ZERO        TO      L2
+                       PERFORM VARYING J FROM 12 BY 1
+                               UNTIL POT1-REC (J:2) = " ,"
+                                  OR J > P1
+                               ADD     1           TO      L2
+                       END-PERFORM
+
+                       MOVE    L2        TO      L
+
+                       INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
+                       MOVE    POT1-REC(12:L) TO WK-CONTENT2 (1:L)
+                       MOVE    L         TO      WK-CONTENT2-L
+
+                  END-EVALUATE
 
                WHEN POT1-REC(1:09) = " label : "
       *    *** 次へ
@@ -3172,6 +3274,9 @@
                   OR POT1-REC(10:6) = X"E585B1E69C89"
       *    *** 登録解除
                   OR POT1-REC(10:12) = X"E799BBE98CB2E8A7A3E999A4"
+      *    *** チャンネル「
+                  OR POT1-REC(10:18) =
+                     X"E38381E383A3E383B3E3838DE383ABE3808C"
                      )
                    CONTINUE
 
@@ -3404,13 +3509,26 @@
                        
                    END-IF
 
-                   IF      WK-HTTPS (1:1) =    SPACE
-                      IF      SV-HTTPS (1:1) NOT = SPACE
-                           MOVE    "Y"         TO      SW-HTTPS
-                           MOVE    SV-HTTPS    TO      WK-HTTPS
-                           MOVE    SV-HTTPS-L  TO      WK-HTTPS-L
-                      END-IF
-                   END-IF
+      *             IF      WK-HTTPS (1:1) =    SPACE
+      *                IF      SV-HTTPS (1:1) NOT = SPACE
+      *                     MOVE    "Y"         TO      SW-HTTPS
+      *                     MOVE    SV-HTTPS    TO      WK-HTTPS
+      *                     MOVE    SV-HTTPS-L  TO      WK-HTTPS-L
+      *                END-IF
+      *             END-IF
+
+      *    ***  url : /shorts/の時、IMG(HTTPS)後に来るので、クリアーする
+      *             IF      SW-WATCH =       "Y"
+      *                 MOVE    SPACE    TO      WK-HTTPS
+      *                 MOVE    ZERO     TO      WK-HTTPS-L
+      *                 MOVE    "N"      TO      SW-HTTPS
+      *             END-IF
+      *    *** XXXXXXXXXXX の長さ変わった時はまた修正する
+                    MOVE    
+                       "https://i.ytimg.com/vi/XXXXXXXXXXX/frame0.jpg"
+                                     TO      WK-HTTPS
+                    MOVE    WK-WATCH (9:11) TO WK-HTTPS (24:11)
+                    MOVE    45       TO      WK-HTTPS-L
 
                WHEN POT1-REC(1:16) =  " url : /playlist"
                    MOVE    ZERO        TO      L2
@@ -3553,6 +3671,8 @@
       *    *** 不適切なコンテンツ
                  OR POT1-REC(15:27) =
                X"E4B88DE981A9E58887E381AAE382B3E383B3E38386E383B3E38384"
+      *    ***  ＼毎週月曜日・隔週で配信
+                 OR POT1-REC(15:36) = WK-MAISHUU
                     )
                     CONTINUE
 
@@ -3637,6 +3757,7 @@
                                                WK-SIMPLETEXT
                                                WK-SIMPLETEXT2
                                                WK-CONTENT
+                                               WK-CONTENT2
                                                WK-VIDEOIDS
                                                POT3-REC
 
@@ -3660,6 +3781,7 @@
                                                WK-SIMPLETEXT-L
                                                WK-SIMPLETEXT2-L
                                                WK-CONTENT-L
+                                               WK-CONTENT2-L
 
                    MOVE    "N"         TO      
                                                SW-CHANNEL
@@ -4354,7 +4476,9 @@
                        EVALUATE TRUE
 
       *    **** 小倉唯
-                           WHEN  WK-PQ (1:9) = X"E5B08FE58089E594AF" 
+      *                     WHEN  WK-PQ (1:9) = X"E5B08FE58089E594AF" 
+      *    *** 未使用にする
+                           WHEN  WK-PQ (1:9) = X"000000000000000000" 
                                IF  WK-POT1-CNT2 > 2040
                                AND  SW-HTTPS-FIRST =  "N"
                                AND POT1-REC (1:7) = " url : "

@@ -149,6 +149,7 @@
            03  WK-COUNT-7      BINARY-LONG SYNC VALUE ZERO.
            03  WK-COUNT-8      BINARY-LONG SYNC VALUE ZERO.
            03  WK-COUNT-9      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-COUNT-10     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN5-ITEM1   PIC  X(100) VALUE SPACE.
            03  WK-PIN5-ITEM2   PIC  X(100) VALUE SPACE.
@@ -256,6 +257,13 @@
       *    *** READ PIN1
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
+
+           IF      SW-MISSAV   =       "N"
+                   DISPLAY WK-PGM-NAME " PIN1-REC MissAV 無 SW-MISSAV="
+                           SW-MISSAV
+                   DISPLAY WK-PGM-NAME " TEST10 再実行してみる"
+                   STOP    RUN
+           END-IF
 
       *    *** READ PIN1 </H3>
            PERFORM S020-10     THRU    S020-EX
@@ -627,6 +635,7 @@
                WHEN SW-A  = "Y"
                    MOVE    SPACE       TO      POT1-REC
                    MOVE    ZERO        TO      I3
+                                               WK-COUNT-10
                    PERFORM VARYING I FROM 1 BY 1
                            UNTIL I > WK-PIN1-LEN
                               OR PIN1-REC (I:12) = "- MissAV.com"
@@ -648,6 +657,24 @@
       *    *** の検索結果
                               OR PIN1-REC (I:15) = 
                                  X"E381AEE6A49CE7B4A2E7B590E69E9C"
+
+      *    ***  - みんなのAV.com
+                              OR PIN1-REC (I:21) = 
+                           X"202D20E381BFE38293E381AAE381AE41562E636F6D"
+
+                       IF          PIN1-REC (I:21) = 
+      *    *** ＭｉｓｓＡＶ　
+                       X"EFBCADEFBD89EFBD93EFBD93EFBCA1EFBCB6E38080"
+                               MOVE    1           TO      WK-COUNT-10
+      *    *** ＭｉｓｓＡＶ　拡大のタイトル、ＭｉｓｓＡＶを取る
+                               MOVE    22          TO      I
+                       END-IF
+
+                       IF          PIN1-REC (I:11) = "Minnano-av "
+      *    *** Minnano-av「ＸＸ」AV女優一覧のタイトル、Minnano-avを取る
+                               MOVE    12          TO      I
+                       END-IF
+
                        EVALUATE TRUE
                            WHEN PIN1-REC (I:1) = ","
                                ADD     1           TO      I3
@@ -722,7 +749,14 @@
 
       *    *** "https://missav.com/ja " は検索先頭を除外のため
       *             IF      WK-A (1:22) = "https://missav.com/ja "
-                   IF      WK-A (1:21) = "https://missav.ai/ja "
+      *             IF      WK-A (1:21) = "https://missav.ai/ja "
+
+      *    *** IMG SET 不要かチェックする
+                   IF      WK-A (1:25) = "https://missav.ai/dm10/ja"
+                        OR WK-A (1:27) = "https://njavtv.com/dm221/ja"
+                        OR WK-A (1:21) = "https://jable.tv/hot/"
+                        OR WK-A (1:27) = "https://www.minnano-av.com/"
+
                         OR WK-COUNT-1 NOT = ZERO
                         OR WK-COUNT-2 NOT = ZERO
                         OR WK-COUNT-3 NOT = ZERO
@@ -732,6 +766,7 @@
                         OR WK-COUNT-7 NOT = ZERO
                         OR WK-COUNT-8 NOT = ZERO
                         OR WK-COUNT-9 NOT = ZERO
+                        OR WK-COUNT-10 NOT = ZERO
                        ADD     2           TO      I3
                        MOVE    ","         TO      POT1-REC (I3:1)
                    ELSE
@@ -844,7 +879,13 @@
            ADD     12 1        TO      I3
            MOVE    ","         TO      POT1-REC (I3:1)
 
-           IF      WK-A        NOT =   "https://missav.ai/dm10/ja"
+           IF      WK-A (1:25)  =      "https://missav.ai/dm10/ja"
+                OR WK-A (1:27)  =      "https://njavtv.com/dm221/ja"
+                OR WK-A (1:21)  =      "https://jable.tv/hot/"
+                OR WK-A (1:27)  =      "https://www.minnano-av.com/"
+                OR WK-A (1:31)  =      "file:///C:/Users/koko/OneDrive/"
+                   CONTINUE
+           ELSE
       *    *** TBL03 SET
                    PERFORM S122-10     THRU    S122-EX
            END-IF
@@ -951,23 +992,23 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT TO      WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2 ｹﾝｽｳ = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 件数 = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-PIN4-CNT TO      WK-PIN4-CNT-E
-           DISPLAY WK-PGM-NAME " PIN4 ｹﾝｽｳ = " WK-PIN4-CNT-E
+           DISPLAY WK-PGM-NAME " PIN4 件数 = " WK-PIN4-CNT-E
                    " (" WK-PIN4-F-NAME ")"
            MOVE    WK-PIN5-CNT TO      WK-PIN5-CNT-E
-           DISPLAY WK-PGM-NAME " PIN5 ｹﾝｽｳ = " WK-PIN5-CNT-E
+           DISPLAY WK-PGM-NAME " PIN5 件数 = " WK-PIN5-CNT-E
                    " (" WK-PIN5-F-NAME ")"
 
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 ｹﾝｽｳ = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

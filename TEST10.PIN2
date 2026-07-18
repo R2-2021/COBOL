@@ -1,19 +1,188 @@
 #bookmarks.html.xvi
-202604
+MissAV.奏音かのん.html
+
+minnano-av.巨乳.html
+
+minnano-av.微乳.html
+#bookmarks.html.xvi
+202607
+MissAV.小栗みゆ.html
 シート1.html
+
+１行目のみ参照して処理する
+
+MissAV
+ 1.Pythonでhtml抽出後、TEST10=>TEST134=>TEST104=>TEST53 032=>TEST54 で実行
+
+MissAV.あいださくら.html
+MissAV.あべみかこ.html
+MissAV.一之瀬すず.html
+MissAV.小栗みゆ.html
+MissAV.新井リマ.html
+MissAV.赤名いと.html
+MissAV.天乃のあ.html
+MissAV.有栖るる.html
+
+MissAV.花音うらら.html
+MissAV.笠木いちか.html
+MissAV.工藤ララ.html
+MissAV.倉本すみれ.html
+
+MissAV.白上咲花.html
+MissAV.白城リサ.html
+
+MissAV.粒楽あむ.html
+
+MissAV.永瀬ゆい.html
+MissAV.永野いち夏.html
+MissAV.渚みつき.html
+
+MissAV.早美れむ.html
+MissAV.藤田こずえ.html
+MissAV.姫川ゆうな.html
+
+
+MissAV.皆瀬あかり.html
+MissAV.向井藍.html
+MissAV.松本いちか.html
+MissAV.美ノ嶋めぐり.html
+MissAV.百瀬あすか.html
+MissAV.望月つぼみ.html
+
+MissAV.由良かな.html
+MissAV.八掛うみ.html
+MissAV.横宮七海.html
+MissAV.由愛可奈.html
+MissAV.吉根ゆりあ.html
+
+MissAV.ひよこ.html
+MissAV.ミニマム.html
+MissAV.ムーディーズ.html
+
+MissAV.キメセク.html
+
+
+
+Minnano-av
+ 1.Pythonでhtml抽出後、TEST10=>TEST139=>TEST53 065=>TEST54 で実行
+minnano-av.ＡＬＬ.html
+minnano-av.ロリ.html
+minnano-av.ショートカット.html
+minnano-av.芸能人.html
+minnano-av.低身長.html
+minnano-av.伝説.html
+minnano-av.微乳.html
+minnano-av.美少女.html
+minnano-av.巨乳.html
+minnano-av.美人.html
+
+
+アニメイトからアニメデータ抽出、タイトル順、年月順、#JOB C.TEST61.batの方参照
+ 1.Pythonフォルダanimeitoで該当の年月でhtml抽出後、TEST10=>TEST28(TEST26)=> で実行
+
+C.TEST61.bat
+REM ＊＊＊　YouTube アニメ年代順、タイトル順データ作成　＊＊＊
+REM Pthon でWebreq.animeito202101.py 最新 YYYYMMを作り、実行F5
+REM 作成された
+REM TEST10 TEST10.PIN2 の １行目 YYYYMM 変更して実行
+REM TEST26 実行
+REM TEST28 実行
+REM TEST50.PIN1 に　最新YYYY.MM TEST28.POT1 データ追加
+REM TEST62.POT2 に件数あるとき、漢字よみデータ追加 TEST62.PIN3 TEST62再実行
+REM TEST50.CBL,TEST51.CBL アニメイト　アニメ一覧 最新年度月変更 ID＝は変更ないみたい
+REM
+REM   *    *** TEST10
+REM   *    ***   |
+REM   *    *** TEST28
+REM   *    ***
+REM   *    *** TEST61
+REM   *    ***   |
+REM   *    *** TEST62
+REM   *    ***   |
+REM   *    *** COBSORT COBSORT.T003.PRM1
+REM   *    ***   |
+REM   *    *** TEST63
+REM   *    ***   |
+REM   *    *** TEST51 アニメ 名前順 ｈｔｍｌ 作成
+REM   *    ***   |
+REM   *    *** COBSORT COBSORT.T009.PRM1
+REM   *    ***   |
+REM   *    *** TEST73
+REM   *    ***   |
+REM   *    *** TEST50 アニメ 年代順 ｈｔｍｌ 作成
+
+202607
 202505
 
 
+
+Google Chromeの設定からブックマークとリストを選び、設定からブックマークから下記ファイルにエクスポートする
+C:\Users\XXXX\OneDrive\ドキュメント\COBOL\#bookmarks.html
+
+ 1.XVI    TEST10=>TEST70=>TEST53 021=>TEST54
+ 2.DMM    TEST10=>TEST72=>TEST53 022=>TEST54
+ 3.MissAV TEST10=>TEST74=>TEST53 050=>TEST54
+
+Google Chromeのブックマークの構成の例　フォルダの名前は自由ですが、DMM,XX-br 等は固定です
+ＸＸのブックマーク
+  DMM
+    #検索キーワード  （先頭#はhtml作成時、ヘッダー挿入しない）
+      検索・ＴＯＰ
+        無料動画・全部 - FANZA無料動画
+        AV女優一覧 - エロ動画・アダルトビデオ - FANZA動画
+      検索・妹系
+        くちびるのエロ動画一覧・アダルトビデオ - FANZA動画
+        ｜
+      #aduDMM-br
+    #aduDMM女優名
+      #aduDMM女優名あーお
+        aduDMM女優名あーお
+          有栖るるの検索結果 - エロ動画・アダルトビデオ - FANZA動画
+          ｜
+        あいださくら・羽田真理・向井藍
+          あいださくらの検索結果 - エロ動画・アダルトビデオ - FANZA動画
+          この娘、犯してやる…。 向井藍 - 無料エロ動画 - FANZA無料動画
+          ｜
+      #aduDMM-br このフォルダーでブレイクさせる
+      ｜
+    いいかも
+      動画１
+      動画２
+      
+  aduFC2 DMM終了としてこのフォルダー最後に挿入する
+
+  XVI
+    DMMと同様のフォルダーで作成する （先頭#はhtml作成時、ヘッダー挿入しない）
+    aduxvi可愛いRED
+      動画１
+      動画２
+      ｜
+    aduxvi可愛い
+      動画３
+      動画４
+      ｜
+    #aduxvi-br XVI用ブレイク
+
+  MissAV XVI終了としてこのフォルダー最後に挿入する
+    DMMと同様のフォルダーで作成する （先頭#はhtml作成時、ヘッダー挿入しない）
+   #MissAV-br MissAV用ブレイク
+ 
+XVIでREDが付くフォルダー除く時
+#bookmarks.html.xvi
+
+XVIでREDが付くフォルダー含む時
 #bookmarks.html
 
-シート1.html
 
-dmm はてTEST116 で実行
 
-dmm_渚みつき.html
-dmm_渚みつき_単体作品.html
+dmm 
+ 1.画面サムネイルEXCELで抽出後、TEST116=>TEST53 034=>TEST54 で実行　（旧）
+ 2.Pythonでhtml抽出後、TEST10=>TEST89=>TEST53 029=>TEST54 で実行
+   Pythonでhtml抽出だめだったが、抽出出来るようになったので、TEST89修正してhtml作成出来た
 
-dmm_ポルチオ.html
+dmm.新井リマ.html
+dmm.河北彩花.html
+
 dmm_兄妹.html
 dmm_無垢_単体作品.html
 dmm_あの日からずっと…。緊縛調教中出しされる制服美少女.html

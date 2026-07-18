@@ -1,5 +1,7 @@
       *    *** YouTube 動画サムネイル、再生リスト対応
       *    *** TEST103.XXXXXXXX.PIN1 PIN2 自動作成
+      *    *** AV以外対応、PRM1 レイアウト変更したので、
+      *    *** ACCEPT でB001 等入力に変更
       *    *** 
       *    *** 《XXXXX》 XXXXX:タイトル取り出し,PIN2作成する
       *    *** 
@@ -24,7 +26,7 @@
       *    ***    |
       *    *** TEST104 TEST103.POT1 を作成する
       *    ***    |
-      *    *** TEST53
+      *    *** TEST53 032
       *    ***    |
       *    *** TEST54
 
@@ -129,6 +131,7 @@
            03  WK-PLAYLIST     PIC  X(300) VALUE SPACE.
            03  WK-FILE-NAME    PIC  X(064) VALUE SPACE.
            03  WK-COUNT-1      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ID           PIC  X(004) VALUE SPACE.
            03  WK-SONOTA.
 
       *    *** ￥ 一番最後にするため
@@ -166,6 +169,7 @@
            03  SW-HIT1         PIC  X(001) VALUE "N".
            03  SW-HIT2         PIC  X(001) VALUE "N".
            03  SW-SURA         PIC  X(001) VALUE "N".
+           03  SW-YES          PIC  X(001) VALUE "N".
 
       *    *** TBL01 未使用に変更
        01  TBL-AREA.
@@ -263,16 +267,30 @@
                                        PIN1-REC
                                        POT1-REC
 
+           PERFORM UNTIL SW-YES =      "Y" OR "y"
+
+                   DISPLAY WK-PGM-NAME " TEST103.PRM1 のどのIDを"
+                           "入力するか B001 等入力"
+
+                   ACCEPT  WK-ID
+
+                   DISPLAY "ID=" WK-ID
+                   DISPLAY "ID  OK ? Y(y)/N"
+                   ACCEPT  SW-YES
+           END-PERFORM
+
            OPEN    INPUT       PRM1-F
-           READ    PRM1-F
-                   AT  END
-                   DISPLAY WK-PGM-NAME " PRM1-F 0ｹﾝ YouTube USER 指定"
-                   STOP    RUN
-           END-READ
-           ADD     1           TO      WK-PRM1-CNT
+           PERFORM UNTIL PRM1-REC (1:4) = WK-ID
+                   READ    PRM1-F
+                           AT  END
+                           DISPLAY WK-PGM-NAME " PRM1-F ID 無しエラー"
+                           STOP    RUN
+                   END-READ 
+                   ADD     1           TO      WK-PRM1-CNT
+           END-PERFORM
 
       *    *** ファイル名は漢字のみか、１バイト系のみのどちらかに編集する
-           IF      PRM1-REC (1:1) >=   X"E0" AND <= X"EF"
+           IF      PRM1-REC (5:1) >=   X"E0" AND <= X"EF"
                    MOVE    "CHANGE"    TO      WDE05-ID
                    MOVE    WK-HENKAN   TO      WDE05-HENKAN
                    MOVE    WK-MODE     TO      WDE05-MODE
@@ -280,7 +298,7 @@
                    MOVE    WK-PRM1-CNT TO      WDE05-BUF1-CNT
       *    *** ファイル名 ＵＴＦ８＝＞ＳＪＩＳに変換
                    CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
-                                               PRM1-REC
+                                               PRM1-REC (5:)
                                                WK-FILE-NAME
                    MOVE    "TEST103."  TO      WK-PIN1-F-NAME (1:8)
       *                                         WK-POT1-F-NAME (1:8)
@@ -299,7 +317,7 @@
                    MOVE    "TEST103."  TO      WK-PIN1-F-NAME (1:8)
       *                                         WK-POT1-F-NAME (1:8)
                                                WK-POT2-F-NAME (1:8)
-                   MOVE    PRM1-REC    TO      WK-PIN1-F-NAME (9:)
+                   MOVE    PRM1-REC (5:) TO    WK-PIN1-F-NAME (9:)
       *                                         WK-POT1-F-NAME (9:)
                                                WK-POT2-F-NAME (9:)
       *             MOVE    ".PIN1X"    TO      WK-PIN1-F-NAME

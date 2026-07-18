@@ -237,6 +237,13 @@
                    PERFORM S020-10     THRU    S020-EX
            END-PERFORM
 
+           IF      SW-DMM      =       "N"
+                   DISPLAY WK-PGM-NAME " PIN1-REC DMM ñ≥ SW-DMM="
+                           SW-DMM
+                   DISPLAY WK-PGM-NAME " TEST10 çƒé¿çsÇµÇƒÇ›ÇÈ"
+                   STOP    RUN
+           END-IF
+
       *    *** READ PIN1 </H3>
            PERFORM S020-10     THRU    S020-EX
 

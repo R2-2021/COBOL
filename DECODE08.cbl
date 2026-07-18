@@ -18,7 +18,7 @@
            LABEL RECORDS ARE STANDARD
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
-           03  FILLER          PIC  X(100).
+           03  FILLER          PIC  X(1000).
 
        WORKING-STORAGE         SECTION.
 
@@ -40,6 +40,7 @@
            03  WK-K3           PIC  X(100) VALUE SPACE.
 
            03  WK-K1-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-K1-LEN-MAX   BINARY-LONG SYNC VALUE ZERO.
            03  WK-K2-LEN       BINARY-LONG SYNC VALUE ZERO.
            03  WK-K3-LEN       BINARY-LONG SYNC VALUE ZERO.
 
@@ -182,6 +183,9 @@
            MOVE    WK-K1-LEN   TO      TBL01-NAME-LEN   (K1)
            MOVE    WK-K2       TO      TBL01-NFADDR     (K1)
            MOVE    WK-K2-LEN   TO      TBL01-NFADDR-LEN (K1)
+           IF      WK-K1-LEN   >       WK-K1-LEN-MAX
+                   MOVE    WK-K1-LEN   TO      WK-K1-LEN-MAX
+           END-IF
            .
        S022-EX.
            EXIT.
@@ -190,13 +194,19 @@
        S100-10.
 
            SEARCH  ALL TBL01-AREA
+      *    *** PIN1-REC X(100) => X(1000) にしたら直った
+      *    *** 原因調べようとしたら、X(1000)でもALLでサーチ出来なきなった
+      *     SET     TBL01-IDX   TO      1
+      *     SEARCH  TBL01-AREA
                AT  END
                    MOVE    "N"         TO      LDE08-SEARCH
                    MOVE    SPACE       TO      LDE08-NFADDR
                    MOVE    ZERO        TO      LDE08-NFADDR-LEN
 
-               WHEN TBL01-NAME (TBL01-IDX) (1:TBL01-NAME-LEN(TBL01-IDX))
-                 =  LDE08-NAME (1:LDE08-NAME-LEN)
+      *         WHEN TBL01-NAME (TBL01-IDX) (1:TBL01-NAME-LEN(TBL01-IDX))
+      *           =  LDE08-NAME (1:LDE08-NAME-LEN)
+               WHEN TBL01-NAME (TBL01-IDX) (1:WK-K1-LEN-MAX)
+                 =  LDE08-NAME (1:WK-K1-LEN-MAX)
 
                    MOVE    "Y"         TO      LDE08-SEARCH
                    MOVE    TBL01-NFADDR (TBL01-IDX) TO

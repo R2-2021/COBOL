@@ -18,7 +18,8 @@
        SELECT PRM1-F           ASSIGN   WK-PRM1-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
-      *    *** DMM動画 ページ、CTRL+ A,CTRL+ C Googleスプレッドに貼り付け、
+      *    *** DMM動画 "無料動画"　で女優名を指定しページ（再生回数が表示）を表示、
+      *    *** CTRL+ A,CTRL+ C Googleスプレッドに貼り付け、
       *    *** 不要部分カット、
       *    *** ダウンロード（ｈｔｍｌ）後、.zipを右クリック、すべてを展開、
       *    *** サクラeditでコピー後、ネットのツール、ＵＲＬ抽出後、

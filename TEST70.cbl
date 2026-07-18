@@ -368,6 +368,7 @@
                    DISPLAY WK-PGM-NAME " PIN1-REC XVI ñ≥ SW-XVI="
                            SW-XVI
                    DISPLAY WK-PGM-NAME " TEST10 çƒé¿çsÇµÇƒÇ›ÇÈ"
+                   STOP    RUN
            END-IF
 
       *    *** READ PIN1 </H3>

@@ -1,4 +1,4 @@
-      *    *** COBOL SOURCE LIST,XREF LIST Âá∫Âäõ
+      *    *** COBOL SOURCE LIST,XREF LIST èoóÕ
 
        IDENTIFICATION          DIVISION.
        PROGRAM-ID.             COBXREF.
@@ -14,7 +14,7 @@
        DATA                    DIVISION.
        FILE                    SECTION.
 
-      *    *** >DIR *.cbl „Çà„Çä
+      *    *** >DIR *.cbl ÇÊÇË
        FD  PIN1-F
            LABEL RECORDS ARE STANDARD.
        01  PIN1-REC.
@@ -42,10 +42,10 @@
              05  WK-LISTING-SRC  PIC X(001) VALUE " ".
              05  WK-LISTING-XREF PIC X(001) VALUE "X".
              05  WK-LISTING-FILE PIC X(256) VALUE
-      *        "C:\Users\xxxx\Documents\COBOL\COBXREF.cbl".
+      *        "C:\Users\koko\Documents\COBOL\COBXREF.cbl".
               "COBXREF.CBL".
              05  WK-LISTING-REP-FILE PIC X(256) VALUE SPACE.
-      *        "C:\Users\xxxx\Documents\COBOL\COBXREF.lst".
+      *        "C:\Users\koko\Documents\COBOL\COBXREF.lst".
              05  WK-LISTING-POT1-ID.
                07  WK-LISTING-POT1-OPEN  PIC X(001) VALUE "O".
                07  WK-LISTING-POT1-CLOSE PIC X(001) VALUE "C".
@@ -81,7 +81,7 @@
            PERFORM S020-10     THRU    S020-EX
 
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
-      *    *** PIN1 36,1=* „ÅØ„Ç≥„É°„É≥„ÉàÊâ±„ÅÑ„ÄÅ„Çπ„Ç≠„ÉÉ„Éó„Åô„Çã
+      *    *** PIN1 36,1=* ÇÕÉRÉÅÉìÉgàµÇ¢ÅAÉXÉLÉbÉvÇ∑ÇÈ
                    IF      PIN1-COM (1:1) =    "*"
                            CONTINUE
                    ELSE
@@ -97,6 +97,8 @@
                    DISPLAY " "
                    DISPLAY WK-PGM-NAME " 1.PROGRAM-ID ACCEPT "
                    DISPLAY WK-PGM-NAME " 2.PIN1 INPUT (COBXREF.PIN1)"
+                           " COBXREF.PIN1 Ç…ìoò^Ç≥ÇÍÇΩÅAëSCOBOLÉ\Å[ÉX"
+                           "ÇÃXREFÇçÏê¨ÇµÇ‹Ç∑"
                    DISPLAY WK-PGM-NAME " 1 OR 2 INPUT"
                    
                    ACCEPT  WK-ACCEPT
@@ -108,7 +110,7 @@
            IF      WK-I-MAX    =       ZERO
                 OR WK-ACCEPT   =       "1"
 
-      *    *** PIN1 „Å™„ÅÑÊôÇ„ÄÅ„Éë„É©„É°„Éº„ÇøACCEPT
+      *    *** PIN1 Ç»Ç¢éûÅAÉpÉâÉÅÅ[É^ACCEPT
                    MOVE    "OC"        TO      WK-LISTING-POT1-ID
       *    *** XREF PARA INPUT & LISTING
                    PERFORM S100-10     THRU    S100-EX
@@ -162,7 +164,7 @@
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        TBL01-AREA
 
-      *    *** FILEDUMP È†ÖÁõÆÂá∫Âäõ(ID="X") 
+      *    *** FILEDUMP çÄñ⁄èoóÕ(ID="X") 
       *     MOVE    "X"         TO      WFD-ID
       *     MOVE    1           TO      WFD-SU
       *     CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -227,7 +229,7 @@
            PERFORM UNTIL SW-YES =      "Y" OR "N"
                    DISPLAY " "
                    DISPLAY WK-PGM-NAME
-                           " SOURCE LIST N(Âá∫ÂäõÁÑ°) OR Y(Âá∫Âäõ)="
+                           " SOURCE LIST N(èoóÕñ≥) OR Y(èoóÕ)="
                    ACCEPT  SW-YES
            END-PERFORM
            IF      SW-YES       =      "Y"
@@ -240,7 +242,7 @@
            PERFORM UNTIL SW-YES =      "Y" OR "N"
                    DISPLAY " "
                    DISPLAY WK-PGM-NAME
-                           " XREF   LIST N(Âá∫ÂäõÁÑ°) OR Y(Âá∫Âäõ)="
+                           " XREF   LIST N(èoóÕñ≥) OR Y(èoóÕ)="
                    ACCEPT  SW-YES
            END-PERFORM
            IF      SW-YES       =      "Y"

@@ -79,8 +79,8 @@
 
        01  SW-AREA.
            05  SW-KANJI        PIC  X(001) VALUE ZERO.
-           05  SW-KANJI2       PIC  X(001) VALUE ZERO.
-           05  SW-KANJI3       PIC  X(001) VALUE ZERO.
+
+           COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
        LINKAGE SECTION.
 
@@ -99,7 +99,7 @@
               MOVE Buffer-Len     TO Buffer-Length
       *    *** 指定された長さが、項目長を超えてる時、項目長にする
               IF   Buffer-Len >   LENGTH(Buffer)  OR
-                   Buffer-Len =   0
+                   Buffer-Len =   ZERO
                    MOVE LENGTH(Buffer) TO Buffer-Length
               END-IF
            END-IF
@@ -107,11 +107,8 @@
            MOVE SPACES            TO Output-Detail
            SET Addr-Pointer       TO ADDRESS OF Buffer
 
-           MOVE    ZERO        TO      I.
-           MOVE    ZERO        TO      SW-KANJI SW-KANJI2 SW-KANJI3.
-
            PERFORM 100-Generate-Address
-           MOVE 0 TO Output-Sub
+           MOVE ZERO TO Output-Sub
 
            DISPLAY Output-Header-1 UPON SYSERR
            DISPLAY Output-Header-2 UPON SYSERR
@@ -121,22 +118,8 @@
 
                    ADD 1 TO Output-Sub
 
-      *    *** 漢字判定したとき、１回判定スキップ 
-                   IF  SW-KANJI = "1"
-      *    *** SW-KANJI=1のとき、２バイト目
-                       IF  SW-KANJI2 =  "1"
-                           MOVE   ZERO   TO  SW-KANJI2
-                           ADD    1      TO  I
-                       ELSE
-                           ADD    1      TO  I
-                           MOVE   ZERO   TO  SW-KANJI
-                           PERFORM  S210-10 THRU S210-EX
-                       END-IF
-                   ELSE
-      *    *** 漢字チェック
-                       ADD   1   TO   I
-                       PERFORM  S210-10 THRU S210-EX
-                   END-IF
+      *    *** SJIS CHECK
+                   PERFORM  S210-10 THRU S210-EX
 
                    IF Output-Sub = 1
                       MOVE Buffer-Sub TO OD-Byte
@@ -145,23 +128,22 @@
                    MOVE Buffer (Buffer-Sub : 1) TO PIC-X
 
       *    *** X"20"=SPACE ANK 以外SPACEセット 
-                   IF    ( PIC-X < X"20")
-                      OR ( PIC-X = X"7F")
-                      OR ( PIC-X = X"A0")
+                   IF    ( PIC-X <  X"20")
+                      OR ( PIC-X =  X"7F")
                       OR ( PIC-X >= X"FD" AND <= X"FF")
-      *****                SW-KANJI = ZERO
-      *****           OR ( PIC-X = X"81")
-      *    *** 漢字表示を活かす
-      *    *** X"81" があると表示しない為、スペースにする
-      *               OR ( PIC-X > X"7E" AND PIC-X < X"A1")
-      *               OR ( PIC-X > X"DF")
-      *    *** SPACE クリアーしているので、不要
                             MOVE SPACE TO OD-ASCII (Output-Sub)
                    ELSE
-                       IF   SW-KANJI3 = "1" AND
-                            OUTPUT-SUB = 1
-                            MOVE SPACE TO OD-ASCII (Output-Sub)
-                            MOVE ZERO  TO SW-KANJI3
+      *    *** 1行前、16:2 "0",SJISなら (1)にSPACEセット,その他ならSET
+                       IF   OUTPUT-SUB = 1
+                            IF   Buffer-Sub = 1
+                                 MOVE PIC-X TO OD-ASCII (Output-Sub)
+                            ELSE
+                                 IF SW-KANJI = "1"
+                                     MOVE PIC-X TO OD-ASCII (Output-Sub)
+                                 ELSE
+                                     MOVE SPACE TO OD-ASCII (Output-Sub)
+                                 END-IF
+                            END-IF
                        ELSE
                             MOVE PIC-X TO OD-ASCII (Output-Sub)
                        END-IF
@@ -180,23 +162,24 @@
                            TO OD-Hex-2 (Output-Sub)
 
                    IF  Output-Sub = 16
-                       IF  SW-KANJI = "1"
-                           ADD   Buffer-Sub 1 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII(17)
-                           MOVE  "1"        TO     SW-KANJI3
+                       IF SW-KANJI = "1"
+                            MOVE Buffer (Buffer-Sub + 1:1) TO 
+                                 OD-ASCII (17)
+                       ELSE
+                            MOVE SPACE TO OD-ASCII (17)
                        END-IF
 
                        DISPLAY Output-Detail UPON SYSERR END-DISPLAY
 
                        MOVE SPACES TO Output-Detail
-                       MOVE 0 TO Output-Sub
+                       MOVE ZERO TO Output-Sub
 
                        SET Addr-Pointer UP BY 16
                        PERFORM 100-Generate-Address
                    END-IF
            END-PERFORM
 
-           IF  Output-Sub > 0
+           IF  Output-Sub > ZERO
                DISPLAY Output-Detail UPON SYSERR
            END-IF 
        EXIT PROGRAM.
@@ -211,7 +194,7 @@
            MOVE ALL '0' TO OD-Addr
 
            PERFORM WITH TEST BEFORE 
-                   UNTIL Addr-Value = 0
+                   UNTIL Addr-Value = ZERO
 
       *    *** アドレス16で割る理由、10進数＝＞16進数に変換している、
       *    *** Nibbleは余りなので、添字に使っている
@@ -228,17 +211,34 @@
        100-EX.
            EXIT.
 
+      *    *** SJIS CHECK
+
+      *    *** SJIS １バイト目からチェック、
+      *    *** SJIS なら"1"、
+      *    ***  既に"1"の時、"0" に戻す
+      *    ***  その他の時、"1"
+      *    ***  1234567890123456
+      *    ***  漢字  => 1:2 漢字
+      *    ***   漢字 => 2:2 漢字となる事もあるため、
+      *    *** 漢字２バイト目チェックで、"0"にリセットする
+      *    ***  
        S210-10.
 
       *    *** SJIS 漢字範囲
-           IF    ( Buffer (I:2) >= X"8140" AND 
-                   Buffer (I:2) <= X"9FFC" )   OR
-                 ( Buffer (I:2) >= X"E040" AND 
-                   Buffer (I:2) <= X"EAA4" )
-                   MOVE   "1"  TO     SW-KANJI
-                                      SW-KANJI2
+           IF    ( Buffer (Buffer-Sub:2) >= X"8140" AND 
+                   Buffer (Buffer-Sub:2) <= X"9FFC" )   OR
+                 ( Buffer (Buffer-Sub:2) >= X"E040" AND 
+                   Buffer (Buffer-Sub:2) <= X"EAA4" )
+               IF  SW-KANJI = "1"
+                   MOVE    "0"       TO      SW-KANJI
+               ELSE
+                   MOVE    "1"       TO      SW-KANJI
+               END-IF
            ELSE
-                   MOVE   ZERO TO     SW-KANJI
-           END-IF.
+      *    *** SJIS 漢字以外の時、"0"
+      *    *** 
+                   MOVE    "0"       TO      SW-KANJI
+           END-IF
+           .
        S210-EX.
            EXIT.
