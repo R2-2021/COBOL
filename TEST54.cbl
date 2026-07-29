@@ -108,8 +108,8 @@
            03  WK-WIDTH        PIC  9(002) VALUE 8.
            03  WK-K2           PIC  9(010) VALUE ZERO.
 
-           03  WK-TITLE        PIC  X(600) VALUE SPACE.
-           03  WK-TITLE-X      PIC  X(600) VALUE SPACE.
+           03  WK-TITLE        PIC  X(1000) VALUE SPACE.
+           03  WK-TITLE-X      PIC  X(1000) VALUE SPACE.
            03  WK-TITLE-A      PIC  X(400) VALUE SPACE.
            03  WK-TITLE-A1     PIC  X(400) VALUE SPACE.
            03  WK-TITLE-A2     PIC  X(400) VALUE SPACE.
@@ -505,7 +505,7 @@
                            WK-ITEM4    COUNT WK-ITEM4-LEN
                            WK-ITEM5    COUNT WK-ITEM5-LEN
 
-                   IF      WK-TITLE-LEN >     600
+                   IF      WK-TITLE-LEN >     1000
                        IF      PIN1-REC (1:1) = "%" OR "#" OR "$"
                            CONTINUE
                        ELSE

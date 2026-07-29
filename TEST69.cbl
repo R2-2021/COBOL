@@ -38,47 +38,38 @@
       *    ***     file.write(res.text)
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** YOUTUBE WATCH データ
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** YOUTUBE IMG データ
        SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
-                               STATUS   WK-POT2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** YOUTUBE WATCH,CHANNEL データ
        SELECT POT3-F           ASSIGN   WK-POT3-F-NAME
-                               STATUS   WK-POT3-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** RESULTS 一時退避 データ
        SELECT POT4-F           ASSIGN   WK-POT4-F-NAME
-                               STATUS   WK-POT4-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** PLAYLIST 一時退避 データ
        SELECT POT5-F           ASSIGN   WK-POT5-F-NAME
-                               STATUS   WK-POT5-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** WATCHLIST 一時退避 データ
        SELECT POT6-F           ASSIGN   WK-POT6-F-NAME
-                               STATUS   WK-POT6-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** MIXLIST 一時退避 データ
        SELECT POT7-F           ASSIGN   WK-POT7-F-NAME
-                               STATUS   WK-POT7-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** SHORTLIST 一時退避 データ
        SELECT POT8-F           ASSIGN   WK-POT8-F-NAME
-                               STATUS   WK-POT8-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -90,7 +81,7 @@
       *    *** 2ギガがＭＡＸか？ 2*1024*1024=2,097,152
        01  PIN1-REC.
       *     03  FILLER          PIC  X(500000).
-           03  FILLER          PIC  X(1000000).
+           03  FILLER          PIC  X(2000000).
 
        FD  POT1-F.
        01  POT1-REC.
@@ -151,16 +142,6 @@
            03  WK-POT7-F-NAME  PIC  X(032) VALUE "TEST69.POT7".
            03  WK-POT8-F-NAME  PIC  X(032) VALUE "TEST69.POT8".
 
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT2-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT3-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT4-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT5-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT6-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT7-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT8-STATUS  PIC  9(002) VALUE ZERO.
-
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-POT2-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-POT4-EOF     PIC  X(001) VALUE LOW-VALUE.
@@ -169,6 +150,8 @@
            03  WK-POT7-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-POT8-EOF     PIC  X(001) VALUE LOW-VALUE.
 
+           03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-PIN1-MAX-LEN BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
@@ -189,6 +172,7 @@
            03  WK-POT8-CNTR    BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-PIN1-LEN-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT2-CNTR-E  PIC --,---,---,--9 VALUE ZERO.
@@ -204,30 +188,12 @@
            03  WK-POT8-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT8-CNTR-E  PIC --,---,---,--9 VALUE ZERO.
 
-           03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-ARGUMENT-NUMBER BINARY-LONG SYNC VALUE ZERO.
            03  WK-CHECK-CNT    PIC S9(005) VALUE ZERO.
            03  WK-PLAYLIST-CNT BINARY-LONG SYNC VALUE ZERO.
            03  WK-WATCHLIST-CNT BINARY-LONG SYNC VALUE ZERO.
            03  WK-MIXLIST-CNT  BINARY-LONG SYNC VALUE ZERO.
            03  WK-SHORTLIST-CNT BINARY-LONG SYNC VALUE ZERO.
-
-      *    *** <title>
-           03  WK-TITLE        PIC  X(1024) VALUE SPACE.
-      *    *** 退避エリア
-           03  WK-HTML0        PIC  X(1024) VALUE SPACE.
-      *    *** タイトル名
-           03  WK-HTML1        PIC  X(1024) VALUE SPACE.
-      *    *** channel,watch サイト
-           03  WK-HTML2        PIC  X(1024) VALUE SPACE.
-      *    *** img= src=XXX",data-thumb="XXX" XXX
-           03  WK-HTML3        PIC  X(1024) VALUE SPACE.
-
-           03  WK-TITLE-L      BINARY-LONG SYNC VALUE ZERO.
-           03  WK-HTML0-L      BINARY-LONG SYNC VALUE ZERO.
-           03  WK-HTML1-L      BINARY-LONG SYNC VALUE ZERO.
-           03  WK-HTML2-L      BINARY-LONG SYNC VALUE ZERO.
-           03  WK-HTML3-L      BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-HTTPS-L      BINARY-LONG SYNC VALUE ZERO.
            03  WK-HTTPS-2-L    BINARY-LONG SYNC VALUE ZERO.
@@ -263,39 +229,40 @@
            03  WK-VIDEORENDERER-CNT BINARY-LONG SYNC VALUE ZERO.
            03  WK-TEXT-OFFICIAL-L BINARY-LONG SYNC VALUE ZERO.
            03  WK-CHANNEL-OFFICIAL-L  BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ITEM-CNT     BINARY-LONG SYNC VALUE ZERO.
 
       *    *** 
-           03  WK-HTTPS        PIC  X(1024) VALUE SPACE.
-           03  WK-HTTPS-2      PIC  X(1024) VALUE SPACE.
-           03  WK-HTTPS-FIRST  PIC  X(1024) VALUE SPACE.
-           03  WK-CHANNEL      PIC  X(1024) VALUE SPACE.
-           03  WK-CHANNEL-TEXT PIC  X(1024) VALUE SPACE.
-           03  WK-WATCH        PIC  X(1024) VALUE SPACE.
-           03  WK-WATCH2       PIC  X(100)  VALUE SPACE.
-           03  WK-WATCH-TEXT   PIC  X(1024) VALUE SPACE.
-           03  WK-PLAYLIST     PIC  X(1024) VALUE SPACE.
-           03  WK-RESULTS      PIC  X(1024) VALUE SPACE.
-           03  WK-TEXT         PIC  X(2000) VALUE SPACE.
-           03  WK-TEXT2        PIC  X(2000) VALUE SPACE.
-           03  WK-TEXT3        PIC  X(2000) VALUE SPACE.
-           03  WK-TEXTX        PIC  X(2000) VALUE SPACE.
-           03  WK-LABEL        PIC  X(2000) VALUE SPACE.
-           03  WK-LABEL2       PIC  X(2000) VALUE SPACE.
-           03  WK-LABELX       PIC  X(2000) VALUE SPACE.
-           03  WK-VIDEOCOUNT   PIC  X(1024) VALUE SPACE.
-           03  WK-SIMPLETEXT   PIC  X(1024) VALUE SPACE.
-           03  WK-SIMPLETEXT2  PIC  X(1024) VALUE SPACE.
-           03  WK-UNST         PIC  X(1024) VALUE SPACE.
-           03  WK-CONTENT      PIC  X(2000) VALUE SPACE.
-           03  WK-CONTENT2     PIC  X(2000) VALUE SPACE.
+           03  WK-HTTPS        PIC  X(1000) VALUE SPACE.
+           03  WK-HTTPS-2      PIC  X(1000) VALUE SPACE.
+           03  WK-HTTPS-FIRST  PIC  X(1000) VALUE SPACE.
+           03  WK-CHANNEL      PIC  X(1000) VALUE SPACE.
+           03  WK-CHANNEL-TEXT PIC  X(1000) VALUE SPACE.
+           03  WK-WATCH        PIC  X(1000) VALUE SPACE.
+           03  WK-WATCH2       PIC  X(1000) VALUE SPACE.
+           03  WK-WATCH-TEXT   PIC  X(1000) VALUE SPACE.
+           03  WK-PLAYLIST     PIC  X(1000) VALUE SPACE.
+           03  WK-RESULTS      PIC  X(1000) VALUE SPACE.
+           03  WK-TEXT         PIC  X(1000) VALUE SPACE.
+           03  WK-TEXT2        PIC  X(1000) VALUE SPACE.
+           03  WK-TEXT3        PIC  X(1000) VALUE SPACE.
+           03  WK-TEXTX        PIC  X(1000) VALUE SPACE.
+           03  WK-LABEL        PIC  X(1000) VALUE SPACE.
+           03  WK-LABEL2       PIC  X(1000) VALUE SPACE.
+           03  WK-LABELX       PIC  X(1000) VALUE SPACE.
+           03  WK-VIDEOCOUNT   PIC  X(1000) VALUE SPACE.
+           03  WK-SIMPLETEXT   PIC  X(1000) VALUE SPACE.
+           03  WK-SIMPLETEXT2  PIC  X(1000) VALUE SPACE.
+           03  WK-UNST         PIC  X(1000) VALUE SPACE.
+           03  WK-CONTENT      PIC  X(1000) VALUE SPACE.
+           03  WK-CONTENT2     PIC  X(1000) VALUE SPACE.
            03  WK-NO           PIC  9(002) VALUE ZERO.
            03  WK-PQ           PIC  X(200) VALUE SPACE.
            03  WK-PQ2          PIC  X(200) VALUE SPACE.
            03  WK-QUERY        PIC  X(200) VALUE SPACE.
-           03  WK-SJIS         PIC  X(040) VALUE SPACE.
+           03  WK-SJIS         PIC  X(100) VALUE SPACE.
            03  WK-VIDEOIDS     PIC  X(020) VALUE SPACE.
-           03  WK-TEXT-OFFICIAL PIC X(200) VALUE SPACE.
-           03  WK-CHANNEL-OFFICIAL PIC X(200) VALUE SPACE.
+           03  WK-TEXT-OFFICIAL PIC X(1000) VALUE SPACE.
+           03  WK-CHANNEL-OFFICIAL PIC X(1000) VALUE SPACE.
            03  WK-SAISEILIST.
       *    *** 再生リストの全体を見る
              05  PIC  X(010) VALUE   X"E5868DE7949FE383AAE3".
@@ -314,7 +281,12 @@
                X"E38193E381AEE58B95E794BBE381AEE383".
              05    PIC  X(017) VALUE
                X"81E383A3E38397E382BFE383BCE695B03A".
-
+      *    *** コラボレーション チャンネル
+           03  WK-KORABO.
+             05               PIC  X(020) VALUE
+                 X"E382B3E383A9E3839CE383ACE383BCE382B7E383".
+             05               PIC  X(020) VALUE
+                 X"A7E383B320E38381E383A3E383B3E3838DE383AB".
            03  WK-HISTORY.
              05  PIC  X(030) VALUE "https://i.ytimg.com/vi/Fj7zFNB".
              05  PIC  X(030) VALUE "lyQE/hq720.jpg?sqp=-oaymwEjCOg".
@@ -338,6 +310,8 @@
            03  L               BINARY-LONG SYNC VALUE ZERO.
            03  L2              BINARY-LONG SYNC VALUE ZERO.
            03  L3              BINARY-LONG SYNC VALUE ZERO.
+           03  L4              BINARY-LONG SYNC VALUE ZERO.
+           03  L5              BINARY-LONG SYNC VALUE ZERO.
            03  M               BINARY-LONG SYNC VALUE ZERO.
            03  N1              BINARY-LONG SYNC VALUE ZERO.
            03  N2              BINARY-LONG SYNC VALUE ZERO.
@@ -377,20 +351,20 @@
 
        01  TBL-AREA.
            03  TBL01-AREA      OCCURS 1000.
-             05  TBL01-WATCH   PIC  X(1024) VALUE HIGH-VALUE.
+             05  TBL01-WATCH   PIC  X(1000) VALUE HIGH-VALUE.
 
        01  SAVE-AREA.
-      *     03  SV-TEXT         PIC  X(1024) VALUE SPACE.
+      *     03  SV-TEXT         PIC  X(1000) VALUE SPACE.
       *     03  SV-TEXT-L       BINARY-LONG SYNC VALUE ZERO.
-           03  SV-HTTPS        PIC  X(1024) VALUE SPACE.
+           03  SV-HTTPS        PIC  X(1000) VALUE SPACE.
            03  SV-HTTPS-L      BINARY-LONG SYNC VALUE ZERO.
-           03  SV-LABEL        PIC  X(1024) VALUE SPACE.
+           03  SV-LABEL        PIC  X(1000) VALUE SPACE.
            03  SV-LABEL-L      BINARY-LONG SYNC VALUE ZERO.
-           03  SV-CONTENT      PIC  X(1024) VALUE SPACE.
+           03  SV-CONTENT      PIC  X(1000) VALUE SPACE.
            03  SV-CONTENT-L    BINARY-LONG SYNC VALUE ZERO.
-           03  SV-CHANNEL-TEXT PIC  X(1024) VALUE SPACE.
+           03  SV-CHANNEL-TEXT PIC  X(1000) VALUE SPACE.
            03  SV-CHANNEL-TEXT-L BINARY-LONG SYNC VALUE ZERO.
-           03  SV-WATCH        PIC  X(1024) VALUE SPACE.
+           03  SV-WATCH        PIC  X(1000) VALUE SPACE.
            03  SV-VIDEOIDS     PIC  X(020) VALUE SPACE.
 
        PROCEDURE               DIVISION.
@@ -629,75 +603,22 @@
                    ADD     1           TO      L2
            END-PERFORM
 
-           MOVE    L2        TO      L
+           MOVE    L2          TO      L
            MOVE    WK-PIN1-F-NAME-UTF8 (1:L) TO WK-PQ (1:L)
-           MOVE    L         TO      WK-PQ-L
+           MOVE    L           TO      WK-PQ-L
 
-           MOVE    ",,"      TO      WK-PQ (WK-PQ-L + 1:2)
-           ADD     2         TO      WK-PQ-L
+           MOVE    ",,"        TO      WK-PQ (WK-PQ-L + 1:2)
+           ADD     2           TO      WK-PQ-L
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F OPEN ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT3-F
-           IF      WK-POT3-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT3-F OPEN ERROR STATUS="
-                           WK-POT3-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT4-F
-           IF      WK-POT4-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT4-F OPEN ERROR STATUS="
-                           WK-POT4-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT5-F
-           IF      WK-POT5-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT5-F OPEN ERROR STATUS="
-                           WK-POT5-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT6-F
-           IF      WK-POT6-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT6-F OPEN ERROR STATUS="
-                           WK-POT6-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT7-F
-           IF      WK-POT7-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT7-F OPEN ERROR STATUS="
-                           WK-POT7-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT8-F
-           IF      WK-POT8-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT8-F OPEN ERROR STATUS="
-                           WK-POT8-STATUS
-                   STOP    RUN
-           END-IF
+                   OUTPUT      POT1-F
+                               POT2-F
+                               POT3-F
+                               POT4-F
+                               POT5-F
+                               POT6-F
+                               POT7-F
+                               POT8-F
 
       *****     CALL "COBDUMP" USING  WK-DATA
            .
@@ -708,18 +629,8 @@
        S011-10.
 
            CLOSE   POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F CLOSE ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F OPEN ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
            .
        S011-EX.
            EXIT.
@@ -728,18 +639,8 @@
        S012-10.
 
            CLOSE   POT4-F
-           IF      WK-POT4-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT4-F CLOSE ERROR STATUS="
-                           WK-POT4-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT4-F
-           IF      WK-POT4-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT4-F OPEN ERROR STATUS="
-                           WK-POT4-STATUS
-                   STOP    RUN
-           END-IF
            .
        S012-EX.
            EXIT.
@@ -748,18 +649,8 @@
        S013-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
            MOVE    LOW-VALUE   TO      WK-PIN1-EOF
            .
        S013-EX.
@@ -769,18 +660,8 @@
        S014-10.
 
            CLOSE   POT5-F
-           IF      WK-POT5-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT5-F CLOSE ERROR STATUS="
-                           WK-POT5-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT5-F
-           IF      WK-POT5-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT5-F OPEN ERROR STATUS="
-                           WK-POT5-STATUS
-                   STOP    RUN
-           END-IF
 
            IF      WK-PLAYLIST-CNT >   ZERO
                    MOVE    "#   YouTube Play List"
@@ -799,18 +680,8 @@
        S016-10.
 
            CLOSE   POT6-F
-           IF      WK-POT6-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT6-F CLOSE ERROR STATUS="
-                           WK-POT6-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT6-F
-           IF      WK-POT6-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT6-F OPEN ERROR STATUS="
-                           WK-POT6-STATUS
-                   STOP    RUN
-           END-IF
 
            IF      WK-WATCHLIST-CNT >   ZERO
                    MOVE    "#   YouTube Watch List"
@@ -829,18 +700,8 @@
        S018-10.
 
            CLOSE   POT7-F
-           IF      WK-POT7-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT7-F CLOSE ERROR STATUS="
-                           WK-POT7-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT7-F
-           IF      WK-POT7-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT7-F OPEN ERROR STATUS="
-                           WK-POT7-STATUS
-                   STOP    RUN
-           END-IF
 
            IF      WK-MIXLIST-CNT >   ZERO
                    MOVE    "#   YouTube Mix List"
@@ -859,18 +720,8 @@
        S019-10.
 
            CLOSE   POT8-F
-           IF      WK-POT8-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT8-F CLOSE ERROR STATUS="
-                           WK-POT8-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       POT8-F
-           IF      WK-POT8-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT8-F OPEN ERROR STATUS="
-                           WK-POT8-STATUS
-                   STOP    RUN
-           END-IF
 
            IF      WK-SHORTLIST-CNT >  ZERO
                    MOVE    "#   YouTube Short List"
@@ -896,13 +747,16 @@
                    IF      SW-FIRST2   =       "N"
                            ADD     1           TO      WK-PIN1-CNT
                    END-IF
+                   IF      WK-PIN1-LEN >       WK-PIN1-MAX-LEN
+                           MOVE    WK-PIN1-LEN TO      WK-PIN1-MAX-LEN
+                   END-IF
+                   IF      WK-PIN1-LEN >=      2000000
+                           DISPLAY WK-PGM-NAME " PIN1-F LEN OVER"
+                                   " 2000000 =< "
+                                   WK-PIN1-LEN
+                           STOP    RUN
+                   END-IF
            END-READ
-
-           IF      WK-PIN1-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
            .
        S020-EX.
            EXIT.
@@ -916,12 +770,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT2-CNTR
            END-READ
-
-           IF      WK-POT2-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT2-F READ ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
            .
        S022-EX.
            EXIT.
@@ -935,12 +783,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT4-CNTR
            END-READ
-
-           IF      WK-POT4-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT4-F READ ERROR STATUS="
-                           WK-POT4-STATUS
-                   STOP    RUN
-           END-IF
            .
        S030-EX.
            EXIT.
@@ -954,12 +796,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT5-CNTR
            END-READ
-
-           IF      WK-POT5-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT5-F READ ERROR STATUS="
-                           WK-POT5-STATUS
-                   STOP    RUN
-           END-IF
            .
        S040-EX.
            EXIT.
@@ -973,12 +809,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT6-CNTR
            END-READ
-
-           IF      WK-POT6-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT6-F READ ERROR STATUS="
-                           WK-POT6-STATUS
-                   STOP    RUN
-           END-IF
            .
        S050-EX.
            EXIT.
@@ -992,12 +822,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT7-CNTR
            END-READ
-
-           IF      WK-POT7-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT7-F READ ERROR STATUS="
-                           WK-POT7-STATUS
-                   STOP    RUN
-           END-IF
            .
        S060-EX.
            EXIT.
@@ -1011,12 +835,6 @@
                NOT AT END
                    ADD     1           TO      WK-POT8-CNTR
            END-READ
-
-           IF      WK-POT8-STATUS NOT =  ZERO AND 10
-                   DISPLAY WK-PGM-NAME " POT8-F READ ERROR STATUS="
-                           WK-POT8-STATUS
-                   STOP    RUN
-           END-IF
            .
        S070-EX.
            EXIT.
@@ -1812,8 +1630,8 @@
 
            IF      SW-DEBUG    =       "Y"
 
-             AND ( WK-POT1-CNT >= 5870
-             AND   WK-POT1-CNT <= 6005 ) 
+             AND ( WK-POT1-CNT >= 11183
+             AND   WK-POT1-CNT <= 11265 ) 
 
                    DISPLAY " "
                    DISPLAY "S210-10 ***********************************"
@@ -1934,10 +1752,10 @@
                            ADD     WK-TEXT-L  TO      K
                            MOVE    "Y"        TO      SW-CHANNEL-NAME
                        ELSE
-      *                     MOVE    WK-TEXT2    TO
-      *                             POT3-REC (K:WK-TEXT2-L)
-      *                     ADD     WK-TEXT2-L  TO      K
-                            CONTINUE
+                           MOVE    WK-TEXT2    TO
+                                   POT3-REC (K:WK-TEXT2-L)
+                           ADD     WK-TEXT2-L  TO      K
+      *                      CONTINUE
                        END-IF
                    ELSE
                        MOVE    WK-CHANNEL-TEXT TO
@@ -2214,13 +2032,6 @@
            MOVE    " ,"        TO      POT3-REC (K:2)
            ADD     2           TO      K
 
-      *    *** HENKAN=SU SJIS <= UTF8
-           MOVE    "CHANGE"    TO      WDE05-ID
-           MOVE    "US"        TO      WDE05-HENKAN
-           CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
-                                       WK-SIMPLETEXT
-                                       WK-SJIS
-
            IF      WK-SIMPLETEXT (1:WK-SIMPLETEXT-L) = WK-SAISEILIST
                    MOVE    SPACE       TO      WK-SIMPLETEXT
                    MOVE    ZERO        TO      WK-SIMPLETEXT-L
@@ -2428,6 +2239,7 @@
                                        WK-SIMPLETEXT2-L
                                        WK-CONTENT-L
                                        WK-CONTENT2-L
+                                       WK-ITEM-CNT
 
            MOVE    "N"         TO
                                        SW-CHANNEL
@@ -2461,8 +2273,8 @@
 
            IF      SW-DEBUG = "Y" 
 
-             AND ( WK-POT1-CNT >= 5870
-             AND   WK-POT1-CNT <= 6005 ) 
+             AND ( WK-POT1-CNT >= 11183
+             AND   WK-POT1-CNT <= 11265 ) 
 
              AND ( POT1-REC (2:8) = "thumbnail"
                 OR POT1-REC (1:9) = "link rel="
@@ -2589,6 +2401,7 @@
                                                WK-SIMPLETEXT2-L
                                                WK-CONTENT-L
                                                WK-CONTENT2-L
+                                               WK-ITEM-CNT
 
                    MOVE    "N"         TO      
                                                SW-CHANNEL
@@ -2980,6 +2793,11 @@
                            MOVE    "N"         TO      SW-NUM
                    END-IF
 
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
                    INSPECT POT1-REC(9:L) REPLACING ALL "," BY "."
 
@@ -3050,7 +2868,31 @@
                                    MOVE POT1-REC(9:L) TO  WK-TEXT3 (1:L)
                                    MOVE    L         TO      WK-TEXT3-L
                                ELSE
-                                   CONTINUE
+      *                             CONTINUE
+      *    *** L < 100 の時のみセット
+
+                                 COMPUTE L5 = 1000 - 8 - L - WK-TEXT3-L
+      *                           IF    L  <  100
+                                 IF    WK-ITEM-CNT < 6
+                                   AND L5 > ZERO
+                                   ADD     1          TO     WK-ITEM-CNT
+                                   MOVE    WK-TEXT3-L TO     L4
+                                   MOVE    "<br><br>" TO
+                                           WK-TEXT3 (L4 + 1:8)
+                                   ADD     8          TO     WK-TEXT3-L
+
+      *     DISPLAY WK-POT1-CNT "  L4=" L4  " L=" L " "
+
+      *     MOVE    "P"         TO      WFD-ID
+      *     MOVE    L           TO      WFD-SEQ
+      *     CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+      *                                 POT1-REC (9:L)
+
+                                   MOVE    WK-TEXT3-L TO     L4
+                                   MOVE    POT1-REC(9:L) TO
+                                           WK-TEXT3 (L4 + 1:L)
+                                   ADD     L          TO     WK-TEXT3-L
+                                 END-IF
                                END-IF
                            END-IF
                        END-IF
@@ -3082,6 +2924,11 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
 
                    MOVE    L2        TO      L
 
@@ -3135,7 +2982,14 @@
       *    *** ショート
                  OR   POT1-REC(12:12) =
                        X"E382B7E383A7E383BCE38388"
+      *    *** 再生リストに保存
+                 OR POT1-REC(12:24) =
+                     X"E5868DE7949FE383AAE382B9E38388E381ABE4BF9DE5AD98"
+      *    *** コラボレーター
+                 OR POT1-REC(12:21) =
+                       X"E382B3E383A9E3839CE383ACE383BCE382BFE383BC"
                        )
+
                     CONTINUE
 
       *    *** CONTENT セットしても未使用とする、ショート動画、コンテンツ名と
@@ -3152,6 +3006,11 @@
                                ADD     1           TO      L2
                        END-PERFORM
 
+      *    *** L2 は1000でまでとする
+                       IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                       END-IF
+
                        MOVE    L2        TO      L
 
                        INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
@@ -3166,6 +3025,11 @@
                                   OR J > P1
                                ADD     1           TO      L2
                        END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                       IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                       END-IF
 
                        MOVE    L2        TO      L
 
@@ -3182,6 +3046,11 @@
                                ADD     1           TO      L2
                        END-PERFORM
 
+      *    *** L2 は1000でまでとする
+                       IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                       END-IF
+
                        MOVE    L2        TO      L
 
                        INSPECT POT1-REC(12:L) REPLACING ALL "," BY "."
@@ -3196,6 +3065,11 @@
                                   OR J > P1
                                ADD     1           TO      L2
                        END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                       IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                       END-IF
 
                        MOVE    L2        TO      L
 
@@ -3277,6 +3151,8 @@
       *    *** チャンネル「
                   OR POT1-REC(10:18) =
                      X"E38381E383A3E383B3E3838DE383ABE3808C"
+      *    *** コラボレーション チャンネル
+                  OR POT1-REC(10:40) = WK-KORABO
                      )
                    CONTINUE
 
@@ -3289,6 +3165,11 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
 
                    MOVE    L2        TO      L
 
@@ -3347,6 +3228,11 @@
                            ADD     1           TO      L2
                    END-PERFORM
 
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    INSPECT POT1-REC(13:L) REPLACING ALL "," BY "."
@@ -3362,6 +3248,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    IF SW-CHANNEL =     "N"
@@ -3384,6 +3276,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
       *    *** user も CHANNEL　にセットする
@@ -3408,6 +3306,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
       *    *** c も CHANNEL　にセットする
@@ -3431,6 +3335,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    IF SW-CHANNEL =     "N"
@@ -3455,7 +3365,14 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
+
       *    *** WATCHの時、最後のHTTPS(サムネイル)使う
       *     DISPLAY WK-POT1-CNT " " WK-HTTPS-2 (WK-HTTPS-2-L - 9:10)
                    IF      WK-HTTPS-2 (1:1) NOT = SPACE
@@ -3494,6 +3411,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    IF SW-WATCH   =     "N"
@@ -3537,6 +3460,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    IF  SW-PLAYLIST=     "N"
@@ -3581,6 +3510,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
       *    *** results も WATCH　にセットする
@@ -3598,6 +3533,12 @@
                               OR J > P1
                            ADD     1           TO      L2
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
 
                    MOVE    POT1-REC(17:L) TO WK-VIDEOCOUNT (1:L)
@@ -3695,6 +3636,12 @@
                              END-IF
                            END-IF
                    END-PERFORM
+
+      *    *** L2 は1000でまでとする
+                   IF      L2          >       1000
+                           MOVE    1000        TO      L2
+                   END-IF
+
                    MOVE    L2        TO      L
                    INSPECT POT1-REC(15:L) REPLACING ALL "," BY "."
 
@@ -3782,6 +3729,7 @@
                                                WK-SIMPLETEXT2-L
                                                WK-CONTENT-L
                                                WK-CONTENT2-L
+                                               WK-ITEM-CNT
 
                    MOVE    "N"         TO      
                                                SW-CHANNEL
@@ -4653,67 +4601,14 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT2-F
-           IF      WK-POT2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT2-F CLOSE ERROR STATUS="
-                           WK-POT2-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT3-F
-           IF      WK-POT3-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT3-F CLOSE ERROR STATUS="
-                           WK-POT3-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT4-F
-           IF      WK-POT4-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT4-F CLOSE ERROR STATUS="
-                           WK-POT4-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT5-F
-           IF      WK-POT5-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT5-F CLOSE ERROR STATUS="
-                           WK-POT5-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT6-F
-           IF      WK-POT6-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT6-F CLOSE ERROR STATUS="
-                           WK-POT6-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT7-F
-           IF      WK-POT7-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT7-F CLOSE ERROR STATUS="
-                           WK-POT7-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT8-F
-           IF      WK-POT8-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT8-F CLOSE ERROR STATUS="
-                           WK-POT8-STATUS
-                   STOP    RUN
-           END-IF
+                   POT1-F
+                   POT2-F
+                   POT3-F
+                   POT4-F
+                   POT5-F
+                   POT6-F
+                   POT7-F
+                   POT8-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -4725,50 +4620,54 @@
                                        POT2-REC
 
            DISPLAY WK-PGM-NAME " END"
+
+           MOVE    WK-PIN1-MAX-LEN TO  WK-PIN1-LEN-E
+           DISPLAY WK-PGM-NAME " PIN1 長さ = " WK-PIN1-LEN-E
+
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1 ｹﾝｽｳ = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1 ｹﾝｽｳ = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2 ｹﾝｽｳ = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT2-CNTR TO     WK-POT2-CNTR-E
-           DISPLAY WK-PGM-NAME " POT2 ｹﾝｽｳR= " WK-POT2-CNTR-E
+           DISPLAY WK-PGM-NAME " POT2 件数R= " WK-POT2-CNTR-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
-           DISPLAY WK-PGM-NAME " POT3 ｹﾝｽｳ = " WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 件数 = " WK-POT3-CNT-E
                    " (" WK-POT3-F-NAME ")"
            MOVE    WK-POT4-CNT TO      WK-POT4-CNT-E
-           DISPLAY WK-PGM-NAME " POT4 ｹﾝｽｳ = " WK-POT4-CNT-E
+           DISPLAY WK-PGM-NAME " POT4 件数 = " WK-POT4-CNT-E
                    " (" WK-POT4-F-NAME ")"
            MOVE    WK-POT4-CNTR TO     WK-POT4-CNTR-E
-           DISPLAY WK-PGM-NAME " POT4 ｹﾝｽｳR= " WK-POT4-CNTR-E
+           DISPLAY WK-PGM-NAME " POT4 件数R= " WK-POT4-CNTR-E
                    " (" WK-POT4-F-NAME ")"
            MOVE    WK-POT5-CNT TO      WK-POT5-CNT-E
-           DISPLAY WK-PGM-NAME " POT5 ｹﾝｽｳ = " WK-POT5-CNT-E
+           DISPLAY WK-PGM-NAME " POT5 件数 = " WK-POT5-CNT-E
                    " (" WK-POT5-F-NAME ")"
            MOVE    WK-POT5-CNTR TO     WK-POT5-CNTR-E
-           DISPLAY WK-PGM-NAME " POT5 ｹﾝｽｳR= " WK-POT5-CNTR-E
+           DISPLAY WK-PGM-NAME " POT5 件数R= " WK-POT5-CNTR-E
                    " (" WK-POT5-F-NAME ")"
            MOVE    WK-POT6-CNT TO      WK-POT6-CNT-E
-           DISPLAY WK-PGM-NAME " POT6 ｹﾝｽｳ = " WK-POT6-CNT-E
+           DISPLAY WK-PGM-NAME " POT6 件数 = " WK-POT6-CNT-E
                    " (" WK-POT6-F-NAME ")"
            MOVE    WK-POT6-CNTR TO     WK-POT6-CNTR-E
-           DISPLAY WK-PGM-NAME " POT6 ｹﾝｽｳR= " WK-POT6-CNTR-E
+           DISPLAY WK-PGM-NAME " POT6 件数R= " WK-POT6-CNTR-E
                    " (" WK-POT6-F-NAME ")"
            MOVE    WK-POT7-CNT TO      WK-POT7-CNT-E
-           DISPLAY WK-PGM-NAME " POT7 ｹﾝｽｳ = " WK-POT7-CNT-E
+           DISPLAY WK-PGM-NAME " POT7 件数 = " WK-POT7-CNT-E
                    " (" WK-POT7-F-NAME ")"
            MOVE    WK-POT7-CNTR TO     WK-POT7-CNTR-E
-           DISPLAY WK-PGM-NAME " POT7 ｹﾝｽｳR= " WK-POT7-CNTR-E
+           DISPLAY WK-PGM-NAME " POT7 件数R= " WK-POT7-CNTR-E
                    " (" WK-POT7-F-NAME ")"
            MOVE    WK-POT8-CNT TO      WK-POT8-CNT-E
-           DISPLAY WK-PGM-NAME " POT8 ｹﾝｽｳ = " WK-POT8-CNT-E
+           DISPLAY WK-PGM-NAME " POT8 件数 = " WK-POT8-CNT-E
                    " (" WK-POT8-F-NAME ")"
            MOVE    WK-POT8-CNTR TO     WK-POT8-CNTR-E
-           DISPLAY WK-PGM-NAME " POT8 ｹﾝｽｳR= " WK-POT8-CNTR-E
+           DISPLAY WK-PGM-NAME " POT8 件数R= " WK-POT8-CNTR-E
                    " (" WK-POT8-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

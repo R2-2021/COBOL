@@ -71,25 +71,25 @@
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
 
-           03  WK-ITEM01       PIC  X(500) VALUE SPACE.
-           03  WK-ITEM02       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM03       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM04       PIC  X(3000) VALUE SPACE.
-           03  WK-ITEM05       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM06       PIC  X(400) VALUE SPACE.
-           03  WK-ITEM07       PIC  X(400) VALUE SPACE.
-           03  WK-ITEM08       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM09       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM10       PIC  X(2000) VALUE SPACE.
-           03  WK-ITEM11       PIC  X(200) VALUE SPACE.
-           03  WK-ITEM12       PIC  X(200) VALUE SPACE.
+           03  WK-ITEM01       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM02       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM03       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM04       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM05       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM06       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM07       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM08       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM09       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM10       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM11       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM12       PIC  X(1000) VALUE SPACE.
 
-           03  WK-ITEM05X      PIC  X(200) VALUE SPACE.
+           03  WK-ITEM05X      PIC  X(1000) VALUE SPACE.
            03  WK-TIME         PIC  X(010) VALUE SPACE.
            03  WK-HTTPS        PIC  X(200) VALUE SPACE.
            03  WK-NUM-E        PIC  ZZZZZ9 VALUE ZERO.
-           03  WK-ITEM-1       PIC  X(3000) VALUE SPACE.
-           03  WK-ITEM-2       PIC  X(3000) VALUE SPACE.
+           03  WK-ITEM-1       PIC  X(1000) VALUE SPACE.
+           03  WK-ITEM-2       PIC  X(1000) VALUE SPACE.
 
            03  WK-ITEM01-LEN   BINARY-LONG SYNC VALUE ZERO.
            03  WK-ITEM02-LEN   BINARY-LONG SYNC VALUE ZERO.
@@ -137,21 +137,24 @@
 
        01  TBL-AREA.
            03  TBL01-AREA      OCCURS 300.
-             05  TBL01-ITEM01  PIC  X(500) VALUE HIGH-VALUE.
-             05  TBL01-ITEM02  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM03  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM04  PIC  X(3000) VALUE HIGH-VALUE.
-             05  TBL01-ITEM05  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM06  PIC  X(400) VALUE HIGH-VALUE.
-             05  TBL01-ITEM07  PIC  X(400) VALUE HIGH-VALUE.
-             05  TBL01-ITEM08  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM09  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM10  PIC  X(2000) VALUE HIGH-VALUE.
-             05  TBL01-ITEM11  PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-ITEM12  PIC  X(200) VALUE HIGH-VALUE.
+             05  TBL01-ITEM01  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM02  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM03  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM04  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM05  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM06  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM07  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM08  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM09  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM10  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM11  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM12  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM13  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM14  PIC  X(1000) VALUE SPACE.
+             05  TBL01-ITEM15  PIC  X(1000) VALUE SPACE.
 
-             05  TBL01-ITEM05X PIC  X(200) VALUE HIGH-VALUE.
-             05  TBL01-TIME    PIC  X(010) VALUE HIGH-VALUE.
+             05  TBL01-ITEM05X PIC  X(1000) VALUE SPACE.
+             05  TBL01-TIME    PIC  X(010) VALUE SPACE.
 
              05  TBL01-ITEM01-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-ITEM02-LEN BINARY-LONG SYNC VALUE ZERO.
@@ -165,6 +168,9 @@
              05  TBL01-ITEM10-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-ITEM11-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-ITEM12-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL01-ITEM13-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL01-ITEM14-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL01-ITEM15-LEN BINARY-LONG SYNC VALUE ZERO.
 
              05  TBL01-ITEM05X-LEN BINARY-LONG SYNC VALUE ZERO.
              05  TBL01-TIME-LEN   BINARY-LONG SYNC VALUE ZERO.
@@ -326,33 +332,33 @@
                     WK-ITEM12 COUNT WK-ITEM12-LEN
            END-UNSTRING
 
-           IF      WK-ITEM01-LEN > 500
-                OR WK-ITEM02-LEN > 200
-                OR WK-ITEM03-LEN > 200
-                OR WK-ITEM04-LEN > 3000
-                OR WK-ITEM05-LEN > 200
-                OR WK-ITEM06-LEN > 400
-                OR WK-ITEM07-LEN > 400
-                OR WK-ITEM08-LEN > 200
-                OR WK-ITEM09-LEN > 200
-                OR WK-ITEM10-LEN > 2000
-                OR WK-ITEM11-LEN > 200
-                OR WK-ITEM12-LEN > 200
+           IF      WK-ITEM01-LEN > 1000
+                OR WK-ITEM02-LEN > 1000
+                OR WK-ITEM03-LEN > 1000
+                OR WK-ITEM04-LEN > 1000
+                OR WK-ITEM05-LEN > 1000
+                OR WK-ITEM06-LEN > 1000
+                OR WK-ITEM07-LEN > 1000
+                OR WK-ITEM08-LEN > 1000
+                OR WK-ITEM09-LEN > 1000
+                OR WK-ITEM10-LEN > 1000
+                OR WK-ITEM11-LEN > 1000
+                OR WK-ITEM12-LEN > 1000
 
                    DISPLAY WK-PGM-NAME " WK-ITEMXX-LEN OVER"
                            " WK-PIN1-CNT=" WK-PIN1-CNT
-                   DISPLAY "WK-ITEM01-LEN=" WK-ITEM01-LEN
-                   DISPLAY "WK-ITEM02-LEN=" WK-ITEM02-LEN
-                   DISPLAY "WK-ITEM03-LEN=" WK-ITEM03-LEN
-                   DISPLAY "WK-ITEM04-LEN=" WK-ITEM04-LEN
-                   DISPLAY "WK-ITEM05-LEN=" WK-ITEM05-LEN
-                   DISPLAY "WK-ITEM06-LEN=" WK-ITEM06-LEN
-                   DISPLAY "WK-ITEM07-LEN=" WK-ITEM07-LEN
-                   DISPLAY "WK-ITEM08-LEN=" WK-ITEM08-LEN
-                   DISPLAY "WK-ITEM09-LEN=" WK-ITEM09-LEN
-                   DISPLAY "WK-ITEM10-LEN=" WK-ITEM10-LEN
-                   DISPLAY "WK-ITEM11-LEN=" WK-ITEM11-LEN
-                   DISPLAY "WK-ITEM12-LEN=" WK-ITEM12-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM01-LEN=" WK-ITEM01-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM02-LEN=" WK-ITEM02-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM03-LEN=" WK-ITEM03-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM04-LEN=" WK-ITEM04-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM05-LEN=" WK-ITEM05-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM06-LEN=" WK-ITEM06-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM07-LEN=" WK-ITEM07-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM08-LEN=" WK-ITEM08-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM09-LEN=" WK-ITEM09-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM10-LEN=" WK-ITEM10-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM11-LEN=" WK-ITEM11-LEN
+                   DISPLAY WK-PGM-NAME "WK-ITEM12-LEN=" WK-ITEM12-LEN
                    STOP RUN
            END-IF
 
@@ -365,7 +371,7 @@
                     WK-ITEM05X COUNT WK-ITEM05X-LEN
            END-UNSTRING
 
-           IF       WK-ITEM05X-LEN > 200
+           IF       WK-ITEM05X-LEN > 2000
                  OR WK-ITEM05X-LEN = ZERO
                     DISPLAY WK-PGM-NAME " WK-ITEM05X-LEN OVER"
                             " OR ZERO WK-PIN1-CNT=" WK-PIN1-CNT
@@ -431,48 +437,125 @@
       *    *** WATCH 有り、TBL01 SET
        S122-10.
 
-           IF      TBL01-ITEM01 (I2) = SPACE
+      *    *** 13,14,15 予備
+
+           IF      WK-ITEM01 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF  TBL01-ITEM01 (I2) = SPACE
                    MOVE    WK-ITEM01   TO      TBL01-ITEM01     (I2)
                    MOVE    WK-ITEM01-LEN TO    TBL01-ITEM01-LEN (I2)
-           ELSE
-                   IF      WK-ITEM01-LEN >     TBL01-ITEM01-LEN (I2)
-                           MOVE    WK-ITEM01   TO      TBL01-ITEM01 (I2)
-                           MOVE    WK-ITEM01-LEN TO   
-                                   TBL01-ITEM01-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM01 = TBL01-ITEM01 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM01   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM01-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM02 (I2) = SPACE
+
+           IF      WK-ITEM02 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM02 (I2) = SPACE
                    MOVE    WK-ITEM02   TO      TBL01-ITEM02     (I2)
                    MOVE    WK-ITEM02-LEN TO    TBL01-ITEM02-LEN (I2)
-           ELSE
+               ELSE
                    IF      WK-ITEM02-LEN >     TBL01-ITEM02-LEN (I2)
                            MOVE    WK-ITEM02   TO      TBL01-ITEM02 (I2)
                            MOVE    WK-ITEM02-LEN TO   
                                    TBL01-ITEM02-LEN (I2)
                    END-IF
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM03 (I2) = SPACE
+           IF      WK-ITEM03 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM03 (I2) = SPACE
                    MOVE    WK-ITEM03   TO      TBL01-ITEM03     (I2)
                    MOVE    WK-ITEM03-LEN TO    TBL01-ITEM03-LEN (I2)
-           ELSE
+               ELSE
                    IF      WK-ITEM03-LEN >     TBL01-ITEM03-LEN (I2)
                            MOVE    WK-ITEM03   TO      TBL01-ITEM03 (I2)
                            MOVE    WK-ITEM03-LEN TO   
                                    TBL01-ITEM03-LEN (I2)
                    END-IF
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM04 (I2) = SPACE
+           IF      WK-ITEM04 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM04 (I2) = SPACE
                    MOVE    WK-ITEM04   TO      TBL01-ITEM04     (I2)
                    MOVE    WK-ITEM04-LEN TO    TBL01-ITEM04-LEN (I2)
-           ELSE
-                   IF      WK-ITEM04-LEN >     TBL01-ITEM04-LEN (I2)
-                           MOVE    WK-ITEM04   TO      TBL01-ITEM04 (I2)
-                           MOVE    WK-ITEM04-LEN TO   
-                                   TBL01-ITEM04-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM04 = TBL01-ITEM04 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM04   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM04-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
       *    *** ITEM05 はセットしない
@@ -487,81 +570,255 @@
       *             END-IF
       *     END-IF
 
-           IF      TBL01-ITEM06 (I2) = SPACE
+           IF      WK-ITEM06 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM06 (I2) = SPACE
                    MOVE    WK-ITEM06   TO      TBL01-ITEM06     (I2)
                    MOVE    WK-ITEM06-LEN TO    TBL01-ITEM06-LEN (I2)
-           ELSE
-                   IF      WK-ITEM06-LEN >     TBL01-ITEM06-LEN (I2)
-                           MOVE    WK-ITEM06   TO      TBL01-ITEM06 (I2)
-                           MOVE    WK-ITEM06-LEN TO   
-                                   TBL01-ITEM06-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM06 = TBL01-ITEM06 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM06   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM06-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM07 (I2) = SPACE
+           IF      WK-ITEM07 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM07 (I2) = SPACE
                    MOVE    WK-ITEM07   TO      TBL01-ITEM07     (I2)
                    MOVE    WK-ITEM07-LEN TO    TBL01-ITEM07-LEN (I2)
-           ELSE
-                   IF      WK-ITEM07-LEN >     TBL01-ITEM07-LEN (I2)
-                           MOVE    WK-ITEM07   TO      TBL01-ITEM07 (I2)
-                           MOVE    WK-ITEM07-LEN TO   
-                                   TBL01-ITEM07-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM07 = TBL01-ITEM07 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM07   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM07-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM08 (I2) = SPACE
+
+           IF      WK-ITEM08 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM08 (I2) = SPACE
                    MOVE    WK-ITEM08   TO      TBL01-ITEM08     (I2)
                    MOVE    WK-ITEM08-LEN TO    TBL01-ITEM08-LEN (I2)
-           ELSE
+               ELSE
                    IF      WK-ITEM08-LEN >     TBL01-ITEM08-LEN (I2)
                            MOVE    WK-ITEM08   TO      TBL01-ITEM08 (I2)
                            MOVE    WK-ITEM08-LEN TO   
                                    TBL01-ITEM08-LEN (I2)
                    END-IF
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM09 (I2) = SPACE
+           IF      WK-ITEM09 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM09 (I2) = SPACE
                    MOVE    WK-ITEM09   TO      TBL01-ITEM09     (I2)
                    MOVE    WK-ITEM09-LEN TO    TBL01-ITEM09-LEN (I2)
-           ELSE
+               ELSE
                    IF      WK-ITEM09-LEN >     TBL01-ITEM09-LEN (I2)
                            MOVE    WK-ITEM09   TO      TBL01-ITEM09 (I2)
                            MOVE    WK-ITEM09-LEN TO   
                                    TBL01-ITEM09-LEN (I2)
                    END-IF
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM10 (I2) = SPACE
+           IF      WK-ITEM10 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM10 (I2) = SPACE
                    MOVE    WK-ITEM10   TO      TBL01-ITEM10     (I2)
                    MOVE    WK-ITEM10-LEN TO    TBL01-ITEM10-LEN (I2)
-           ELSE
-                   IF      WK-ITEM10-LEN >     TBL01-ITEM10-LEN (I2)
-                           MOVE    WK-ITEM10   TO      TBL01-ITEM10 (I2)
-                           MOVE    WK-ITEM10-LEN TO   
-                                   TBL01-ITEM10-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM10 = TBL01-ITEM10 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM10   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM10-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM11 (I2) = SPACE
+           IF      WK-ITEM11 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM11 (I2) = SPACE
                    MOVE    WK-ITEM11   TO      TBL01-ITEM11     (I2)
                    MOVE    WK-ITEM11-LEN TO    TBL01-ITEM11-LEN (I2)
-           ELSE
-                   IF      WK-ITEM11-LEN >     TBL01-ITEM11-LEN (I2)
-                           MOVE    WK-ITEM11   TO      TBL01-ITEM11 (I2)
-                           MOVE    WK-ITEM11-LEN TO   
-                                   TBL01-ITEM11-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM11 = TBL01-ITEM11 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM12 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM12     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM12-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM11   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM11-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
 
-           IF      TBL01-ITEM12 (I2) = SPACE
+           IF      WK-ITEM12 (1:5) =   SPACE
+                   CONTINUE
+           ELSE
+               IF      TBL01-ITEM12 (I2) = SPACE
                    MOVE    WK-ITEM12   TO      TBL01-ITEM12     (I2)
                    MOVE    WK-ITEM12-LEN TO    TBL01-ITEM12-LEN (I2)
-           ELSE
-                   IF      WK-ITEM12-LEN >     TBL01-ITEM12-LEN (I2)
-                           MOVE    WK-ITEM12   TO      TBL01-ITEM12 (I2)
-                           MOVE    WK-ITEM12-LEN TO   
-                                   TBL01-ITEM12-LEN (I2)
-                   END-IF
+               ELSE
+      *    *** 02,03,05,08,09 はセットしない
+                   EVALUATE TRUE
+                       WHEN WK-ITEM12 = TBL01-ITEM12 (I2)
+                           CONTINUE
+                       WHEN TBL01-ITEM01 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM01     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM01-LEN (I2)
+                       WHEN TBL01-ITEM04 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM04     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM04-LEN (I2)
+                       WHEN TBL01-ITEM06 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM06     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM06-LEN (I2)
+                       WHEN TBL01-ITEM07 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM07     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM07-LEN (I2)
+                       WHEN TBL01-ITEM10 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM10     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM10-LEN (I2)
+                       WHEN TBL01-ITEM11 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM11     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM11-LEN (I2)
+                       WHEN TBL01-ITEM13 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM13     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM13-LEN (I2)
+                       WHEN TBL01-ITEM14 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM14     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM14-LEN (I2)
+                       WHEN TBL01-ITEM15 (I2) (1:1) = SPACE
+                           MOVE   WK-ITEM12   TO   TBL01-ITEM15     (I2)
+                           MOVE   WK-ITEM12-LEN TO TBL01-ITEM15-LEN (I2)
+                       WHEN OTHER
+                           CONTINUE
+                   END-EVALUATE
+               END-IF
            END-IF
            .
        S122-EX.
@@ -741,6 +998,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM01 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM01     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM01-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM01 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM01     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM01-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM01 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM01     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM01-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -859,6 +1164,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM04 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM04     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM04-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM04 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM04     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM04-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM04 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM04     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM04-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -961,6 +1314,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM06 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM06     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM06-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM06 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM06     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM06-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM06 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM06     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM06-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -1047,6 +1448,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM07 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM07     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM07-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM07 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM07     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM07-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM07 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM07     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM07-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -1117,6 +1566,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM08 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM08     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM08-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM08 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM08     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM08-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM08 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM08     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM08-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -1171,6 +1668,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM09 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM09     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM09-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM09 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM09     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM09-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM09 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM09     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM09-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -1209,6 +1754,54 @@
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
                        END-IF
                    END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM10 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM10     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM10-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM10 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM10     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM10-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM10 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM10     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM10-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
                END-IF
 
 
@@ -1229,6 +1822,168 @@
                        IF      SW-HIT2 = "Y"
                            MOVE    SPACE       TO   TBL01-ITEM12     (I)
                            MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM11 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM11     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM11-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM11 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM11     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM11-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM11 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM11     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM11-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
+               END-IF
+
+
+
+               MOVE    TBL01-ITEM12-LEN (I) TO L
+               IF      L       NOT = ZERO
+
+                   MOVE    TBL01-ITEM13-LEN (I) TO L2
+                   MOVE    TBL01-ITEM12 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM12     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM12 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM12     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM12 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM12     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM12-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
+               END-IF
+
+
+
+               MOVE    TBL01-ITEM13-LEN (I) TO L
+               IF      L       NOT = ZERO
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L2
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                       END-IF
+                   END-IF
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM13 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM13     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM13-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
+                       END-IF
+                   END-IF
+               END-IF
+
+
+
+               MOVE    TBL01-ITEM14-LEN (I) TO L
+               IF      L       NOT = ZERO
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L2
+                   MOVE    TBL01-ITEM14 (I) TO  WK-ITEM-1
+                   MOVE    TBL01-ITEM15 (I) TO  WK-ITEM-2
+      *    *** ITEM CHECK
+                   PERFORM S132-10     THRU     S132-EX
+
+                   IF      SW-HIT1 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM14     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM14-LEN (I)
+                   ELSE
+                       IF      SW-HIT2 = "Y"
+                           MOVE    SPACE       TO   TBL01-ITEM15     (I)
+                           MOVE    ZERO        TO   TBL01-ITEM15-LEN (I)
                        END-IF
                    END-IF
                END-IF
@@ -1362,6 +2117,27 @@
                    MOVE    " ,"        TO      POT1-REC (P:2)
                    ADD     2           TO      P
 
+                   MOVE    TBL01-ITEM13-LEN (I) TO L
+                   MOVE    TBL01-ITEM13 (I) TO POT1-REC (P:L)
+                   ADD     L           TO      P
+
+                   MOVE    " ,"        TO      POT1-REC (P:2)
+                   ADD     2           TO      P
+
+                   MOVE    TBL01-ITEM14-LEN (I) TO L
+                   MOVE    TBL01-ITEM14 (I) TO POT1-REC (P:L)
+                   ADD     L           TO      P
+
+                   MOVE    " ,"        TO      POT1-REC (P:2)
+                   ADD     2           TO      P
+
+                   MOVE    TBL01-ITEM15-LEN (I) TO L
+                   MOVE    TBL01-ITEM15 (I) TO POT1-REC (P:L)
+                   ADD     L           TO      P
+
+                   MOVE    " ,"        TO      POT1-REC (P:2)
+                   ADD     2           TO      P
+
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
            END-PERFORM
@@ -1381,10 +2157,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1  件数 = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1  件数 = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

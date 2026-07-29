@@ -27,11 +27,11 @@
 
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
-       01  POT1-REC            PIC  X(200).
+       01  POT1-REC            PIC  X(300).
 
        FD  POT2-F
            LABEL RECORDS ARE STANDARD.
-       01  POT2-REC            PIC  X(200).
+       01  POT2-REC            PIC  X(300).
 
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
@@ -94,31 +94,37 @@
                                PIC  9(002).
 
        01  Output-Detail1.
-           05  OD-ASCII        OCCURS 101 TIMES
+           05  OD1-ASCII       OCCURS 101 TIMES
                                PIC  X(001).
            05                  PIC  X(002).
-           05  OD-I12          PIC  X(024).
+           05  OD1-I11         PIC  X(024).
 
        01  Output-Detail12.
-           05  OD-ASCII-X.
-             07  OD-ASCII2     OCCURS 180 TIMES
+           05  OD2-ASCII-X.
+             07  OD2-ASCII     OCCURS 180 TIMES
                                PIC  X(001).
-           05  OD-I122         REDEFINES OD-ASCII-X
+           05  OD12-I11        REDEFINES OD2-ASCII-X
                                PIC  X(180).
 
-       01  OD-I11.
-           05  OD-Byte         PIC  ZZ,ZZ9
-           05  OD-SURA         PIC  X(001)
-           05  OD-LENG         PIC  ZZ,ZZ9
-           05  OD-SEQ          PIC  ZZZ,ZZZ,ZZ9.
+       01  ODX-I11.
+           05  ODX-Byte        PIC  ZZ,ZZ9.
+           05  ODX-SURA        PIC  X(001).
+           05  ODX-LENG        PIC  ZZ,ZZ9.
+           05  ODX-SEQ         PIC  ZZZ,ZZZ,ZZ9.
 
        01  Output-Detail2.
-           05  OD-Hex          OCCURS 100 TIMES.
-             10  OD-Hex-1      PIC  X(001).
+           05  OD2-Hex         OCCURS 100 TIMES.
+             10  OD2-Hex-1     PIC  X(001).
 
        01  Output-Detail3.
-           05  OD-Hex          OCCURS 100 TIMES.
-             10  OD-Hex-2      PIC  X(001).
+           05  OD3-Hex         OCCURS 100 TIMES.
+             10  OD3-Hex-2     PIC  X(001).
+
+      *    *** ID=X 40バイト以下用 
+       01  OD40-I12.
+           05  OD40-Hex        OCCURS 40 TIMES.
+             10  OD40-Hex-1    PIC  X(001).
+             10  OD40-Hex-2    PIC  X(001).
 
        01  Output-Detail4.
            05  OD4-SEQ         PIC  ZZZ,ZZZ,ZZ9.
@@ -131,23 +137,23 @@
            05  FILLER          PIC  X(001).
            05  OD4-I12         PIC  X(080).
            05  FILLER          PIC  X(001).
-           05  OD4-I13         PIC  X(024).
+           05  OD4-I11         PIC  X(024).
+           05  FILLER          PIC  X(001).
 
        01  Output-Detail42.
-           05  OD4-SEQ2        PIC ZZZ,ZZZ,ZZ9.
+           05  OD42-SEQ       PIC ZZZ,ZZZ,ZZ9.
            05  FILLER          PIC  X(001).
-           05  OD4-ITEM2       PIC  X(010).
+           05  OD42-ITEM       PIC  X(010).
            05  FILLER          PIC  X(001).
-           05  OD4-ASCII2-X.
-             07  OD4-ASCII2    OCCURS 180 TIMES 
+           05  OD42-ASCII2-X.
+             07  OD42-ASCII2   OCCURS 180 TIMES 
                                PIC X(001).
-           05  OD4-I22         REDEFINES OD4-ASCII2-X
+           05  OD42-I11        REDEFINES OD42-ASCII2-X
                                PIC X(180).
+           05  FILLER          PIC  X(001).
 
-       01  OD4-I11.
-           05  OD4-Hex         OCCURS 40 TIMES.
-             10  OD4-Hex-1     PIC  X(001).
-             10  OD4-Hex-2     PIC  X(001).
+       01  Output-Detail5.
+           05  OD5-ITEM        PIC  X(030).
 
        01  Output-Sub          BINARY-LONG SYNC VALUE ZERO.
 
@@ -210,8 +216,8 @@
 
        01  SW-AREA.
            05  SW-KANJI        PIC  X(001) VALUE ZERO.
-           05  SW-UTF8         PIC  X(001) VALUE "N"..
-           05  SW-1            PIC  X(001) VALUE ZERO..
+           05  SW-UTF8         PIC  X(001) VALUE "N".
+           05  SW-1            PIC  X(001) VALUE ZERO.
 
        LINKAGE                 SECTION.
 
@@ -300,6 +306,8 @@
                    WRITE   POT2-REC    FROM    Output-Header-3
                    ADD     3            TO     WK-POT2-CNT
            END-IF
+
+      *    CALL "COBDUMP" USING Output-Detail12
            .
        S010-EX.
            EXIT.
@@ -333,7 +341,7 @@
                                      Output-Detail12
                                      Output-Detail2
                                      Output-Detail3
-                                     OD-I11 OD-I12
+                                     ODX-I11 OD1-I11
 
            SET Addr-Pointer       TO ADDRESS OF Buffer
 
@@ -355,10 +363,10 @@
                    END-IF
 
                    IF Output-Sub = 1
-                      MOVE Buffer-Sub    TO OD-Byte
+                      MOVE Buffer-Sub    TO ODX-Byte
                                             L2
-                      MOVE "/"           TO OD-SURA
-                      MOVE Buffer-Length TO OD-LENG
+                      MOVE "/"           TO ODX-SURA
+                      MOVE Buffer-Length TO ODX-LENG
                    END-IF
 
                    IF Buffer-Sub = 1
@@ -382,16 +390,16 @@
       *    *** 最終バイト コード３バイト無い時、その先の漢字バイトセット対応
                          IF  Output-Sub = 99
                            ADD   Buffer-Sub 2 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 2)
                            MOVE  "1" TO SW-1
                          END-IF
 
                          IF  Output-Sub = 100
                            ADD   Buffer-Sub 1 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 1)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 1)
 
                            ADD   Buffer-Sub 2 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 2)
                            MOVE  "2" TO SW-1
                          END-IF
                      END-IF
@@ -401,37 +409,37 @@
                    IF   ( PIC-X <  X"20")
                      OR ( PIC-X =  X"7F")
                      OR ( PIC-X >= X"FD" AND <= X"FF")
-                        MOVE SPACE TO OD-ASCII (Output-Sub)
-                        MOVE SPACE TO OD-ASCII2 (P2)
+                        MOVE SPACE TO OD1-ASCII (Output-Sub)
+                        MOVE SPACE TO OD2-ASCII (P2)
                    ELSE
       *    *** 1行前、16:2 "0",SJISなら (1)にSPACEセット,その他ならSET
                        IF   OUTPUT-SUB = 1
                             IF   Buffer-Sub = 1
-                                 MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                               OD-ASCII2 (P2)
+                                 MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                               OD2-ASCII (P2)
                             ELSE
                               IF  LFD-KANJI = "SJIS"
                                  IF SW-KANJI = "1"
-                                     MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                                   OD-ASCII2 (P2)
+                                    MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                                  OD2-ASCII (P2)
                                  ELSE
-                                     MOVE SPACE TO OD-ASCII (Output-Sub)
-                                                   OD-ASCII2 (P2)
+                                    MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                                  OD2-ASCII (P2)
                                  END-IF
                               ELSE
                                  IF SW-1 = ZERO
-                                     MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                                   OD-ASCII2 (P2)
+                                    MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                                   OD2-ASCII (P2)
                                  ELSE
-                                     MOVE SPACE TO OD-ASCII (Output-Sub)
-                                                   OD-ASCII2 (P2)
+                                    MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                                   OD2-ASCII (P2)
                                  END-IF
                               END-IF
                             END-IF
                         ELSE
                             IF  LFD-KANJI = "SJIS"
-                                MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                              OD-ASCII2 (P2)
+                                MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                              OD2-ASCII (P2)
                             ELSE
       *    *** UTF8
 
@@ -440,23 +448,23 @@
                                 EVALUATE TRUE
 
                                     WHEN SW-1 = ZERO
-                                    MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                                  OD-ASCII2 (P2)
+                                    MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                                  OD2-ASCII (P2)
 
       *    *** OUTPUT-SUB = 2
                                     WHEN SW-1 = "1"
-                                    MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                                  OD-ASCII2 (P2)
+                                    MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                                  OD2-ASCII (P2)
                                     MOVE ZERO  TO SW-1
       *    *** OUTPUT-SUB = 2
                                     WHEN OTHER
-                                    MOVE SPACE TO OD-ASCII (Output-Sub)
-                                                  OD-ASCII2 (P2)
+                                    MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                                  OD2-ASCII (P2)
                                     MOVE ZERO  TO SW-1
                                 END-EVALUATE
                               ELSE
-                                MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                              OD-ASCII2 (P2)
+                                MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                              OD2-ASCII (P2)
                               END-IF
                             END-IF
                         END-IF
@@ -466,18 +474,17 @@
                        IF   LFD-KANJI = "SJIS"
                            IF  SW-KANJI = "1"
                                ADD   Buffer-Sub 1 GIVING I2
-                               MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+                               MOVE  Buffer (I2:1)  TO OD1-ASCII(101)
                            ELSE
-                               MOVE  SPACE       TO    OD-ASCII(101)
+                               MOVE  SPACE       TO    OD1-ASCII(101)
                            END-IF
                        END-IF
-
-                       MOVE  LFD-SEQ  TO OD-SEQ
+                       MOVE  LFD-SEQ  TO ODX-SEQ
 
       *    *** SJIS Byte / LENG  SEQ 固定位置にセット
-                       MOVE  OD-I11   TO OD-I12
+                       MOVE  ODX-I11   TO OD1-I11
       *    *** UTF8 Byte / LENG  SEQ 可変位置にセット
-                       MOVE  OD-I11   TO OD-I122 (P1:24)
+                       MOVE  ODX-I11   TO OD12-I11 (P1:24)
 
                        IF  LFD-SU = 1
                            MOVE  SPACE    TO   POT1-REC
@@ -492,7 +499,6 @@
 
                            IF  SW-UTF8 = "Y"
                                WRITE POT1-REC FROM Output-Detail12
-      *                         CALL "COBDUMP" USING Output-Detail12
                            ELSE
                                WRITE POT1-REC FROM Output-Detail1
                            END-IF
@@ -538,7 +544,7 @@
                                        Output-Detail12
                                        Output-Detail2
                                        Output-Detail3
-                                       OD-I11 OD-I12
+                                       ODX-I11 OD1-I11
 
 
                        MOVE    104         TO      P1
@@ -550,10 +556,10 @@
            END-PERFORM
 
            IF  Output-Sub > ZERO
-               MOVE  LFD-SEQ  TO OD-SEQ
 
-               MOVE  OD-I11   TO OD-I12
-                                 OD-I122 (P1:24)
+               MOVE  LFD-SEQ  TO ODX-SEQ
+               MOVE  ODX-I11   TO OD1-I11
+                                  OD12-I11 (P1:24)
 
                IF  LFD-SU = 1
                    MOVE  SPACE    TO   POT1-REC
@@ -638,10 +644,11 @@
                                      Output-Detail3
                                      Output-Detail4
                                      Output-Detail42
-                                     OD-I11 OD-I12
+                                     OutPut-Detail5
+                                     ODX-I11 OD1-I11
                                      OD4-I12
-                                     OD4-I13
                                      OD4-I11
+                                     OD40-I12
 
       *     SET Addr-Pointer       TO ADDRESS OF Buffer
 
@@ -669,10 +676,10 @@
                    END-IF
 
                    IF Output-Sub = 1
-                      MOVE Buffer-Sub    TO OD-Byte
+                      MOVE Buffer-Sub    TO ODX-Byte
                                             L2
-                      MOVE "/"           TO OD-SURA
-                      MOVE Buffer-Length TO OD-LENG
+                      MOVE "/"           TO ODX-SURA
+                      MOVE Buffer-Length TO ODX-LENG
                    END-IF
 
                    IF Buffer-Sub = 1
@@ -694,9 +701,9 @@
                        IF   LFD-KANJI = "SJIS"
                            IF  SW-KANJI = "1"
                                ADD   Buffer-Sub 1 GIVING I2
-                               MOVE  Buffer (I2:1)  TO OD-ASCII(101)
+                               MOVE  Buffer (I2:1)  TO OD1-ASCII(101)
                            ELSE
-                               MOVE  SPACE       TO    OD-ASCII(101)
+                               MOVE  SPACE       TO    OD1-ASCII(101)
                            END-IF
                        END-IF
                    END-IF
@@ -725,16 +732,16 @@
 
       *    *** P2 はUTF8用で出演位置、可変
                            ADD   Buffer-Sub 2 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 2)
                          END-IF
 
                          IF  Output-Sub = 100
 
                            ADD   Buffer-Sub 1 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 1)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 1)
 
                            ADD   Buffer-Sub 2 GIVING I2
-                           MOVE  Buffer (I2:1)  TO OD-ASCII2(P2 + 2)
+                           MOVE  Buffer (I2:1)  TO OD2-ASCII(P2 + 2)
                          END-IF
                      END-IF
                    END-IF
@@ -743,82 +750,94 @@
                    IF    (PIC-X <  X"20")
                      OR ( PIC-X =  X"7F")
                      OR ( PIC-X >= X"FD" AND <= X"FF")
-                        MOVE SPACE TO OD-ASCII (Output-Sub)
-                                      OD-ASCII2 (P2)
+                        MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                      OD2-ASCII (P2)
 
                         IF Buffer-Length <= 40
                            MOVE SPACE TO OD4-ASCII (Output-Sub)
-                                         OD4-ASCII2 (P2-2)
+                                         OD42-ASCII2 (P2-2)
                         END-IF
                    ELSE
+                     IF   LFD-KANJI = "SJIS"
+                               MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                             OD2-ASCII (P2)
 
-                       EVALUATE TRUE
+                               IF Buffer-Length <= 40
+                                   MOVE PIC-X TO OD4-ASCII (Output-Sub)
+                                                 OD42-ASCII2 (P2-2)
+                               END-IF
+                     ELSE
+                        EVALUATE TRUE
 
                            WHEN  ( Buffer-Length - 2 = Output-Sub
                                 OR Buffer-Length - 1 = Output-Sub
                                 OR Buffer-Length     = Output-Sub )
                              AND ( Buffer (Buffer-Length - 2:1) >= X"E0"
                                  AND PIC-X <= X"EF" )
-                               MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                             OD-ASCII2 (P2)
+                               MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                             OD2-ASCII (P2)
 
                                IF Buffer-Length <= 40
                                    MOVE PIC-X TO OD4-ASCII (Output-Sub)
-                                                 OD4-ASCII2 (P2-2)
+                                                 OD42-ASCII2 (P2-2)
                                END-IF
 
                            WHEN  Buffer-Length = Output-Sub
                             AND (( PIC-X >= X"E0" AND PIC-X <= X"EF" )
                               OR ( PIC-X >= X"80" AND PIC-X <= X"BF" ))
-                                MOVE SPACE TO OD-ASCII (Output-Sub)
-                                              OD-ASCII2 (P2)
+                                MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                              OD2-ASCII (P2)
 
                                 IF Buffer-Length <= 40
                                    MOVE SPACE TO OD4-ASCII (Output-Sub)
-                                                 OD4-ASCII2 (P2-2)
+                                                 OD42-ASCII2 (P2-2)
                                 END-IF
 
                            WHEN  Buffer-Length - 1 = Output-Sub
                             AND ( PIC-X >= X"E0" AND PIC-X <= X"EF" )
-                                MOVE SPACE TO OD-ASCII (Output-Sub)
-                                              OD-ASCII2 (P2)
+                                MOVE SPACE TO OD1-ASCII (Output-Sub)
+                                              OD2-ASCII (P2)
 
                                 IF Buffer-Length <= 40
                                    MOVE SPACE TO OD4-ASCII (Output-Sub)
-                                                 OD4-ASCII2 (P2-2)
+                                                 OD42-ASCII2 (P2-2)
                                 END-IF
 
                            WHEN OTHER
-                               MOVE PIC-X TO OD-ASCII (Output-Sub)
-                                             OD-ASCII2 (P2)
+                               MOVE PIC-X TO OD1-ASCII (Output-Sub)
+                                             OD2-ASCII (P2)
 
                                IF Buffer-Length <= 40
                                    MOVE PIC-X TO OD4-ASCII (Output-Sub)
-                                                 OD4-ASCII2 (P2-2)
+                                                 OD42-ASCII2 (P2-2)
                                END-IF
                        END-EVALUATE
+                     END-IF
                    END-IF
 
            END-PERFORM
 
            IF  Output-Sub > ZERO
-               MOVE  LFD-SEQ  TO OD4-SEQ
-                                 OD4-SEQ2
-                                 OD-SEQ
-               MOVE  LFD-ITEM TO OD4-ITEM
-                                 OD4-ITEM2
-      *    *** OD-I11 Byte / LENG  SEQ はUTF8用で出演位置、可変
-               MOVE  OD-I11   TO OD-I12
-                                 OD4-I13
-                                 OD-I122 (P1:24)
-                                 OD4-I22 (P1-2 + 81:24)
+
+               MOVE  LFD-SEQ   TO OD4-SEQ
+                                  OD42-SEQ
+                                  ODX-SEQ
+               MOVE  LFD-ITEM  TO OD4-ITEM
+                                  OD42-ITEM
+               MOVE  LFD-ITEM2 TO OD5-ITEM
+      *    *** ODX-I11 Byte / LENG  SEQ はUTF8用で出演位置、可変
+               MOVE  ODX-I11   TO OD1-I11
+                                  OD4-I11
+                                  OD12-I11 (P1:24)
+                                  OD42-I11 (P1-2 + 81:24)
 
       *    *** ID=X で　40バイト以下の時、TYPE=A でも16進数 出力する
                IF Buffer-Length <= 40
                    COMPUTE L3 = OUTPUT-SUB * 2
-                   MOVE  WK-BUF2-LR-TBL(1:L3) TO OD4-I11 (1:L3)
-                   MOVE  OD4-I11  TO OD4-I12
-                                     OD4-I22 (P1-2:80)
+                   MOVE  WK-BUF2-LR-TBL(1:L3) TO OD40-I12 (1:L3)
+
+                   MOVE  OD40-I12  TO OD4-I12
+                                      OD42-I11 (P1-2:80)
                    IF  LFD-SU = 1
                        MOVE  SPACE    TO   POT1-REC
                        WRITE POT1-REC
@@ -833,7 +852,12 @@
                            WRITE POT1-REC FROM Output-Detail42
                        ELSE
                            WRITE POT1-REC FROM Output-Detail4
+                       END-IF
                        ADD   1        TO   WK-POT1-CNT
+
+                       IF  LFD-ITEM2 NOT = SPACE
+                           WRITE POT1-REC FROM Output-Detail5
+                           ADD   1        TO   WK-POT1-CNT
                        END-IF
                    ELSE
                        MOVE  SPACE    TO   POT2-REC
@@ -850,21 +874,30 @@
                        ELSE
                            WRITE POT2-REC FROM Output-Detail4
                        END-IF
-
                        ADD   1        TO   WK-POT2-CNT
+
+                       IF  LFD-ITEM2 NOT = SPACE
+                           WRITE POT2-REC FROM Output-Detail5
+                           ADD   1        TO   WK-POT2-CNT
+                       END-IF
                    END-IF
                ELSE
                    MOVE  SPACE    TO   OD4-I12
-                                       OD4-I13
                                        OD4-I11
+                                       OD40-I12
                                        OD4-ASCII-X
-                                       OD4-ASCII2-X
+                                       OD42-ASCII2-X
 
                    IF  LFD-SU = 1
                        MOVE  SPACE    TO   POT1-REC
                        WRITE POT1-REC
                        WRITE POT1-REC FROM Output-Detail4
                        ADD   2        TO   WK-POT1-CNT
+
+                       IF  LFD-ITEM2 NOT = SPACE
+                           WRITE POT1-REC FROM Output-Detail5
+                           ADD   1        TO   WK-POT1-CNT
+                       END-IF
 
                        IF  LFD-HED  =  "A"
                            WRITE   POT1-REC    FROM    Output-Header-1
@@ -884,6 +917,11 @@
                        WRITE POT2-REC FROM Output-Detail4
                        ADD   2        TO   WK-POT2-CNT
 
+                       IF  LFD-ITEM2 NOT = SPACE
+                           WRITE POT2-REC FROM Output-Detail5
+                           ADD   1        TO   WK-POT2-CNT
+                       END-IF
+
                        IF  LFD-HED  =  "A"
                            WRITE   POT2-REC    FROM    Output-Header-1
                            WRITE   POT2-REC    FROM    Output-Header-2
@@ -897,6 +935,7 @@
                        END-IF
                        ADD   1        TO   WK-POT2-CNT
                    END-IF
+
                    IF  LFD-TYPE = "M"
                        MOVE WK-BUF2-L-TBL (L2:Output-Sub)
                                TO Output-Detail2

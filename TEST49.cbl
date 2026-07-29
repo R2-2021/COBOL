@@ -9,22 +9,22 @@
 
       *    *** ê∫óDÉfÅ[É^Å@ÇtÇsÇeÇW
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** ÉAÉjÉÅÉCÉgê∫óDÉfÅ[É^Å@ÇtÇsÇeÇW
        SELECT PIN2-F           ASSIGN   WK-PIN2-F-NAME
-                               STATUS   WK-PIN2-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** X,instagram
        SELECT PIN3-F           ASSIGN   WK-PIN3-F-NAME
-                               STATUS   WK-PIN3-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.
+
+      *    *** DIR
+       SELECT PIN4-F           ASSIGN   WK-PIN4-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
       *    *** HTMLÉfÅ[É^
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -48,6 +48,12 @@
        01  PIN3-REC.
            03  FILLER          PIC  X(20000).
 
+       FD  PIN4-F
+           LABEL RECORDS ARE STANDARD
+           RECORD VARYING DEPENDING ON WK-PIN4-LEN.
+       01  PIN4-REC.
+           03  FILLER          PIC  X(100).
+
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
@@ -61,6 +67,7 @@
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST49.PIN1".
            03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST47.POT1".
            03  WK-PIN3-F-NAME  PIC  X(032) VALUE "TEST49.PIN3".
+           03  WK-PIN4-F-NAME  PIC  X(032) VALUE "TEST49.DIR.txt".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST49.POT1".
       *     03  WK-POT1-F-NAME  PIC  X(032) VALUE "index.html".
            03  WK-POT1-F-NAME.
@@ -70,27 +77,26 @@
              05 PIC X(004) VALUE "ê∫óD".
              05 PIC X(011) VALUE "\index.html".
 
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-PIN2-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-PIN3-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
-
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN2-EOF     PIC  X(001) VALUE LOW-VALUE.
            03  WK-PIN3-EOF     PIC  X(001) VALUE LOW-VALUE.
+           03  WK-PIN4-EOF     PIC  X(001) VALUE LOW-VALUE.
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN3-LEN     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-PIN4-LEN     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN2-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN3-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-PIN4-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN3-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-PIN4-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
       *    *** YouTube ê∫óD
@@ -100,6 +106,8 @@
 
            03  WK-SEIYU1       PIC  X(100) VALUE SPACE.
            03  WK-SEIYU2       PIC  X(100) VALUE SPACE.
+           03  WK-SEIYU3       PIC  X(100) VALUE SPACE.
+           03  WK-SEIYU3-UTF8  PIC  X(100) VALUE SPACE.
            03  WK-SITE-TBL.
              05  WK-SITE       OCCURS 50
                                PIC  X(500) VALUE SPACE.
@@ -114,6 +122,7 @@
            03  WK-DD-AMARI     BINARY-LONG SYNC VALUE ZERO.
            03  WK-SEIYU1-LEN   BINARY-LONG SYNC VALUE ZERO.
            03  WK-IMGLINK-LEN  BINARY-LONG SYNC VALUE ZERO.
+           03  WK-SEIYU3-LEN   BINARY-LONG SYNC VALUE ZERO.
 
            03  TBL01-IDX-MAX   BINARY-LONG SYNC VALUE ZERO.
            03  WK-REC          PIC  X(1000) VALUE SPACE.
@@ -130,6 +139,32 @@
              05  WK-PREV       PIC  9(002) VALUE ZERO.
            03  WK-NEXT-X.
              05  WK-NEXT       PIC  9(002) VALUE ZERO.
+
+           03  WK-DHCP.
+               05  PIC  X(010) VALUE 
+                   "chcp 65001".
+
+           03  WK-IMAGE.
+               05  PIC  X(023) VALUE 
+                   "C:/Users/koko/OneDrive/".
+               05  PIC  X(035) VALUE 
+                   "ÉhÉLÉÖÉÅÉìÉg/html/YouTubeê∫óD/image".
+
+           03  WK-COBOL.
+               05  PIC  X(023) VALUE 
+                   "C:/Users/koko/OneDrive/".
+               05  PIC  X(018) VALUE 
+                   "ÉhÉLÉÖÉÅÉìÉg/COBOL".
+
+           03  WK-DIR.
+               05  PIC  X(026) VALUE 
+                   "DIR *.jpg > TEST49.DIR.txt".
+
+           03  WK-COPY.
+               05  PIC  X(043) VALUE 
+                   "COPY TEST49.DIR.txt C:\Users\koko\OneDrive\".
+               05  PIC  X(0198) VALUE 
+                   "ÉhÉLÉÖÉÅÉìÉg\COBOL\".
 
       *    *** ïœä∑ëO Ç™ì¸Ç¡ÇƒÇ¢ÇÈÉfÅ[É^
       * 01  WDE03-BUF1             PIC  X(001) ANY LENGTH.
@@ -166,6 +201,8 @@
 
            COPY    CPCOBRND    REPLACING ==:##:== BY ==WCR==.
 
+           COPY    CPDECODE05  REPLACING ==:##:== BY ==WDE05==.
+
        01  INDEX-AREA.
            03  I               BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
@@ -176,16 +213,21 @@
            03  Z               BINARY-LONG SYNC VALUE ZERO.
 
        01  TBL-AREA.
-           03  TBL01-AREA      OCCURS 1000
+           03  TBL01-AREA      OCCURS 3000
                                ASCENDING KEY IS TBL01-SEIYU
                                INDEXED BY TBL01-IDX.
              05  TBL01-SEIYU   PIC  X(100) VALUE HIGH-VALUE.
       *    *** PIN2
-             05  TBL01-SITE1   PIC  X(200) VALUE SPACE.
-             05  TBL01-SITE2   PIC  X(200) VALUE SPACE.
+             05  TBL01-SITE1   PIC  X(100) VALUE SPACE.
+             05  TBL01-SITE2   PIC  X(100) VALUE SPACE.
       *    *** PIN3 X,instagram ëº
              05  TBL01-SITE    OCCURS 50
                                PIC  X(500) VALUE SPACE.
+       01  TBL-AREA2.
+           03  TBL02-AREA      OCCURS 3000
+                               ASCENDING KEY IS TBL02-SEIYU
+                               INDEXED BY TBL02-IDX.
+             05  TBL02-SEIYU   PIC  X(100) VALUE HIGH-VALUE.
 
        01  SW-AREA.
            03  SW-SEARCH       PIC  X(001) VALUE "N".
@@ -196,6 +238,9 @@
 
       *    *** OPEN
            PERFORM S010-10     THRU    S010-EX
+
+      *    *** CALL SYSTEM
+           PERFORM S012-10     THRU    S012-EX
 
       *    *** READ PIN1
            PERFORM S020-10     THRU    S020-EX
@@ -240,6 +285,26 @@
       *    *** TBL01 SORT
            SORT    TBL01-AREA
                    ASCENDING KEY TBL01-SEIYU
+
+
+
+      *    *** READ PIN4
+           PERFORM S080-10     THRU    S080-EX
+
+           PERFORM UNTIL WK-PIN4-EOF = HIGH-VALUE
+                   IF    PIN4-REC (1:4) IS NUMERIC
+      *    *** PIN4 TBL SET
+                         PERFORM S082-10     THRU    S082-EX
+                   END-IF
+      *    *** READ PIN4
+                   PERFORM S080-10     THRU    S080-EX
+           END-PERFORM
+
+      *    *** TBL02 SORT
+           SORT    TBL02-AREA
+                   ASCENDING KEY TBL02-SEIYU
+
+
 
       *    *** #NN link èoóÕ
            PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
@@ -302,37 +367,20 @@
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F OPEN ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    INPUT       PIN3-F
-           IF      WK-PIN3-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN3-F OPEN ERROR STATUS="
-                           WK-PIN3-STATUS
-                   STOP    RUN
-           END-IF
-
-           OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                               PIN2-F
+                               PIN3-F
+                               PIN4-F
+                   OUTPUT      POT1-F
 
            MOVE    "O"         TO      WFD-ID
            MOVE    WK-PGM-NAME TO      WFD-PGM
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
+
+           MOVE    "OPEN  "    TO      WDE05-ID
+           CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                       PIN1-REC
+                                       PIN2-REC
 
            MOVE    "O"         TO      WDE06-ID
            CALL    "DECODE06"  USING   WDE06-AREA
@@ -341,26 +389,69 @@
            CALL    "COBRND"    USING   WCR-COBRND-AREA
 
            SET     TBL01-IDX   TO      1
+           SET     TBL01-IDX   TO      2
 
       *****     CALL "COBDUMP" USING  WK-DATA
            .
        S010-EX.
            EXIT.
 
+      *    *** CALL SYSTEM
+       S012-10.
+
+      *    CALL   "SYSTEM"     USING   WK-IMAGE
+
+      *    IF      RETURN-CODE NOT =   ZERO
+      *            DISPLAY WK-PGM-NAME 
+      *          " CALL SYSTEM DHCP RETURN-CODE ERROR=" RETURN-CODE
+      *    END-IF
+
+           CALL   "CBL_CHANGE_DIR" USING WK-IMAGE
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME 
+                 " CALL CBL_CHANGE_DIR 1 RETURN-CODE ERROR=" RETURN-CODE
+           END-IF
+
+           CALL    "SYSTEM"    USING   WK-DIR
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME 
+                       " CALL SYSTEM DIR RETURN-CODE ERROR=" RETURN-CODE
+           END-IF
+
+           CALL    "SYSTEM"    USING   WK-COPY
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME 
+                      " CALL SYSTEM COPY RETURN-CODE ERROR=" RETURN-CODE
+           END-IF
+
+           CALL   "CBL_CHANGE_DIR" USING WK-COBOL
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME 
+                 " CALL CBL_CHANGE_DIR 2 RETURN-CODE ERROR=" RETURN-CODE
+           END-IF
+           .
+       S012-EX.
+           EXIT.
+
       *    *** READ PIN1
        S020-10.
-
-           READ    PIN1-F
 
            MOVE    SPACE       TO      WK-SEIYU1
                                        WK-IMGLINK
            MOVE    ZERO        TO      WK-SEIYU1-LEN
                                        WK-IMGLINK-LEN
 
-           IF      WK-PIN1-STATUS =    ZERO
-               IF      SW-FIRST    =       "N"
-                   ADD     1           TO      WK-PIN1-CNT
-               END-IF
+           READ    PIN1-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
+               NOT  AT  END
+                   IF      SW-FIRST    =       "N"
+                           ADD     1           TO      WK-PIN1-CNT
+                   END-IF
 
       *    *** 256ÉoÉCÉgÇ‹Ç≈ÇµÇ©ì¸ÇÁÇ»Ç¢
                    UNSTRING PIN1-REC
@@ -372,15 +463,7 @@
                    IF      WK-IMGLINK (1:1) =  SPACE
                            MOVE    ZERO        TO      WK-IMGLINK-LEN
                    END-IF
-           ELSE
-               IF  WK-PIN1-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S020-EX.
            EXIT.
@@ -388,12 +471,14 @@
       *    *** READ PIN2
        S030-10.
 
-           READ    PIN2-F
-
            MOVE    SPACE       TO      WK-SEIYU2
                                        WK-SITE1
                                        WK-SITE2
-           IF      WK-PIN2-STATUS =    ZERO
+
+           READ    PIN2-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN2-CNT
 
       *    *** 256ÉoÉCÉgÇ‹Ç≈ÇµÇ©ì¸ÇÁÇ»Ç¢
@@ -403,15 +488,7 @@
                            WK-SEIYU2
                            WK-SITE1
                            WK-SITE2
-           ELSE
-               IF  WK-PIN2-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN2-F READ ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S030-EX.
            EXIT.
@@ -419,7 +496,7 @@
       *    *** PIN2 TBL SET
        S032-10.
 
-           IF      TBL01-IDX   >       1000
+           IF      TBL01-IDX   >       3000
                    DISPLAY WK-PGM-NAME
                            " TBL01-TBL OVER 1 TBL01-IDX=" TBL01-IDX
                    STOP    RUN
@@ -438,11 +515,13 @@
       *    *** READ PIN3
        S040-10.
 
-           READ    PIN3-F
-
            MOVE    SPACE       TO      WK-SEIYU2
                                        WK-SITE-TBL
-           IF      WK-PIN3-STATUS =    ZERO
+
+           READ    PIN3-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN3-EOF
+               NOT  AT  END
                    ADD     1           TO      WK-PIN3-CNT
 
       *    *** 256ÉoÉCÉgÇ‹Ç≈ÇµÇ©ì¸ÇÁÇ»Ç¢
@@ -510,15 +589,7 @@
       *     MOVE    "WK-SEIYU2"  TO      WFD-ITEM
       *     CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
       *                                 WK-SEIYU2
-           ELSE
-               IF  WK-PIN3-STATUS =    10
-                   MOVE    HIGH-VALUE  TO      WK-PIN3-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN3-F READ ERROR STATUS="
-                           WK-PIN3-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+           END-READ
            .
        S040-EX.
            EXIT.
@@ -595,7 +666,7 @@
                    SET     TBL01-IDX   TO      TBL01-IDX-MAX
                    SET     TBL01-IDX   UP  BY  1
 
-                   IF      TBL01-IDX   >       1000
+                   IF      TBL01-IDX   >       3000
                            DISPLAY WK-PGM-NAME
                                    " TBL01-TBL OVER 2 TBL01-IDX="
                                    TBL01-IDX
@@ -792,18 +863,8 @@
        S060-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
 
            MOVE    LOW-VALUE   TO      WK-PIN1-EOF
            MOVE    "N"         TO      SW-FIRST
@@ -820,6 +881,51 @@
            ADD     1           TO      WK-POT1-CNT
            .
        S070-EX.
+           EXIT.
+
+      *    *** READ PIN4
+       S080-10.
+
+           MOVE    SPACE       TO      WK-SEIYU3
+
+           READ    PIN4-F
+               AT  END
+                   MOVE    HIGH-VALUE  TO      WK-PIN4-EOF
+               NOT  AT  END
+                   ADD     1           TO      WK-PIN4-CNT
+
+                   UNSTRING PIN4-REC (37:)
+                           DELIMITED BY ".jpg" OR ".JPG"
+                           INTO
+                           WK-SEIYU3 COUNT WK-SEIYU3-LEN
+           END-READ
+           .
+       S080-EX.
+           EXIT.
+
+      *    *** PIN4 TBL SET
+       S082-10.
+
+           IF      TBL02-IDX   >       3000
+                   DISPLAY WK-PGM-NAME
+                           " TBL02-TBL OVER TBL02-IDX=" TBL02-IDX
+                   STOP    RUN
+           END-IF
+
+      *    *** HENKAN=SU SJIS => UTF8
+                   MOVE    "CHANGE"    TO      WDE05-ID
+                   MOVE    "AA"        TO      WDE05-MODE
+                   MOVE    "SU"        TO      WDE05-HENKAN
+                   MOVE    WK-SEIYU3-LEN TO    WDE05-BUF1-LEN
+                   MOVE    100         TO      WDE05-BUF2-LEN
+                   CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                               WK-SEIYU3
+                                               WK-SEIYU3-UTF8
+
+           MOVE    WK-SEIYU3-UTF8 TO   TBL02-SEIYU (TBL02-IDX)
+           SET     TBL02-IDX   UP  BY  1
+           .
+       S082-EX.
            EXIT.
 
       *    *** <td> ÉfÅ[É^èoóÕ
@@ -916,7 +1022,24 @@
            END-IF
            MOVE    POT1-REC    TO      WK-KENSAKU
 
-           IF      WK-IMGLINK-LEN =    ZERO
+           SEARCH  ALL TBL02-AREA
+               AT END
+                   MOVE    "N"         TO      SW-SEARCH
+
+               WHEN TBL02-SEIYU (TBL02-IDX) (1:100)
+                   = WK-SEIYU1 (1:100)
+                   MOVE    "Y"         TO      SW-SEARCH
+           END-SEARCH
+
+           IF      SW-SEARCH   =       "N"
+                   CONTINUE
+
+                   MOVE    '"><br><br>'
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+           ELSE
+             IF        WK-IMGLINK-LEN =    ZERO
 
                    MOVE    '"><img src="image\'
                                        TO      POT1-REC
@@ -944,7 +1067,7 @@
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
-           ELSE
+             ELSE
 
                    MOVE    '"><img src="' TO   POT1-REC
                    WRITE   POT1-REC
@@ -968,6 +1091,7 @@
                                        TO      POT1-REC
                    WRITE   POT1-REC
                    ADD     1           TO      WK-POT1-CNT
+             END-IF
            END-IF
 
       *     MOVE    PIN1-REC    TO      POT1-REC
@@ -1637,13 +1761,59 @@
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
-           MOVE    '"><br><br>' TO     POT1-REC
-           WRITE   POT1-REC
-           ADD     1           TO      WK-POT1-CNT
+      *    *** èóê´ê∫óDàÍóó
+           IF      PIN1-REC (5:18) =   
+                   X"E5A5B3E680A7E5A3B0E584AAE4B880E8A6A7"
+               IF  PIN1-REC (23:3)
+      *    *** Ç†
+                                                 = X"E38182"
+      *    *** Ç©
+                                                OR X"E3818B"
+      *    *** Ç≥
+                                                OR X"E38195"
+      *    *** ÇΩ
+                                                OR X"E3819F"
+      *    *** Ç»
+                                                OR X"E381AA"
+      *    *** ÇÕ
+                                                OR X"E381AF"
+      *    *** Ç‹
+                                                OR X"E381BE"
+      *    *** Ç‚
+                                                OR X"E38284"
+      *    *** ÇÁ
+                                                OR X"E38289"
+      *    *** ÇÌ
+                                                OR X"E3828F"
+                   MOVE    '"><br><br>' TO     POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
 
       *    *** #NN ÇwÇwÇwÇwÇw => ÇwÇwÇwÇwÇw
-           MOVE    PIN1-REC (5:)
-                               TO      POT1-REC
+                   MOVE    PIN1-REC (5:)
+                                       TO      POT1-REC
+               ELSE
+                   MOVE    '">&nbsp;&nbsp;&nbsp;' 
+                                       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+      *    *** #NN ÇwÇwÇwÇwÇw => ÇwÇwÇwÇwÇw
+                   MOVE    PIN1-REC (23:)
+                                       TO      POT1-REC
+               END-IF
+           ELSE
+                   MOVE    '"><br><br>' TO     POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+
+      *    *** #NN ÇwÇwÇwÇwÇw => ÇwÇwÇwÇwÇw
+                    MOVE    PIN1-REC (5:)
+                                       TO      POT1-REC
+           END-IF
+
            WRITE   POT1-REC
            ADD     1           TO      WK-POT1-CNT
 
@@ -1689,36 +1859,19 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN2-F
-           IF      WK-PIN2-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN2-F CLOSE ERROR STATUS="
-                           WK-PIN2-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   PIN3-F
-           IF      WK-PIN3-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN3-F CLOSE ERROR STATUS="
-                           WK-PIN3-STATUS
-                   STOP    RUN
-           END-IF
-
-           CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   PIN2-F
+                   PIN3-F
+                   PIN4-F
+                   POT1-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        POT1-REC
+
+           MOVE    "CLOSE "    TO      WDE05-ID
+           CALL    "DECODE05"  USING   WDE05-DECODE05-AREA
+                                       PIN1-REC
+                                       PIN2-REC
 
            MOVE    "C"         TO      WDE06-ID
            CALL    "DECODE06"  USING   WDE06-AREA
@@ -1736,9 +1889,13 @@
            MOVE    WK-PIN3-CNT TO      WK-PIN3-CNT-E
            DISPLAY WK-PGM-NAME " PIN3 åèêî = " WK-PIN3-CNT-E
                    " (" WK-PIN3-F-NAME ")"
+           MOVE    WK-PIN4-CNT TO      WK-PIN4-CNT-E
+           DISPLAY WK-PGM-NAME " PIN4 åèêî = " WK-PIN4-CNT-E
+                   " (" WK-PIN4-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
            DISPLAY WK-PGM-NAME " POT1 åèêî = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
+                   " (" WK-PIN3-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA

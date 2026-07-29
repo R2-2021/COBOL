@@ -29,7 +29,7 @@
       *    ***    |
       *    *** TEST10 PIN2@‚Å1Œ–ÚAMissAV.Ô–¼‚¢‚Æ.html ‚ðŽw’è
       *    ***    |
-      *    *** TEST134
+      *    *** TEST134 MissAV.Ô–¼‚¢‚Æ.html
       *    ***    |
       *    *** TEST104 A015
       *    *** TEST103.PRM1 ‚ÉA015‚l‚‰‚“‚“‚`‚u@Ô–¼‚¢‚Æ ‚ð’Ç‰Á
@@ -70,7 +70,7 @@
        FD  PIN1-F
            RECORD VARYING DEPENDING ON WK-PIN1-LEN.
        01  PIN1-REC.
-           03                  PIC  X(1000).
+           03                  PIC  X(2000).
 
        FD  POT1-F.
        01  POT1-REC.
@@ -289,6 +289,11 @@
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
                NOT AT END
                    ADD     1           TO      WK-PIN1-CNT
+                   IF      WK-PIN1-LEN >=       2000
+                         DISPLAY WK-PGM-NAME " PIN1-F LEN OVER 2000 =< "
+                                  WK-PIN1-LEN
+                           STOP    RUN
+                   END-IF
            END-READ
            .
        S020-EX.

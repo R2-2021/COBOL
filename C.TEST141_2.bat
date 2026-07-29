@@ -1,6 +1,18 @@
 REM YouTube 検索 自動実行 SJIS で保存する
 REM コマンド プロンプトで実行の時>C.TEST141  ％ => ％％ にする必要がある
 
+TEST141 "https://www.youtube.com/results?search_query=%E5%A4%A7%E7%86%8A%E5%92%8C%E5%A5%8F" 大熊和奏
+
+TEST141 "https://www.youtube.com/results?search_query=%E8%8B%A5%E8%8F%9C%E5%9B%9B%E5%AD%A3" 若菜四季
+
+TEST141 "https://www.youtube.com/results?search_query=%E5%A4%A7%E8%A5%BF%E4%BA%9C%E7%8E%96%E7%92%83" 大西亜玖璃
+
+TEST141 "https://www.youtube.com/results?search_query=%E4%B8%8A%E5%8E%9F%E6%AD%A9%E5%A4%A2" 上原歩夢
+
+TEST141 "https://www.youtube.com/results?search_query=%E9%99%8D%E5%B9%A1%E6%84%9B" 降幡愛
+
+TEST141 "https://www.youtube.com/results?search_query=%E9%BB%92%E6%BE%A4%E3%83%AB%E3%83%93%E3%82%A3" 黒澤ルビィ
+
 TEST141 "https://www.youtube.com/results?search_query=%E3%83%8F%E3%83%AF%E3%82%A4" ハワイ
 
 TEST141 "https://www.youtube.com/@ishihara_kaori/featured" 石原夏織_YouTube_Official_Channel

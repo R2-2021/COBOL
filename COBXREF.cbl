@@ -8,7 +8,6 @@
        FILE-CONTROL.
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -27,8 +26,6 @@
            03  WK-PGM-NAME     PIC  X(008) VALUE "COBXREF".
 
            03  WK-PIN1-F-NAME  PIC  X(032) VALUE "COBXREF.PIN1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -152,11 +149,6 @@
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
 
       *    *** FILEDUMP OPEN
            MOVE    "O"         TO      WFD-ID
@@ -180,18 +172,11 @@
        S020-10.
 
            READ    PIN1-F
-
-           IF      WK-PIN1-STATUS =    ZERO
-                   ADD     1           TO      WK-PIN1-CNT
-           ELSE
-               IF  WK-PIN1-STATUS =    10
+               AT  END
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
-               ELSE
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+               NOT  AT  END
+                   ADD     1           TO      WK-PIN1-CNT
+           END-READ
            .
        S020-EX.
            EXIT.
@@ -282,11 +267,6 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
 
       *    *** FILEDUMP CLOSE
            MOVE    "C"         TO      WFD-ID

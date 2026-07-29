@@ -628,15 +628,15 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1  åèêî = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 åèêî = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1  åèêî = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 åèêî = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-JYOYU-CNT TO     WK-JYOYU-CNT-E
-           DISPLAY WK-PGM-NAME " èóóD  åèêî = " WK-JYOYU-CNT-E
+           DISPLAY WK-PGM-NAME " èóóD åèêî = " WK-JYOYU-CNT-E
            MOVE    WK-DABURI-CNT TO    WK-DABURI-CNT-E
-           DISPLAY WK-PGM-NAME " É_ÉuÉäåèêî = " WK-DABURI-CNT-E
+           DISPLAY WK-PGM-NAME " ¿ﬁÃﬁÿåèêî = " WK-DABURI-CNT-E
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA

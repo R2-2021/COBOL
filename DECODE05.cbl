@@ -320,12 +320,13 @@
       *    *** 項目にLDE05-BUF1-LEN、LDE05-BUF2-LEN に値をセットしないと
       *    *** 前の項目の値で処理するため、誤動作を起こすので毎回
       *    *** LENGTH(LDE05-BUF1)、LENGTH(LDE05-BUF2) よりセットに変更
-      *             IF      LDE05-BUF1-LEN =    ZERO
+      *    *** 毎回MAINでCALLする時、BUF1-LEN.BUF2-LEN をセットする
+                   IF      LDE05-BUF1-LEN =    ZERO
                        MOVE    LENGTH(LDE05-BUF1) TO     LDE05-BUF1-LEN
-      *             END-IF
-      *             IF      LDE05-BUF2-LEN =    ZERO
+                   END-IF
+                   IF      LDE05-BUF2-LEN =    ZERO
                        MOVE    LENGTH(LDE05-BUF2) TO     LDE05-BUF2-LEN
-      *             END-IF
+                   END-IF
                    MOVE    SPACE
                            TO LDE05-BUF2 (1:LENGTH(LDE05-BUF2))
 
@@ -391,6 +392,82 @@
                         OR PIN1-REC (22:1) =   X"09"
                         OR WK-PIN1-CNT <       15
                         OR WK-PIN1-LEN =       ZERO
+                        OR PIN1-REC (12:4) =   "0000"
+      *    *** －
+                      OR ( PIN1-REC (12:4) =   "8145"
+                       AND PIN1-REC (22:6) =   "E28093" )
+      *    *** ・
+                      OR ( PIN1-REC (12:4) =   "8145"
+                       AND PIN1-REC (22:6) =   "EFBDA5" )
+      *    *** ？以外
+                      OR ( PIN1-REC (12:4) =   "8148"
+                       AND PIN1-REC (17:4) =   "0000" )
+      *    *** －
+                      OR ( PIN1-REC (12:4) =   "815D"
+                       AND PIN1-REC (22:6) =   "EFBC8D" )
+      *    *** ～
+                      OR ( PIN1-REC (12:4) =   "8160"
+                       AND PIN1-REC (22:6) =   "EFBD9E" )
+      *    ***  ’
+                      OR ( PIN1-REC (12:4) =   "8166"
+                       AND PIN1-REC (22:6) =   "CABC20" )
+      *    *** 一
+                      OR ( PIN1-REC (12:4) =   "88EA"
+                       AND PIN1-REC (22:6) =   "E2BC80" )
+      *    *** 玉
+                      OR ( PIN1-REC (12:4) =   "8BCA"
+                       AND PIN1-REC (22:6) =   "E2BD9F" )
+      *    *** 戸
+                      OR ( PIN1-REC (12:4) =   "8CCB"
+                       AND PIN1-REC (22:6) =   "E2BCBE" )
+      *    *** 高
+                      OR ( PIN1-REC (12:4) =   "8D82"
+                       AND PIN1-REC (22:6) =   "E9AB99" )
+      *    *** 崎
+                      OR ( PIN1-REC (12:4) =   "8DE8"
+                       AND PIN1-REC (22:6) =   "EFA891" )
+      *    *** 士
+                      OR ( PIN1-REC (12:4) =   "8E6D"
+                       AND PIN1-REC (22:6) =   "E2BCA0" )
+      *    *** 子
+                      OR ( PIN1-REC (12:4) =   "8E71"
+                       AND PIN1-REC (22:6) =   "E2BCA6" )
+      *    *** 人
+                      OR ( PIN1-REC (12:4) =   "906C"
+                       AND PIN1-REC (22:6) =   "E2BC88" )
+      *    *** 生
+                      OR ( PIN1-REC (12:4) =   "90B6"
+                       AND PIN1-REC (22:6) =   "E2BDA3" )
+      *    *** 赤
+                      OR ( PIN1-REC (12:4) =   "90D4"
+                       AND PIN1-REC (22:6) =   "E2BE9A" )
+      *    *** 足
+                      OR ( PIN1-REC (12:4) =   "91AB"
+                       AND PIN1-REC (22:6) =   "E2BE9C" )
+      *    *** 田
+                      OR ( PIN1-REC (12:4) =   "9363"
+                       AND PIN1-REC (22:6) =   "E2BDA5" )
+      *    *** 二
+                      OR ( PIN1-REC (12:4) =   "93F1"
+                       AND PIN1-REC (22:6) =   "E2BC86" )
+      *    *** さんずい+発（旧）
+                      OR ( PIN1-REC (12:4) =   "94AC"
+                       AND PIN1-REC (22:6) =   "E6BD91" )
+      *    *** 比
+                      OR ( PIN1-REC (12:4) =   "94E4"
+                       AND PIN1-REC (22:6) =   "E2BD90" )
+      *    *** 風
+                      OR ( PIN1-REC (12:4) =   "9597"
+                       AND PIN1-REC (22:6) =   "E2BEB5" )
+      *    *** 木
+                      OR ( PIN1-REC (12:4) =   "96D8"
+                       AND PIN1-REC (22:6) =   "E2BD8A" )
+      *    *** 蓮
+                      OR ( PIN1-REC (12:4) =   "9840"
+                       AND PIN1-REC (22:6) =   "EFA699" )
+      *    *** 王へん+路
+                      OR ( PIN1-REC (12:4) =   "9848"
+                       AND PIN1-REC (22:6) =   "E79290" )
                            CONTINUE
                    ELSE
 
@@ -637,7 +714,8 @@
            MOVE    1           TO      L2
       *    *** SJIS 2バイト系のみ対応、2バイトおきにチェックする
            PERFORM VARYING L1 FROM 1 BY 1
-                   UNTIL L1 > LDE05-BUF1-LEN - 1
+      *             UNTIL L1 > LDE05-BUF1-LEN - 1
+                   UNTIL L1 > LDE05-BUF1-LEN
                    EVALUATE TRUE
                        WHEN ( LDE05-BUF1 (L1:2) >= X"8140" AND 
                               LDE05-BUF1 (L1:2) <= X"9FFC" ) OR
@@ -805,6 +883,15 @@
                            " S210-10 " " BUF1-CNT=" LDE05-BUF1-CNT
                            " L1=" L1 " L2=" L2
                    CALL    "COBDUMP"   USING   WK-UTF8
+
+                   MOVE    "X"         TO      WFD-ID
+                   CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+                                               LDE05-BUF1
+
+                   MOVE    "X"         TO      WFD-ID
+                   CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+                                               LDE05-BUF2
+
                    ADD     2           TO      L2
 
       *             MOVE    "P"         TO      WFD-ID

@@ -9,11 +9,12 @@
        FILE-CONTROL.
 
        SELECT PIN1-F           ASSIGN   WK-PIN1-F-NAME
-                               STATUS   WK-PIN1-STATUS
            ORGANIZATION LINE   SEQUENTIAL.
 
        SELECT POT1-F           ASSIGN   WK-POT1-F-NAME
-                               STATUS   WK-POT1-STATUS
+           ORGANIZATION LINE   SEQUENTIAL.
+
+       SELECT POT2-F           ASSIGN   WK-POT2-F-NAME
            ORGANIZATION LINE   SEQUENTIAL.
 
        DATA                    DIVISION.
@@ -31,6 +32,11 @@
        01  POT1-REC.
            03  FILLER          PIC  X(136).
 
+       FD  POT2-F
+           LABEL RECORDS ARE STANDARD.
+       01  POT2-REC.
+           03  FILLER          PIC  X(006).
+
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
 
@@ -38,9 +44,7 @@
 
            03  WK-PIN1-F-NAME  PIC  X(011) VALUE "TEST17.PIN1".
            03  WK-POT1-F-NAME  PIC  X(011) VALUE "TEST17.POT1".
-
-           03  WK-PIN1-STATUS  PIC  9(002) VALUE ZERO.
-           03  WK-POT1-STATUS  PIC  9(002) VALUE ZERO.
+           03  WK-POT2-F-NAME  PIC  X(011) VALUE "TEST17.POT2".
 
            03  WK-PIN1-EOF     PIC  X(001) VALUE LOW-VALUE.
 
@@ -48,11 +52,19 @@
 
            03  WK-PIN1-CNT     BINARY-LONG SYNC VALUE ZERO.
            03  WK-POT1-CNT     BINARY-LONG SYNC VALUE ZERO.
+           03  WK-POT2-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
+           03  WK-POT2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
 
            03  WK-PAGE         BINARY-LONG SYNC VALUE ZERO.
+           03  WK-ITEM.
+             05  WK-ITEM-MOJI  PIC  X(002) VALUE SPACE.
+             05  WK-ITEM1      PIC  X(001) VALUE SPACE.
+             05  WK-ITEM2      PIC  X(001) VALUE SPACE.
+             05  WK-ITEM3      PIC  X(001) VALUE SPACE.
+             05  WK-ITEM4      PIC  X(001) VALUE SPACE.
 
            03  WK-TIT1.
       *      05  FILLER        PIC  X(010) VALUE SPACE.
@@ -158,18 +170,8 @@
            MOVE    WDT-DATE-SS TO      WK-TIT1-SS
 
            OPEN    INPUT       PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F OPEN ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
            OPEN    OUTPUT      POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F OPEN ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                               POT2-F
 
            MOVE    "O"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -182,19 +184,11 @@
        S020-10.
 
            READ    PIN1-F
-
-           IF      WK-PIN1-STATUS =    ZERO
-                   ADD     1           TO      WK-PIN1-CNT
-           ELSE
-               IF  WK-PIN1-STATUS =    10
+               AT  END
                    MOVE    HIGH-VALUE  TO      WK-PIN1-EOF
-               ELSE
-
-                   DISPLAY WK-PGM-NAME " PIN1-F READ ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-               END-IF
-           END-IF
+               NOT  AT  END
+                   ADD     1           TO      WK-PIN1-CNT
+           END-READ
            .
        S020-EX.
            EXIT.
@@ -208,6 +202,7 @@
       *             CONTINUE
       *         ELSE
                    MOVE    PIN1-MOJI(I) TO  PR-LINE (J) (P1:2)
+                                            WK-ITEM-MOJI
                    MOVE    PIN1-MOJI(I) (1:1) TO  PIC-X
 
                    DIVIDE PIC-Halfword BY 16
@@ -216,7 +211,9 @@
                    ADD     1        TO      L R
 
                    MOVE    Hex-Digit (L)   TO  PR-LINE (J) (P2:1)
+                                               WK-ITEM1
                    MOVE    Hex-Digit (R)   TO  PR-LINE (J) (P3:1)
+                                               WK-ITEM2
 
                    MOVE    PIN1-MOJI(I) (2:1) TO  PIC-X
 
@@ -226,7 +223,13 @@
                    ADD     1        TO      L R
 
                    MOVE    Hex-Digit (L)   TO  PR-LINE (J) (P4:1)
+                                               WK-ITEM3
                    MOVE    Hex-Digit (R)   TO  PR-LINE (J) (P5:1)
+                                               WK-ITEM4
+
+                   WRITE   POT2-REC    FROM    WK-ITEM
+                   ADD     1           TO      WK-POT2-CNT
+
                    ADD     1           TO      J
                    IF      J           >       40
                            MOVE    1           TO       J
@@ -298,18 +301,8 @@
        S900-10.
 
            CLOSE   PIN1-F
-           IF      WK-PIN1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " PIN1-F CLOSE ERROR STATUS="
-                           WK-PIN1-STATUS
-                   STOP    RUN
-           END-IF
-
            CLOSE   POT1-F
-           IF      WK-POT1-STATUS NOT =  ZERO
-                   DISPLAY WK-PGM-NAME " POT1-F CLOSE ERROR STATUS="
-                           WK-POT1-STATUS
-                   STOP    RUN
-           END-IF
+                   POT2-F
 
            MOVE    "C"         TO      WFD-ID
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
@@ -322,6 +315,9 @@
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
            DISPLAY WK-PGM-NAME " POT1 ¹Ý½³ = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
+           MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 ¹Ý½³ = " WK-POT2-CNT-E
+                   " (" WK-POT2-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID
            CALL    "DATETIME"  USING   WDT-DATETIME-AREA

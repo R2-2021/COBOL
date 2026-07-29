@@ -82,13 +82,13 @@
                "python TEST141.POT1.py".
 
            03  WK-TEST69-EXEC  PIC  X(100) VALUE 
-               "TEST69  youtube.XXXX.html".
+               "TEST69  youtube.X.html".
 
            03  WK-TEST142-EXEC PIC  X(007) VALUE 
                "TEST142".
 
            03  WK-TEST68-EXEC  PIC  X(100) VALUE 
-               "TEST68  XXXX".
+               "TEST68  X".
 
       *    *** èâä˙íl MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
@@ -332,10 +332,10 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1  åèêî = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 åèêî = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1  åèêî = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 åèêî = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

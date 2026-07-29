@@ -56,7 +56,7 @@
 
        FD  PIN2-F
            LABEL RECORDS ARE STANDARD
-           RECORD VARYING DEPENDING ON WK-PIN1-LEN.
+           RECORD VARYING DEPENDING ON WK-PIN2-LEN.
        01  PIN2-REC.
            03                  PIC  X(1000).
 
@@ -79,14 +79,18 @@
        WORKING-STORAGE         SECTION.
        01  WORK-AREA.
            03  WK-PGM-NAME     PIC  X(008) VALUE "TEST01  ".
-           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST01.PIN1".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST01.PIN1".
+           03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST01X.PIN1".
+      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE
+      *         "kanji/TEST46_UTF8.POT1".
+
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "COBSAM06.POT1".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST54.PIN2".
-      *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST01.PIN2.SORT".
+           03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST01.PIN2.SORT".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "KANJI1.txt".
       *     03  WK-PIN1-F-NAME  PIC  X(032) VALUE "TEST75.POT1".
       *     03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST71X.POT2".
-           03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST01.PIN2".
+      *     03  WK-PIN2-F-NAME  PIC  X(032) VALUE "TEST01.PIN2".
            03  WK-PIN3-F-NAME  PIC  X(032) VALUE "TEST139.POT1".
            03  WK-POT1-F-NAME  PIC  X(032) VALUE "TEST01.POT1".
            03  WK-POT2-F-NAME  PIC  X(032) VALUE "TEST01.POT2".
@@ -119,34 +123,61 @@
            03  WK-ITEM2-LEN    BINARY-LONG SYNC VALUE ZERO.
            03  WK-IMG          PIC  X(1000) VALUE SPACE.
            03  WK-IMG-LEN      BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I1           PIC  X(006) VALUE SPACE.
+           03  WK-I2           PIC  X(006) VALUE SPACE.
+           03  WK-I3           PIC  X(006) VALUE SPACE.
+           03  WK-I4           PIC  X(006) VALUE SPACE.
+           03  WK-I5           PIC  X(006) VALUE SPACE.
+           03  WK-I6           PIC  X(006) VALUE SPACE.
+           03  WK-I7           PIC  X(006) VALUE SPACE.
+           03  WK-I8           PIC  X(006) VALUE SPACE.
+           03  WK-I9           PIC  X(006) VALUE SPACE.
+           03  WK-I1-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I2-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I3-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I4-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I5-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I6-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I7-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I8-LEN       BINARY-LONG SYNC VALUE ZERO.
+           03  WK-I9-LEN       BINARY-LONG SYNC VALUE ZERO.
            03  WK-HIT          BINARY-LONG SYNC VALUE ZERO.
            03  WK-KANMA        BINARY-LONG SYNC VALUE ZERO.
            03  WK-CNT          PIC ----9 VALUE ZERO.
+           03  WK-PACK         PIC S9(009) PACKED-DECIMAL VALUE 1.
+           03  WK-BINARY-LONG  BINARY-LONG SYNC VALUE 2.
            03  WK-DISPLAY1     PIC  X(008) VALUE X"E28093E28690".
            03  WK-DISPLAY2     PIC  X(100) VALUE SPACE.
       *    *** ‚`‚a‚b
            03  WK-DISPLAY3.
       *       05     PIC X(004) VALUE "ABCD".
-             05     PIC X(100) VALUE
-               ALL X"212223EFBCA1EFBCA2EFBCA3".
+             05     PIC X(201) VALUE ALL "ŽOã—IˆŸ".
+      *         ALL X"EFBCA1EFBCA2EFBCA3".
 
            03  WK-DISPLAY3-41.
-             05     PIC X(041) VALUE
-               ALL X"212223EFBCA1EFBCA2EFBCA3".
+             05     PIC X(041) VALUE ALL "ŽOã—IˆŸ".
+      *         ALL X"212223EFBCA1EFBCA2EFBCA3".
 
            03  WK-DISPLAY3-43.
-             05     PIC X(043) VALUE
-               ALL X"212223EFBCA1EFBCA2EFBCA3".
+             05     PIC X(043) VALUE ALL "ŽOã—IˆŸ".
+      *         ALL X"212223EFBCA1EFBCA2EFBCA3".
 
-           03  WK-DISPLAY4
+           03  WK-DISPLAY4.
       *       05                PIC  X(005) VALUE "ABCDE".
              05                PIC  X(005) VALUE "ABCDE".
              05                PIC  X(200) VALUE ALL "‚‚‚a‚b".
+
+           03  WK-SEIYU.
+               05  PIC  X(023) VALUE 
+                   "C:/Users/koko/OneDrive/".
+               05  PIC  X(035) VALUE 
+                   "ƒhƒLƒ…ƒƒ“ƒg/html/YouTubeº—D/image".
 
       *    *** ‰Šú’l MODE=AA   (ANK=>ANK)
            03  WK-MODE         PIC  X(002) VALUE "AA".
       *    *** ‰Šú’l HENKAN=US (UTF8=>SJIS)
            03  WK-HENKAN       PIC  X(006) VALUE "US".
+           03  WK-PIN2-REC     PIC  X(1000) VALUE SPACE.
 
            COPY    CPFILEDUMP  REPLACING ==:##:== BY ==WFD==.
 
@@ -166,6 +197,8 @@
        01  INDEX-AREA,
            03  I               BINARY-LONG SYNC VALUE ZERO.
            03  I-MAX           BINARY-LONG SYNC VALUE ZERO.
+           03  I1              BINARY-LONG SYNC VALUE ZERO.
+           03  I1-MAX          BINARY-LONG SYNC VALUE ZERO.
            03  I2              BINARY-LONG SYNC VALUE ZERO.
            03  J               BINARY-LONG SYNC VALUE ZERO.
            03  J-MAX           BINARY-LONG SYNC VALUE ZERO.
@@ -192,23 +225,55 @@
              05  TBL03-ITEM1   PIC  X(011) VALUE SPACE.
              05  TBL03-SET     BINARY-LONG SYNC VALUE ZERO.
 
+           03  TBL04-AREA      OCCURS 10000.
+             05  TBL04-SJIS    PIC  X(004) VALUE SPACE.
+             05  TBL04-UTF8    PIC  X(006) VALUE SPACE.
+             05  TBL04-UTF8-LEN BINARY-LONG SYNC VALUE ZERO.
+             05  TBL04-IMG     PIC  X(003) VALUE SPACE.
+             05  TBL04-SET     BINARY-LONG SYNC VALUE ZERO.
+
+           03  TBL05-AREA      OCCURS 65536
+             05  TBL05-UTF8    PIC  X(006) VALUE SPACE.
+             05  TBL05-IMG     PIC  X(003) VALUE SPACE.
+
        PROCEDURE               DIVISION.
        M100-10.
 
       *    *** OPEN
            PERFORM S010-10     THRU    S010-EX
 
-      *    *** READ PIN2
-           PERFORM S030-10     THRU    S030-EX
+      *    *** READ PIN1
+      *     PERFORM S020-10     THRU    S020-EX
 
-           PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
+      *     PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+
+      *    *** TBL05 SET
+      *             PERFORM S022-10     THRU    S022-EX
+
+      *    *** WRITE POT1
+      *             PERFORM S220-10     THRU    S220-EX
+
+      *    *** WRITE POT1
+      *             PERFORM S230-10     THRU    S230-EX
+
+      *    *** READ PIN1
+      *             PERFORM S020-10     THRU    S020-EX
+      *     END-PERFORM
+
+      *    *** READ PIN2
+      *     PERFORM S030-10     THRU    S030-EX
+
+      *     PERFORM UNTIL WK-PIN2-EOF = HIGH-VALUE
 
       *    *** TBL01 SET
-                   PERFORM S032-10     THRU    S032-EX
+      *             PERFORM S032-10     THRU    S032-EX
+
+      *    *** TBL04 SET
+      *             PERFORM S033-10     THRU    S033-EX
 
       *    *** READ PIN2
-                   PERFORM S030-10     THRU    S030-EX
-           END-PERFORM
+      *             PERFORM S030-10     THRU    S030-EX
+      *     END-PERFORM
 
       *    *** READ PIN3
       *     PERFORM S040-10     THRU    S040-EX
@@ -229,9 +294,9 @@
       *     END-PERFORM
 
       *    *** READ PIN1
-           PERFORM S020-10     THRU    S020-EX
+      *     PERFORM S020-10     THRU    S020-EX
 
-           PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
+      *     PERFORM UNTIL WK-PIN1-EOF = HIGH-VALUE
 
       *    *** WRITE POT1
       *             PERFORM S110-10     THRU    S110-EX
@@ -249,11 +314,11 @@
       *             PERFORM S160-10     THRU    S160-EX
 
       *    *** WRITE POT1
-                   PERFORM S200-10     THRU    S200-EX
+      *             PERFORM S200-10     THRU    S200-EX
 
       *    *** READ PIN1
-                   PERFORM S020-10     THRU    S020-EX
-           END-PERFORM
+      *             PERFORM S020-10     THRU    S020-EX
+      *     END-PERFORM
 
       *    *** WRITE IMG ’Ç‰Á•ª
       *     PERFORM S150-10     THRU    S150-EX
@@ -271,7 +336,10 @@
       *     PERFORM S190-10     THRU    S190-EX
 
       *    *** DISPLAY CHECK
-           PERFORM S210-10     THRU    S210-EX
+      *     PERFORM S210-10     THRU    S210-EX
+
+      *    *** CALL "SYSTEM"
+           PERFORM S240-10     THRU    S240-EX
 
       *    *** CLOSE
            PERFORM S900-10     THRU    S900-EX
@@ -328,6 +396,22 @@
        S020-EX.
            EXIT.
 
+      *    *** TBL01 SET
+       S022-10.
+
+           ADD     1           TO      I1
+           IF      I1          >       65536
+                   DISPLAY WK-PGM-NAME " TBL05 OVER I1=" I1
+                   STOP    RUN
+           END-IF
+
+           MOVE    PIN1-REC (1:6) TO   TBL05-UTF8 (I1)
+           MOVE    PIN1-REC (7:3) TO   TBL05-IMG  (I1)
+           MOVE    I1          TO      I1-MAX
+           .
+       S022-EX.
+           EXIT.
+
       *    *** READ PIN2
        S030-10.
 
@@ -335,6 +419,58 @@
                AT END
                    MOVE    HIGH-VALUE  TO      WK-PIN2-EOF
                NOT AT END
+                   MOVE    PIN2-REC    TO   WK-PIN2-REC
+                   MOVE    ","         TO   
+                           WK-PIN2-REC (WK-PIN2-LEN + 1:1)
+
+                   INSPECT WK-PIN2-REC REPLACING ALL 
+                           X'09' BY ","
+                   MOVE    SPACE       TO      WK-I1
+                                               WK-I2
+                                               WK-I3
+                                               WK-I4
+                                               WK-I5
+                                               WK-I6
+                                               WK-I7
+                                               WK-I8
+                                               WK-I9
+                   MOVE    ZERO        TO      WK-I1-LEN
+                                               WK-I2-LEN
+                                               WK-I3-LEN
+                                               WK-I4-LEN
+                                               WK-I5-LEN
+                                               WK-I6-LEN
+                                               WK-I7-LEN
+                                               WK-I8-LEN
+                                               WK-I9-LEN
+
+                    UNSTRING WK-PIN2-REC
+                        DELIMITED BY ","
+                        INTO
+                            WK-I1 COUNT WK-I1-LEN
+                            WK-I2 COUNT WK-I2-LEN
+                            WK-I3 COUNT WK-I3-LEN
+                            WK-I4 COUNT WK-I4-LEN
+                            WK-I5 COUNT WK-I5-LEN
+                            WK-I6 COUNT WK-I6-LEN
+                            WK-I7 COUNT WK-I7-LEN
+                            WK-I8 COUNT WK-I8-LEN
+                            WK-I9 COUNT WK-I9-LEN
+                    END-UNSTRING
+
+           IF WK-PIN2-CNT < 10
+                   MOVE    "X"         TO      WFD-ID
+                   MOVE    "UTF8"      TO      WFD-KANJI
+                   MOVE    WK-PIN2-CNT TO      WFD-SEQ
+                   CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+                                               WK-PIN2-REC (1:40)
+                   MOVE    "X"         TO      WFD-ID
+                   MOVE    "UTF8"      TO      WFD-KANJI
+                   MOVE    WK-PIN2-CNT TO      WFD-SEQ
+                   CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
+                                               WK-PIN2-REC (1:100)
+           END-IF
+
                    ADD     1           TO      WK-PIN2-CNT
            END-READ
            .
@@ -354,6 +490,143 @@
            MOVE    I           TO      I-MAX
            .
        S032-EX.
+           EXIT.
+
+      *    *** TBL04 SET
+       S033-10.
+
+           ADD     1           TO      I
+           IF      I           >       10000
+                   DISPLAY WK-PGM-NAME " TBL04 OVER I=" I
+                   STOP    RUN
+           END-IF
+
+           MOVE    WK-I4       TO      TBL04-SJIS (I)
+           MOVE    WK-I6       TO      TBL04-UTF8 (I)
+           MOVE    WK-I8       TO      TBL04-IMG  (I)
+           MOVE    I           TO      I-MAX
+
+      *    *** EFBFBD:?
+           IF      WK-I8 (1:3) =       X"EFBFBD"
+                OR WK-I6       NOT =   SPACE
+                   WRITE   POT1-REC    FROM    PIN2-REC
+                   ADD     1           TO      WK-POT1-CNT
+           ELSE
+      *    *** ’Ç‰Á
+                   PERFORM S034-10     THRU    S034-EX
+           END-IF
+           .
+       S033-EX.
+           EXIT.
+
+       S034-10.
+
+           MOVE    "N"         TO      SW-SET
+           PERFORM VARYING I1 FROM 1 BY 1
+                   UNTIL I1 > I1-MAX
+                   IF      WK-I8 (1:3)    =        TBL05-IMG (I1)
+                           MOVE    TBL05-UTF8 (I1) TO  WK-I6
+                           MOVE    6           TO      WK-I6-LEN
+                           MOVE    "Y"         TO      SW-SET
+                   END-IF
+           END-PERFORM
+
+           IF WK-PIN2-CNT = 1
+              DISPLAY SW-SET
+           END-IF
+
+           IF      SW-SET      =       "N"
+                   WRITE   POT1-REC    FROM    PIN2-REC
+                   ADD     1           TO      WK-POT1-CNT
+           ELSE
+      *     IF WK-PIN2-CNT < 10
+      *     DISPLAY "WK-PIN2-CNT=" WK-PIN2-CNT
+      *     DISPLAY "WK-I1=" WK-I1
+      *     DISPLAY "WK-I2=" WK-I2
+      *     DISPLAY "WK-I3=" WK-I3
+      *     DISPLAY "WK-I4=" WK-I4
+      *     DISPLAY "WK-I5=" WK-I5
+      *     DISPLAY "WK-I6=" WK-I6
+      *     DISPLAY "WK-I7=" WK-I7
+      *     DISPLAY "WK-I8=" WK-I8
+      *     DISPLAY "WK-I9=" WK-I9-LEN
+
+      *     DISPLAY "WK-I1-LEN=" WK-I1-LEN
+      *     DISPLAY "WK-I2-LEN=" WK-I2-LEN
+      *     DISPLAY "WK-I3-LEN=" WK-I3-LEN
+      *     DISPLAY "WK-I4-LEN=" WK-I4-LEN
+      *     DISPLAY "WK-I5-LEN=" WK-I5-LEN
+      *     DISPLAY "WK-I6-LEN=" WK-I6-LEN
+      *     DISPLAY "WK-I7-LEN=" WK-I7-LEN
+      *     DISPLAY "WK-I8-LEN=" WK-I8-LEN
+      *     DISPLAY "WK-I9-LEN=" WK-I9-LEN
+      *     END-IF
+                   MOVE    SPACE       TO      POT1-REC
+                   MOVE    1           TO      P
+
+                   MOVE    WK-I1 (1:WK-I1-LEN) TO POT1-REC (P:WK-I1-LEN)
+                   ADD     WK-I1-LEN   TO      P
+      *    *** X"09":TAB
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   MOVE    WK-I2 (1:WK-I2-LEN) TO POT1-REC (P:WK-I2-LEN)
+                   ADD     WK-I2-LEN   TO      P
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   MOVE    WK-I3 (1:WK-I3-LEN) TO POT1-REC (P:WK-I3-LEN)
+                   ADD     WK-I3-LEN   TO      P
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   MOVE    WK-I4 (1:WK-I4-LEN) TO POT1-REC (P:WK-I4-LEN)
+                   ADD     WK-I4-LEN   TO      P
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   MOVE    WK-I5 (1:WK-I5-LEN) TO POT1-REC (P:WK-I5-LEN)
+                   ADD     WK-I5-LEN   TO      P
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   IF      WK-I6-LEN   =       ZERO
+                           CONTINUE
+                   ELSE
+                           MOVE    WK-I6 (1:WK-I6-LEN) TO 
+                                   POT1-REC (P:WK-I6-LEN)
+                           ADD     WK-I6-LEN   TO      P
+                   END-IF
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   IF      WK-I7-LEN   =       ZERO
+                           CONTINUE
+                   ELSE
+                           MOVE    WK-I7 (1:WK-I7-LEN) TO 
+                                   POT1-REC (P:WK-I7-LEN)
+                           ADD     WK-I7-LEN   TO      P
+                   END-IF
+
+                   MOVE    X"09"       TO      POT1-REC (P:1)
+                   ADD     1           TO      P
+
+                   MOVE    WK-I8 (1:WK-I8-LEN) TO POT1-REC (P:WK-I8-LEN)
+                   ADD     WK-I8-LEN   TO      P
+
+      *             MOVE    X"09"       TO      POT1-REC (P:1)
+      *             ADD     1           TO      P
+
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+           END-IF
+           .
+       S034-EX.
            EXIT.
 
       *    *** READ PIN3
@@ -674,52 +947,70 @@
        S180-10.
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "1234567890"      TO      WFD-ITEM
+      *     MOVE    WK-PACK     TO      WFD-SEQ
+           MOVE    1           TO      WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    SPACE       TO      WFD-ITEM
+      *     MOVE    X"E9A085E79BAEEFBC91"      TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
-                                       WK-DISPLAY3 (1:10)
+                                       WK-DISPLAY3 (1:30)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB1"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+      *     MOVE    X"E9A085E79BAEEFBC92"      TO      WFD-ITEM2
+           MOVE    SPACE       TO      WFD-ITEM
+           MOVE    SPACE       TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3 (1:20)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB2"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    "WKDISPLAY3"      TO      WFD-ITEM
+           MOVE    SPACE       TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3 (1:39)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB3"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+      *     MOVE    X"E9A085E79BAEEFBC94"      TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3 (1:40)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB4"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    "WK-DIS-41 "    TO      WFD-ITEM
+           MOVE    SPACE       TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3-41 (1:41)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB5"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    SPACE       TO      WFD-ITEM
+      *     MOVE    X"E9A085E79BAEEFBC96"      TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3 (1:42)
 
            MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB6"      TO      WFD-ITEM
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    SPACE       TO      WFD-ITEM
+      *     MOVE    X"E9A085E79BAEEFBC97"      TO      WFD-ITEM2
+           MOVE    SPACE       TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
                                        WK-DISPLAY3-43 (1:43)
 
-           MOVE    "X"         TO      WFD-ID
-           MOVE    "UTF8"      TO      WFD-KANJI
-           MOVE    "WK-SUB7"      TO      WFD-ITEM
+           MOVE    "P"         TO      WFD-ID
+           MOVE    WK-BINARY-LONG TO   WFD-SEQ
+           MOVE    "SJIS"      TO      WFD-KANJI
+           MOVE    SPACE       TO      WFD-ITEM
+      *     MOVE    X"E9A085E79BAEEFBC98"      TO      WFD-ITEM2
            CALL    "FILEDUMP"  USING   WFD-FILEDUMP-AREA
-                                       WK-DISPLAY3 (1:100)
+                                       WK-DISPLAY3 (1:201)
 
       *     MOVE    "P"         TO      WFD-ID
       *     MOVE    "SJIS"      TO      WFD-KANJI
@@ -785,6 +1076,91 @@
            END-PERFORM
            .
        S210-EX.
+           EXIT.
+
+       S220-10.
+
+           EVALUATE TRUE
+               WHEN WK-PIN1-LEN = ZERO
+                   MOVE    SPACE       TO      POT1-REC
+                   WRITE   POT1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+      *    *** ƒWƒƒƒpƒŠ
+      *         WHEN PIN1-REC (1:12) = X"E382B8E383A3E38391E383AA"
+      *             MOVE    SPACE       TO      POT1-REC
+      *             WRITE   POT1-REC
+      *             ADD     1           TO      WK-POT1-CNT
+
+               WHEN OTHER
+                   MOVE    ","         TO   PIN1-REC (WK-PIN1-LEN + 1:1)
+                   WRITE   POT1-REC    FROM    PIN1-REC
+                   ADD     1           TO      WK-POT1-CNT
+
+           END-EVALUATE
+           .
+       S220-EX.
+           EXIT.
+
+       S230-10.
+
+           UNSTRING PIN1-REC
+                    DELIMITED BY "," OR SPACE
+                    INTO
+                    WK-ITEM1     COUNT WK-ITEM1-LEN
+                    WK-ITEM2     COUNT WK-ITEM2-LEN
+           IF WK-PIN1-CNT = 1
+              DISPLAY "WK-ITEM2=" WK-ITEM2 " WK-ITEM2-LEN=" WK-ITEM2-LEN
+           END-IF
+
+           MOVE    WK-ITEM1    TO      POT1-REC
+           COMPUTE P = WK-ITEM1-LEN + 1
+
+           MOVE    ","         TO      POT1-REC (P:1)
+           ADD     1           TO      P
+
+           MOVE    WK-ITEM2    TO      POT1-REC (P:WK-ITEM2-LEN)
+           ADD     WK-ITEM2-LEN TO     P
+
+           MOVE    " ,"        TO      POT1-REC (P:2)
+           ADD     2           TO      P
+
+           MOVE    WK-ITEM2    TO      POT1-REC (P:32)
+           ADD     32          TO      P
+
+           MOVE    "_img"      TO      POT1-REC (P:4)
+           ADD     4           TO      P
+
+           COMPUTE L = WK-ITEM2-LEN - 32
+           MOVE    WK-ITEM2 (33:L) TO  POT1-REC (P:L)
+           ADD     L           TO      P
+
+           MOVE    " ,"        TO      POT1-REC (P:2)
+           ADD     2           TO      P
+
+           WRITE   POT1-REC
+           ADD     1           TO      WK-POT1-CNT
+           .
+       S230-EX.
+           EXIT.
+
+       S240-10.
+
+           CALL   "CBL_CHANGE_DIR" USING WK-SEIYU
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME " CALL SYSTEM RETURN-CODE ERROR="
+           END-IF
+
+           CALL    "SYSTEM"    USING   "DIR *.jpg > TEST01.DIR.txt"
+
+           IF      RETURN-CODE NOT =   ZERO
+                   DISPLAY WK-PGM-NAME 
+                           " CALL SYSTEM DIR RETURN-CODE ERROR="
+           END-IF
+
+           .
+       S240-EX.
            EXIT.
 
       *    *** CLOSE

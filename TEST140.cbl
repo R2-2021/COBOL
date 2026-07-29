@@ -17,7 +17,10 @@
       *    *** MissAV_XXXX.htmlに出力
       *    *** 下記プログラムもこのプログラムで自動実行する
       *    *** 
-      *    *** TEST10  (PIN2 1件目にファイル名 MISSAV.XXXX.html を指定)
+      *    *** TEST10 MissAV.XXXX.html
+      *    ***        (又は、PIN2 1件目にファイル名 MISSAV.XXXX.html を指定)
+      *    ***   ↓
+      *    *** TEST134 MissAV.XXXX.html
       *    ***   ↓
       *    *** TEST104 A001
       *    ***   ↓
@@ -165,10 +168,10 @@
                "python TEST140.POT1.py".
 
            03  WK-TEST10-EXEC  PIC  X(100) VALUE 
-               "TEST10  MissAV.XXXX.html".
+               "TEST10  MissAV.X.html".
 
            03  WK-TEST134-EXEC PIC  X(100) VALUE 
-               "TEST134 MissAV.XXXX.html".
+               "TEST134 MissAV.X.html".
 
            03  WK-TEST104-EXEC PIC  X(100) VALUE 
                "TEST104 XXXX".
@@ -866,6 +869,7 @@
            IF      WK-ACCEPT4  =       "A"
                    CLOSE   POT2-F
 
+                   DISPLAY WK-COPY1-EXEC
                    CALL    "SYSTEM"    USING   WK-COPY1-EXEC
 
                    IF      RETURN-CODE NOT =   ZERO
@@ -880,6 +884,7 @@
            CLOSE   POT3-F
                    POT4-F
 
+           DISPLAY WK-COPY2-EXEC
            CALL    "SYSTEM"    USING   WK-COPY2-EXEC
 
            IF      RETURN-CODE NOT =   ZERO
@@ -890,6 +895,7 @@
 
            MOVE    WK-ACCEPT4  TO      WK-COPY3-EXEC (33:1)
            DISPLAY WK-COPY3-EXEC
+
            CALL    "SYSTEM"    USING   WK-COPY3-EXEC
 
            IF      RETURN-CODE NOT =   ZERO
@@ -988,28 +994,28 @@
 
            DISPLAY WK-PGM-NAME " END"
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
-           DISPLAY WK-PGM-NAME " PIN1  件数 = " WK-PIN1-CNT-E
+           DISPLAY WK-PGM-NAME " PIN1 件数 = " WK-PIN1-CNT-E
                    " (" WK-PIN1-F-NAME ")"
            MOVE    WK-PIN2-CNT2 TO     WK-PIN2-CNT-E
-           DISPLAY WK-PGM-NAME " PIN2  件数 = " WK-PIN2-CNT-E
+           DISPLAY WK-PGM-NAME " PIN2 件数 = " WK-PIN2-CNT-E
                    " (" WK-PIN2-F-NAME ")"
            MOVE    WK-PIN3-CNT TO      WK-PIN3-CNT-E
-           DISPLAY WK-PGM-NAME " PIN3  件数 = " WK-PIN3-CNT-E
+           DISPLAY WK-PGM-NAME " PIN3 件数 = " WK-PIN3-CNT-E
                    " (" WK-PIN3-F-NAME ")"
            MOVE    WK-PIN4-CNT TO      WK-PIN4-CNT-E
-           DISPLAY WK-PGM-NAME " PIN4  件数 = " WK-PIN4-CNT-E
+           DISPLAY WK-PGM-NAME " PIN4 件数 = " WK-PIN4-CNT-E
                    " (" WK-PIN4-F-NAME ")"
            MOVE    WK-POT1-CNT TO      WK-POT1-CNT-E
-           DISPLAY WK-PGM-NAME " POT1  件数 = " WK-POT1-CNT-E
+           DISPLAY WK-PGM-NAME " POT1 件数 = " WK-POT1-CNT-E
                    " (" WK-POT1-F-NAME ")"
            MOVE    WK-POT2-CNT TO      WK-POT2-CNT-E
-           DISPLAY WK-PGM-NAME " POT2  件数 = " WK-POT2-CNT-E
+           DISPLAY WK-PGM-NAME " POT2 件数 = " WK-POT2-CNT-E
                    " (" WK-POT2-F-NAME ")"
            MOVE    WK-POT3-CNT TO      WK-POT3-CNT-E
-           DISPLAY WK-PGM-NAME " POT3  件数 = " WK-POT3-CNT-E
+           DISPLAY WK-PGM-NAME " POT3 件数 = " WK-POT3-CNT-E
                    " (" WK-POT3-F-NAME ")"
            MOVE    WK-POT4-CNT TO      WK-POT4-CNT-E
-           DISPLAY WK-PGM-NAME " POT4  件数 = " WK-POT4-CNT-E
+           DISPLAY WK-PGM-NAME " POT4 件数 = " WK-POT4-CNT-E
                    " (" WK-POT4-F-NAME ")"
 
            MOVE    "E"         TO      WDT-DATE-TIME-ID

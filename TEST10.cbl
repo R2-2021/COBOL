@@ -60,7 +60,7 @@
        01  PIN1-REC.
       *     03  FILLER          PIC  X(65536).
       *     03  FILLER          PIC  X(10000000).
-           03  FILLER          PIC  X(100000).
+           03  FILLER          PIC  X(40000).
 
        FD  PIN2-F
            LABEL RECORDS ARE STANDARD.
@@ -71,7 +71,7 @@
        FD  POT1-F
            LABEL RECORDS ARE STANDARD.
        01  POT1-REC.
-           03  FILLER          PIC  X(1000).
+           03  FILLER          PIC  X(10000).
 
        FD  POT2-F
            LABEL RECORDS ARE STANDARD.
@@ -103,6 +103,7 @@
            03  WK-POT2-CNT     BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-PIN1-LEN-MAX-E PIC --,---,---,--9 VALUE ZERO.
+           03  WK-POT1-LEN-MAX-E PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-PIN2-CNT-E   PIC --,---,---,--9 VALUE ZERO.
            03  WK-POT1-CNT-E   PIC --,---,---,--9 VALUE ZERO.
@@ -110,6 +111,7 @@
 
            03  WK-PIN1-LEN     BINARY-LONG SYNC VALUE ZERO.
            03  WK-PIN1-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
+           03  WK-POT1-LEN-MAX BINARY-LONG SYNC VALUE ZERO.
 
            03  WK-FIND         PIC  X(001) VALUE ZERO.
            03  WK-INT5         BINARY-LONG SYNC VALUE ZERO.
@@ -122,7 +124,7 @@
            03  WK-ACCEPT1       PIC  X(100) VALUE SPACE.
 
       * 01  WK-PIN1-REC         PIC  X(10000000) VALUE SPACE.
-       01  WK-PIN1-REC         PIC  X(100000) VALUE SPACE.
+       01  WK-PIN1-REC         PIC  X(40000) VALUE SPACE.
 
        01  WK-Buf-L            BINARY-LONG SYNC VALUE 10.
 
@@ -287,6 +289,11 @@
                    IF      WK-PIN1-LEN >       WK-PIN1-LEN-MAX
                        MOVE    WK-PIN1-LEN TO      WK-PIN1-LEN-MAX
                    END-IF
+                   IF      WK-PIN1-LEN-MAX >= 40000
+                       DISPLAY WK-PGM-NAME " WK-PIN1-LEN OVER 40000 =< "
+                                   WK-PIN1-LEN
+                           STOP    RUN
+                   END-IF
       *     IF WK-PIN1-CNT >= 0 AND <= 121
       *     DISPLAY "WK-PIN1-CNT=" WK-PIN1-CNT " " PIN1-REC (1:20)
 
@@ -339,6 +346,9 @@
                      ELSE
                        IF  WK-PIN1-REC (I:1) = "%"
                        AND WK-PIN1-F-NAME (1:9) NOT = "bookmarks"
+                       AND WK-PIN1-F-NAME (1:7) NOT = "MissAV."
+                       AND ( WK-PIN1-REC (I + 1:1) >= "0" AND <= "F" )
+                       AND ( WK-PIN1-REC (I + 2:1) >= "0" AND <= "F" )
                            MOVE    WK-PIN1-REC (I:3) TO WK-STR
                            CALL    "DECODE01" USING   WK-STR
                                                       WK-VAL
@@ -430,6 +440,15 @@
                            END-IF
                        ELSE
                            MOVE    PIN1-REC(I:L) TO      POT1-REC
+                           IF      L > WK-POT1-LEN-MAX
+                               MOVE L TO WK-POT1-LEN-MAX
+                           END-IF
+                           IF      WK-POT1-LEN-MAX >= 10000
+                                   DISPLAY WK-PGM-NAME " WK-POT1-LEN"
+                                           " OVER 10000 <"
+                                           WK-POT1-LEN-MAX
+                                   STOP    RUN
+                           END-IF
                            IF  POT1-REC (L:1) NOT = ">"
                                MOVE    WK-FLAG        TO  POT2-FLAG
                                MOVE    ","            TO  POT2-KANMA
@@ -563,6 +582,9 @@
 
            MOVE    WK-PIN1-LEN-MAX TO  WK-PIN1-LEN-MAX-E
            DISPLAY WK-PGM-NAME " PIN1 ÚÝ¸Þ½= " WK-PIN1-LEN-MAX-E
+
+           MOVE    WK-POT1-LEN-MAX TO  WK-POT1-LEN-MAX-E
+           DISPLAY WK-PGM-NAME " POT1 ÚÝ¸Þ½= " WK-POT1-LEN-MAX-E
 
            MOVE    WK-PIN1-CNT TO      WK-PIN1-CNT-E
            DISPLAY WK-PGM-NAME " PIN1 ¹Ý½³ = " WK-PIN1-CNT-E
