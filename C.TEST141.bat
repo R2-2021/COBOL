@@ -1,5 +1,5 @@
-REM YouTube ŒŸõ ©“®Às SJIS ‚Å•Û‘¶‚·‚é
-REM ƒRƒ}ƒ“ƒh ƒvƒƒ“ƒvƒg‚ÅÀs‚Ì>C.TEST141  “ => ““ ‚É‚·‚é•K—v‚ª‚ ‚é
+REM YouTube æ¤œç´¢ è‡ªå‹•å®Ÿè¡Œ SJIS ã§ä¿å­˜ã™ã‚‹
+REM ã‚³ãƒãƒ³ãƒ‰ ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã§å®Ÿè¡Œã®æ™‚>C.TEST141  ï¼… => ï¼…ï¼… ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 
 
-TEST141 "https://www.youtube.com/results?search_query=%E5%A4%A7%E7%86%8A%E5%92%8C%E5%A5%8F" ‘åŒF˜a‘t
+TEST141 "https://www.youtube.com/results?search_query=%E3%83%8F%E3%83%AF%E3%82%A4" ãƒãƒ¯ã‚¤
