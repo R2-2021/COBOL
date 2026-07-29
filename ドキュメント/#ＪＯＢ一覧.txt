@@ -359,6 +359,18 @@ REM ＊＊＊　TEST37データでFILEITEM検証　＊＊＊
 C.FILEITEM.T032.bat
 REM 女優順 アニメリスト出力
 
+
+REM TEST10 html => プログラムで処理しやすいように分解して出力
+
+REM アニメイト アニメ一覧の時 YYYYMM 指定
+
+TEST10 202607
+
+REM Googleクロームのブックマークの時、
+
+TEST10 #bookmarks.html.xvi
+
+
 REM TEST48 UTF8=>SJIS 変換
 TEST48 TEST48.T004.PRM1
 
@@ -409,17 +421,17 @@ C.TEST104_1.bat
 REM ＊＊＊　MissAV 全て実行用　＊＊＊
 
 REM ＭｉｓｓＡＶ　愛娘相姦 02
-TEST104 1
+TEST104 K001
 TEST53 032 02
 TEST54
 
 REM ＭｉｓｓＡＶ　愛娘相姦 05
-TEST104 1
+TEST104 K001
 TEST53 032 05
 TEST54
 
 REM ＭｉｓｓＡＶ　愛嬢機姦 02
-TEST104 2
+TEST104 K002
 TEST53 032 02
 TEST54
 ...
@@ -604,14 +616,14 @@ C.TEST61.bat
 REM ＊＊＊　YouTube アニメ年代順、タイトル順データ作成　＊＊＊
 REM Pthon でWebreq.animeito202101.py 最新 YYYYMMを作り、実行F5
 REM 作成された
-REM TEST10 TEST10.PIN2 の １行目 YYYYMM 変更して実行
+REM TEST10 TEST10.PIN2 の １行目 YYYYMM 変更して実行 又は実行でYYYYMM指定
 REM TEST26 実行
 REM TEST28 実行
 REM TEST50.PIN1 に　最新YYYY.MM TEST28.POT1 データ追加
 REM TEST62.POT2 に件数あるとき、漢字よみデータ追加 TEST62.PIN3 TEST62再実行
 REM TEST50.CBL,TEST51.CBL アニメイト　アニメ一覧 最新年度月変更 ID＝は変更ないみたい
 REM
-REM   *    *** TEST10
+REM   *    *** TEST10 202607
 REM   *    ***   |
 REM   *    *** TEST28
 REM   *    ***

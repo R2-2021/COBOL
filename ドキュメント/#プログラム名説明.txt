@@ -488,3 +488,26 @@ TEST134,
       *    *** 同一ＩＤは無修正を先に出力
 TEST135,
       *    *** DLNA用 ファイルＩＤ、タイトル、作成日、取り出し
+TEST136,
+      *    *** DLNA用 ファイルＩＤ、タイトル、作成日、取り出し
+      *    *** 
+      *    *** L: => F: XCOPY BAT 作成
+      *    *** 
+TEST137,
+      *    *** TEST53 音韓、女性韓国アイドルグループ データ編集
+TEST138,
+      *    *** TEST137.POT1.BAT CHECK
+TEST139,
+      *    *** みんなのAV.com 検索 検索結果 画像拡大表示 横６個
+TEST140,
+      *    *** MISSAV 検索 検索結果 画像拡大表示 横５ OR ２個
+      *    *** このプログラムで 
+      *    *** 全部実行(Python=>TEST10=>TEST134=>TEST104=>TEST53=>TEST54)
+TEST141,
+      *    *** YouTube 検索 サムネイル再編集
+      *    *** このプログラムで 
+      *    *** 全部実行(Python=>TEST69=>TEST142=>TEST68)
+TEST142,
+      *    *** YouTube 検索 サムネイル(TEST69.POT3)再編集
+      *    *** このプログラムで WATCHデータ再編集
+      *    *** 実行順 TEST141 で全て実行 (Python=>TEST69=>TEST142=>TEST68)
